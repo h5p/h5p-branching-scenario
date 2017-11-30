@@ -1,0 +1,11 @@
+.h5p-branching-scenario-current-screen {
+  display: block;
+}
+
+.h5p-branching-scenario-next-screen {
+  display: none;
+}
+
+.h5p-branching-scenario-hidden {
+  display: none;
+}

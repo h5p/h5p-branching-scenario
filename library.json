@@ -1,0 +1,28 @@
+{
+  "title": "Branching Scenario",
+  "description": "description",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Joubel AS",
+  "license": "MIT",
+  "machineName": "H5P.BranchingScenario",
+  "preloadedJs": [
+    {
+      "path": "branchingScenario.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "branchingScenario.css"
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

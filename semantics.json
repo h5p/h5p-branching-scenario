@@ -1,0 +1,61 @@
+[
+  {
+    "name": "content",
+    "label": "List of branching scenario content",
+    "importance": "high",
+    "type": "list",
+    "min": 1,
+    "entity": "content",
+    "field": {
+      "name": "content",
+      "type": "group",
+      "fields": [
+        {
+          "name": "content",
+          "type": "library",
+          "importance": "high",
+          "label": "Content",
+          "options": [
+            "H5P.BranchingQuestion 1.0",
+            "H5P.CoursePresentation 1.17",
+            "H5P.AdvancedText 1.1",
+            "H5P.Image 1.0",
+            "H5P.ImageHotspots 1.5",
+            "H5P.InteractiveVideo 1.17",
+            "H5P.Video 1.3"
+          ]
+        },
+        {
+          "name": "contentId",
+          "type": "number",
+          "importance": "high",
+          "label": "Content ID",
+          "default": 0
+        },
+        {
+          "name": "nextContentId",
+          "type": "number",
+          "importance": "high",
+          "label": "Next Content ID (end screen is -1)",
+          "default": 0,
+          "widget": "showWhen",
+          "showWhen": {
+            "rules": [
+              {
+                "field": "content",
+                "equals": [
+                  "H5P.CoursePresentation",
+                  "H5P.AdvancedText 1.1",
+                  "H5P.Image 1.0",
+                  "H5P.ImageHotspots 1.5",
+                  "H5P.InteractiveVideo 1.17",
+                  "H5P.Video 1.3"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+]
