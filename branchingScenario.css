@@ -1,5 +1,6 @@
 .h5p-branching-scenario-current-screen {
   display: block;
+  min-height: 38.333em;
 }
 
 .h5p-branching-scenario-next-screen {
@@ -8,4 +9,87 @@
 
 .h5p-branching-scenario-hidden {
   display: none;
+}
+
+.h5p-branching-scenario-overlay {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.h5p-branching-question {
+  margin: auto;
+  width: 50%;
+}
+
+.h5p-branching-scenario-start-screen {
+  background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.h5p-branching-scenario-background {
+  position: relative;
+  height: 14.583em;
+  left: 0;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h5p-branching-scenario-banner {
+  position: relative;
+  height: 10.250em;
+  width: 100%;
+  background: black;
+  opacity: 0.1;
+}
+
+.h5p-branching-scenario-image-container {
+  position: absolute;
+  height: 14.583em;
+  width: 20em;
+  background: black;
+}
+
+.h5p-branching-scenario-screen-content {
+  position: relative;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.h5p-branching-scenario-score-widget {
+  background: white;
+  height: 4em;
+}
+
+.h5p-branching-scenario-title-text {
+  color: white;
+  font-size: 2.292em;
+}
+
+.h5p-branching-scenario-subtitle-text {
+  color: white;
+  font-size: 1.083em;
+}
+
+.h5p-branching-scenario-start-button {
+  padding: 1.250em;
+  margin: 1em;
+  border-style: solid;
+  border-width: 0.083em;
+  border-color: #98fd8e;
+  border-radius: 2em;
+  font-size: 1.333em;
+  font-style: #98fd8e;
+  color: #98fd8e;
+  background: none;
+  cursor: pointer;
 }
