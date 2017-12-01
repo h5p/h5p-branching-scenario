@@ -211,7 +211,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.attach = function($container) {
-    currentScreen = createEndScreen();
+    currentScreen = createStartScreen();
     var currentLibrary = getLibrary(0);
     nextScreen = createLibraryScreen(currentLibrary);
     nextLibraryId = currentLibrary.nextContentId;
