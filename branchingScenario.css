@@ -53,9 +53,10 @@
 
 .h5p-branching-scenario-start-screen {
   background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 5em;
 }
 
 .h5p-branching-scenario-background {
@@ -66,6 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3em;
 }
 
 .h5p-branching-scenario-banner {
@@ -76,11 +78,12 @@
   opacity: 0.1;
 }
 
-.h5p-branching-scenario .h5p-image-container {
+.h5p-branching-scenario .h5p-background-image {
   position: absolute;
-  height: 14.583em;
-  width: 20em;
-  box-shadow: 0 0 20px 7px #373A49;
+  max-height: 14.583em;
+  -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
 }
 
 .h5p-branching-scenario .h5p-image-container.h5p-default-start-image {
@@ -105,8 +108,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
   padding: 0.5em;
 }
 
@@ -116,13 +118,14 @@
   min-width: 4em;
   border-style: solid;
   border-width: 0.353em;
-  border-color: #515367;
+  border-color: #525669;
   border-radius: 2em;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-family: H5PRobotoBold;
+  padding: 0 0 0 0.5em ;
 }
 
 .h5p-branching-scenario .h5p-result-wrapper .h5p-score-text {
@@ -134,10 +137,8 @@
   margin: 0.3em 0.5em 0.3em 0.5em;
   display: inline-block;
   background: #2b2c3a;
-  padding: 0.3em;
-  border-radius: 50%;
-  width: 2.3em;
-  height: 2.3em;
+  padding: 0.3em 0.5em 0.3em 0.5em;
+  border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,6 +149,8 @@
   color: white;
   font-size: 2.292em;
   font-family: H5PRobotoLight;
+  margin: 0;
+  padding: 0;
 }
 
 .h5p-branching-scenario-subtitle-text {
@@ -157,14 +160,13 @@
 }
 
 .h5p-branching-scenario .h5p-start-button, .h5p-end-button {
-  padding: 1.250em;
-  margin: 1em;
+  padding: 0.9rem 1.5rem;
+  margin: 3rem 1rem 0rem 1rem;
   border-style: solid;
-  border-width: 0.083em;
+  border-width: 0.1250rem;
   border-color: #98fd8e;
-  border-radius: 2em;
-  font-size: 1.333em;
-  font-style: #98fd8e;
+  border-radius: 2rem;
+  font-size: 1.25rem;
   color: #98fd8e;
   background: none;
   cursor: pointer;
@@ -174,11 +176,17 @@
 .h5p-branching-scenario .h5p-start-button:after {
   font-family: 'H5PFontAwesome4';
   content: "\f178";
-  padding-left: 7px;
+  padding-left: 10px;
 }
 
 .h5p-branching-scenario .h5p-end-button:before {
   font-family: 'H5PFontAwesome4';
   content: '\f01e';
-  padding-right: 7px;
+  padding-right: 10px;
+}
+
+#content h2{
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.083em !important;
 }

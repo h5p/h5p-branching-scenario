@@ -1,5 +1,43 @@
 [
   {
+    "name": "startscreen",
+    "type": "group",
+    "fields": [
+      {
+        "name": "startScreenTitle",
+        "type": "text"
+      },
+      {
+        "name": "startScreenSubtitle",
+        "type": "text"
+      },
+      {
+        "name": "startScreenImage",
+        "type": "image",
+        "optional": true
+      }
+    ]
+  },
+  {
+    "name": "endscreen",
+    "type": "group",
+    "fields": [
+      {
+        "name": "endScreenTitle",
+        "type": "text"
+      },
+      {
+        "name": "endScreenSubtitle",
+        "type": "text"
+      },
+      {
+        "name": "endScreenImage",
+        "type": "image",
+        "optional": true
+      }
+    ]
+  },
+  {
     "name": "content",
     "label": "List of branching scenario content",
     "importance": "high",
