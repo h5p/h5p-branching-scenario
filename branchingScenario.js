@@ -46,7 +46,7 @@ H5P.BranchingScenario = function (params, contentId) {
     disableFullscreen(instance);
   };
 
-  var createScreenBackground = function () {
+  var createScreenBackground = function (isStartScreen) {
     var backgroundWrapper = document.createElement('div');
     backgroundWrapper.classList.add('h5p-branching-scenario-background');
 
@@ -54,7 +54,9 @@ H5P.BranchingScenario = function (params, contentId) {
     backgroundBanner.classList.add('h5p-branching-scenario-banner');
 
     var imageContainer = document.createElement('div');
-    imageContainer.classList.add('h5p-branching-scenario-image-container');
+    imageContainer.classList.add('h5p-branching-scenario');
+    imageContainer.classList.add('h5p-image-container');
+    imageContainer.classList.add(isStartScreen ? 'h5p-default-start-image' : 'h5p-default-end-image');
 
     backgroundWrapper.append(backgroundBanner);
     backgroundWrapper.append(imageContainer);
@@ -62,18 +64,32 @@ H5P.BranchingScenario = function (params, contentId) {
     return backgroundWrapper;
   };
 
-  var createScoreWidget = function(score) {
-    var scoreWidget = document.createElement('div');
-    scoreWidget.classList.add('h5p-branching-scenario-score-widget');
+  var createResultContainer = function(score) {
+    var wrapper = document.createElement('div');
+    wrapper.classList.add('h5p-branching-scenario');
+    wrapper.classList.add('h5p-result-wrapper');
 
-    var scoreText = document.createElement('p');
-    scoreText.innerHTML = 'You got: ' + score + '!';
+    var resultContainer = document.createElement('div');
+    resultContainer.classList.add('h5p-branching-scenario');
+    resultContainer.classList.add('h5p-result-container');
 
-    scoreWidget.append(scoreText);
-    return scoreWidget;
+    var scoreText = document.createElement('div');
+    scoreText.classList.add('h5p-branching-scenario');
+    scoreText.classList.add('h5p-score-text');
+    scoreText.append(document.createTextNode('Your score: '));
+
+    var scoreCircle = document.createElement('div');
+    scoreCircle.classList.add('h5p-branching-scenario');
+    scoreCircle.classList.add('h5p-score-circle');
+    scoreCircle.append(document.createTextNode(score));
+
+    resultContainer.append(scoreText);
+    resultContainer.append(scoreCircle);
+    wrapper.append(resultContainer);
+    return wrapper;
   };
 
-  var createScreen = function({isEndScreen, titleText, subtitleText, buttonText}) {
+  var createScreen = function({isStartScreen, titleText, subtitleText, buttonText}) {
     var screenWrapper = document.createElement('div');
     screenWrapper.classList.add('h5p-branching-scenario-current-screen');
     screenWrapper.classList.add('h5p-branching-scenario-start-screen');
@@ -90,9 +106,11 @@ H5P.BranchingScenario = function (params, contentId) {
     subtitle.innerHTML = subtitleText;
 
     var navButton = document.createElement('button');
-    navButton.classList.add('h5p-branching-scenario-start-button');
+    navButton.classList.add('h5p-branching-scenario');
+    navButton.classList.add(isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
+
     navButton.onclick = function() {
-      isEndScreen ? self.trigger('restarted') : self.trigger('started');
+      isStartScreen ? self.trigger('started') : self.trigger('restarted');
     };
     var buttonTextNode = document.createTextNode(buttonText);
     navButton.append(buttonTextNode);
@@ -101,11 +119,11 @@ H5P.BranchingScenario = function (params, contentId) {
     contentDiv.append(subtitle);
     contentDiv.append(navButton);
 
-    if (isEndScreen) {
-      contentDiv.prepend(createScoreWidget(12));
+    if (isStartScreen === false) {
+      contentDiv.prepend(createResultContainer(12));
     }
 
-    screenWrapper.append(createScreenBackground());
+    screenWrapper.append(createScreenBackground(isStartScreen));
     screenWrapper.append(contentDiv);
 
     return screenWrapper;
@@ -131,7 +149,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
   var createStartScreen = function() {
     return createScreen({
-      isEndScreen: false,
+      isStartScreen: true,
       titleText: 'Welcome to a demo',
       subtitleText: 'Press the button below to start!',
       buttonText: 'Start the course'
@@ -140,7 +158,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
   var createEndScreen = function() {
     return createScreen({
-      isEndScreen: true,
+      isStartScreen: false,
       titleText: 'You have finished!', // TODO
       subtitleText: 'Click to retry',
       buttonText: 'Retry'
@@ -193,7 +211,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.attach = function($container) {
-    currentScreen = createStartScreen();
+    currentScreen = createEndScreen();
     var currentLibrary = getLibrary(0);
     nextScreen = createLibraryScreen(currentLibrary);
     nextLibraryId = currentLibrary.nextContentId;

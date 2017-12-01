@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'H5PRobotoLight';
+  src: url('./fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoMedium';
+  src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoRegular';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoBold';
+  src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: normal;
+}
+
 .h5p-branching-scenario-current-screen {
   display: block;
   min-height: 38.333em;
@@ -52,11 +76,21 @@
   opacity: 0.1;
 }
 
-.h5p-branching-scenario-image-container {
+.h5p-branching-scenario .h5p-image-container {
   position: absolute;
   height: 14.583em;
   width: 20em;
-  background: black;
+  box-shadow: 0 0 20px 7px #373A49;
+}
+
+.h5p-branching-scenario .h5p-image-container.h5p-default-start-image {
+  background: url(start-screen-default.jpg);
+  background-size: 100% 100%;
+}
+
+.h5p-branching-scenario .h5p-image-container.h5p-default-end-image {
+  background: url(end-screen-default.jpg);
+  background-size: 100% 100%;
 }
 
 .h5p-branching-scenario-screen-content {
@@ -65,22 +99,64 @@
   width: 100%;
 }
 
-.h5p-branching-scenario-score-widget {
-  background: white;
-  height: 4em;
+.h5p-branching-scenario .h5p-result-wrapper {
+  width: 100%;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+
+.h5p-branching-scenario .h5p-result-container {
+  background: #3C3D4E;
+  color: white;
+  min-width: 4em;
+  border-style: solid;
+  border-width: 0.353em;
+  border-color: #515367;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: H5PRobotoBold;
+}
+
+.h5p-branching-scenario .h5p-result-wrapper .h5p-score-text {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.h5p-branching-scenario .h5p-result-wrapper .h5p-score-circle {
+  margin: 0.3em 0.5em 0.3em 0.5em;
+  display: inline-block;
+  background: #2b2c3a;
+  padding: 0.3em;
+  border-radius: 50%;
+  width: 2.3em;
+  height: 2.3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .h5p-branching-scenario-title-text {
+  margin-top: 0;
   color: white;
   font-size: 2.292em;
+  font-family: H5PRobotoLight;
 }
 
 .h5p-branching-scenario-subtitle-text {
   color: white;
   font-size: 1.083em;
+  font-family: H5PRobotoRegular;
 }
 
-.h5p-branching-scenario-start-button {
+.h5p-branching-scenario .h5p-start-button, .h5p-end-button {
   padding: 1.250em;
   margin: 1em;
   border-style: solid;
@@ -92,4 +168,17 @@
   color: #98fd8e;
   background: none;
   cursor: pointer;
+  font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-start-button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f178";
+  padding-left: 7px;
+}
+
+.h5p-branching-scenario .h5p-end-button:before {
+  font-family: 'H5PFontAwesome4';
+  content: '\f01e';
+  padding-right: 7px;
 }
