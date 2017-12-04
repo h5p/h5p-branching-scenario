@@ -5,6 +5,9 @@
   "minorVersion": 0,
   "patchVersion": 0,
   "runnable": 1,
+  "embedTypes": [
+    "iframe"
+  ],
   "author": "Joubel AS",
   "license": "MIT",
   "machineName": "H5P.BranchingScenario",

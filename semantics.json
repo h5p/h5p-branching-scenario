@@ -1,5 +1,9 @@
 [
   {
+    "name": "title",
+    "type": "text"
+  },
+  {
     "name": "startscreen",
     "type": "group",
     "fields": [
@@ -48,6 +52,14 @@
       "name": "content",
       "type": "group",
       "fields": [
+        {
+          "name": "contentTitle",
+          "type": "text"
+        },
+        {
+          "name": "showContentTitle",
+          "type": "boolean"
+        },
         {
           "name": "content",
           "type": "library",

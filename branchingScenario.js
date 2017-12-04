@@ -9,49 +9,52 @@ H5P.BranchingScenario = function (params, contentId) {
   var currentScreen;
   var nextLibraryId;
   var nextScreen;
+  var currentLibraryInstance;
 
-  var createWrapper = function() {
+  var createWrapper = function(courseTitle, libraryTitle) {
     var wrapper = document.createElement('div');
 
+    var titleDiv = document.createElement('div');
+    titleDiv.classList.add('h5p-branching-scenario');
+    titleDiv.classList.add('h5p-title-wrapper');
+
+    var headerTitle = document.createElement('h1');
+    headerTitle.innerHTML = courseTitle;
+    titleDiv.append(headerTitle);
+
+    if (libraryTitle) {
+      var headerSubtitle = document.createElement('h2');
+      headerSubtitle.innerHTML = libraryTitle;
+      titleDiv.append(headerSubtitle);
+    }
+
+    var buttonWrapper = document.createElement('div');
     var navButton = document.createElement('button');
     navButton.onclick = function() {
       self.trigger('navigated', nextLibraryId);
     };
-
-    var text = document.createTextNode('Proceed'); // TODO: use translatable
-    navButton.append(text);
+    navButton.append(document.createTextNode('Proceed'));
+    buttonWrapper.append(navButton);
 
     var header = document.createElement('div');
-    header.append(navButton);
+    header.classList.add('h5p-branching-scenario');
+    header.classList.add('h5p-screen-header');
+
+    header.append(titleDiv);
+    header.append(buttonWrapper);
     wrapper.append(header);
 
     return wrapper;
   };
 
-  var appendRunnable = function(container, content, contentData) {
-    // Content overrides
-    var library = content.library.split(' ')[0];
-    if (library === 'H5P.Video') {
-      // Prevent video from growing endlessly since height is unlimited.
-      content.params.visuals.fit = false;
-    }
-
-    // Create content instance
-    var instance = H5P.newRunnable(content, contentId, H5P.jQuery(container), true, contentData);
-    instance.on('navigated', function(e) {
-      self.trigger('navigated', e.data);
-    });
-
-    // Remove any fullscreen buttons
-    disableFullscreen(instance);
-  };
-
   var createScreenBackground = function (isStartScreen, image) {
     var backgroundWrapper = document.createElement('div');
-    backgroundWrapper.classList.add('h5p-branching-scenario-background');
+    backgroundWrapper.classList.add('h5p-branching-scenario');
+    backgroundWrapper.classList.add('h5p-screen-background');
 
     var backgroundBanner = document.createElement('div');
-    backgroundBanner.classList.add('h5p-branching-scenario-banner');
+    backgroundBanner.classList.add('h5p-branching-scenario');
+    backgroundBanner.classList.add('h5p-screen-banner');
 
     var backgroundImage = document.createElement('img');
     backgroundImage.classList.add('h5p-branching-scenario');
@@ -97,8 +100,9 @@ H5P.BranchingScenario = function (params, contentId) {
 
   var createScreen = function({isStartScreen, titleText, subtitleText, image, buttonText}) {
     var screenWrapper = document.createElement('div');
-    screenWrapper.classList.add('h5p-branching-scenario-current-screen');
-    screenWrapper.classList.add('h5p-branching-scenario-start-screen');
+    screenWrapper.classList.add('h5p-branching-scenario');
+    screenWrapper.classList.add('h5p-start-screen');
+    screenWrapper.classList.add('h5p-current-screen');
 
     var contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
@@ -135,24 +139,6 @@ H5P.BranchingScenario = function (params, contentId) {
     return screenWrapper;
   };
 
-  var getLibrary = function(id) {
-    for (var i = 0; i < params.content.length; i ++) {
-      if (params.content[i].contentId === id) {
-        return params.content[i];
-      }
-    }
-    return -1;
-  };
-
-  var createLibraryScreen = function(library) {
-    var wrapper = createWrapper();
-    wrapper.className = 'h5p-branching-scenario-next-screen';
-    var libraryWrapper = document.createElement('div');
-    appendRunnable(libraryWrapper, library.content);
-    wrapper.append(libraryWrapper);
-    return wrapper;
-  };
-
   var createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}) {
     return createScreen({
       isStartScreen: true,
@@ -173,22 +159,44 @@ H5P.BranchingScenario = function (params, contentId) {
     });
   };
 
+  var createLibraryScreen = function(courseTitle, library) {
+    var wrapper = library.showContentTitle ? createWrapper(courseTitle, library.contentTitle) : createWrapper(courseTitle);
+    wrapper.classList.add('h5p-branching-scenario');
+    wrapper.classList.add('h5p-next-screen');
+
+    var libraryWrapper = document.createElement('div');
+    libraryWrapper.classList.add('h5p-branching-scenario');
+    libraryWrapper.classList.add('h5p-library-wrapper');
+    appendRunnable(libraryWrapper, library.content);
+
+    wrapper.append(libraryWrapper);
+
+    return wrapper;
+  };
+
   var replaceCurrentScreenWithNextScreen = function() {
     self.container.append(nextScreen);
     // Hide current screen and show the next one
-    currentScreen.className = 'h5p-branching-scenario-hidden';
-    nextScreen.classList.remove('h5p-branching-scenario-next-screen');
-    nextScreen.classList.add('h5p-branching-scenario-current-screen');
+    currentScreen.classList.add('h5p-branching-scenario-hidden');
+    nextScreen.classList.remove('h5p-next-screen');
+    nextScreen.classList.add('h5p-current-screen');
 
     // Update the current screen
     currentScreen.parentNode.removeChild(currentScreen);
     currentScreen = nextScreen;
     nextScreen = undefined;
+
+    // Resize
+    var libraryElement = self.container[0].getElementsByClassName('h5p-library-wrapper')[0];
+    if (libraryElement && libraryElement.classList.contains('h5p-course-presentation')) {
+      currentLibraryInstance.trigger('resize');
+    }
   };
+
 
   self.on('started', function() {
     var currentLibrary = getLibrary(0); // Get the first library
-    nextScreen = createLibraryScreen(currentLibrary);
+    nextScreen = createLibraryScreen(params.title, currentLibrary);
     nextLibraryId = currentLibrary.nextContentId;
     replaceCurrentScreenWithNextScreen();
   });
@@ -206,7 +214,7 @@ H5P.BranchingScenario = function (params, contentId) {
       replaceCurrentScreenWithNextScreen();
     }
     else if (nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
-      nextScreen = createLibraryScreen(nextLibrary);
+      nextScreen = createLibraryScreen(params.title, nextLibrary);
       replaceCurrentScreenWithNextScreen();
       nextLibraryId = nextLibrary.nextContentId;
     }
@@ -221,7 +229,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.attach = function($container) {
     currentScreen = createStartScreen(params.startscreen);
     var currentLibrary = getLibrary(0);
-    nextScreen = createLibraryScreen(currentLibrary);
+    nextScreen = createLibraryScreen(params.title, currentLibrary);
     nextLibraryId = currentLibrary.nextContentId;
 
     // Add the start screen to the DOM and render the next one
@@ -229,6 +237,8 @@ H5P.BranchingScenario = function (params, contentId) {
     $container.addClass('h5p-branching-scenario').html('');
     $container.append(currentScreen);
     $container.append(nextScreen);
+
+    // replaceCurrentScreenWithNextScreen();
   };
 
   /**
@@ -237,7 +247,7 @@ H5P.BranchingScenario = function (params, contentId) {
    *
    * @param {Object} instance
    */
-  function disableFullscreen(instance) {
+  var disableFullscreen = function (instance) {
     switch (instance.libraryInfo.machineName) {
       case 'H5P.CoursePresentation':
         if (instance.$fullScreenButton) {
@@ -253,7 +263,34 @@ H5P.BranchingScenario = function (params, contentId) {
         });
         break;
     }
-  }
+  };
+
+  var getLibrary = function(id) {
+    for (var i = 0; i < params.content.length; i ++) {
+      if (params.content[i].contentId === id) {
+        return params.content[i];
+      }
+    }
+    return -1;
+  };
+
+  var appendRunnable = function(container, content, contentData) {
+    // Content overrides
+    var library = content.library.split(' ')[0];
+    if (library === 'H5P.Video') {
+      // Prevent video from growing endlessly since height is unlimited.
+      content.params.visuals.fit = false;
+    }
+
+    // Create content instance
+    currentLibraryInstance = H5P.newRunnable(content, contentId, H5P.jQuery(container), true, contentData);
+    currentLibraryInstance.on('navigated', function(e) {
+      self.trigger('navigated', e.data);
+    });
+
+    // Remove any fullscreen buttons
+    disableFullscreen(currentLibraryInstance);
+  };
 };
 
 H5P.BranchingScenario.prototype = Object.create(H5P.EventDispatcher.prototype);
