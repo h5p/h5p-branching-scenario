@@ -39,9 +39,9 @@
 
 .h5p-branching-scenario.h5p-start-screen {
   background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
-   text-align: center;
-   display: flex;
-   flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .h5p-branching-scenario .h5p-screen-background {
@@ -193,13 +193,26 @@
 }
 
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h2 {
+  font-size: 1em;
   font-family: H5PRobotoLight;
   color: #E1E1E2;
 }
 
-.h5p-branching-scenario .h5p-screen-header button {
+.h5p-branching-scenario .h5p-screen-header button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
+}
+
+.h5p-branching-scenario .h5p-nav-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-nav-button-wrapper button {
   padding: 0.4rem 1rem;
-  margin: 1rem 1rem 0rem 1rem;
+  margin: 0rem 1rem 0rem 1rem;
   border-style: solid;
   border-width: 0.083em;
   border-color: #98fd8e;
@@ -209,12 +222,6 @@
   background: none;
   cursor: pointer;
   font-family: H5PRobotoLight;
-}
-
-.h5p-branching-scenario .h5p-screen-header button:after {
-  font-family: 'H5PFontAwesome4';
-  content: "\f101";
-  padding-left: 10px;
 }
 
 .h5p-branching-scenario .h5p-library-wrapper {
@@ -241,7 +248,15 @@
   background-color: rgba(0,0,0,0.5); /* Black background with opacity */
 }
 
-.h5p-branching-question {
-  margin: auto;
-  width: 50%;
+.h5p-branching-scenario .h5p-branching-question-wrapper {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
