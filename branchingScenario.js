@@ -170,6 +170,7 @@ H5P.BranchingScenario = function (params, contentId) {
     var libraryWrapper = document.createElement('div');
     libraryWrapper.classList.add('h5p-branching-scenario');
     libraryWrapper.classList.add('h5p-library-wrapper');
+
     appendRunnable(libraryWrapper, library.content);
 
     wrapper.append(libraryWrapper);
@@ -191,7 +192,8 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Resize
     var libraryElement = self.container[0].getElementsByClassName('h5p-library-wrapper')[0];
-    if (libraryElement && libraryElement.classList.contains('h5p-course-presentation')) {
+    if (libraryElement) {
+      // libraryElement.style.height = '22em';
       currentLibraryInstance.trigger('resize');
     }
   };
@@ -260,7 +262,7 @@ H5P.BranchingScenario = function (params, contentId) {
     replaceCurrentScreenWithNextScreen();
 
     var proceedbutton = self.container[0].getElementsByTagName('button')[0];
-    proceedbutton.click();
+    // proceedbutton.click();
 
 
   };
@@ -312,9 +314,34 @@ H5P.BranchingScenario = function (params, contentId) {
       self.trigger('navigated', e.data);
     });
 
+    // Bubble resize events
+    bubbleUp(currentLibraryInstance, 'resize', self);
+
     // Remove any fullscreen buttons
     disableFullscreen(currentLibraryInstance);
   };
+
+  /**
+   * Makes it easy to bubble events from child to parent
+   *
+   * @private
+   * @param {Object} origin Origin of the Event
+   * @param {string} eventName Name of the Event
+   * @param {Object} target Target to trigger event on
+   */
+  function bubbleUp(origin, eventName, target) {
+    origin.on(eventName, function (event) {
+      // Prevent target from sending event back down
+      target.bubblingUpwards = true;
+
+      // Trigger event
+      target.trigger(eventName, event);
+
+      // Reset
+      target.bubblingUpwards = false;
+    });
+  };
+
 };
 
 H5P.BranchingScenario.prototype = Object.create(H5P.EventDispatcher.prototype);

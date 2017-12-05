@@ -225,7 +225,7 @@
 }
 
 .h5p-branching-scenario .h5p-library-wrapper {
-  margin: 0 1em 1em 1em;
+  margin: 0 20px 20px 20px;
   background: #EFEFEF;
   color: #383838;
   -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
@@ -235,6 +235,24 @@
 
 .h5p-branching-scenario .h5p-library-wrapper .h5p-wrapper {
   width: 100%;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-advanced-text {
+  padding: 1em 1.4em 1em 1.4em;
+  max-height: 33em;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 12px;
+  background-color: #C7C8CC;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
 .h5p-branching-scenario-overlay {
