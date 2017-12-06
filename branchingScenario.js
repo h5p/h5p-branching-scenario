@@ -36,6 +36,7 @@ H5P.BranchingScenario = function (params, contentId) {
     navButton.onclick = function() {
       self.trigger('navigated', nextLibraryId);
     };
+    navButton.classList.add('h5p-nav-button');
     navButton.append(document.createTextNode('Proceed'));
     buttonWrapper.append(navButton);
 
@@ -67,7 +68,7 @@ H5P.BranchingScenario = function (params, contentId) {
       backgroundImage.src = H5P.getPath(image.path, self.contentId);
     }
     else {
-      backgroundImage.src = isStartScreen ? 'start-screen-default.jpg' : 'end-screen-default.jpg';
+      backgroundImage.src = isStartScreen ? self.getLibraryFilePath('assets/start-screen-default.jpg') : self.getLibraryFilePath('assets/end-screen-default.jpg');
     }
 
     backgroundWrapper.append(backgroundBanner);
@@ -247,6 +248,15 @@ H5P.BranchingScenario = function (params, contentId) {
     }
   });
 
+  self.on('resize', function (event) {
+    // console.log('origin', origin);
+    if (self.bubblingUpwards) {
+      return; // Prevent send event back down.
+    }
+
+    currentLibraryInstance.trigger('resize', event);
+  });
+
   self.attach = function($container) {
     currentScreen = createStartScreen(params.startscreen);
     var currentLibrary = getLibrary(0);
@@ -261,7 +271,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
     replaceCurrentScreenWithNextScreen();
 
-    var proceedbutton = self.container[0].getElementsByTagName('button')[0];
+    // var proceedbutton = self.container[0].getElementsByTagName('button')[0];
     // proceedbutton.click();
 
 
@@ -333,14 +343,13 @@ H5P.BranchingScenario = function (params, contentId) {
     origin.on(eventName, function (event) {
       // Prevent target from sending event back down
       target.bubblingUpwards = true;
-
-      // Trigger event
       target.trigger(eventName, event);
 
       // Reset
       target.bubblingUpwards = false;
+      // console.log('bubbleup', target);
     });
-  };
+  }
 
 };
 
