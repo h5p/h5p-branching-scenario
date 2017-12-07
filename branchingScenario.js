@@ -106,7 +106,6 @@ H5P.BranchingScenario = function (params, contentId) {
     var screenWrapper = document.createElement('div');
     screenWrapper.classList.add('h5p-branching-scenario');
     screenWrapper.classList.add('h5p-start-screen');
-    screenWrapper.classList.add('h5p-current-screen');
 
     var contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
@@ -181,22 +180,25 @@ H5P.BranchingScenario = function (params, contentId) {
 
   var replaceCurrentScreenWithNextScreen = function() {
     self.container.append(nextScreen);
-    // Hide current screen and show the next one
-    currentScreen.classList.add('h5p-branching-scenario-hidden');
-    nextScreen.classList.remove('h5p-next-screen');
-    nextScreen.classList.add('h5p-current-screen');
+    // Slide the current screen out and the next one in
+    currentScreen.classList.add('h5p-slide-out');
+    nextScreen.classList.add('h5p-slide-in');
 
-    // Update the current screen
-    currentScreen.parentNode.removeChild(currentScreen);
-    currentScreen = nextScreen;
-    nextScreen = undefined;
-
-    // Resize
-    var libraryElement = self.container[0].getElementsByClassName('h5p-library-wrapper')[0];
-    if (libraryElement) {
-      // libraryElement.style.height = '22em';
-      currentLibraryInstance.trigger('resize');
-    }
+    setTimeout(function () {
+      // debugger;
+      nextScreen.classList.remove('h5p-next-screen');
+      nextScreen.classList.remove('h5p-slide-in');
+      nextScreen.classList.add('h5p-current-screen');
+      // Update the current screen
+      currentScreen.parentNode.removeChild(currentScreen);
+      currentScreen = nextScreen;
+      nextScreen = undefined;
+      // Resize
+      var libraryElement = self.container[0].getElementsByClassName('h5p-library-wrapper')[0];
+      if (libraryElement) {
+        currentLibraryInstance.trigger('resize');
+      }
+    }, 1000);
   };
 
   self.on('started', function() {
@@ -208,15 +210,19 @@ H5P.BranchingScenario = function (params, contentId) {
 
   self.on('restarted', function() {
     nextScreen = createStartScreen(params.startscreen);
+    nextScreen.classList.add('h5p-next-screen');
     replaceCurrentScreenWithNextScreen();
   });
 
   self.on('navigated', function(e) {
 
+    self.trigger('resize');
+
     var nextLibrary = getLibrary(e.data);
 
     if (nextLibrary === -1) {
       nextScreen = createEndScreen(params.endscreen);
+      nextScreen.classList.add('h5p-next-screen');
       replaceCurrentScreenWithNextScreen();
       overlayApplied = false;
     }
@@ -259,6 +265,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
   self.attach = function($container) {
     currentScreen = createStartScreen(params.startscreen);
+    currentScreen.classList.add('h5p-current-screen');
     var currentLibrary = getLibrary(0);
     nextScreen = createLibraryScreen(params.title, currentLibrary);
     nextLibraryId = currentLibrary.nextContentId;
@@ -269,12 +276,10 @@ H5P.BranchingScenario = function (params, contentId) {
     $container.append(currentScreen);
     $container.append(nextScreen);
 
-    replaceCurrentScreenWithNextScreen();
+    // replaceCurrentScreenWithNextScreen();
 
-    // var proceedbutton = self.container[0].getElementsByTagName('button')[0];
-    // proceedbutton.click();
-
-
+    var proceedbutton = self.container[0].getElementsByTagName('button')[0];
+    proceedbutton.click();
   };
 
   /**

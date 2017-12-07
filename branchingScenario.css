@@ -24,17 +24,47 @@
 
 .h5p-branching-scenario .h5p-current-screen {
   display: block;
-  min-height: 23.333em;
+  min-height: 28em;
   height: 100%;
   background:#52576C;
 }
 
-.h5p-branching-scenario .h5p-next-screen {
-  display: none;
+.h5p-branching-scenario .h5p-current-screen.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
 }
 
-.h5p-branching-scenario-hidden {
-  display: none;
+@keyframes slide-out {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+
+.h5p-branching-scenario .h5p-next-screen {
+  background:#52576C;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.h5p-branching-scenario .h5p-next-screen.h5p-slide-in {
+  animation: slide-in 0.8s forwards;
+  -webkit-animation: slide-in 0.8s forwards;
+}
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateX(0%); }
 }
 
 .h5p-branching-scenario.h5p-start-screen {
@@ -45,9 +75,9 @@
 }
 
 .h5p-branching-scenario .h5p-screen-background {
-  position: relative;
+  /*position: relative;*/
   height: 14.583em;
-  left: 0;
+  /*left: 0;*/
   margin-top: 4em;
   display: flex;
   align-items: center;
@@ -266,4 +296,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-branching-question h1 {
+  font-family: H5PRobotoLight;
+}
+
+.h5p-branching-scenario .h5p-branching-question h2 {
+  font-family: H5PRobotoRegular;
+  font-weight: 200;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  margin-top: 1em;
+  background-color: #C4FEBF;
+  padding: 0.9rem 1.5rem;
+  border-style: solid;
+  border-width: 0.1250rem;
+  border-color: #98fd8e;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
 }
