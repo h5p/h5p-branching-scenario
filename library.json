@@ -14,6 +14,12 @@
   "preloadedJs": [
     {
       "path": "branchingScenario.js"
+    },
+    {
+      "path": "genericScreen.js"
+    },
+    {
+      "path": "libraryScreen.js"
     }
   ],
   "preloadedCss": [
