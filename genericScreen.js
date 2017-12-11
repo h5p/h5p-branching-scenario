@@ -33,7 +33,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
     contentDiv.append(navButton);
 
     if (isStartScreen === false) {
-      contentDiv.prepend(this.createResultContainer(121232));
+      // TODO: decide on how scoring should work
+      // contentDiv.prepend(this.createResultContainer(121232));
     }
 
     this.screenWrapper.append(this.createScreenBackground(isStartScreen, image));

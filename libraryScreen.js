@@ -92,7 +92,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     }
 
     // Create content instance
-    var self = this;
     var parent = this.parent;
     this.currentLibraryInstance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true, contentData);
     this.currentLibraryInstance.on('navigated', function(e) {
@@ -176,9 +175,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.currentLibrary.classList.add('h5p-slide-out');
       this.currentLibrary.style.height = 0;
       var self = this;
-      this.currentLibrary.addEventListener('animationend', function() {
-        self.currentLibrary.remove();
-      });
 
       // Remove the branching question if it exists
       if (this.overlay) {
@@ -190,8 +186,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
       // Create next library and slide it in
       var libraryWrapper = this.createLibraryElement(library, true);
-      // this.currentLibrary = libraryWrapper;
       this.wrapper.append(libraryWrapper);
+
+      this.currentLibrary.addEventListener('animationend', function() {
+        self.currentLibrary.remove();
+        self.currentLibrary = libraryWrapper;
+        self.currentLibrary.classList.remove('h5p-next');
+        self.currentLibrary.classList.remove('h5p-slide-in');
+      });
     }
 
     else { // Show a branching question
@@ -205,8 +207,13 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
       this.branchingQuestion = document.createElement('div');
       this.branchingQuestion.className = 'h5p-branching-question-wrapper';
+
       this.appendRunnable(this.branchingQuestion, library.content);
       this.wrapper.append(this.branchingQuestion);
+
+      var branchingQuestionActual = this.branchingQuestion.getElementsByClassName('h5p-branching-question')[0];
+      branchingQuestionActual.classList.add('h5p-start-outside');
+      branchingQuestionActual.classList.add('h5p-fly-in');
 
       this.currentLibrary.style.zIndex = 0;
     }

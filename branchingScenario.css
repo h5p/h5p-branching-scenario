@@ -371,3 +371,21 @@
   content: "\f101";
   padding-left: 10px;
 }
+
+.h5p-start-outside {
+  transform: translateY(300%);
+  -webkit-transform: translateY(300%);
+}
+
+.h5p-fly-in {
+  animation: fly-in 0.8s forwards;
+  -webkit-animation: fly-in 0.8s forwards;
+}
+
+@keyframes fly-in {
+  100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes fly-in {
+  100% { -webkit-transform: translateY(0%); }
+}
