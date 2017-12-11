@@ -55,7 +55,7 @@
         {
           "name": "contentTitle",
           "type": "text",
-          "optional": true,
+          "optional": true
         },
         {
           "name": "showContentTitle",

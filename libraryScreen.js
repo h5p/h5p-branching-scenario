@@ -3,6 +3,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   function LibraryScreen(parent, courseTitle, library) {
     this.parent = parent;
     this.nextLibraryId = library.nextContentId;
+    this.currentLibrary;
+    this.currentLibraryElement;
 
     this.wrapper = library.showContentTitle ? this.createWrapper(courseTitle, library.contentTitle) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
@@ -51,6 +53,13 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     header.append(buttonWrapper);
     wrapper.append(header);
 
+    // Resize container on animation end
+    wrapper.addEventListener("animationend", function() {
+      // Resize, TODO: Remove hardcoded padding
+      self.currentLibrary.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
+      parent.trigger('resize');
+    });
+
     return wrapper;
   };
 
@@ -67,8 +76,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     libraryElement.classList.add('h5p-branching-scenario-content');
 
     this.appendRunnable(libraryElement, library.content);
-    // this.currentLibraryInstance.trigger('resize');
+    this.currentLibraryInstance.trigger('resize');
 
+    this.currentLibraryElement = libraryElement;
     wrapper.append(libraryElement);
     return wrapper;
   };
@@ -90,7 +100,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     });
 
     // Bubble resize events
-    this.bubbleUp(this.currentLibraryInstance, 'resize', self);
+    this.bubbleUp(this.currentLibraryInstance, 'resize', parent);
 
     // Remove any fullscreen buttons
     this.disableFullscreen(this.currentLibraryInstance);
@@ -162,7 +172,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       // Update the title
       this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
 
-      // Slide out current library
+      // Slide out the current library
       this.currentLibrary.classList.add('h5p-slide-out');
       this.currentLibrary.style.height = 0;
       var self = this;
@@ -170,7 +180,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         self.currentLibrary.remove();
       });
 
-      // Remove branching question if it exists
+      // Remove the branching question if it exists
       if (this.overlay) {
         this.overlay.remove();
         this.overlay = undefined;
@@ -202,12 +212,16 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     }
   };
 
-  LibraryScreen.prototype.getElement = function() {
+  LibraryScreen.prototype.getElement = function () {
     return this.wrapper;
   };
 
-  LibraryScreen.prototype.remove = function() {
+  LibraryScreen.prototype.remove = function () {
     this.wrapper.remove();
+  };
+
+  LibraryScreen.prototype.resize = function (event) {
+    this.currentLibraryInstance.trigger('resize', event);
   };
 
   return LibraryScreen;

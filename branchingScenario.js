@@ -74,7 +74,7 @@ H5P.BranchingScenario = function (params, contentId) {
       return; // Prevent sending the event back down
     }
 
-    // self.currentLibraryInstance.trigger('resize', event);
+    self.libraryScreen.resize(event);
   });
 
   self.attach = function($container) {
@@ -92,8 +92,8 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Uncomment for quick debugging
     // showNextScreen();
-    var proceedbutton = self.container[0].getElementsByTagName('button')[0];
-    proceedbutton.click();
+    // var proceedbutton = self.container[0].getElementsByTagName('button')[0];
+    // proceedbutton.click();
   };
 };
 
