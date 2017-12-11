@@ -54,7 +54,8 @@
       "fields": [
         {
           "name": "contentTitle",
-          "type": "text"
+          "type": "text",
+          "optional": true,
         },
         {
           "name": "showContentTitle",

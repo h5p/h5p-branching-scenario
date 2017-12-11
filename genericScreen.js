@@ -1,9 +1,10 @@
 H5P.BranchingScenario.GenericScreen = (function() {
 
-  function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText}) {
+  function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText, isCurrentScreen}) {
     this.parent = parent;
     this.screenWrapper = document.createElement('div');
-    this.screenWrapper.classList.add('h5p-start-screen');
+    this.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
+    this.screenWrapper.classList.add(isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
 
     var contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
@@ -85,6 +86,29 @@ H5P.BranchingScenario.GenericScreen = (function() {
     backgroundWrapper.append(backgroundImage);
 
     return backgroundWrapper;
+  };
+
+  GenericScreen.prototype.show = function () {
+    var self = this;
+    self.screenWrapper.classList.add('h5p-slide-in');
+
+    // Style as the current screen
+    self.screenWrapper.addEventListener('animationend', function() {
+      self.screenWrapper.classList.remove('h5p-next-screen');
+      self.screenWrapper.classList.remove('h5p-slide-in');
+      self.screenWrapper.classList.add('h5p-current-screen');
+    });
+  };
+
+  GenericScreen.prototype.hide = function () {
+    var self = this;
+    self.screenWrapper.classList.add('h5p-slide-out');
+
+    self.screenWrapper.addEventListener('animationend', function() {
+      self.screenWrapper.classList.remove('h5p-current-screen');
+      self.screenWrapper.classList.add('h5p-next-screen');
+      self.screenWrapper.classList.remove('h5p-slide-out');
+    });
   };
 
   return GenericScreen;

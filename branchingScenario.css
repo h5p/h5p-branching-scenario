@@ -71,11 +71,15 @@
   100% { -webkit-transform: translateX(0%); }
 }
 
-.h5p-branching-scenario .h5p-start-screen {
+.h5p-branching-scenario .h5p-start-screen, .h5p-end-screen {
   background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
   text-align: center;
   display: flex;
   flex-direction: column;
+}
+
+.h5p-branching-scenario .h5p-current-screen.h5p-end-screen {
+  display: flex;
 }
 
 .h5p-branching-scenario .h5p-screen-background {
