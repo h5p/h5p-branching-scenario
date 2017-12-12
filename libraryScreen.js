@@ -55,9 +55,11 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     // Resize container on animation end
     wrapper.addEventListener("animationend", function() {
-      // Resize, TODO: Remove hardcoded padding
-      self.currentLibrary.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
-      parent.trigger('resize');
+      setTimeout(function() {
+        // Resize, TODO: Remove hardcoded padding
+        self.currentLibrary.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
+        parent.trigger('resize');
+      }, 2000);
     });
 
     return wrapper;
