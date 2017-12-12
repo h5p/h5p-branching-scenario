@@ -32,7 +32,7 @@ H5P.BranchingScenario = function (params, contentId) {
     });
   };
 
-  var getLibrary = function(id) {
+  self.getLibrary = function(id) {
     for (var i = 0; i < params.content.length; i ++) {
       if (params.content[i].contentId === id) {
         return params.content[i];
@@ -48,7 +48,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
   self.on('navigated', function(e) {
     self.trigger('resize');
-    var nextLibrary = getLibrary(e.data);
+    var nextLibrary = self.getLibrary(e.data);
 
     if (nextLibrary === -1) { // -1 refers to the end screen
       self.libraryScreen.hide();
@@ -65,7 +65,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Reset the library screen
     self.libraryScreen.remove();
-    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, getLibrary(0));
+    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
     self.container.append(self.libraryScreen.getElement());
   });
 
@@ -84,7 +84,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.startScreen = createStartScreen(params.startscreen, true);
     self.container.append(self.startScreen.getElement());
 
-    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, getLibrary(0));
+    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
     self.container.append(self.libraryScreen.getElement());
 
     self.endScreen = createEndScreen(params.endscreen);
