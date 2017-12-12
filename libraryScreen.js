@@ -120,7 +120,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       var nextLibrary = this.parent.getLibrary(library.nextContentId);
       // Do not preload branching questions
       if (nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
-        var nextLibraryElement = ;
+        var nextLibraryElement = this.createLibraryElement(nextLibrary, true);
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
         this.wrapper.append(nextLibraryElement);
       }
