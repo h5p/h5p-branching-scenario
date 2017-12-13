@@ -1,0 +1,90 @@
+.h5p-branching-scenario .h5p-screen-header {
+  min-height: 5em;
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper {
+  margin-left: 20px;
+  height: 5em;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h1 {
+  font-family: H5PRobotoLight;
+  font-size: 1.458em;
+  color: #fff;
+  font-weight: 200;
+}
+
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h2 {
+  font-family: H5PRobotoLight;
+  font-size: 0.833em;
+  color: #fff;
+  font-weight: 200;
+}
+
+.h5p-branching-scenario .h5p-screen-header button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
+}
+
+.h5p-branching-scenario .h5p-nav-button {
+  padding: 0.6rem 1.5rem;
+  margin-top: 1em;
+  margin-right: 20px;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper {
+  position: relative;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 20px 20px 20px;
+  background: #EFEFEF;
+  color: #383838;
+  -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+}
+
+.h5p-branching-scenario .h5p-next {
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-slide-in {
+  animation: slide-in 0.8s forwards;
+  -webkit-animation: slide-in 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content .h5p-wrapper {
+  width: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-advanced-text {
+  padding: 1em 1.4em 1em 1.4em;
+  max-height: 33em;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 12px;
+  background-color: #C7C8CC;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

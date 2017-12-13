@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'H5PRobotoLight';
+  src: url('../fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoMedium';
+  src: url('../fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoRegular';
+  src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'H5PRobotoBold';
+  src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@keyframes slide-out {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateX(0%); }
+}
+
+.h5p-branching-scenario .h5p-current-screen {
+  display: block;
+  min-height: 45em;
+  height: 100%;
+  background:#52576C;
+}
+
+.h5p-branching-scenario .h5p-current-screen.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-next-screen {
+  background:#52576C;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.h5p-branching-scenario .h5p-next-screen.h5p-slide-in {
+  animation: slide-in 0.8s forwards;
+  -webkit-animation: slide-in 0.8s forwards;
+}

@@ -2,12 +2,12 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
   function LibraryScreen(parent, courseTitle, library) {
     this.parent = parent;
-    this.nextLibraryId = library.nextContentId;
     this.currentLibrary;
     this.currentLibraryElement;
+    this.currentLibraryInstance;
+    this.nextLibraryId = library.nextContentId;
     this.nextLibraries = {};
     this.libraryInstances = {};
-    this.currentLibraryInstance;
     this.libraryTitle;
     this.branchingQuestions = [];
 
@@ -51,7 +51,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       parent.trigger('navigated', self.nextLibraryId);
     };
     navButton.classList.add('h5p-nav-button');
-    navButton.append(document.createTextNode('Proceed'));
+
+    navButton.append(document.createTextNode(parent.params.proceedButtonText));
     buttonWrapper.append(navButton);
 
     var header = document.createElement('div');
@@ -68,7 +69,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         setTimeout(function() {
           self.currentLibrary.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
           parent.trigger('resize');
-        }, 1000);
+        }, 800);
       }
     });
 
@@ -93,15 +94,18 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   LibraryScreen.prototype.appendRunnable = function(container, content, id, contentData) {
-    // Content overrides
+    var parent = this.parent;
+    
     var library = content.library.split(' ')[0];
     if (library === 'H5P.Video') {
       // Prevent video from growing endlessly since height is unlimited.
       content.params.visuals.fit = false;
     }
+    if (library === 'H5P.BranchingQuestion') {
+      content.params.proceedButtonText = parent.params.proceedButtonText;
+    }
 
     // Create content instance
-    var parent = this.parent;
     var instance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true, contentData);
 
     instance.on('navigated', function(e) {
@@ -118,15 +122,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   LibraryScreen.prototype.createNextLibraries = function (library) {
-
-    if (library.nextContentId == -1 ) {
-      return; // Do nothing if the next screen is the end screen
-    }
+    this.nextLibraries = {};
 
     // If not a branching question, just load the next library
     if (library.content.library !== 'H5P.BranchingQuestion 1.0') {
       var nextLibrary = this.parent.getLibrary(library.nextContentId);
-
+      if (nextLibrary == -1) {
+        return; // Do nothing if the next screen is the end screen
+      }
       // Do not preload branching questions
       if (nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
@@ -136,10 +139,12 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     // If it is a branching question, load all the possible libraries
     else {
-      var ids = library.content.params.alternatives.map(alternative => alternative.nextContentId);
+      var ids = library.content.params.alternatives.map(alternative => alternative.nextContentId); // TODO: transpile
       ids.forEach(nextContentId => {
         var nextLibrary = this.parent.getLibrary(nextContentId);
-
+        if (nextLibrary == -1) {
+          return; // Do nothing if the next screen is the end screen
+        }
         // Do not preload branching questions
         if (nextLibrary.content && nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
           this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
@@ -147,7 +152,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         }
       });
     }
-
   };
 
   /**
@@ -201,6 +205,18 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     var self = this;
     self.wrapper.classList.add('h5p-slide-out');
 
+    // Hide possible alternatives
+    for (var i = 0; i < this.nextLibraries.length; i++) {
+      this.nextLibraries[i].remove();
+    }
+
+    // Hide overlay and branching questions
+    if (this.overlay) {
+      this.overlay.remove();
+      this.overlay = undefined;
+      this.branchingQuestions.forEach(bq => bq.remove());
+    }
+
     self.wrapper.addEventListener('animationend', function() {
       self.wrapper.classList.remove('h5p-current-screen');
       self.wrapper.classList.add('h5p-next-screen');
@@ -220,18 +236,16 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.currentLibrary.classList.add('h5p-slide-out');
       this.currentLibrary.style.height = 0;
 
-      // Remove the branching question if it exists
+      // Remove the branching questions if they exist
       if (this.overlay) {
         this.overlay.remove();
         this.overlay = undefined;
         this.branchingQuestions.forEach(bq => bq.remove());
       }
 
-      // Remove alternatives that were not selected
+      // Remove preloaded libraries that were not selected
       for (var i = 0; i < this.nextLibraries.length; i++) {
-        if (i !== library.contentId) {
-          this.nextLibraries[i].remove();
-        }
+        this.nextLibraries[i].remove();
       }
 
       // Slide in selected library
@@ -239,7 +253,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       libraryWrapper.classList.add('h5p-slide-in');
 
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
-      this.currentLibraryInstance.resize();
+      if (this.currentLibraryInstance.resize) {
+        this.currentLibraryInstance.resize();
+      }
 
       var self = this;
       this.currentLibrary.addEventListener('animationend', function() {
@@ -250,11 +266,15 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
         self.createNextLibraries(library);
       });
+      // TODO: Do not slide in the next slide if it is the same as the current one
     }
 
     else { // Show a branching question
 
-      // Add an overlay if it doesn't exist
+      // Remove existing branching questions
+      this.branchingQuestions.forEach(bq => bq.remove());
+
+      // Add an overlay if it doesn't exist yet
       if (this.overlay === undefined) {
         this.overlay = document.createElement('div');
         this.overlay.className = 'h5p-branching-scenario-overlay';

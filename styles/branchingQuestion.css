@@ -1,0 +1,79 @@
+@keyframes fly-in {
+  100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes fly-in {
+  100% { -webkit-transform: translateY(0%); }
+}
+
+.h5p-branching-scenario-overlay {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.h5p-branching-scenario .h5p-branching-question-wrapper {
+  position: absolute;; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-branching-question-wrapper.h5p-slide-out {
+  animation: slide-out 0.8s forwards;
+  -webkit-animation: slide-out 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-question-container {
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+.h5p-branching-scenario .h5p-branching-question h1 {
+  font-family: H5PRobotoLight;
+}
+
+.h5p-branching-scenario .h5p-branching-question h2 {
+  font-family: H5PRobotoRegular;
+  font-weight: 200;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  margin-top: 1em;
+  background-color: #C4FEBF;
+  padding: 0.9rem 1.5rem;
+  border-style: solid;
+  border-width: 0.1250rem;
+  border-color: #98fd8e;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f101";
+  padding-left: 10px;
+}
+
+.h5p-start-outside {
+  transform: translateY(300%);
+  -webkit-transform: translateY(300%);
+}
+
+.h5p-fly-in {
+  animation: fly-in 0.8s forwards;
+  -webkit-animation: fly-in 0.8s forwards;
+}

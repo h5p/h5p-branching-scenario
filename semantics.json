@@ -68,7 +68,7 @@
           "label": "Content",
           "options": [
             "H5P.BranchingQuestion 1.0",
-            "H5P.CoursePresentation 1.17",
+            "H5P.CoursePresentation 1.18",
             "H5P.AdvancedText 1.1",
             "H5P.Image 1.0",
             "H5P.ImageHotspots 1.5",
@@ -108,5 +108,29 @@
         }
       ]
     }
+  },
+  {
+    "name": "startScreenButtonText",
+    "type": "text",
+    "label": "Text for the button on the start screen",
+    "importance": "low",
+    "default": "Start the course",
+    "common": true
+  },
+  {
+    "name": "endScreenButtonText",
+    "type": "text",
+    "label": "Text for the button on the end screen",
+    "importance": "low",
+    "default": "Restart the course",
+    "common": true
+  },
+  {
+    "name": "proceedButtonText",
+    "type": "text",
+    "label": "Text for the button on each of the library screens",
+    "importance": "low",
+    "default": "Proceed",
+    "common": true
   }
 ]
