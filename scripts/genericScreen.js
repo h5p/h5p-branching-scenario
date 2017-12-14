@@ -5,6 +5,9 @@ H5P.BranchingScenario.GenericScreen = (function() {
     this.screenWrapper = document.createElement('div');
     this.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
     this.screenWrapper.classList.add(isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
+    if (!isCurrentScreen) {
+      this.screenWrapper.classList.add('h5p-branching-hidden');
+    }
 
     var contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
@@ -92,6 +95,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
   GenericScreen.prototype.show = function () {
     var self = this;
     self.screenWrapper.classList.add('h5p-slide-in');
+    self.screenWrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
     self.screenWrapper.addEventListener('animationend', function() {
@@ -106,6 +110,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
     self.screenWrapper.classList.add('h5p-slide-out');
 
     self.screenWrapper.addEventListener('animationend', function() {
+      self.screenWrapper.classList.add('h5p-branching-hidden');
       self.screenWrapper.classList.remove('h5p-current-screen');
       self.screenWrapper.classList.add('h5p-next-screen');
       self.screenWrapper.classList.remove('h5p-slide-out');

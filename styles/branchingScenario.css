@@ -53,13 +53,17 @@
 }
 
 .h5p-branching-scenario .h5p-next-screen {
-  background:#52576C;
+  position: absolute;
   transform: translateX(100%);
   -webkit-transform: translateX(100%);
   top: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
+  background:#52576C;
+}
+
+.h5p-branching-scenario .h5p-branching-hidden {
+  display: none;
 }
 
 .h5p-branching-scenario .h5p-next-screen.h5p-slide-in {

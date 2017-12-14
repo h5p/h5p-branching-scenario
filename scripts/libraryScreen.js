@@ -13,11 +13,12 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     this.wrapper = library.showContentTitle ? this.createWrapper(courseTitle, library.contentTitle) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
+    this.wrapper.classList.add('h5p-branching-hidden');
 
     var libraryWrapper = this.createLibraryElement(library, false);
     this.currentLibrary = libraryWrapper;
     this.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
-    this.currentLibraryInstance = this.libraryInstances[0]; // TODO: do not hardcode starting screen id
+    this.currentLibraryInstance = this.libraryInstances[0]; // TODO: Decide whether the start screen id should be hardcoded
 
     this.createNextLibraries(library);
 
@@ -80,22 +81,24 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     var wrapper = document.createElement('div');
     wrapper.classList.add('h5p-library-wrapper');
 
-    if (isNextLibrary) {
-      wrapper.classList.add('h5p-next');
-    }
-
     var libraryElement = document.createElement('div');
     libraryElement.classList.add('h5p-branching-scenario-content');
 
     this.appendRunnable(libraryElement, library.content, library.contentId);
 
     wrapper.append(libraryElement);
+
+    if (isNextLibrary) {
+      wrapper.classList.add('h5p-next');
+      libraryElement.classList.add('h5p-branching-hidden');
+    }
+
     return wrapper;
   };
 
   LibraryScreen.prototype.appendRunnable = function(container, content, id, contentData) {
     var parent = this.parent;
-    
+
     var library = content.library.split(' ')[0];
     if (library === 'H5P.Video') {
       // Prevent video from growing endlessly since height is unlimited.
@@ -192,6 +195,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   LibraryScreen.prototype.show = function () {
     var self = this;
     self.wrapper.classList.add('h5p-slide-in');
+    self.wrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
     self.wrapper.addEventListener('animationend', function() {
@@ -203,10 +207,11 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
   LibraryScreen.prototype.hide = function () {
     var self = this;
-    self.wrapper.classList.add('h5p-slide-out');
 
-    // Hide possible alternatives
+    // Remove possible alternative libaries
     for (var i = 0; i < this.nextLibraries.length; i++) {
+      // Ensures it is hidden if remove() doesn't execute quickly enough
+      this.nextLibraries[i].style.display = 'none';
       this.nextLibraries[i].remove();
     }
 
@@ -216,6 +221,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.overlay = undefined;
       this.branchingQuestions.forEach(bq => bq.remove());
     }
+
+    self.wrapper.classList.add('h5p-slide-out');
 
     self.wrapper.addEventListener('animationend', function() {
       self.wrapper.classList.remove('h5p-current-screen');
@@ -251,6 +258,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       // Slide in selected library
       var libraryWrapper = this.nextLibraries[library.contentId];
       libraryWrapper.classList.add('h5p-slide-in');
+      var libraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
+      libraryElement.classList.remove('h5p-branching-hidden');
 
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
       if (this.currentLibraryInstance.resize) {
@@ -279,6 +288,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         this.overlay = document.createElement('div');
         this.overlay.className = 'h5p-branching-scenario-overlay';
         this.wrapper.append(this.overlay);
+        this.disableTabbables();
       }
 
       var branchingQuestion = document.createElement('div');
@@ -295,6 +305,16 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.currentLibrary.style.zIndex = 0;
       this.createNextLibraries(library);
     }
+  };
+
+  LibraryScreen.prototype.disableTabbables = function () {
+    var libraryTabbables = this.currentLibrary.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    Array.from(libraryTabbables).forEach(tabbable => {
+      tabbable.setAttribute('tabIndex', -1);
+    });
+
+    var navigationButton = this.wrapper.getElementsByClassName('h5p-screen-header')[0].getElementsByTagName('button')[0];
+    navigationButton.setAttribute('tabIndex', '-1');
   };
 
   LibraryScreen.prototype.getElement = function () {
