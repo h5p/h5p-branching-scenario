@@ -7,8 +7,16 @@ H5P.BranchingScenario = function (params, contentId) {
   self.contentId = contentId;
   self.startScreen;
   self.libraryScreen;
-  self.endScreen;
+  self.endScreens = {};
 
+  /**
+   * Create an end screen object
+   *
+   * @param  {string} {endScreenTitle
+   * @param  {string} endScreenSubtitle
+   * @param  {Object} endScreenImage}   Object containing image metadata
+   * @return {GenericScreen}            Generic Screen object
+   */
   var createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
     return new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
@@ -20,6 +28,14 @@ H5P.BranchingScenario = function (params, contentId) {
     });
   };
 
+  /**
+   * Create an end screen object
+   *
+   * @param  {string} {endScreenTitle
+   * @param  {string} endScreenSubtitle
+   * @param  {Object} endScreenImage}   Object containing image metadata
+   * @return {GenericScreen}            Generic Screen object
+   */
   var createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
     return new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: false,
@@ -31,13 +47,20 @@ H5P.BranchingScenario = function (params, contentId) {
     });
   };
 
+
+  /**
+   * Get library data by id from branching scenario parameters
+   *
+   * @param  {number} id
+   * @return {Object | boolean} Data required to create a library
+   */
   self.getLibrary = function(id) {
     for (var i = 0; i < params.content.length; i ++) {
       if (params.content[i].contentId === id) {
         return params.content[i];
       }
     }
-    return -1;
+    return false;
   };
 
   self.on('started', function() {
@@ -47,11 +70,13 @@ H5P.BranchingScenario = function (params, contentId) {
 
   self.on('navigated', function(e) {
     self.trigger('resize');
-    var nextLibrary = self.getLibrary(e.data);
+    var id = e.data;
+    var nextLibrary = self.getLibrary(id);
 
-    if (nextLibrary === -1) { // -1 refers to the end screen
+    if (nextLibrary === false) {
       self.libraryScreen.hide();
-      self.endScreen.show();
+      self.currentEndScreen = self.endScreens[id];
+      self.currentEndScreen.show();
     }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
@@ -59,7 +84,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.on('restarted', function() {
-    self.endScreen.hide();
+    self.currentEndScreen.hide();
     self.startScreen.show();
 
     // Reset the library screen
@@ -73,23 +98,29 @@ H5P.BranchingScenario = function (params, contentId) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
-
     self.libraryScreen.resize(event);
   });
 
+  /**
+   * Attach Branching Scenario to the H5P container
+   *
+   * @param  {HTMLElement} $container
+   */
   self.attach = function($container) {
     self.container = $container;
     $container.addClass('h5p-branching-scenario').html('');
 
-    self.startScreen = createStartScreen(params.startscreen, true);
+    self.startScreen = createStartScreen(params.startScreen, true);
     self.container.append(self.startScreen.getElement());
 
     // Note: the first library must always have an id of 0
     self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
     self.container.append(self.libraryScreen.getElement());
 
-    self.endScreen = createEndScreen(params.endscreen);
-    self.container.append(self.endScreen.getElement());
+    params.endScreens.forEach(endScreen => {
+      self.endScreens[endScreen.contentId] = createEndScreen(endScreen);
+      self.container.append(self.endScreens[endScreen.contentId].getElement());
+    });
   };
 };
 

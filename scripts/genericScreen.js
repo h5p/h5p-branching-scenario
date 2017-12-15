@@ -1,10 +1,23 @@
 H5P.BranchingScenario.GenericScreen = (function() {
 
+  /**
+   * GenericScreen constructor
+   *
+   * @param  {BranchingScenario} parent BranchingScenario Object
+   * @param  {boolean} {isStartScreen
+   * @param  {string}   titleText
+   * @param  {string}   subtitleText
+   * @param  {Object}   image
+   * @param  {string}   buttonText
+   * @param  {boolean}  isCurrentScreen}
+   * @return {GenericScreen}
+   */
   function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText, isCurrentScreen}) {
-    this.parent = parent;
-    this.screenWrapper = document.createElement('div');
-    this.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
-    this.screenWrapper.classList.add(isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
+    var self = this;
+    self.parent = parent;
+    self.screenWrapper = document.createElement('div');
+    self.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
+    self.screenWrapper.classList.add(isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
     if (!isCurrentScreen) {
       this.screenWrapper.classList.add('h5p-branching-hidden');
     }
@@ -23,7 +36,6 @@ H5P.BranchingScenario.GenericScreen = (function() {
     var navButton = document.createElement('button');
     navButton.classList.add(isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
 
-    var self = this;
     navButton.onclick = function() {
       isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
     };
@@ -40,8 +52,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
       // contentDiv.prepend(this.createResultContainer(12));
     }
 
-    this.screenWrapper.append(this.createScreenBackground(isStartScreen, image));
-    this.screenWrapper.append(contentDiv);
+    self.screenWrapper.append(self.createScreenBackground(isStartScreen, image));
+    self.screenWrapper.append(contentDiv);
   }
 
   GenericScreen.prototype.getElement = function() {
@@ -92,28 +104,40 @@ H5P.BranchingScenario.GenericScreen = (function() {
     return backgroundWrapper;
   };
 
+
+  /**
+   * Slides the screen in and styles it as the current screen
+   */
   GenericScreen.prototype.show = function () {
     var self = this;
     self.screenWrapper.classList.add('h5p-slide-in');
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
-    self.screenWrapper.addEventListener('animationend', function() {
-      self.screenWrapper.classList.remove('h5p-next-screen');
-      self.screenWrapper.classList.remove('h5p-slide-in');
-      self.screenWrapper.classList.add('h5p-current-screen');
+    self.screenWrapper.addEventListener('animationend', function(event) {
+      if (event.animationName === 'slide-in') {
+        self.screenWrapper.classList.remove('h5p-next-screen');
+        self.screenWrapper.classList.remove('h5p-slide-in');
+        self.screenWrapper.classList.add('h5p-current-screen');
+      }
     });
   };
 
+  /**
+   * Slides the screen out and styles it to be hidden
+   */
   GenericScreen.prototype.hide = function () {
     var self = this;
     self.screenWrapper.classList.add('h5p-slide-out');
 
-    self.screenWrapper.addEventListener('animationend', function() {
-      self.screenWrapper.classList.add('h5p-branching-hidden');
-      self.screenWrapper.classList.remove('h5p-current-screen');
-      self.screenWrapper.classList.add('h5p-next-screen');
-      self.screenWrapper.classList.remove('h5p-slide-out');
+    // Style as hidden
+    self.screenWrapper.addEventListener('animationend', function(event) {
+      if (event.animationName === 'slide-out') {
+        self.screenWrapper.classList.add('h5p-branching-hidden');
+        self.screenWrapper.classList.remove('h5p-current-screen');
+        self.screenWrapper.classList.add('h5p-next-screen');
+        self.screenWrapper.classList.remove('h5p-slide-out');
+      }
     });
   };
 

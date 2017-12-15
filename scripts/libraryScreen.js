@@ -1,5 +1,13 @@
 H5P.BranchingScenario.LibraryScreen = (function() {
 
+  /**
+   * LibraryScreen
+   *
+   * @param  {BranchingScenario} parent     BranchingScenario object
+   * @param  {string} courseTitle           description
+   * @param  {Object} library               H5P Library Data
+   * @return {LibraryScreen}
+   */
   function LibraryScreen(parent, courseTitle, library) {
     this.parent = parent;
     this.currentLibrary;
@@ -16,7 +24,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.wrapper.classList.add('h5p-branching-hidden');
 
     var libraryWrapper = this.createLibraryElement(library, false);
-    this.currentLibrary = libraryWrapper;
+    this.currentLibraryWrapper = libraryWrapper;
     this.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
     this.currentLibraryInstance = this.libraryInstances[0]; // TODO: Decide whether the start screen id should be hardcoded
 
@@ -96,7 +104,15 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     return wrapper;
   };
 
-  LibraryScreen.prototype.appendRunnable = function(container, content, id, contentData) {
+  /**
+   * Creates a new ontent instance from the given content parameters and
+   * then attaches it the wrapper. Sets up event listeners.
+   *
+   * @private
+   * @param {Object} content Parameters
+   * @param {Object} [contentData] Content Data
+   */
+  LibraryScreen.prototype.appendRunnable = function(container, content) {
     var parent = this.parent;
 
     var library = content.library.split(' ')[0];
@@ -109,7 +125,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     }
 
     // Create content instance
-    var instance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true, contentData);
+    var instance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true);
 
     instance.on('navigated', function(e) {
       parent.trigger('navigated', e.data);
@@ -124,16 +140,20 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.disableFullscreen(instance);
   };
 
+  /**
+   * Pre-render the next libraries for smooth transitions
+   * @param  {Object} library Library Data
+   */
   LibraryScreen.prototype.createNextLibraries = function (library) {
     this.nextLibraries = {};
 
     // If not a branching question, just load the next library
     if (library.content.library !== 'H5P.BranchingQuestion 1.0') {
       var nextLibrary = this.parent.getLibrary(library.nextContentId);
-      if (nextLibrary == -1) {
-        return; // Do nothing if the next screen is the end screen
+      if (nextLibrary === false) {
+        return; // Do nothing if the next screen is an end screen
       }
-      // Do not preload branching questions
+      // Do not pre-render branching questions
       if (nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
         this.wrapper.append(this.nextLibraries[library.nextContentId]);
@@ -145,10 +165,10 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       var ids = library.content.params.alternatives.map(alternative => alternative.nextContentId); // TODO: transpile
       ids.forEach(nextContentId => {
         var nextLibrary = this.parent.getLibrary(nextContentId);
-        if (nextLibrary == -1) {
-          return; // Do nothing if the next screen is the end screen
+        if (nextLibrary === false) {
+          return; // Do nothing if the next screen is an end screen
         }
-        // Do not preload branching questions
+        // Do not pre-render branching questions
         if (nextLibrary.content && nextLibrary.content.library !== 'H5P.BranchingQuestion 1.0') {
           this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
           this.wrapper.append(this.nextLibraries[nextContentId]);
@@ -181,6 +201,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     }
   };
 
+  /**
+   * Makes it easy to bubble events from child to parent
+   *
+   * @private
+   * @param {Object} origin Origin of the Event
+   * @param {string} eventName Name of the Event
+   * @param {Object} target Target to trigger event on
+   */
   LibraryScreen.prototype.bubbleUp = function(origin, eventName, target) {
     origin.on(eventName, function (event) {
       // Prevent target from sending event back down
@@ -192,6 +220,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     });
   };
 
+  /**
+   * Slides the screen in and styles it as the current screen
+   */
   LibraryScreen.prototype.show = function () {
     var self = this;
     self.wrapper.classList.add('h5p-slide-in');
@@ -205,6 +236,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     });
   };
 
+  /**
+   * Slides the screen out and styles it to be hidden
+   */
   LibraryScreen.prototype.hide = function () {
     var self = this;
 
@@ -231,6 +265,12 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     });
   };
 
+  /**
+   * Slides in the next library which may be either a 'normal content type' or a
+   * branching question
+   *
+   * @param  {Object} library Library data
+   */
   LibraryScreen.prototype.showNextLibrary = function (library) {
     this.nextLibraryId = library.nextContentId;
 
@@ -240,8 +280,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
 
       // Slide out the current library
-      this.currentLibrary.classList.add('h5p-slide-out');
-      this.currentLibrary.style.height = 0;
+      this.currentLibraryWrapper.classList.add('h5p-slide-out');
+      this.currentLibraryWrapper.style.height = 0;
 
       // Remove the branching questions if they exist
       if (this.overlay) {
@@ -250,7 +290,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         this.branchingQuestions.forEach(bq => bq.remove());
       }
 
-      // Remove preloaded libraries that were not selected
+      // Remove pre-rendered libraries that were not selected
       for (var i = 0; i < this.nextLibraries.length; i++) {
         this.nextLibraries[i].remove();
       }
@@ -267,7 +307,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       }
 
       var self = this;
-      this.currentLibrary.addEventListener('animationend', function() {
+      this.currentLibraryWrapper.addEventListener('animationend', function() {
         self.currentLibrary.remove();
         self.currentLibrary = libraryWrapper;
         self.currentLibrary.classList.remove('h5p-next');
@@ -277,7 +317,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       });
       // TODO: Do not slide in the next slide if it is the same as the current one
     }
-
     else { // Show a branching question
 
       // Remove existing branching questions
@@ -302,13 +341,16 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       branchingQuestionActual.classList.add('h5p-start-outside');
       branchingQuestionActual.classList.add('h5p-fly-in');
 
-      this.currentLibrary.style.zIndex = 0;
+      this.currentLibraryWrapper.style.zIndex = 0;
       this.createNextLibraries(library);
     }
   };
 
+  /**
+   * Used to disable all tabbables behind overlay
+   */
   LibraryScreen.prototype.disableTabbables = function () {
-    var libraryTabbables = this.currentLibrary.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    var libraryTabbables = this.currentLibraryWrapper.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
     Array.from(libraryTabbables).forEach(tabbable => {
       tabbable.setAttribute('tabIndex', -1);
     });

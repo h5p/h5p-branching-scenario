@@ -4,7 +4,7 @@
     "type": "text"
   },
   {
-    "name": "startscreen",
+    "name": "startScreen",
     "type": "group",
     "fields": [
       {
@@ -23,23 +23,34 @@
     ]
   },
   {
-    "name": "endscreen",
-    "type": "group",
-    "fields": [
-      {
-        "name": "endScreenTitle",
-        "type": "text"
-      },
-      {
-        "name": "endScreenSubtitle",
-        "type": "text"
-      },
-      {
-        "name": "endScreenImage",
-        "type": "image",
-        "optional": true
-      }
-    ]
+    "name": "endScreens",
+    "label": "List of end screens",
+    "type": "list",
+    "field": {
+      "name": "endScreen",
+      "type": "group",
+      "fields": [
+        {
+          "name": "endScreenTitle",
+          "type": "text"
+        },
+        {
+          "name": "endScreenSubtitle",
+          "type": "text"
+        },
+        {
+          "name": "endScreenImage",
+          "type": "image",
+          "optional": true
+        },
+        {
+          "name": "contentId",
+          "label": "Content ID",
+          "type": "number",
+          "max": 0
+        }
+      ]
+    }
   },
   {
     "name": "content",
