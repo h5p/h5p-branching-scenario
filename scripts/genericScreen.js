@@ -48,7 +48,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
     contentDiv.append(navButton);
 
     if (isStartScreen === false) {
-      // TODO: decide on how scoring should work
+      // TODO: decide on how scoring should work and show score counter accordingly
       // contentDiv.prepend(this.createResultContainer(12));
     }
 

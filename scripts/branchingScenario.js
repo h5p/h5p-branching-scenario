@@ -66,10 +66,12 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('started', function() {
     self.startScreen.hide();
     self.libraryScreen.show();
+    self.triggerXAPI('progressed');
   });
 
   self.on('navigated', function(e) {
     self.trigger('resize');
+    self.triggerXAPI('progressed');
     var id = e.data;
     var nextLibrary = self.getLibrary(id);
 
@@ -84,6 +86,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.on('restarted', function() {
+    self.parent.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works 
     self.currentEndScreen.hide();
     self.startScreen.show();
 
