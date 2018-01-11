@@ -10,7 +10,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    */
   function LibraryScreen(parent, courseTitle, library) {
     this.parent = parent;
-    this.currentLibrary;
     this.currentLibraryElement;
     this.currentLibraryInstance;
     this.nextLibraryId = library.nextContentId;
@@ -76,7 +75,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       if (event.animationName === 'slide-in' && self.currentLibraryElement) {
         // Resize, TODO: Remove hardcoded padding
         setTimeout(function() {
-          self.currentLibrary.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
+          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
           parent.trigger('resize');
         }, 800);
       }
@@ -105,14 +104,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   /**
-   * Creates a new ontent instance from the given content parameters and
+   * Creates a new content instance from the given content parameters and
    * then attaches it the wrapper. Sets up event listeners.
    *
    * @private
    * @param {Object} content Parameters
    * @param {Object} [contentData] Content Data
    */
-  LibraryScreen.prototype.appendRunnable = function(container, content) {
+  LibraryScreen.prototype.appendRunnable = function(container, content, id) {
     var parent = this.parent;
 
     var library = content.library.split(' ')[0];
@@ -308,10 +307,10 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
       var self = this;
       this.currentLibraryWrapper.addEventListener('animationend', function() {
-        self.currentLibrary.remove();
-        self.currentLibrary = libraryWrapper;
-        self.currentLibrary.classList.remove('h5p-next');
-        self.currentLibrary.classList.remove('h5p-slide-in');
+        self.currentLibraryWrapper.remove();
+        self.currentLibraryWrapper = libraryWrapper;
+        self.currentLibraryWrapper.classList.remove('h5p-next');
+        self.currentLibraryWrapper.classList.remove('h5p-slide-in');
         self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
         self.createNextLibraries(library);
       });
