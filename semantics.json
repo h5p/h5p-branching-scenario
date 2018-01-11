@@ -1,24 +1,34 @@
 [
   {
     "name": "title",
-    "type": "text"
+    "label": "Title",
+    "type": "text",
+    "importance": "high"
   },
   {
     "name": "startScreen",
+    "label": "Start screen",
     "type": "group",
+    "importance": "high",
     "fields": [
       {
         "name": "startScreenTitle",
-        "type": "text"
+        "label": "Start screen title",
+        "type": "text",
+        "importance": "medium"
       },
       {
         "name": "startScreenSubtitle",
-        "type": "text"
+        "label": "Start screen subtitle",
+        "type": "text",
+        "importance": "medium"
       },
       {
         "name": "startScreenImage",
+        "label": "Start screen image",
         "type": "image",
-        "optional": true
+        "optional": true,
+        "importance": "medium"
       }
     ]
   },
@@ -26,22 +36,30 @@
     "name": "endScreens",
     "label": "List of end screens",
     "type": "list",
+    "importance": "high",
     "field": {
       "name": "endScreen",
+      "label": "End screen",
       "type": "group",
       "fields": [
         {
           "name": "endScreenTitle",
-          "type": "text"
+          "label": "End screen title",
+          "type": "text",
+          "importance": "medium"
         },
         {
           "name": "endScreenSubtitle",
-          "type": "text"
+          "label": "End screen subtitle",
+          "type": "text",
+          "importance": "medium"
         },
         {
           "name": "endScreenImage",
+          "label": "End screen image",
           "type": "image",
-          "optional": true
+          "optional": true,
+          "importance": "medium"
         },
         {
           "name": "contentId",
@@ -65,12 +83,16 @@
       "fields": [
         {
           "name": "contentTitle",
+          "label": "Content title",
           "type": "text",
-          "optional": true
+          "optional": true,
+          "importance": "high"
         },
         {
           "name": "showContentTitle",
-          "type": "boolean"
+          "label": "Show content title",
+          "type": "boolean",
+          "importance": "high"
         },
         {
           "name": "content",
@@ -96,9 +118,9 @@
         },
         {
           "name": "nextContentId",
+          "label": "Next Content ID (end screen is -1)",
           "type": "number",
           "importance": "high",
-          "label": "Next Content ID (end screen is -1)",
           "default": 0,
           "widget": "showWhen",
           "showWhen": {
@@ -122,24 +144,24 @@
   },
   {
     "name": "startScreenButtonText",
-    "type": "text",
     "label": "Text for the button on the start screen",
+    "type": "text",
     "importance": "low",
     "default": "Start the course",
     "common": true
   },
   {
     "name": "endScreenButtonText",
-    "type": "text",
     "label": "Text for the button on the end screen",
+    "type": "text",
     "importance": "low",
     "default": "Restart the course",
     "common": true
   },
   {
     "name": "proceedButtonText",
-    "type": "text",
     "label": "Text for the button on each of the library screens",
+    "type": "text",
     "importance": "low",
     "default": "Proceed",
     "common": true
