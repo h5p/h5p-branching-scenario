@@ -13,13 +13,7 @@
   "machineName": "H5P.BranchingScenario",
   "preloadedJs": [
     {
-      "path": "scripts/branchingScenario.js"
-    },
-    {
-      "path": "scripts/genericScreen.js"
-    },
-    {
-      "path": "scripts/libraryScreen.js"
+      "path": "dist/dist.js"
     }
   ],
   "preloadedCss": [

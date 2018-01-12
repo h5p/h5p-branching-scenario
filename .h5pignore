@@ -2,4 +2,7 @@ node_modules
 .idea
 .h5pignore
 package.json
+package-lock.json
+.eslintrc
 README.md
+webpack.config.js
