@@ -34,6 +34,7 @@
 .h5p-branching-scenario .h5p-background-image {
   position: absolute;
   max-height: 14.583em;
+  max-width: 95%;
   -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
   -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
   box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);

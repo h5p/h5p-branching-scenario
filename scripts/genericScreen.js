@@ -13,7 +13,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * @return {GenericScreen}
    */
   function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText, isCurrentScreen}) {
-    var self = this;
+    let self = this;
     self.parent = parent;
     self.screenWrapper = document.createElement('div');
     self.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
@@ -22,25 +22,25 @@ H5P.BranchingScenario.GenericScreen = (function() {
       this.screenWrapper.classList.add('h5p-branching-hidden');
     }
 
-    var contentDiv = document.createElement('div');
+    let contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
 
-    var title = document.createElement('h1');
+    let title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
     title.innerHTML = titleText;
 
-    var subtitle = document.createElement('h2');
+    let subtitle = document.createElement('h2');
     subtitle.className = 'h5p-branching-scenario-subtitle-text';
     subtitle.innerHTML = subtitleText;
 
-    var navButton = document.createElement('button');
+    let navButton = document.createElement('button');
     navButton.classList.add(isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
 
     navButton.onclick = function() {
       isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
     };
 
-    var buttonTextNode = document.createTextNode(buttonText);
+    let buttonTextNode = document.createTextNode(buttonText);
     navButton.append(buttonTextNode);
 
     contentDiv.append(title);
@@ -61,17 +61,17 @@ H5P.BranchingScenario.GenericScreen = (function() {
   };
 
   GenericScreen.prototype.createResultContainer = function(score) {
-    var wrapper = document.createElement('div');
+    let wrapper = document.createElement('div');
     wrapper.classList.add('h5p-result-wrapper');
 
-    var resultContainer = document.createElement('div');
+    let resultContainer = document.createElement('div');
     resultContainer.classList.add('h5p-result-container');
 
-    var scoreText = document.createElement('div');
+    let scoreText = document.createElement('div');
     scoreText.classList.add('h5p-score-text');
     scoreText.append(document.createTextNode('Your score: '));
 
-    var scoreCircle = document.createElement('div');
+    let scoreCircle = document.createElement('div');
     scoreCircle.classList.add('h5p-score-circle');
     scoreCircle.append(document.createTextNode(score));
 
@@ -82,13 +82,13 @@ H5P.BranchingScenario.GenericScreen = (function() {
   };
 
   GenericScreen.prototype.createScreenBackground = function (isStartScreen, image) {
-    var backgroundWrapper = document.createElement('div');
+    let backgroundWrapper = document.createElement('div');
     backgroundWrapper.classList.add('h5p-screen-background');
 
-    var backgroundBanner = document.createElement('div');
+    let backgroundBanner = document.createElement('div');
     backgroundBanner.classList.add('h5p-screen-banner');
 
-    var backgroundImage = document.createElement('img');
+    let backgroundImage = document.createElement('img');
     backgroundImage.classList.add('h5p-background-image');
 
     if (image && image.path) {
@@ -109,7 +109,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * Slides the screen in and styles it as the current screen
    */
   GenericScreen.prototype.show = function () {
-    var self = this;
+    let self = this;
     self.screenWrapper.classList.add('h5p-slide-in');
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
@@ -127,7 +127,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * Slides the screen out and styles it to be hidden
    */
   GenericScreen.prototype.hide = function () {
-    var self = this;
+    let self = this;
     self.screenWrapper.classList.add('h5p-slide-out');
 
     // Style as hidden

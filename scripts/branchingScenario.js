@@ -1,7 +1,7 @@
 H5P = H5P || {};
 
 H5P.BranchingScenario = function (params, contentId) {
-  var self = this;
+  const self = this;
   self.params = params;
   H5P.EventDispatcher.call(self);
   self.contentId = contentId;
@@ -10,14 +10,15 @@ H5P.BranchingScenario = function (params, contentId) {
   self.endScreens = {};
 
   /**
-   * Create an end screen object
+   * Create a start screen object
    *
-   * @param  {string} {endScreenTitle
-   * @param  {string} endScreenSubtitle
-   * @param  {Object} endScreenImage}   Object containing image metadata
-   * @return {GenericScreen}            Generic Screen object
+   * @param  {string} {startScreenTitle
+   * @param  {string} startScreenSubtitle
+   * @param  {Object} startScreenImage}   Object containing image metadata
+   * @param  {boolean} isCurrentScreen    When Branching Scenario is first initialized
+   * @return {GenericScreen}              Generic Screen object
    */
-  var createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
+  const createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
     return new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
@@ -36,7 +37,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {Object} endScreenImage}   Object containing image metadata
    * @return {GenericScreen}            Generic Screen object
    */
-  var createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
+  const createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
     return new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: false,
       titleText: endScreenTitle,
@@ -54,7 +55,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {Object | boolean} Data required to create a library
    */
   self.getLibrary = function(id) {
-    for (var i = 0; i < params.content.length; i ++) {
+    for (let i = 0; i < params.content.length; i ++) {
       if (params.content[i].contentId === id) {
         return params.content[i];
       }
@@ -71,8 +72,8 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function(e) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
-    var id = e.data;
-    var nextLibrary = self.getLibrary(id);
+    let id = e.data;
+    let nextLibrary = self.getLibrary(id);
 
     if (nextLibrary === false) {
       self.libraryScreen.hide();
