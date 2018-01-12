@@ -47,7 +47,6 @@ H5P.BranchingScenario = function (params, contentId) {
     });
   };
 
-
   /**
    * Get library data by id from branching scenario parameters
    *
@@ -86,7 +85,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.on('restarted', function() {
-    self.parent.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works 
+    self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
     self.startScreen.show();
 
