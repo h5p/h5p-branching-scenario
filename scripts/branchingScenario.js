@@ -70,6 +70,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.startScreen.hide();
     self.libraryScreen.show();
     self.triggerXAPI('progressed');
+    self.currentId = 0;
   });
 
   self.on('navigated', function(e) {
