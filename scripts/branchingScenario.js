@@ -10,6 +10,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.endScreens = {};
   self.navigating;
   self.currentHeight;
+  self.currentId;
 
   /**
    * Create a start screen object
@@ -82,8 +83,14 @@ H5P.BranchingScenario = function (params, contentId) {
       self.currentEndScreen = self.endScreens[id];
       self.currentEndScreen.show();
     }
+    else if (id === self.currentId) {
+      self.libraryScreen.hideBranchingQuestion(nextLibrary);
+    }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
+      if (nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+        self.currentId = id;
+      }
     }
   });
 
@@ -117,6 +124,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
     self.startScreen = createStartScreen(params.startScreen, true);
     self.container.append(self.startScreen.getElement());
+    self.currentId = 0;
 
     // Note: the first library must always have an id of 0
     self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));

@@ -297,6 +297,26 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   /**
+   * Hides branching question if the next library 'branched to'
+   * is the one beneath the overlay. Basically the same as the
+   * 'showNextLibrary' function but without transitions
+   *
+   * @param  {Object} library library data of the library beneath the overlay
+   */
+  LibraryScreen.prototype.hideBranchingQuestion = function (library) {
+    this.nextLibraryId = library.nextContentId;
+
+    // Hide branching question
+    this.overlay.remove();
+    this.overlay = undefined;
+    this.branchingQuestions.forEach(bq => bq.remove());
+
+    // Prepare next libraries
+    this.createNextLibraries(library);
+    this.parent.navigating = false;
+  }
+
+  /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
    *
