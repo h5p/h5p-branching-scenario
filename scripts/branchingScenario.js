@@ -15,11 +15,12 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Create a start screen object
    *
-   * @param  {string} {startScreenTitle
-   * @param  {string} startScreenSubtitle
-   * @param  {Object} startScreenImage}   Object containing image metadata
-   * @param  {boolean} isCurrentScreen    When Branching Scenario is first initialized
-   * @return {GenericScreen}              Generic Screen object
+   * @param  {Object} startscreendata
+   * @param  {string} startscreendata.startScreenTitle
+   * @param  {string} startscreendata.startScreenSubtitle
+   * @param  {Object} startscreendata.startScreenImage    Object containing image metadata
+   * @param  {boolean} isCurrentScreen                    When Branching Scenario is first initialized
+   * @return {GenericScreen}                              Generic Screen object
    */
   const createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
     return new H5P.BranchingScenario.GenericScreen(self, {
@@ -35,10 +36,11 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Create an end screen object
    *
-   * @param  {string} {endScreenTitle
-   * @param  {string} endScreenSubtitle
-   * @param  {Object} endScreenImage}   Object containing image metadata
-   * @return {GenericScreen}            Generic Screen object
+   * @param  {Object} endscreendata
+   * @param  {string} endscreendata.endScreenTitle
+   * @param  {string} endscreendata.endScreenSubtitle
+   * @param  {Object} endscreendata.endScreenImage     Object containing image metadata
+   * @return {GenericScreen}                           Generic Screen object
    */
   const createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
     return new H5P.BranchingScenario.GenericScreen(self, {
@@ -76,8 +78,8 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function(e) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
-    let id = e.data;
-    let nextLibrary = self.getLibrary(id);
+    const id = e.data;
+    const nextLibrary = self.getLibrary(id);
 
     if (nextLibrary === false) {
       self.libraryScreen.hide();
