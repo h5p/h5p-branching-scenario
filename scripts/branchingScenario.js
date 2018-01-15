@@ -8,6 +8,8 @@ H5P.BranchingScenario = function (params, contentId) {
   self.startScreen;
   self.libraryScreen;
   self.endScreens = {};
+  self.navigating;
+  self.currentHeight;
 
   /**
    * Create a start screen object

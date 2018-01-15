@@ -1,4 +1,5 @@
 .h5p-branching-scenario .h5p-start-screen, .h5p-end-screen {
+  min-height: 45em;
   background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
   text-align: center;
   display: flex;

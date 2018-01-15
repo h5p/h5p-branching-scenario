@@ -1,3 +1,4 @@
+import { addResizeListener, removeResizeListener } from 'detect-resize'
 H5P.BranchingScenario.LibraryScreen = (function() {
 
   /**
@@ -56,7 +57,10 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const self = this;
     const parent = this.parent;
     navButton.onclick = function() {
-      parent.trigger('navigated', self.nextLibraryId);
+      if (parent.navigating === false) {
+        parent.trigger('navigated', self.nextLibraryId);
+        parent.navigating = true;
+      }
     };
     navButton.classList.add('h5p-nav-button');
 
@@ -70,17 +74,40 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     header.append(buttonWrapper);
     wrapper.append(header);
 
+    const handleWrapperResize = () => {
+      self.wrapper.style.minHeight = self.wrapper.clientHeight + 'px';
+    }
+
+    addResizeListener(wrapper, handleWrapperResize)
+
     // Resize container on animation end
     wrapper.addEventListener("animationend", function(event) {
       if (event.animationName === 'slide-in' && self.currentLibraryElement) {
         parent.trigger('resize');
-        setTimeout(()=> {
-          // Resize, TODO: Remove hardcoded padding
-          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 20 + 'px';
-          parent.trigger('resize');
-        }, 800)
+
+        const handleLibraryResize = () => {
+          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 30 + 'px';
+          self.wrapper.style.minHeight = 0;
+        }
+
+        addResizeListener(self.currentLibraryElement, handleLibraryResize)
       }
     });
+
+    // // Resize container on animation end
+    // wrapper.addEventListener("animationend", function(event) {
+    //   if (event.animationName === 'slide-in' && self.currentLibraryElement) {
+    //     parent.trigger('resize');
+    //     setTimeout(() => {
+    //       // Resize, TODO: Remove hardcoded padding
+    //       self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 30 + 'px';
+    //       self.wrapper.style.minHeight = 0;
+    //       parent.trigger('resize');
+    //       // self.wrapper.style.minHeight = self.wrapper.clientHeight;
+    //       // self.wrapper.style.minHeight = '531px';
+    //     }, 800);
+    //   }
+    // });
 
     return wrapper;
   };
@@ -229,10 +256,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     self.wrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
-    self.wrapper.addEventListener('animationend', function() {
-      self.wrapper.classList.remove('h5p-next-screen');
-      self.wrapper.classList.remove('h5p-slide-in');
-      self.wrapper.classList.add('h5p-current-screen');
+    self.wrapper.addEventListener('animationend', function(e) {
+      if (e.target.className === 'h5p-next-screen h5p-slide-in') {
+        self.wrapper.classList.remove('h5p-next-screen');
+        self.wrapper.classList.remove('h5p-slide-in');
+        self.wrapper.classList.add('h5p-current-screen');
+        self.parent.navigating = false;
+        self.wrapper.style.minHeight = self.parent.currentHeight;
+      }
     });
   };
 
@@ -314,6 +345,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         self.currentLibraryWrapper.classList.remove('h5p-slide-in');
         self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
         self.createNextLibraries(library);
+        self.parent.navigating = false;
       });
       // TODO: Do not slide in the next slide if it is the same as the current one
     }
@@ -343,6 +375,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
       this.currentLibraryWrapper.style.zIndex = 0;
       this.createNextLibraries(library);
+      this.parent.navigating = false;
     }
   };
 

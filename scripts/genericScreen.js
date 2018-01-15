@@ -21,6 +21,9 @@ H5P.BranchingScenario.GenericScreen = (function() {
     if (!isCurrentScreen) {
       this.screenWrapper.classList.add('h5p-branching-hidden');
     }
+    else {
+      self.parent.currentHeight = '45em';
+    }
 
     let contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
@@ -38,6 +41,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     navButton.onclick = function() {
       isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
+      self.parent.navigating = true;
     };
 
     let buttonTextNode = document.createTextNode(buttonText);
