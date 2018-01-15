@@ -1,4 +1,4 @@
-import { addResizeListener, removeResizeListener } from 'detect-resize'
+import { addResizeListener, removeResizeListener } from 'detect-resize';
 H5P.BranchingScenario.LibraryScreen = (function() {
 
   /**
@@ -96,21 +96,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         addResizeListener(self.currentLibraryElement, handleLibraryResize)
       }
     });
-
-    // // Resize container on animation end
-    // wrapper.addEventListener("animationend", function(event) {
-    //   if (event.animationName === 'slide-in' && self.currentLibraryElement) {
-    //     parent.trigger('resize');
-    //     setTimeout(() => {
-    //       // Resize, TODO: Remove hardcoded padding
-    //       self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 30 + 'px';
-    //       self.wrapper.style.minHeight = 0;
-    //       parent.trigger('resize');
-    //       // self.wrapper.style.minHeight = self.wrapper.clientHeight;
-    //       // self.wrapper.style.minHeight = '531px';
-    //     }, 800);
-    //   }
-    // });
 
     return wrapper;
   };
