@@ -36,8 +36,8 @@
 }
 
 .h5p-branching-scenario .h5p-branching-question-container {
+  max-height: 74%;
   padding-top: 5em;
-  height: 74%;
   box-sizing: border-box;
 }
 

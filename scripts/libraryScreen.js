@@ -70,6 +70,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const header = document.createElement('div');
     header.classList.add('h5p-screen-header');
 
+    this.header = header;
+
     header.append(titleDiv);
     header.append(buttonWrapper);
     wrapper.append(header);
@@ -367,7 +369,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         this.overlay = document.createElement('div');
         this.overlay.className = 'h5p-branching-scenario-overlay';
         this.wrapper.append(this.overlay);
-        this.disableTabbables();
+        this.hideBackgroundFromReadspeaker();
       }
 
       const branchingQuestion = document.createElement('div');
@@ -384,20 +386,17 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.currentLibraryWrapper.style.zIndex = 0;
       this.createNextLibraries(library);
       this.parent.navigating = false;
+
+      branchingQuestion.addEventListener('animationend', function() {
+        var firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0]
+        firstAlternative.focus();
+      });
     }
   };
 
-  /**
-   * Used to disable all tabbables behind overlay
-   */
-  LibraryScreen.prototype.disableTabbables = function () {
-    const libraryTabbables = this.currentLibraryWrapper.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
-    Array.from(libraryTabbables).forEach(tabbable => {
-      tabbable.setAttribute('tabIndex', -1);
-    });
-
-    const navigationButton = this.wrapper.getElementsByClassName('h5p-screen-header')[0].getElementsByTagName('button')[0];
-    navigationButton.setAttribute('tabIndex', '-1');
+  LibraryScreen.prototype.hideBackgroundFromReadspeaker = function () {
+    this.header.setAttribute('aria-hidden', 'true');
+    this.currentLibraryWrapper.setAttribute('aria-hidden', 'true');
   };
 
   LibraryScreen.prototype.getElement = function () {
