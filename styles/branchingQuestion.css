@@ -36,8 +36,9 @@
 }
 
 .h5p-branching-scenario .h5p-branching-question-container {
-  margin-left: 5em;
-  margin-right: 5em;
+  padding-top: 5em;
+  height: 74%;
+  box-sizing: border-box;
 }
 
 .h5p-branching-scenario .h5p-branching-question h1 {
@@ -69,6 +70,7 @@
 }
 
 .h5p-start-outside {
+  height: 100%;
   transform: translateY(300%);
   -webkit-transform: translateY(300%);
 }

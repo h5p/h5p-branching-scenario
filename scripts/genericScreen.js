@@ -44,6 +44,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
       self.parent.navigating = true;
     };
 
+    self.navButton = navButton;
+
     const buttonTextNode = document.createTextNode(buttonText);
     navButton.append(buttonTextNode);
 
@@ -124,6 +126,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
         self.screenWrapper.classList.remove('h5p-slide-in');
         self.screenWrapper.classList.add('h5p-current-screen');
         self.parent.trigger('resize');
+        self.navButton.focus();
       }
     });
   };
