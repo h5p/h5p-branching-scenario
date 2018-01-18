@@ -55,7 +55,7 @@
             "label": "Content ID"
           },
           {
-            "label": "Next Content ID (end screen is -1)",
+            "label": "Next Content ID (end screens are defined by negative numbers)",
             "showWhen": {
               "rules": [
                 {}
