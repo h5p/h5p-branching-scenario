@@ -9,7 +9,7 @@
     "name": "startScreen",
     "label": "Start screen",
     "type": "group",
-    "importance": "high",
+    "importance": "medium",
     "fields": [
       {
         "name": "startScreenTitle",
@@ -36,7 +36,7 @@
     "name": "endScreens",
     "label": "List of end screens",
     "type": "list",
-    "importance": "high",
+    "importance": "medium",
     "field": {
       "name": "endScreen",
       "label": "End screen",

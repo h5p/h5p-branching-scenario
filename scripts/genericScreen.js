@@ -3,14 +3,15 @@ H5P.BranchingScenario.GenericScreen = (function() {
   /**
    * GenericScreen constructor
    *
-   * @param  {BranchingScenario} parent BranchingScenario Object
-   * @param  {boolean} {isStartScreen
-   * @param  {string}   titleText
-   * @param  {string}   subtitleText
-   * @param  {Object}   image
-   * @param  {string}   buttonText
-   * @param  {boolean}  isCurrentScreen}
-   * @return {GenericScreen}
+   * @param {BranchingScenario} parent BranchingScenario Object
+   * @param {Object} ScreenData Object containing data required to construct the screen
+   * @param {boolean} ScreenData.isStartScreen Determines if it is a starting screen
+   * @param {string}  ScreenData.titleText Title
+   * @param {string}  ScreenData.subtitleText Subtitle
+   * @param {Object}  ScreenData.image Image object
+   * @param {string}  ScreenData.buttonText Text for the button
+   * @param {boolean} ScreenData.isCurrentScreen Determines if the screen is shown immediately
+   * @return {GenericScreen} A screen object
    */
   function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText, isCurrentScreen}) {
     const self = this;
@@ -55,17 +56,30 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     if (isStartScreen === false) {
       // TODO: decide on how scoring should work and show score counter accordingly
-      // contentDiv.prepend(this.createResultContainer(12));
+      // This is how the scoring div should be added: contentDiv.prepend(this.createResultContainer(12));
     }
 
     self.screenWrapper.append(self.createScreenBackground(isStartScreen, image));
     self.screenWrapper.append(contentDiv);
   }
 
+
+  /**
+   * Returns the wrapping div
+   *
+   * @return {HTMLElement} Wrapper
+   */
   GenericScreen.prototype.getElement = function() {
     return this.screenWrapper;
   };
 
+
+  /**
+   * Creates a wrapper containing the score. Not in use!
+   *
+   * @param  {number} score Score to be shown
+   * @return {HTMLElement} Result container
+   */
   GenericScreen.prototype.createResultContainer = function(score) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-result-wrapper');
@@ -87,6 +101,14 @@ H5P.BranchingScenario.GenericScreen = (function() {
     return wrapper;
   };
 
+
+  /**
+   * Creates the background for the screen
+   *
+   * @param  {boolean} isStartScreen Determines if the screen is a starting screen
+   * @param  {Object} image Image object
+   * @return {HTMLElement} Wrapping div for the background
+   */
   GenericScreen.prototype.createScreenBackground = function (isStartScreen, image) {
     const backgroundWrapper = document.createElement('div');
     backgroundWrapper.classList.add('h5p-screen-background');
@@ -110,9 +132,9 @@ H5P.BranchingScenario.GenericScreen = (function() {
     return backgroundWrapper;
   };
 
-
   /**
    * Slides the screen in and styles it as the current screen
+   * @return {undefined}
    */
   GenericScreen.prototype.show = function () {
     const self = this;
@@ -133,6 +155,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
   /**
    * Slides the screen out and styles it to be hidden
+   * @return {undefined}
    */
   GenericScreen.prototype.hide = function () {
     const self = this;

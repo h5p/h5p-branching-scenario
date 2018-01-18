@@ -4,6 +4,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .h5p-branching-scenario .h5p-start-screen.h5p-branching-hidden, .h5p-end-screen.h5p-branching-hidden {
@@ -126,6 +127,18 @@
   background: none;
   cursor: pointer;
   font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-start-button:hover, .h5p-end-button:hover, .h5p-nav-button:hover {
+  border-color: #b0f88f;
+  color: #4b4c60;
+  background: #b0f88f;
+}
+
+.h5p-branching-scenario .h5p-start-button:active, .h5p-end-button:active, .h5p-nav-button:active {
+  border-color: #9fe281;
+  color: #4b4c60;
+  background: #9fe281;
 }
 
 .h5p-branching-scenario .h5p-start-button:after {

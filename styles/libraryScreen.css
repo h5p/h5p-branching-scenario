@@ -1,5 +1,4 @@
 .h5p-branching-scenario .h5p-screen-header {
-  min-height: 5em;
   display: flex;
   justify-content: space-between;
   background: transparent;
@@ -7,21 +6,35 @@
 
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper {
   margin-left: 20px;
-  height: 5em;
+  margin-right: 20px;
+  overflow: hidden;
 }
 
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h1 {
+  margin-bottom: 0;
   font-family: H5PRobotoLight;
   font-size: 1.458em;
   color: #fff;
   font-weight: 200;
+  /* ellipsis code */
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h2 {
+  margin-top: 0;
+  margin-bottom: 0;
   font-family: H5PRobotoLight;
   font-size: 0.833em;
   color: #fff;
   font-weight: 200;
+  /* ellipsis code */
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .h5p-branching-scenario .h5p-screen-header button:after {
@@ -30,10 +43,17 @@
   padding-left: 10px;
 }
 
+.h5p-branching-scenario .h5p-nav-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .h5p-branching-scenario .h5p-nav-button {
-  padding: 0.6rem 1.5rem;
-  margin-top: 1em;
   margin-right: 20px;
+  margin-left: 0;
+  margin-top: 0.67em;
+  margin-bottom: 0;
 }
 
 .h5p-branching-scenario .h5p-library-wrapper {
@@ -44,7 +64,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  margin: 0 20px 20px 20px;
+  margin: 20px;
   background: #EFEFEF;
   color: #383838;
   -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
@@ -73,7 +93,7 @@
 
 .h5p-branching-scenario .h5p-branching-scenario-content.h5p-advanced-text {
   padding: 1em 1.4em 1em 1.4em;
-  max-height: 33em;
+  height: 33em;
   overflow-y: auto;
 }
 

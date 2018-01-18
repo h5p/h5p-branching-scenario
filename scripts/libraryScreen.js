@@ -1,13 +1,14 @@
 import { addResizeListener, removeResizeListener } from 'detect-resize';
+
 H5P.BranchingScenario.LibraryScreen = (function() {
 
   /**
    * LibraryScreen
    *
-   * @param  {BranchingScenario} parent     BranchingScenario object
-   * @param  {string} courseTitle           description
-   * @param  {Object} library               H5P Library Data
-   * @return {LibraryScreen}
+   * @param  {BranchingScenario} parent BranchingScenario object
+   * @param  {string} courseTitle Title
+   * @param  {Object} library H5P Library Data
+   * @return {LibraryScreen} A screen oject
    */
   function LibraryScreen(parent, courseTitle, library) {
     this.parent = parent;
@@ -18,6 +19,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.libraryInstances = {};
     this.libraryTitle;
     this.branchingQuestions = [];
+    this.navButton;
+    this.header;
 
     this.wrapper = library.showContentTitle ? this.createWrapper(courseTitle, library.contentTitle) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
@@ -26,13 +29,20 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const libraryWrapper = this.createLibraryElement(library, false);
     this.currentLibraryWrapper = libraryWrapper;
     this.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
-    this.currentLibraryInstance = this.libraryInstances[0]; // TODO: Decide whether the start screen id should be hardcoded
+    this.currentLibraryInstance = this.libraryInstances[0]; // TODO: Decide whether the start screen id should be hardcoded as 0
 
     this.createNextLibraries(library);
 
     this.wrapper.append(libraryWrapper);
   }
 
+  /**
+   * Creates a wrapping div for the library screen
+   *
+   * @param  {string} courseTitle Main title
+   * @param  {string} libraryTitle Library specific title
+   * @return {HTMLElement} Wrapping div
+   */
   LibraryScreen.prototype.createWrapper = function(courseTitle, libraryTitle) {
     const wrapper = document.createElement('div');
 
@@ -57,12 +67,15 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const self = this;
     const parent = this.parent;
     navButton.onclick = function() {
+      // Stop impatient users from breaking the view
       if (parent.navigating === false) {
         parent.trigger('navigated', self.nextLibraryId);
         parent.navigating = true;
       }
     };
     navButton.classList.add('h5p-nav-button');
+
+    this.navButton = navButton;
 
     navButton.append(document.createTextNode(parent.params.proceedButtonText));
     buttonWrapper.append(navButton);
@@ -80,9 +93,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       if (self.wrapper.clientHeight > 500) {
         self.wrapper.style.minHeight = self.wrapper.clientHeight + 'px';
       }
-    }
+    };
 
-    addResizeListener(wrapper, handleWrapperResize)
+    addResizeListener(wrapper, handleWrapperResize);
 
     // Resize container on animation end
     wrapper.addEventListener("animationend", function(event) {
@@ -90,18 +103,26 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         parent.trigger('resize');
 
         const handleLibraryResize = () => {
-          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 30 + 'px';
+          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
           self.wrapper.style.minHeight = '30em';
           parent.trigger('resize');
-        }
+        };
 
-        addResizeListener(self.currentLibraryElement, handleLibraryResize)
+        // Make the library resize then make the wrapper resize to the new library height
+        addResizeListener(self.currentLibraryElement, handleLibraryResize);
       }
     });
 
     return wrapper;
   };
 
+  /**
+   * Creates the library element and hides it if necessary
+   *
+   * @param  {Object} library Library object
+   * @param  {boolean} isNextLibrary Determines if the lirbary should be hidden for now
+   * @return {HTMLElement} Wrapping div for the library element
+   */
   LibraryScreen.prototype.createLibraryElement = function (library, isNextLibrary) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-library-wrapper');
@@ -125,9 +146,10 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * Creates a new content instance from the given content parameters and
    * then attaches it the wrapper. Sets up event listeners.
    *
-   * @private
-   * @param {Object} content Parameters
-   * @param {Object} [contentData] Content Data
+   * @param {Object} container Container the library should be appended to
+   * @param {Object} content Data for the library
+   * @param {number} id Id of the library
+   * @return {undefined}
    */
   LibraryScreen.prototype.appendRunnable = function(container, content, id) {
     const parent = this.parent;
@@ -158,8 +180,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   /**
-   * Pre-render the next libraries for smooth transitions
+   * Pre-render the next libraries for smooth transitions for a specific library
    * @param  {Object} library Library Data
+   * @return {undefined}
    */
   LibraryScreen.prototype.createNextLibraries = function (library) {
     this.nextLibraries = {};
@@ -167,10 +190,13 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     // If not a branching question, just load the next library
     if (library.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       const nextLibrary = this.parent.getLibrary(library.nextContentId);
+
+      // Do nothing if the next screen is an end screen
       if (nextLibrary === false) {
-        return; // Do nothing if the next screen is an end screen
+        return;
       }
-      // Do not pre-render branching questions
+
+      // Pre-render the next library if it is not a branching question
       if (nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
         this.wrapper.append(this.nextLibraries[library.nextContentId]);
@@ -179,13 +205,16 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     // If it is a branching question, load all the possible libraries
     else {
-      const ids = library.content.params.alternatives.map(alternative => alternative.nextContentId); // TODO: transpile
+      const ids = library.content.params.alternatives.map(alternative => alternative.nextContentId);
       ids.forEach(nextContentId => {
         const nextLibrary = this.parent.getLibrary(nextContentId);
+
+        // Do nothing if the next screen is an end screen
         if (nextLibrary === false) {
-          return; // Do nothing if the next screen is an end screen
+          return;
         }
-        // Do not pre-render branching questions
+
+        // Pre-render all the next libraries as long as they are not branching questions
         if (nextLibrary.content && nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
           this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
           this.wrapper.append(this.nextLibraries[nextContentId]);
@@ -198,7 +227,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * Remove custom fullscreen buttons from sub content.
    * (A bit of a hack, there should have been some sort of override…)
    *
-   * @param {Object} instance
+   * @param {Object} instance Library instance
+   * @return {undefined}
    */
   LibraryScreen.prototype.disableFullscreen = function (instance) {
     switch (instance.libraryInfo.machineName) {
@@ -225,6 +255,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @param {Object} origin Origin of the Event
    * @param {string} eventName Name of the Event
    * @param {Object} target Target to trigger event on
+   * @return {undefined}
    */
   LibraryScreen.prototype.bubbleUp = function(origin, eventName, target) {
     origin.on(eventName, function (event) {
@@ -239,6 +270,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
   /**
    * Slides the screen in and styles it as the current screen
+   * @return {undefined}
    */
   LibraryScreen.prototype.show = function () {
     const self = this;
@@ -253,12 +285,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         self.wrapper.classList.add('h5p-current-screen');
         self.parent.navigating = false;
         self.wrapper.style.minHeight = self.parent.currentHeight;
+        self.navButton.focus();
       }
     });
   };
 
   /**
    * Slides the screen out and styles it to be hidden
+   * @return {undefined}
    */
   LibraryScreen.prototype.hide = function () {
     const self = this;
@@ -292,6 +326,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * 'showNextLibrary' function but without transitions
    *
    * @param  {Object} library library data of the library beneath the overlay
+   * @return {undefined}
    */
   LibraryScreen.prototype.hideBranchingQuestion = function (library) {
     this.nextLibraryId = library.nextContentId;
@@ -304,13 +339,15 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     // Prepare next libraries
     this.createNextLibraries(library);
     this.parent.navigating = false;
-  }
+    this.navButton.focus();
+  };
 
   /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
    *
    * @param  {Object} library Library data
+   * @return {undefined}
    */
   LibraryScreen.prototype.showNextLibrary = function (library) {
     this.nextLibraryId = library.nextContentId;
@@ -356,8 +393,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
         self.createNextLibraries(library);
         self.parent.navigating = false;
+        self.navButton.focus();
       });
-      // TODO: Do not slide in the next slide if it is the same as the current one
     }
     else { // Show a branching question
 
@@ -388,7 +425,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.parent.navigating = false;
 
       branchingQuestion.addEventListener('animationend', function() {
-        var firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0]
+        const firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0];
         firstAlternative.focus();
       });
     }

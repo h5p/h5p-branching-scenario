@@ -15,12 +15,12 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Create a start screen object
    *
-   * @param  {Object} startscreendata
-   * @param  {string} startscreendata.startScreenTitle
-   * @param  {string} startscreendata.startScreenSubtitle
-   * @param  {Object} startscreendata.startScreenImage    Object containing image metadata
-   * @param  {boolean} isCurrentScreen                    When Branching Scenario is first initialized
-   * @return {GenericScreen}                              Generic Screen object
+   * @param  {Object} startscreendata Object containing data needed to build a start screen
+   * @param  {string} startscreendata.startScreenTitle Title
+   * @param  {string} startscreendata.startScreenSubtitle Subtitle
+   * @param  {Object} startscreendata.startScreenImage Object containing image metadata
+   * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
+   * @return {GenericScreen} Generic Screen object
    */
   const createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
     return new H5P.BranchingScenario.GenericScreen(self, {
@@ -36,11 +36,11 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Create an end screen object
    *
-   * @param  {Object} endscreendata
-   * @param  {string} endscreendata.endScreenTitle
-   * @param  {string} endscreendata.endScreenSubtitle
-   * @param  {Object} endscreendata.endScreenImage     Object containing image metadata
-   * @return {GenericScreen}                           Generic Screen object
+   * @param  {Object} endscreendata Object containing data needed to build an end screen
+   * @param  {string} endscreendata.endScreenTitle Title
+   * @param  {string} endscreendata.endScreenSubtitle Subtitle
+   * @param  {Object} endscreendata.endScreenImage Object containing image metadata
+   * @return {GenericScreen} Generic Screen object
    */
   const createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
     return new H5P.BranchingScenario.GenericScreen(self, {
@@ -56,7 +56,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Get library data by id from branching scenario parameters
    *
-   * @param  {number} id
+   * @param  {number} id Id of the content type
    * @return {Object | boolean} Data required to create a library
    */
   self.getLibrary = function(id) {
@@ -68,6 +68,9 @@ H5P.BranchingScenario = function (params, contentId) {
     return false;
   };
 
+  /**
+   * Handle the start of the branching scenario
+   */
   self.on('started', function() {
     self.startScreen.hide();
     self.libraryScreen.show();
@@ -75,28 +78,36 @@ H5P.BranchingScenario = function (params, contentId) {
     self.currentId = 0;
   });
 
+  /**
+   * Handle progression
+   */
   self.on('navigated', function(e) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
     const id = e.data;
     const nextLibrary = self.getLibrary(id);
 
+    //  Show the relevant end screen if there is no next library
     if (nextLibrary === false) {
       self.libraryScreen.hide();
       self.currentEndScreen = self.endScreens[id];
       self.currentEndScreen.show();
     }
-    else if (id === self.currentId) {
+    else if (id === self.currentId) { // Hide branching question if it's the same library
       self.libraryScreen.hideBranchingQuestion(nextLibrary);
     }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
+      // Only update the id for non-branching questions
       if (nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         self.currentId = id;
       }
     }
   });
 
+  /**
+   * Handle restarting
+   */
   self.on('restarted', function() {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
@@ -109,17 +120,37 @@ H5P.BranchingScenario = function (params, contentId) {
     self.container.append(self.libraryScreen.getElement());
   });
 
+  /**
+   * Handle resizing, resizes child library
+   */
   self.on('resize', function (event) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
     self.libraryScreen.resize(event);
+    self.changeLayoutToFitWidth();
   });
+
+  /**
+   * Change the width of the branching question depending on the container changeLayoutToFitWidth
+   * @return {undefined} undefined
+   */
+  self.changeLayoutToFitWidth = function() {
+    const fontSize = parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).fontSize, 10);
+    // Wide screen
+    if (this.container.width() / fontSize > 43) {
+      self.container[0].classList.add('h5p-wide-screen');
+    }
+    else {
+      self.container[0].classList.add('h5p-mobile-screen');
+    }
+  };
 
   /**
    * Attach Branching Scenario to the H5P container
    *
-   * @param  {HTMLElement} $container
+   * @param  {HTMLElement} $container Container for the content type
+   * @return {undefined} undefined
    */
   self.attach = function($container) {
     self.container = $container;
