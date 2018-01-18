@@ -1,7 +1,7 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "extends": "eslint:recommended",
   "rules": {
@@ -19,6 +19,12 @@
     "semi": [
       "error",
       "always"
-    ]
+    ],
+    "no-var": "error",
+    "valid-jsdoc": "error"
+  },
+  "env": {
+    "browser": true,
+    "es6": true
   }
 }
