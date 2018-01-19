@@ -63,7 +63,6 @@ H5P.BranchingScenario.GenericScreen = (function() {
     self.screenWrapper.append(contentDiv);
   }
 
-
   /**
    * Returns the wrapping div
    *
@@ -72,7 +71,6 @@ H5P.BranchingScenario.GenericScreen = (function() {
   GenericScreen.prototype.getElement = function() {
     return this.screenWrapper;
   };
-
 
   /**
    * Creates a wrapper containing the score. Not in use!
@@ -100,7 +98,6 @@ H5P.BranchingScenario.GenericScreen = (function() {
     wrapper.append(resultContainer);
     return wrapper;
   };
-
 
   /**
    * Creates the background for the screen

@@ -317,6 +317,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       self.wrapper.classList.remove('h5p-current-screen');
       self.wrapper.classList.add('h5p-next-screen');
       self.wrapper.classList.remove('h5p-slide-out');
+      setTimeout(() => self.wrapper.remove(), 100);
     });
   };
 
@@ -355,7 +356,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     // Show normal h5p library
     if (library.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       // Update the title
-      this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
+      if (library.showContentTitle) {
+        this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
+      }
 
       // Slide out the current library
       this.currentLibraryWrapper.classList.add('h5p-slide-out');
