@@ -108,8 +108,10 @@ H5P.BranchingScenario.LibraryScreen = (function() {
           parent.trigger('resize');
         };
 
-        // Make the library resize then make the wrapper resize to the new library height
-        addResizeListener(self.currentLibraryElement, handleLibraryResize);
+        setTimeout(() => {
+          // Make the library resize then make the wrapper resize to the new library height
+          addResizeListener(self.currentLibraryElement, handleLibraryResize);
+        }, 100);
       }
     });
 
