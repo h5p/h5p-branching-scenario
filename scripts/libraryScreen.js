@@ -341,6 +341,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.createNextLibraries(library);
     this.parent.navigating = false;
     this.navButton.focus();
+    this.showBackgroundToReadspeaker();
   };
 
   /**
@@ -369,6 +370,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         this.overlay.remove();
         this.overlay = undefined;
         this.branchingQuestions.forEach(bq => bq.remove());
+        this.showBackgroundToReadspeaker();
       }
 
       // Remove pre-rendered libraries that were not selected
@@ -437,6 +439,11 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   LibraryScreen.prototype.hideBackgroundFromReadspeaker = function () {
     this.header.setAttribute('aria-hidden', 'true');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'true');
+  };
+
+  LibraryScreen.prototype.showBackgroundToReadspeaker = function () {
+    this.header.setAttribute('aria-hidden', 'false');
+    this.currentLibraryWrapper.setAttribute('aria-hidden', 'false');
   };
 
   LibraryScreen.prototype.getElement = function () {
