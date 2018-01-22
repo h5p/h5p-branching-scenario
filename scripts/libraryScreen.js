@@ -104,7 +104,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
         const handleLibraryResize = () => {
           self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
-          self.wrapper.style.minHeight = '30em';
+          // NOTE: This is a brittle hardcoding of the header height
+          self.wrapper.style.minHeight = self.currentLibraryWrapper.style.height + 70.17 + 'px';
           parent.trigger('resize');
         };
 
@@ -187,6 +188,13 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @return {undefined}
    */
   LibraryScreen.prototype.createNextLibraries = function (library) {
+
+    // Remove outdated 'next' libraries
+    let nextLibraryElements = this.wrapper.getElementsByClassName('h5p-next');
+    for (let i = 0; i < nextLibraryElements.length; i++) {
+      nextLibraryElements[i].remove();
+    }
+
     this.nextLibraries = {};
 
     // If not a branching question, just load the next library
@@ -373,11 +381,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         this.overlay = undefined;
         this.branchingQuestions.forEach(bq => bq.remove());
         this.showBackgroundToReadspeaker();
-      }
-
-      // Remove pre-rendered libraries that were not selected
-      for (let i = 0; i < this.nextLibraries.length; i++) {
-        this.nextLibraries[i].remove();
       }
 
       // Slide in selected library
