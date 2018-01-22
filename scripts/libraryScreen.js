@@ -105,7 +105,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         const handleLibraryResize = () => {
           self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
           // NOTE: This is a brittle hardcoding of the header height
-          self.wrapper.style.minHeight = self.currentLibraryWrapper.style.height + 70.17 + 'px';
+          self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
           parent.trigger('resize');
         };
 
