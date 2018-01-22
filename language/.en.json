@@ -43,13 +43,23 @@
       "field": {
         "fields": [
           {
-            "label": "Content title"
-          },
-          {
-            "label": "Show content title"
-          },
-          {
             "label": "Content"
+          },
+          {
+            "label": "Content title",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "Show content title",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
           },
           {
             "label": "Content ID"
