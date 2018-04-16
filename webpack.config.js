@@ -5,7 +5,7 @@ module.exports = {
     entries: [
       './scripts/branchingScenario.js',
       './scripts/genericScreen.js',
-      './scripts/LibraryScreen'
+      './scripts/libraryScreen.js'
     ]
   },
   output: {
