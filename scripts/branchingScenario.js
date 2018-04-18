@@ -2,15 +2,56 @@ H5P = H5P || {};
 
 H5P.BranchingScenario = function (params, contentId) {
   const self = this;
+
   self.params = params;
   H5P.EventDispatcher.call(self);
   self.contentId = contentId;
-  self.startScreen;
-  self.libraryScreen;
+  self.startScreen = {};
+  self.libraryScreen = {};
   self.endScreens = {};
   self.navigating;
   self.currentHeight;
-  self.currentId;
+  self.currentId = 0;
+
+  /**
+   * Extend an array just like JQuery's extend.
+   * @param {...Object} arguments - Objects to be merged.
+   * @return {Object} Merged objects.
+   */
+  const extend = function () {
+    for (var i = 1; i < arguments.length; i++) {
+      for (var key in arguments[i]) {
+        if (arguments[i].hasOwnProperty(key)) {
+          if (typeof arguments[0][key] === 'object' &&
+          typeof arguments[i][key] === 'object') {
+            extend(arguments[0][key], arguments[i][key]);
+          }
+          else {
+            arguments[0][key] = arguments[i][key];
+          }
+        }
+      }
+    }
+    return arguments[0];
+  };
+
+  params = extend({
+    startScreen: {
+      startScreenTitle: "Start",
+      startScreenSubtitle: ""
+    },
+    endScreens: [
+      {
+        endScreenTitle: "The End",
+        endScreenSubtitle: "",
+        contentId: -1
+      }
+    ],
+    startScreenButtonText: "Start the course",
+    endScreenButtonText: "Restart the course",
+    proceedButtonText: "Proceed",
+    title: "Branching Scenario"
+  }, params);
 
   /**
    * Create a start screen object
@@ -127,7 +168,9 @@ H5P.BranchingScenario = function (params, contentId) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
-    self.libraryScreen.resize(event);
+    if (self.libraryScreen === Object && Object.keys(self.libraryScreen).length !== 0) {
+      self.libraryScreen.resize(event);
+    }
     self.changeLayoutToFitWidth();
   });
 
@@ -155,6 +198,13 @@ H5P.BranchingScenario = function (params, contentId) {
   self.attach = function($container) {
     self.container = $container;
     $container.addClass('h5p-branching-scenario').html('');
+
+    if (!params.content || params.content.length === 0) {
+      const contentMessage = document.createElement('div');
+      contentMessage.innerHTML = '<h1>I really need some content ;-)</h1>';
+      self.container.append(contentMessage);
+      return;
+    }
 
     self.startScreen = createStartScreen(params.startScreen, true);
     self.container.append(self.startScreen.getElement());
