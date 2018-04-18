@@ -51,7 +51,7 @@ H5P.BranchingScenario = function (params, contentId) {
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
     title: "Branching Scenario"
-  }, params);
+  }, params.branchingScenario);
 
   /**
    * Create a start screen object
