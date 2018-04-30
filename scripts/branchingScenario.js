@@ -3,7 +3,6 @@ H5P = H5P || {};
 H5P.BranchingScenario = function (params, contentId) {
   const self = this;
 
-  self.params = params;
   H5P.EventDispatcher.call(self);
   self.contentId = contentId;
   self.startScreen = {};
@@ -52,6 +51,8 @@ H5P.BranchingScenario = function (params, contentId) {
     proceedButtonText: "Proceed",
     title: "Branching Scenario"
   }, params.branchingScenario);
+
+  self.params = params;
 
   /**
    * Create a start screen object
