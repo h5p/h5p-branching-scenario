@@ -132,8 +132,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     const libraryElement = document.createElement('div');
     libraryElement.classList.add('h5p-branching-scenario-content');
-
-    this.appendRunnable(libraryElement, library.content, library.contentId);
+    this.appendRunnable(libraryElement, library.type, library.contentId);
 
     wrapper.append(libraryElement);
 
@@ -198,7 +197,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.nextLibraries = {};
 
     // If not a branching question, just load the next library
-    if (library.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+    if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       const nextLibrary = this.parent.getLibrary(library.nextContentId);
 
       // Do nothing if the next screen is an end screen
@@ -207,7 +206,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       }
 
       // Pre-render the next library if it is not a branching question
-      if (nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+      if (nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
         this.wrapper.append(this.nextLibraries[library.nextContentId]);
       }
@@ -215,7 +214,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     // If it is a branching question, load all the possible libraries
     else {
-      const ids = library.content.params.alternatives.map(alternative => alternative.nextContentId);
+      const ids = library.type.params.alternatives.map(alternative => alternative.nextContentId);
       ids.forEach(nextContentId => {
         const nextLibrary = this.parent.getLibrary(nextContentId);
 
@@ -225,7 +224,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         }
 
         // Pre-render all the next libraries as long as they are not branching questions
-        if (nextLibrary.content && nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+        if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
           this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
           this.wrapper.append(this.nextLibraries[nextContentId]);
         }
@@ -365,7 +364,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.nextLibraryId = library.nextContentId;
 
     // Show normal h5p library
-    if (library.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+    if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       // Update the title
       if (library.showContentTitle) {
         this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
@@ -422,7 +421,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       const branchingQuestion = document.createElement('div');
       branchingQuestion.className = 'h5p-branching-question-wrapper';
 
-      this.appendRunnable(branchingQuestion, library.content);
+      this.appendRunnable(branchingQuestion, library.type);
       this.wrapper.append(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 

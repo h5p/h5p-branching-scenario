@@ -89,7 +89,7 @@
           "type": "group",
           "fields": [
             {
-              "name": "content",
+              "name": "type",
               "type": "library",
               "importance": "high",
               "label": "Content",

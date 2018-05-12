@@ -50,7 +50,12 @@ H5P.BranchingScenario = function (params, contentId) {
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
     title: "Branching Scenario"
-  }, params.branchingScenario);
+  }, params.branchingScenario); // Account for the wrapper!
+
+  // Sanitize the nextContentIds that the editor didn't set
+  params.content.forEach(item => {
+    item.nextContentId = item.nextContentId || -1;
+  });
 
   self.params = params;
 
@@ -141,7 +146,7 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
       // Only update the id for non-branching questions
-      if (nextLibrary.content.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+      if (nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         self.currentId = id;
       }
     }
