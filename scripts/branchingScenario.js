@@ -35,6 +35,7 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   params = extend({
+    content: [],
     startScreen: {
       startScreenTitle: "Start",
       startScreenSubtitle: ""
