@@ -1,0 +1,91 @@
+{
+  "semantics": [
+    {
+      "label": "العنوان"
+    },
+    {
+      "label": "شاشة البدء",
+      "fields": [
+        {
+          "label": "عنوان شاشةالبدء"
+        },
+        {
+          "label": "العنوان الفرعي لشاشة البدء"
+        },
+        {
+          "label": "صورة شاشة البدء"
+        }
+      ]
+    },
+    {
+      "label": "List of end screens",
+      "field": {
+        "label": "شاشة النهاية",
+        "fields": [
+          {
+            "label": "عنوان شاشة النهاية"
+          },
+          {
+            "label": "العنوان الفرعي لشاشة النهاية"
+          },
+          {
+            "label": "صورة شاشة النهاية"
+          },
+          {
+            "label": "Content ID"
+          }
+        ]
+      }
+    },
+    {
+      "label": "List of branching scenario content",
+      "entity": "content",
+      "field": {
+        "fields": [
+          {
+            "label": "Content"
+          },
+          {
+            "label": "Content title",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "Show content title",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "Content ID"
+          },
+          {
+            "label": "Next Content ID (end screens are defined by negative numbers)",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "label": "Text for the button on the start screen",
+      "default": "Start the course"
+    },
+    {
+      "label": "Text for the button on the end screen",
+      "default": "Restart the course"
+    },
+    {
+      "label": "Text for the button on each of the library screens",
+      "default": "Proceed"
+    }
+  ]
+}
