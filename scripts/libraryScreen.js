@@ -63,6 +63,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
     const navButton = document.createElement('button');
+    navButton.classList.add('transition');
 
     const self = this;
     const parent = this.parent;

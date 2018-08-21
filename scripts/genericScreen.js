@@ -39,6 +39,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     const navButton = document.createElement('button');
     navButton.classList.add(isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
+    navButton.classList.add('transition');
 
     navButton.onclick = function() {
       isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');

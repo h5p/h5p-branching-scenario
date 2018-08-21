@@ -44,7 +44,7 @@
 }
 
 .h5p-branching-scenario .h5p-branching-question {
-  width: 100%;
+  border-radius: 0.188rem;
 }
 
 .h5p-branching-scenario .h5p-branching-question h1 {
@@ -95,4 +95,18 @@
 .h5p-fly-in {
   animation: fly-in 0.8s forwards;
   -webkit-animation: fly-in 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  padding: 0.6rem 1.5rem;
+}
+
+.h5p-branching-question-alternative {
+  padding: 0.5em 1.250em 0.5em 1.250em;
+  margin: 0.5em 0;
+}
+
+.h5p-branching-question-icon {
+  top: -75px;
+  width: 130px;
 }

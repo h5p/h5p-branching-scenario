@@ -116,7 +116,6 @@
 }
 
 .h5p-branching-scenario .h5p-start-button, .h5p-end-button, .h5p-nav-button {
-  padding: 0.9rem 1.5rem;
   margin: 3rem 1rem 0rem 1rem;
   border-style: solid;
   border-width: 0.1250rem;
@@ -127,6 +126,14 @@
   background: none;
   cursor: pointer;
   font-family: H5PRobotoMedium;
+}
+
+.h5p-branching-scenario .h5p-start-button, .h5p-end-button {
+  padding: 0.9rem 1.5rem;
+}
+
+.h5p-branching-scenario .h5p-nav-button {
+  padding: 0.6rem 1.5rem;
 }
 
 .h5p-branching-scenario .h5p-start-button:hover, .h5p-end-button:hover, .h5p-nav-button:hover {

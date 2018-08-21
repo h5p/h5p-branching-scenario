@@ -40,6 +40,15 @@
   100% { -webkit-transform: translateX(0%); }
 }
 
+.h5p-branching-scenario h1, h2, h3, h4, h5 {
+  font-weight: normal;
+}
+
+.h5p-branching-scenario p {
+  margin: 0;
+  padding: 0;
+}
+
 .h5p-branching-scenario .h5p-current-screen {
   display: block;
   height: 100%;
@@ -68,4 +77,17 @@
 .h5p-branching-scenario .h5p-next-screen.h5p-slide-in {
   animation: slide-in 0.8s forwards;
   -webkit-animation: slide-in 0.8s forwards;
+}
+
+.h5p-branching-scenario.h5p-mobile-screen .h5p-branching-question-container {
+  width: 90%;
+  max-width: 60.000em;
+}
+
+.h5p-branching-scenario .transition {
+  transition: all .35s ease;
+}
+
+.h5p-branching-scenario-title-text {
+  padding: 0 1em; line-height: 1em;
 }
