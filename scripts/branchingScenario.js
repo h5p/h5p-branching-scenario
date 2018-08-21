@@ -53,8 +53,9 @@ H5P.BranchingScenario = function (params, contentId) {
     title: "Branching Scenario"
   }, params.branchingScenario); // Account for the wrapper!
 
-  // Sanitize the nextContentIds that the editor didn't set
-  params.content.forEach(item => {
+  // Sanitize the (next)ContentIds that the editor didn't set
+  params.content.forEach((item, index) => {
+    item.contentId = item.contentId || index;
     item.nextContentId = item.nextContentId || -1;
   });
 
