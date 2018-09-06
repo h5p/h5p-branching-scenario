@@ -215,7 +215,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     // If it is a branching question, load all the possible libraries
     else {
-      const ids = library.type.params.alternatives.map(alternative => alternative.nextContentId);
+      const ids = library.type.params.branchingQuestion.alternatives.map(alternative => alternative.nextContentId);
       ids.forEach(nextContentId => {
         const nextLibrary = this.parent.getLibrary(nextContentId);
 
