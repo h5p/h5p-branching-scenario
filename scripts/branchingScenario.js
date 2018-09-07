@@ -133,13 +133,25 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function(e) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
-    const id = e.data;
+    const id = e.data.nextContentId;
     const nextLibrary = self.getLibrary(id);
 
     //  Show the relevant end screen if there is no next library
+    self.currentEndScreen = self.endScreens[id];
+
     if (nextLibrary === false) {
+      // Custom end screen
+      if (e.data.feedback) {
+        const endScreen = createEndScreen({
+          endScreenTitle: e.data.feedback.title,
+          endScreenSubtitle: e.data.feedback.subtitle,
+          endScreenImage: e.data.feedback.image,
+        });
+        self.container.append(endScreen.getElement());
+        self.currentEndScreen = endScreen;
+      }
+
       self.libraryScreen.hide();
-      self.currentEndScreen = self.endScreens[id];
       self.currentEndScreen.show();
     }
     else if (id === self.currentId) { // Hide branching question if it's the same library

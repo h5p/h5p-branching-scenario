@@ -70,7 +70,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     navButton.onclick = function() {
       // Stop impatient users from breaking the view
       if (parent.navigating === false) {
-        parent.trigger('navigated', self.nextLibraryId);
+        parent.trigger('navigated', {
+          nextContentId: self.nextLibraryId
+        });
         parent.navigating = true;
       }
     };
