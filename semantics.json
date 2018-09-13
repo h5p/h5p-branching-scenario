@@ -73,6 +73,13 @@
               "label": "Content ID",
               "type": "number",
               "max": 0
+            },
+            {
+              "name": "endScreenScore",
+              "label": "Score for this scenario",
+              "description": "The number of points that will be given for ending up with this scenario",
+              "type": "number",
+              "default": 0
             }
           ]
         }
@@ -204,6 +211,27 @@
         "importance": "low",
         "default": "Proceed",
         "common": true
+      },
+      {
+        "name": "scoringOption",
+        "label": "Scoring Options",
+        "type": "select",
+        "description": "Select type of scoring",
+        "options": [
+          {
+            "value": "static-end-score",
+            "label": "Statically set score for each end scenario"
+          },
+          {
+            "value": "dynamic-score",
+            "label": "Dynamically calculate score from user answers"
+          },
+          {
+            "value": "no-score",
+            "label": "No scoring"
+          }
+        ],
+        "default": "static-end-score"
       }
     ]
   }
