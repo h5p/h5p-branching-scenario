@@ -4,22 +4,26 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * GenericScreen constructor
    *
    * @param {BranchingScenario} parent BranchingScenario Object
-   * @param {Object} ScreenData Object containing data required to construct the screen
-   * @param {boolean} ScreenData.isStartScreen Determines if it is a starting screen
-   * @param {string}  ScreenData.titleText Title
-   * @param {string}  ScreenData.subtitleText Subtitle
-   * @param {Object}  ScreenData.image Image object
-   * @param {string}  ScreenData.buttonText Text for the button
-   * @param {boolean} ScreenData.isCurrentScreen Determines if the screen is shown immediately
+   * @param {Object} screenData Object containing data required to construct the screen
+   * @param {boolean} screenData.isStartScreen Determines if it is a starting screen
+   * @param {string}  screenData.titleText Title
+   * @param {string}  screenData.subtitleText Subtitle
+   * @param {string}  screenData.scoreText Score text
+   * @param {Object}  screenData.image Image object
+   * @param {string}  screenData.buttonText Text for the button
+   * @param {boolean} screenData.isCurrentScreen Determines if the screen is shown immediately
+   * @param {number} screenData.score Score that should be displayed
+   * @param {number} screenData.showScore Determines if score should be displayed
+   *
    * @return {GenericScreen} A screen object
    */
-  function GenericScreen(parent, {isStartScreen, titleText, subtitleText, image, buttonText, isCurrentScreen}) {
+  function GenericScreen(parent, screenData) {
     const self = this;
     self.parent = parent;
     self.screenWrapper = document.createElement('div');
-    self.screenWrapper.classList.add(isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
-    self.screenWrapper.classList.add(isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
-    if (!isCurrentScreen) {
+    self.screenWrapper.classList.add(screenData.isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
+    self.screenWrapper.classList.add(screenData.isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
+    if (!screenData.isCurrentScreen) {
       this.screenWrapper.classList.add('h5p-branching-hidden');
     }
     else {
@@ -31,36 +35,41 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     const title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
-    title.innerHTML = titleText;
+    title.innerHTML = screenData.titleText;
 
     const subtitle = document.createElement('h2');
     subtitle.className = 'h5p-branching-scenario-subtitle-text';
-    subtitle.innerHTML = subtitleText;
+    subtitle.innerHTML = screenData.subtitleText;
 
     const navButton = document.createElement('button');
-    navButton.classList.add(isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
+    navButton.classList.add(screenData.isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
     navButton.classList.add('transition');
 
     navButton.onclick = function() {
-      isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
+      screenData.isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
       self.parent.navigating = true;
     };
 
     self.navButton = navButton;
 
-    const buttonTextNode = document.createTextNode(buttonText);
+    const buttonTextNode = document.createTextNode(screenData.buttonText);
     navButton.append(buttonTextNode);
 
     contentDiv.append(title);
     contentDiv.append(subtitle);
     contentDiv.append(navButton);
 
-    if (isStartScreen === false) {
-      // TODO: decide on how scoring should work and show score counter accordingly
-      // This is how the scoring div should be added: contentDiv.prepend(this.createResultContainer(12));
+    if (screenData.showScore && screenData.score !== undefined) {
+      self.scoreWrapper = this.createResultContainer(
+        screenData.scoreText,
+        screenData.score
+      );
+      contentDiv.prepend(self.scoreWrapper);
     }
 
-    self.screenWrapper.append(self.createScreenBackground(isStartScreen, image));
+    self.screenWrapper.append(
+      self.createScreenBackground(screenData.isStartScreen, screenData.image)
+    );
     self.screenWrapper.append(contentDiv);
   }
 
@@ -74,12 +83,24 @@ H5P.BranchingScenario.GenericScreen = (function() {
   };
 
   /**
+   * Set score for screen
+   *
+   * @param score
+   */
+  GenericScreen.prototype.setScore = function (score) {
+    if (self.scoreValue && score !== undefined) {
+      self.scoreValue.textContent = score.toString();
+    }
+  };
+
+  /**
    * Creates a wrapper containing the score. Not in use!
    *
+   * @param  {string} scoreLabel Score label
    * @param  {number} score Score to be shown
    * @return {HTMLElement} Result container
    */
-  GenericScreen.prototype.createResultContainer = function(score) {
+  GenericScreen.prototype.createResultContainer = function(scoreLabel, score) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-result-wrapper');
 
@@ -88,11 +109,12 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     const scoreText = document.createElement('div');
     scoreText.classList.add('h5p-score-text');
-    scoreText.append(document.createTextNode('Your score: '));
+    scoreText.append(document.createTextNode(scoreLabel));
 
     const scoreCircle = document.createElement('div');
     scoreCircle.classList.add('h5p-score-circle');
-    scoreCircle.append(document.createTextNode(score));
+    self.scoreValue = document.createTextNode(score.toString());
+    scoreCircle.append(self.scoreValue);
 
     resultContainer.append(scoreText);
     resultContainer.append(scoreCircle);

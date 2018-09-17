@@ -12,6 +12,20 @@ H5P.BranchingScenario = function (params, contentId) {
   self.currentHeight;
   self.currentId = 0;
 
+  const SCORE_TYPES = {
+    STATIC_SCORE: 'static-end-score',
+    DYNAMIC_SCORE: 'dynamic-score',
+    NO_SCORE: 'no-score',
+  };
+
+  /**
+   * Keep track of achieved score per slide.
+   * If a question is attempted multiple times (loops), last score counts.
+   *
+   * @type {Array}
+   */
+  self.scores = [];
+
   /**
    * Extend an array just like JQuery's extend.
    * @param {...Object} arguments - Objects to be merged.
@@ -85,20 +99,32 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Create an end screen object
    *
-   * @param  {Object} endscreendata Object containing data needed to build an end screen
-   * @param  {string} endscreendata.endScreenTitle Title
-   * @param  {string} endscreendata.endScreenSubtitle Subtitle
-   * @param  {Object} endscreendata.endScreenImage Object containing image metadata
+   * @param  {Object} endScreenData Object containing data needed to build an end screen
+   * @param  {string} endScreenData.endScreenTitle Title
+   * @param  {string} endScreenData.endScreenSubtitle Subtitle
+   * @param  {Object} endScreenData.endScreenImage Object containing image metadata
+   * @param  {Object} endScreenData.endScreenScore Score
+   * @param  {Object} endScreenData.showScore Determines if score is shown
    * @return {GenericScreen} Generic Screen object
    */
-  const createEndScreen = function({endScreenTitle, endScreenSubtitle, endScreenImage}) {
+  const createEndScreen = function (endScreenData) {
+    const showScore = self.params.scoringOption === SCORE_TYPES.STATIC_SCORE
+      || self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
+
+    const score = self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE
+      ? self.getScore()
+      : endScreenData.endScreenScore;
+
     return new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: false,
-      titleText: endScreenTitle,
-      subtitleText: endScreenSubtitle,
-      image: endScreenImage,
+      titleText: endScreenData.endScreenTitle,
+      subtitleText: endScreenData.endScreenSubtitle,
+      image: endScreenData.endScreenImage,
       buttonText: params.endScreenButtonText,
-      isCurrentScreen: false
+      isCurrentScreen: false,
+      scoreText: params.scoreText,
+      score: score,
+      showScore: showScore,
     });
   };
 
@@ -135,6 +161,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.triggerXAPI('progressed');
     const id = e.data.nextContentId;
     const nextLibrary = self.getLibrary(id);
+    self.addLibraryScore();
 
     //  Show the relevant end screen if there is no next library
     self.currentEndScreen = self.endScreens[id];
@@ -146,23 +173,21 @@ H5P.BranchingScenario = function (params, contentId) {
           endScreenTitle: e.data.feedback.title,
           endScreenSubtitle: e.data.feedback.subtitle,
           endScreenImage: e.data.feedback.image,
+          endScreenScore: e.data.feedback.endScreenScore
         });
         self.container.append(endScreen.getElement());
         self.currentEndScreen = endScreen;
+      }
+      else {
+        self.currentEndScreen.setScore(self.getScore());
       }
 
       self.libraryScreen.hide();
       self.currentEndScreen.show();
     }
-    else if (id === self.currentId) { // Hide branching question if it's the same library
-      self.libraryScreen.hideBranchingQuestion(nextLibrary);
-    }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
-      // Only update the id for non-branching questions
-      if (nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
-        self.currentId = id;
-      }
+      self.currentId = id;
     }
   });
 
@@ -172,6 +197,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('restarted', function() {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
+    self.scores = [];
     self.startScreen.show();
 
     // Reset the library screen
@@ -193,6 +219,48 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.changeLayoutToFitWidth();
   });
+
+  /**
+   * Retrieve current library's score
+   */
+  self.addLibraryScore = function () {
+    const libraryInstance = self.libraryScreen.currentLibraryInstance;
+
+    // Skip branching questions (current id not matching library id)
+    if (self.currentId !== self.libraryScreen.currentLibraryId) {
+      return;
+    }
+
+    let currentLibraryScore = 0;
+    if (libraryInstance && libraryInstance.getScore) {
+      currentLibraryScore = libraryInstance.getScore();
+    }
+
+    // Update existing or create new entry
+    let hasScore = false;
+    self.scores.forEach(function (score) {
+      if (score.id === self.currentId) {
+        score.score = currentLibraryScore;
+        hasScore = true;
+      }
+    });
+
+    if (!hasScore) {
+      self.scores.push({
+        id: self.currentId,
+        score: currentLibraryScore,
+      });
+    }
+  };
+
+  /**
+   * Get accumulative score for all attempted scenarios
+   */
+  self.getScore = function () {
+    return self.scores.reduce(function (previousValue, score) {
+      return previousValue + score.score;
+    }, 0);
+  };
 
   /**
    * Change the width of the branching question depending on the container changeLayoutToFitWidth

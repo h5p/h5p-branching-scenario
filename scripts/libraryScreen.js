@@ -14,6 +14,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.parent = parent;
     this.currentLibraryElement;
     this.currentLibraryInstance;
+    this.currentLibraryId = 0;
     this.nextLibraryId = library.nextContentId;
     this.nextLibraries = {};
     this.libraryInstances = {};
@@ -391,6 +392,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       const libraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
       libraryElement.classList.remove('h5p-branching-hidden');
 
+      this.currentLibraryId = library.contentId;
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
       if (this.currentLibraryInstance.resize) {
         this.currentLibraryInstance.resize();

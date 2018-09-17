@@ -102,12 +102,12 @@
               "label": "Content",
               "options": [
                 "H5P.BranchingQuestion 1.0",
-                "H5P.CoursePresentation 1.18",
+                "H5P.CoursePresentation 1.19",
                 "H5P.AdvancedText 1.1",
                 "H5P.Image 1.0",
-                "H5P.ImageHotspots 1.5",
-                "H5P.InteractiveVideo 1.17",
-                "H5P.Video 1.3"
+                "H5P.ImageHotspots 1.6",
+                "H5P.InteractiveVideo 1.19",
+                "H5P.Video 1.4"
               ]
             },
             {
@@ -210,6 +210,14 @@
         "type": "text",
         "importance": "low",
         "default": "Proceed",
+        "common": true
+      },
+      {
+        "name": "scoreText",
+        "label": "Label for score on the end screen",
+        "type": "text",
+        "importance": "low",
+        "default": "Your score:",
         "common": true
       },
       {
