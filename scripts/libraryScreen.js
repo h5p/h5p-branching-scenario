@@ -11,6 +11,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @return {LibraryScreen} A screen oject
    */
   function LibraryScreen(parent, courseTitle, library) {
+    H5P.EventDispatcher.call(this);
+
     this.parent = parent;
     this.currentLibraryElement;
     this.currentLibraryInstance;
@@ -50,14 +52,26 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
 
+    const fullScreenButton = document.createElement('button');
+    fullScreenButton.className = 'h5p-branching-full-screen';
+    fullScreenButton.addEventListener('click', () => {
+      this.trigger('toggleFullScreen');
+    });
+    titleDiv.append(fullScreenButton);
+
+    const headers = document.createElement('div');
+    headers.className = 'h5p-branching-header';
+
     const headerTitle = document.createElement('h1');
     headerTitle.innerHTML = courseTitle;
-    titleDiv.append(headerTitle);
+    headers.append(headerTitle);
 
     const headerSubtitle = document.createElement('h2');
     headerSubtitle.classList.add('library-subtitle');
     headerSubtitle.innerHTML = libraryTitle ? libraryTitle : '';
-    titleDiv.append(headerSubtitle);
+    headers.append(headerSubtitle);
+
+    titleDiv.append(headers);
 
     this.libraryTitle = headerSubtitle;
 
@@ -107,6 +121,12 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         parent.trigger('resize');
 
         const handleLibraryResize = () => {
+          // Never resize library wrapper in fullscreen,
+          // it always uses all available space.
+          if (H5P.isFullscreen) {
+            return;
+          }
+
           self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
           // NOTE: This is a brittle hardcoding of the header height
           self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
@@ -376,7 +396,6 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
       // Slide out the current library
       this.currentLibraryWrapper.classList.add('h5p-slide-out');
-      this.currentLibraryWrapper.style.height = 0;
 
       // Remove the branching questions if they exist
       if (this.overlay) {
