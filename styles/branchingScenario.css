@@ -1,4 +1,15 @@
 @font-face {
+  font-family: 'bs';
+  src:  url('../fonts/icons/bs.eot?salrqx');
+  src:  url('../fonts/icons/bs.eot?salrqx#iefix') format('embedded-opentype'),
+  url('../fonts/icons/bs.ttf?salrqx') format('truetype'),
+  url('../fonts/icons/bs.woff?salrqx') format('woff'),
+  url('../fonts/icons/bs.svg?salrqx#bs') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'H5PRobotoLight';
   src: url('../fonts/Roboto-Light.ttf') format('truetype');
   font-weight: normal;
@@ -50,7 +61,8 @@
 }
 
 .h5p-branching-scenario .h5p-current-screen {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background:#52576C;
 }
@@ -90,4 +102,29 @@
 
 .h5p-branching-scenario-title-text {
   padding: 0 1em; line-height: 1em;
+}
+
+.h5p-branching-scenario button.h5p-branching-full-screen {
+  background: transparent;
+  border: 0.083em solid #6e707f;
+  margin: 0 1em 0 0;
+  vertical-align: super;
+  padding: 0.458em;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+.h5p-branching-scenario button.h5p-branching-full-screen:after {
+  font-family: 'bs';
+  content: '\e900';
+  padding: 0;
+}
+
+.h5p-branching-scenario.h5p-fullscreen button.h5p-branching-full-screen:after {
+  content: '\e901';
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-next:not(.h5p-slide-in) {
+  display: none;
 }

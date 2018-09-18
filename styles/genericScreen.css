@@ -165,3 +165,10 @@
   padding: 0px;
   font-size: 1.083em !important;
 }
+
+.h5p-branching-scenario .h5p-start-screen .h5p-branching-full-screen,
+.h5p-branching-scenario .h5p-end-screen .h5p-branching-full-screen {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}

@@ -83,10 +83,10 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {string} startscreendata.startScreenSubtitle Subtitle
    * @param  {Object} startscreendata.startScreenImage Object containing image metadata
    * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
-   * @return {GenericScreen} Generic Screen object
+   * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
   const createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
-    return new H5P.BranchingScenario.GenericScreen(self, {
+    const startScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
       subtitleText: startScreenSubtitle,
@@ -94,6 +94,12 @@ H5P.BranchingScenario = function (params, contentId) {
       buttonText: params.startScreenButtonText,
       isCurrentScreen
     });
+
+    startScreen.on('toggleFullScreen', () => {
+      self.toggleFullScreen();
+    });
+
+    return startScreen;
   };
 
   /**
@@ -105,7 +111,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {Object} endScreenData.endScreenImage Object containing image metadata
    * @param  {Object} endScreenData.endScreenScore Score
    * @param  {Object} endScreenData.showScore Determines if score is shown
-   * @return {GenericScreen} Generic Screen object
+   * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
   const createEndScreen = function (endScreenData) {
     const showScore = self.params.scoringOption === SCORE_TYPES.STATIC_SCORE
@@ -115,7 +121,7 @@ H5P.BranchingScenario = function (params, contentId) {
       ? self.getScore()
       : endScreenData.endScreenScore;
 
-    return new H5P.BranchingScenario.GenericScreen(self, {
+    const endScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: false,
       titleText: endScreenData.endScreenTitle,
       subtitleText: endScreenData.endScreenSubtitle,
@@ -126,6 +132,12 @@ H5P.BranchingScenario = function (params, contentId) {
       score: score,
       showScore: showScore,
     });
+
+    endScreen.on('toggleFullScreen', () => {
+      self.toggleFullScreen();
+    });
+
+    return endScreen;
   };
 
   /**
@@ -204,6 +216,11 @@ H5P.BranchingScenario = function (params, contentId) {
     self.libraryScreen.remove();
     // Note: the first library must always have an id of 0
     self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
+
+    self.libraryScreen.on('toggleFullScreen', () => {
+      self.toggleFullScreen();
+    });
+
     self.container.append(self.libraryScreen.getElement());
   });
 
@@ -219,6 +236,28 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.changeLayoutToFitWidth();
   });
+
+  /**
+   * Toggle full screen
+   */
+  self.toggleFullScreen = function () {
+    const fullScreenContainer = document.querySelector('.h5p-container.h5p-branching-scenario');
+
+    const isFullScreen = H5P.isFullscreen
+      || fullScreenContainer.classList.contains('h5p-fullscreen')
+      || fullScreenContainer.classList.contains('h5p-semi-fullscreen');
+
+    if (isFullScreen) {
+      // Exit fullscreen
+      if (H5P.exitFullScreen) {
+        H5P.exitFullScreen();
+      }
+    }
+    else {
+      H5P.fullScreen(H5P.jQuery(fullScreenContainer), this);
+    }
+
+  };
 
   /**
    * Retrieve current library's score
@@ -300,6 +339,9 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Note: the first library must always have an id of 0
     self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
+    self.libraryScreen.on('toggleFullScreen', () => {
+      self.toggleFullScreen();
+    });
     self.container.append(self.libraryScreen.getElement());
 
     params.endScreens.forEach(endScreen => {
