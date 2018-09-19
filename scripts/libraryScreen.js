@@ -121,9 +121,11 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         parent.trigger('resize');
 
         const handleLibraryResize = () => {
-          // Never resize library wrapper in fullscreen,
-          // it always uses all available space.
+          // Fullscreen always use the full height available to it
           if (H5P.isFullscreen) {
+            self.currentLibraryWrapper.style.height = '';
+            self.wrapper.style.minHeight = '';
+            parent.trigger('resize');
             return;
           }
 
@@ -483,6 +485,14 @@ H5P.BranchingScenario.LibraryScreen = (function() {
   };
 
   LibraryScreen.prototype.resize = function (event) {
+    // Toggle full screen class for content (required for IV to resize properly)
+    if (H5P.isFullscreen) {
+      this.currentLibraryElement.classList.add('h5p-fullscreen');
+    }
+    else {
+      this.currentLibraryElement.classList.remove('h5p-fullscreen');
+    }
+
     this.currentLibraryInstance.trigger('resize', event);
   };
 

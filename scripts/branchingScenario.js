@@ -190,7 +190,7 @@ H5P.BranchingScenario = function (params, contentId) {
         self.container.append(endScreen.getElement());
         self.currentEndScreen = endScreen;
       }
-      else {
+      else if (self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
         self.currentEndScreen.setScore(self.getScore());
       }
 
@@ -231,7 +231,7 @@ H5P.BranchingScenario = function (params, contentId) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
-    if (self.libraryScreen === Object && Object.keys(self.libraryScreen).length !== 0) {
+    if (typeof self.libraryScreen === 'object'&& Object.keys(self.libraryScreen).length !== 0) {
       self.libraryScreen.resize(event);
     }
     self.changeLayoutToFitWidth();
