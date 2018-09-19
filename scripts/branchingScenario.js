@@ -241,22 +241,29 @@ H5P.BranchingScenario = function (params, contentId) {
    * Toggle full screen
    */
   self.toggleFullScreen = function () {
-    const fullScreenContainer = document.querySelector('.h5p-container.h5p-branching-scenario');
-
-    const isFullScreen = H5P.isFullscreen
-      || fullScreenContainer.classList.contains('h5p-fullscreen')
-      || fullScreenContainer.classList.contains('h5p-semi-fullscreen');
-
-    if (isFullScreen) {
+    if (self.isFullScreen()) {
       // Exit fullscreen
       if (H5P.exitFullScreen) {
         H5P.exitFullScreen();
       }
     }
     else {
-      H5P.fullScreen(H5P.jQuery(fullScreenContainer), this);
+      H5P.fullScreen(self.container, this);
     }
 
+  };
+
+  /**
+   * Returns true if we're in full screen or semi full screen.
+   *
+   * @returns {boolean}
+   */
+  self.isFullScreen = function () {
+    return H5P.isFullscreen
+      || (self.container
+        && self.container[0].classList.contains('h5p-fullscreen'))
+      ||(self.container
+        && self.container[0].classList.contains('h5p-semi-fullscreen'));
   };
 
   /**
@@ -322,7 +329,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {HTMLElement} $container Container for the content type
    * @return {undefined} undefined
    */
-  self.attach = function($container) {
+  self.attach = function ($container) {
     self.container = $container;
     $container.addClass('h5p-branching-scenario').html('');
 

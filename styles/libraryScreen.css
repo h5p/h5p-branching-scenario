@@ -60,6 +60,7 @@
   position: relative;
 }
 
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-library-wrapper,
 .h5p-branching-scenario.h5p-fullscreen .h5p-library-wrapper {
   height: calc(100% - 7em);
 }
@@ -79,6 +80,7 @@
   box-sizing: border-box;
 }
 
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-library-wrapper .h5p-branching-scenario-content,
 .h5p-branching-scenario.h5p-fullscreen .h5p-library-wrapper .h5p-branching-scenario-content {
   height: 100%;
   box-sizing: border-box;

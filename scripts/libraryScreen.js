@@ -122,7 +122,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
         const handleLibraryResize = () => {
           // Fullscreen always use the full height available to it
-          if (H5P.isFullscreen) {
+          if (parent.isFullScreen()) {
             self.currentLibraryWrapper.style.height = '';
             self.wrapper.style.minHeight = '';
             parent.trigger('resize');
@@ -486,7 +486,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
   LibraryScreen.prototype.resize = function (event) {
     // Toggle full screen class for content (required for IV to resize properly)
-    if (H5P.isFullscreen) {
+    if (this.parent.isFullScreen()) {
       this.currentLibraryElement.classList.add('h5p-fullscreen');
     }
     else {
