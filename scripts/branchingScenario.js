@@ -182,8 +182,8 @@ H5P.BranchingScenario = function (params, contentId) {
       // Custom end screen
       if (e.data.feedback) {
         const endScreen = createEndScreen({
-          endScreenTitle: e.data.feedback.title,
-          endScreenSubtitle: e.data.feedback.subtitle,
+          endScreenTitle: e.data.feedback.title || '',
+          endScreenSubtitle: e.data.feedback.subtitle || '',
           endScreenImage: e.data.feedback.image,
           endScreenScore: e.data.feedback.endScreenScore
         });
