@@ -69,7 +69,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
   // Sanitize the (next)ContentIds that the editor didn't set
   params.content.forEach((item, index) => {
-    item.contentId = item.contentId || index;
+    item.contentId = index;
     item.nextContentId = item.nextContentId || -1;
   });
 

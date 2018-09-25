@@ -25,7 +25,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.navButton;
     this.header;
 
-    this.wrapper = library.showContentTitle ? this.createWrapper(courseTitle, library.contentTitle) : this.createWrapper(courseTitle);
+    this.wrapper = library.showContentTitle && library.metadata && library.metadata.title ? this.createWrapper(courseTitle, library.metadata.title) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
     this.wrapper.classList.add('h5p-branching-hidden');
 
@@ -232,7 +232,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       }
 
       // Pre-render the next library if it is not a branching question
-      if (nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+      if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
         this.wrapper.append(this.nextLibraries[library.nextContentId]);
       }
@@ -393,7 +393,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       // Update the title
       if (library.showContentTitle) {
-        this.libraryTitle.innerHTML = library.contentTitle ? library.contentTitle : '';
+        this.libraryTitle.innerHTML = library.metadata && library.metadata.title ? library.metadata.title : '';
       }
 
       // Slide out the current library
