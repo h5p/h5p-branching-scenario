@@ -18,6 +18,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.currentLibraryInstance;
     this.currentLibraryId = 0;
     this.nextLibraryId = library.nextContentId;
+    this.libraryFeedback = library.feedback;
     this.nextLibraries = {};
     this.libraryInstances = {};
     this.libraryTitle;
@@ -82,12 +83,51 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     const self = this;
     const parent = this.parent;
-    navButton.onclick = function() {
+    navButton.onclick = function () {
       // Stop impatient users from breaking the view
       if (parent.navigating === false) {
-        parent.trigger('navigated', {
-          nextContentId: self.nextLibraryId
-        });
+        const hasFeedback = !!(self.libraryFeedback.title
+          || self.libraryFeedback.subtitle
+          || self.libraryFeedback.image
+        );
+
+        if (hasFeedback && self.nextLibraryId !== -1) {
+          // Add an overlay if it doesn't exist yet
+          if (self.overlay === undefined) {
+            self.overlay = document.createElement('div');
+            self.overlay.className = 'h5p-branching-scenario-overlay';
+            self.wrapper.append(self.overlay);
+            self.hideBackgroundFromReadspeaker();
+          }
+
+          const branchingQuestion = document.createElement('div');
+          branchingQuestion.className = 'h5p-branching-question-wrapper';
+
+          var questionContainer = document.createElement('div');
+          questionContainer.classList.add('h5p-branching-question-container');
+
+          branchingQuestion.appendChild(questionContainer);
+
+          const feedbackScreen = self.createFeedbackScreen(self.libraryFeedback, self.nextLibraryId);
+          questionContainer.appendChild(feedbackScreen);
+
+          const branchingQuestionElement = branchingQuestion.getElementsByClassName('h5p-branching-question')[0];
+          branchingQuestionElement.classList.add('h5p-start-outside');
+          branchingQuestionElement.classList.add('h5p-fly-in');
+          self.currentLibraryWrapper.style.zIndex = 0;
+          self.wrapper.append(branchingQuestion);
+        }
+        else {
+          const nextScreen = {
+            nextContentId: self.nextLibraryId
+          };
+
+          if (hasFeedback) {
+            nextScreen.feedback = self.libraryFeedback;
+          }
+          parent.trigger('navigated', nextScreen);
+        }
+
         parent.navigating = true;
       }
     };
@@ -141,6 +181,62 @@ H5P.BranchingScenario.LibraryScreen = (function() {
         }, 100);
       }
     });
+
+    return wrapper;
+  };
+
+  LibraryScreen.prototype.createFeedbackScreen = function (feedback, nextContentId) {
+    const self = this;
+    var wrapper = document.createElement('div');
+    wrapper.classList.add('h5p-branching-question');
+    wrapper.classList.add(feedback.image !== undefined ? 'h5p-feedback-has-image' : 'h5p-feedback-default');
+
+    if (feedback.image !== undefined && feedback.image.path !== undefined) {
+      var imageContainer = document.createElement('div');
+      imageContainer.classList.add('h5p-branching-question');
+      imageContainer.classList.add('h5p-feedback-image');
+      var image = document.createElement('img');
+      image.src = H5P.getPath(feedback.image.path, self.parent.contentId);
+      imageContainer.append(image);
+      wrapper.append(imageContainer);
+    }
+
+    var feedbackContent = document.createElement('div');
+    feedbackContent.classList.add('h5p-branching-question');
+    feedbackContent.classList.add('h5p-feedback-content');
+
+    var title = document.createElement('h1');
+    title.innerHTML = feedback.title || '';
+    feedbackContent.append(title);
+
+    if (feedback.subtitle) {
+      var subtitle = document.createElement('h2');
+      subtitle.innerHTML = feedback.subtitle || '';
+      feedbackContent.append(subtitle);
+    }
+
+    var navButton = document.createElement('button');
+    navButton.onclick = function () {
+      self.parent.trigger('navigated', {
+        nextContentId
+      });
+    };
+
+    var text = document.createTextNode(this.parent.params.proceedButtonText);
+    navButton.append(text);
+
+    feedbackContent.append(navButton);
+
+    var KEYCODE_TAB = 9;
+    feedbackContent.addEventListener('keydown', function (e) {
+      var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+      if (isTabPressed) {
+        e.preventDefault();
+        return;
+      }
+    });
+
+    wrapper.append(feedbackContent);
 
     return wrapper;
   };
@@ -366,6 +462,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    */
   LibraryScreen.prototype.hideBranchingQuestion = function (library) {
     this.nextLibraryId = library.nextContentId;
+    this.libraryFeedback = library.feedback;
 
     // Hide branching question
     this.overlay.remove();
@@ -379,6 +476,18 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.showBackgroundToReadspeaker();
   };
 
+  LibraryScreen.prototype.hideFeedbackDialogs = function () {
+    if (this.overlay) {
+      this.overlay.remove();
+      this.overlay = undefined;
+    }
+
+    const questionWrapper = this.wrapper.querySelector('.h5p-branching-question-wrapper');
+    if (questionWrapper) {
+      questionWrapper.parentNode.removeChild(questionWrapper);
+    }
+  };
+
   /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
@@ -388,6 +497,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    */
   LibraryScreen.prototype.showNextLibrary = function (library) {
     this.nextLibraryId = library.nextContentId;
+    this.libraryFeedback = library.feedback;
 
     // Show normal h5p library
     if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {

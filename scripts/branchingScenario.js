@@ -168,7 +168,10 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Handle progression
    */
-  self.on('navigated', function(e) {
+  self.on('navigated', function (e) {
+    // Remove any feedback dialogs
+    self.libraryScreen.hideFeedbackDialogs();
+
     self.trigger('resize');
     self.triggerXAPI('progressed');
     const id = e.data.nextContentId;
