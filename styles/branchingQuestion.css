@@ -14,7 +14,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  background-color: rgba(0,0,0,0.8); /* Black background with opacity */
 }
 
 .h5p-branching-scenario .h5p-branching-question-wrapper {
@@ -36,7 +36,7 @@
 }
 
 .h5p-branching-scenario.h5p-wide-screen .h5p-branching-question-container {
-  width: 80%;
+  max-width: 80%;
 }
 
 .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-question-container {
@@ -45,6 +45,7 @@
 
 .h5p-branching-scenario .h5p-branching-question {
   border-radius: 0.188rem;
+  max-width: 100%;
 }
 
 .h5p-branching-scenario .h5p-branching-question h1 {
@@ -104,6 +105,7 @@
 .h5p-branching-question-alternative {
   padding: 0.5em 1.250em 0.5em 1.250em;
   margin: 0.5em 0;
+  overflow: hidden;
 }
 
 .h5p-branching-question-icon {
