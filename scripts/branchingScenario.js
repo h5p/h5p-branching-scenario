@@ -51,7 +51,7 @@ H5P.BranchingScenario = function (params, contentId) {
   params = extend({
     content: [],
     startScreen: {
-      startScreenTitle: "Start",
+      startScreenTitle: "Branching Scenario",
       startScreenSubtitle: ""
     },
     endScreens: [
@@ -63,8 +63,7 @@ H5P.BranchingScenario = function (params, contentId) {
     ],
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
-    proceedButtonText: "Proceed",
-    title: "Branching Scenario"
+    proceedButtonText: "Proceed"
   }, params.branchingScenario); // Account for the wrapper!
 
   // Sanitize the (next)ContentIds that the editor didn't set
@@ -215,7 +214,7 @@ H5P.BranchingScenario = function (params, contentId) {
     // Reset the library screen
     self.libraryScreen.remove();
     // Note: the first library must always have an id of 0
-    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
+    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.startScreen.startScreenTitle, self.getLibrary(0));
 
     self.libraryScreen.on('toggleFullScreen', () => {
       self.toggleFullScreen();
@@ -345,7 +344,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.currentId = 0;
 
     // Note: the first library must always have an id of 0
-    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.title, self.getLibrary(0));
+    self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.startScreen.startScreenTitle, self.getLibrary(0));
     self.libraryScreen.on('toggleFullScreen', () => {
       self.toggleFullScreen();
     });

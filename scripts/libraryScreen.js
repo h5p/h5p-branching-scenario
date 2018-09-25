@@ -25,7 +25,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     this.navButton;
     this.header;
 
-    this.wrapper = library.showContentTitle && library.metadata && library.metadata.title ? this.createWrapper(courseTitle, library.metadata.title) : this.createWrapper(courseTitle);
+    this.wrapper = library.showContentTitle && library.type && library.type.metadata && library.type.metadata.title ? this.createWrapper(courseTitle, library.type.metadata.title) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
     this.wrapper.classList.add('h5p-branching-hidden');
 
@@ -393,7 +393,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
       // Update the title
       if (library.showContentTitle) {
-        this.libraryTitle.innerHTML = library.metadata && library.metadata.title ? library.metadata.title : '';
+        this.libraryTitle.innerHTML = library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '';
       }
 
       // Slide out the current library
