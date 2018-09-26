@@ -122,7 +122,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
             nextContentId: self.nextLibraryId
           };
 
-          if (hasFeedback) {
+          if (!!(hasFeedback || (self.libraryFeedback.endScreenScore !== undefined))) {
             nextScreen.feedback = self.libraryFeedback;
           }
           parent.trigger('navigated', nextScreen);
