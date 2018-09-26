@@ -148,13 +148,13 @@
                 {
                   "name": "title",
                   "type": "text",
-                  "label": "Feedback Text Title",
+                  "label": "Feedback title",
                   "optional": true
                 },
                 {
                   "name": "subtitle",
                   "type": "text",
-                  "label": "Feedback Text",
+                  "label": "Feedback text",
                   "optional": true
                 },
                 {
@@ -209,7 +209,7 @@
       },
       {
         "name": "scoringOption",
-        "label": "Scoring Options",
+        "label": "Scoring options",
         "type": "select",
         "description": "Select type of scoring",
         "options": [
