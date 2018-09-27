@@ -101,7 +101,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
           }
 
           const branchingQuestion = document.createElement('div');
-          branchingQuestion.className = 'h5p-branching-question-wrapper';
+          branchingQuestion.classList.add('h5p-branching-question-wrapper');
+          branchingQuestion.classList.add('h5p-branching-scenario-feedback-dialog');
+
 
           var questionContainer = document.createElement('div');
           questionContainer.classList.add('h5p-branching-question-container');
@@ -111,9 +113,8 @@ H5P.BranchingScenario.LibraryScreen = (function() {
           const feedbackScreen = self.createFeedbackScreen(self.libraryFeedback, self.nextLibraryId);
           questionContainer.appendChild(feedbackScreen);
 
-          const branchingQuestionElement = branchingQuestion.getElementsByClassName('h5p-branching-question')[0];
-          branchingQuestionElement.classList.add('h5p-start-outside');
-          branchingQuestionElement.classList.add('h5p-fly-in');
+          questionContainer.classList.add('h5p-start-outside');
+          questionContainer.classList.add('h5p-fly-in');
           self.currentLibraryWrapper.style.zIndex = 0;
           self.wrapper.append(branchingQuestion);
         }
@@ -561,9 +562,9 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.wrapper.append(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 
-      const branchingQuestionElement = branchingQuestion.getElementsByClassName('h5p-branching-question')[0];
-      branchingQuestionElement.classList.add('h5p-start-outside');
-      branchingQuestionElement.classList.add('h5p-fly-in');
+      const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');
+      questionContainer.classList.add('h5p-start-outside');
+      questionContainer.classList.add('h5p-fly-in');
 
       this.currentLibraryWrapper.style.zIndex = 0;
       this.createNextLibraries(library);
