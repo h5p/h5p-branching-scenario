@@ -107,8 +107,8 @@
 .h5p-branching-scenario button.h5p-branching-full-screen {
   background: transparent;
   border: 0.083em solid #6e707f;
-  margin: 0 1em 0 0;
-  vertical-align: super;
+  margin: 1em 1em 0 0;
+  vertical-align: top;
   padding: 0.458em;
   border-radius: 50%;
   color: white;
