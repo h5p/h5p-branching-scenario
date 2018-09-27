@@ -20,19 +20,23 @@
         "fields": [
           {
             "name": "startScreenTitle",
-            "label": "Start screen title",
+            "label": "Course Title",
+            "placeholder": "Title for your course",
             "type": "text",
-            "importance": "medium"
+            "importance": "medium",
+            "optional": false
           },
           {
             "name": "startScreenSubtitle",
-            "label": "Start screen subtitle",
+            "label": "Course Details",
+            "placeholder": "Details about the course",
             "type": "text",
-            "importance": "medium"
+            "importance": "medium",
+            "optional": false
           },
           {
             "name": "startScreenImage",
-            "label": "Start screen image",
+            "label": "Course image",
             "type": "image",
             "optional": true,
             "importance": "medium"
@@ -51,35 +55,39 @@
           "fields": [
             {
               "name": "endScreenTitle",
-              "label": "End screen title",
+              "label": "Feedback title",
               "type": "text",
-              "importance": "medium"
+              "importance": "medium",
+              "optional": true
             },
             {
               "name": "endScreenSubtitle",
-              "label": "End screen subtitle",
+              "label": "Feedback text",
               "type": "text",
-              "importance": "medium"
+              "importance": "medium",
+              "optional": true
             },
             {
               "name": "endScreenImage",
-              "label": "End screen image",
+              "label": "Feedback image",
               "type": "image",
-              "optional": true,
-              "importance": "medium"
+              "importance": "medium",
+              "optional": true
+            },
+            {
+              "name": "endScreenScore",
+              "label": "Score for this scenario",
+              "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario",
+              "type": "number",
+              "default": 0,
+              "optional": true
             },
             {
               "name": "contentId",
               "label": "Content ID",
               "type": "number",
-              "max": 0
-            },
-            {
-              "name": "endScreenScore",
-              "label": "Score for this scenario",
-              "description": "The number of points that will be given for ending up with this scenario",
-              "type": "number",
-              "default": 0
+              "max": 0,
+              "widget": "none"
             }
           ]
         }
@@ -167,7 +175,7 @@
                   "name": "endScreenScore",
                   "type": "number",
                   "label": "Score for this scenario",
-                  "description": "The number of points that will be given for ending up with this scenario",
+                  "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario",
                   "optional": true
                 }
               ]
