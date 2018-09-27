@@ -98,8 +98,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * @param score
    */
   GenericScreen.prototype.setScore = function (score) {
-    if (self.scoreValue && score !== undefined) {
-      self.scoreValue.textContent = score.toString();
+    if (this.scoreValue && score !== undefined) {
+      this.scoreValue.textContent = score.toString();
     }
   };
 
@@ -123,8 +123,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     const scoreCircle = document.createElement('div');
     scoreCircle.classList.add('h5p-score-circle');
-    self.scoreValue = document.createTextNode(score.toString());
-    scoreCircle.append(self.scoreValue);
+    this.scoreValue = document.createTextNode(score.toString());
+    scoreCircle.append(this.scoreValue);
 
     resultContainer.append(scoreText);
     resultContainer.append(scoreCircle);

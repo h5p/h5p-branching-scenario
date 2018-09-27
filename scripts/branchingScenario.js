@@ -25,6 +25,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @type {Array}
    */
   self.scores = [];
+  self.visitedIndex = 0;
 
   /**
    * Extend an array just like JQuery's extend.
@@ -174,8 +175,9 @@ H5P.BranchingScenario = function (params, contentId) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
     const id = e.data.nextContentId;
+    const chosenAlternative = e.data.chosenAlternative;
     const nextLibrary = self.getLibrary(id);
-    self.addLibraryScore();
+    self.addLibraryScore(chosenAlternative);
 
     //  Show the relevant end screen if there is no next library
     self.currentEndScreen = self.endScreens[id];
@@ -193,7 +195,7 @@ H5P.BranchingScenario = function (params, contentId) {
         self.currentEndScreen = endScreen;
       }
       else if (self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
-        self.currentEndScreen.setScore(self.getScore());
+        self.currentEndScreen.setScore.call(self.currentEndScreen, self.getScore());
       }
 
       self.libraryScreen.hide();
@@ -211,6 +213,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('restarted', function() {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
+    self.visitedIndex = 0;
     self.scores = [];
     self.startScreen.show();
 
@@ -269,32 +272,81 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
-   * Retrieve current library's score
+   * Get score for a Branching Question alternative
+   * @param libraryParams
+   * @param chosenAlternative
+   * @returns {*}
    */
-  self.addLibraryScore = function () {
-    const libraryInstance = self.libraryScreen.currentLibraryInstance;
-
-    // Skip branching questions (current id not matching library id)
-    if (self.currentId !== self.libraryScreen.currentLibraryId) {
-      return;
+  self.getAlternativeScore = function (libraryParams, chosenAlternative) {
+    if (!(chosenAlternative >= 0)) {
+      return 0;
     }
 
+    const hasAlternative = libraryParams
+      && libraryParams.type
+      && libraryParams.type.params
+      && libraryParams.type.params.branchingQuestion
+      && libraryParams.type.params.branchingQuestion.alternatives
+      && libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
+
+    if (!hasAlternative) {
+      return 0;
+    }
+    const alt = libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
+
+    const hasScore = alt && alt.feedback && alt.feedback.endScreenScore !== undefined;
+    if (!hasScore) {
+      return 0;
+    }
+
+    return alt.feedback.endScreenScore;
+  };
+
+  /**
+   * Retrieve current library's score
+   * @param {number} [chosenAlternative] Chosen alternative for branching questions
+   */
+  self.addLibraryScore = function (chosenAlternative) {
+    self.visitedIndex = self.visitedIndex + 1;
+    const libraryParams = params.content[self.currentId];
     let currentLibraryScore = 0;
-    if (libraryInstance && libraryInstance.getScore) {
-      currentLibraryScore = libraryInstance.getScore();
+
+
+    // For Branching Questions find score for chosen alternative
+    if (self.currentId !== self.libraryScreen.currentLibraryId) {
+      currentLibraryScore =
+        self.getAlternativeScore(libraryParams, chosenAlternative);
+    }
+    else {
+      const hasScore = libraryParams
+        && libraryParams.feedback
+        && libraryParams.feedback.endScreenScore !== undefined;
+      if (hasScore) {
+        currentLibraryScore = libraryParams.feedback.endScreenScore;
+      }
     }
 
-    // Update existing or create new entry
-    let hasScore = false;
+    // Update existing score and detect loops
+    let isLoop = false;
+    let loopBackIndex = -1;
     self.scores.forEach(function (score) {
       if (score.id === self.currentId) {
         score.score = currentLibraryScore;
-        hasScore = true;
+        loopBackIndex = score.visitedIndex;
+        isLoop = true;
       }
     });
 
-    if (!hasScore) {
+    if (isLoop) {
+      // Remove all scores visited after loop
+      self.scores = self.scores.filter(function (score) {
+        return score.visitedIndex <= loopBackIndex;
+      });
+      self.visitedIndex = loopBackIndex;
+    }
+    else {
       self.scores.push({
+        visitedIndex: self.visitedIndex,
         id: self.currentId,
         score: currentLibraryScore,
       });
