@@ -1,0 +1,91 @@
+{
+  "semantics": [
+    {
+      "label": "標題"
+    },
+    {
+      "label": "開始畫面",
+      "fields": [
+        {
+          "label": "開始畫面標題"
+        },
+        {
+          "label": "開始畫面副標題"
+        },
+        {
+          "label": "開始畫面圖像"
+        }
+      ]
+    },
+    {
+      "label": "結束畫面列表",
+      "field": {
+        "label": "結束畫面",
+        "fields": [
+          {
+            "label": "結束畫面標題
+          },
+          {
+            "label": "結束畫面副標題"
+          },
+          {
+            "label": "結束畫面圖像"
+          },
+          {
+            "label": "內容 ID"
+          }
+        ]
+      }
+    },
+    {
+      "label": "分叉式腳本內容列表",
+      "entity": "content",
+      "field": {
+        "fields": [
+          {
+            "label": "內容"
+          },
+          {
+            "label": "內容標題",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "顯示內容標題",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "內容 ID"
+          },
+          {
+            "label": "下個內容 ID （-1 代表結束畫面）",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "label": "開始畫面按鈕文字",
+      "default": "開始課程"
+    },
+    {
+      "label": "結束畫面按鈕文字",
+      "default": "重新課程"
+    },
+    {
+      "label": "每個畫面接續按鈕文字",
+      "default": "繼續"
+    }
+  ]
+}
