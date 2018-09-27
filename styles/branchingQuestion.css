@@ -89,8 +89,8 @@
 }
 
 .h5p-start-outside {
-  transform: translateY(300%);
-  -webkit-transform: translateY(300%);
+  transform: translateY(150%);
+  -webkit-transform: translateY(150%);
 }
 
 .h5p-fly-in {
