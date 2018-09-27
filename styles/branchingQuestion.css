@@ -45,7 +45,7 @@
 
 .h5p-branching-scenario .h5p-branching-question {
   border-radius: 0.188rem;
-  max-width: 100%;
+  width: 80%;
 }
 
 .h5p-branching-scenario .h5p-branching-question h1 {
@@ -111,4 +111,13 @@
 .h5p-branching-question-icon {
   top: -75px;
   width: 130px;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question-container {
+  padding: 0;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question {
+  width: auto;
+  max-width: 100%;
 }
