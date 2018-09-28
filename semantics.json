@@ -77,7 +77,7 @@
             {
               "name": "endScreenScore",
               "label": "Score for this scenario",
-              "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario",
+              "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario",
               "type": "number",
               "default": 0,
               "optional": true
