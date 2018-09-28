@@ -16,7 +16,7 @@
         "name": "startScreen",
         "label": "Start screen",
         "type": "group",
-        "importance": "medium",
+        "importance": "low",
         "fields": [
           {
             "name": "startScreenTitle",
@@ -52,6 +52,7 @@
           "name": "endScreen",
           "label": "End screen",
           "type": "group",
+          "importance": "low",
           "fields": [
             {
               "name": "endScreenTitle",
@@ -184,57 +185,70 @@
         }
       },
       {
-        "name": "startScreenButtonText",
-        "label": "Text for the button on the start screen",
-        "type": "text",
-        "importance": "low",
-        "default": "Start the course",
-        "common": true
-      },
-      {
-        "name": "endScreenButtonText",
-        "label": "Text for the button on the end screen",
-        "type": "text",
-        "importance": "low",
-        "default": "Restart the course",
-        "common": true
-      },
-      {
-        "name": "proceedButtonText",
-        "label": "Text for the button on each of the library screens",
-        "type": "text",
-        "importance": "low",
-        "default": "Proceed",
-        "common": true
-      },
-      {
-        "name": "scoreText",
-        "label": "Label for score on the end screen",
-        "type": "text",
-        "importance": "low",
-        "default": "Your score:",
-        "common": true
-      },
-      {
         "name": "scoringOption",
+        "type": "group",
         "label": "Scoring options",
-        "type": "select",
-        "description": "Select type of scoring",
-        "options": [
+        "importance": "low",
+        "fields": [
           {
-            "value": "static-end-score",
-            "label": "Statically set score for each end scenario"
-          },
-          {
-            "value": "dynamic-score",
-            "label": "Dynamically calculate score from user answers"
-          },
-          {
-            "value": "no-score",
-            "label": "No scoring"
+            "name": "scoringOption",
+            "label": "Scoring options",
+            "type": "select",
+            "description": "Select type of scoring",
+            "options": [
+              {
+                "value": "static-end-score",
+                "label": "Statically set score for each end scenario"
+              },
+              {
+                "value": "dynamic-score",
+                "label": "Dynamically calculate score from user answers"
+              },
+              {
+                "value": "no-score",
+                "label": "No scoring"
+              }
+            ],
+            "default": "static-end-score"
           }
-        ],
-        "default": "static-end-score"
+        ]
+      },
+      {
+        "name": "l10n",
+        "type": "group",
+        "label": "Localization",
+        "importance": "low",
+        "common": true,
+        "fields": [
+          {
+            "name": "startScreenButtonText",
+            "label": "Text for the button on the start screen",
+            "type": "text",
+            "importance": "low",
+            "default": "Start the course"
+          },
+          {
+            "name": "endScreenButtonText",
+            "label": "Text for the button on the end screen",
+            "type": "text",
+            "importance": "low",
+            "default": "Restart the course"
+          },
+          {
+            "name": "proceedButtonText",
+            "label": "Text for the button on each of the library screens",
+            "type": "text",
+            "importance": "low",
+            "default": "Proceed"
+          },
+          {
+            "name": "scoreText",
+            "label": "Label for score on the end screen",
+            "type": "text",
+            "importance": "low",
+            "default": "Your score:"
+          }
+        ]
       }
     ]
   }
