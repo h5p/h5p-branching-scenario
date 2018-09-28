@@ -16,7 +16,7 @@
         "name": "startScreen",
         "label": "Start screen",
         "type": "group",
-        "importance": "medium",
+        "importance": "low",
         "fields": [
           {
             "name": "startScreenTitle",
@@ -52,6 +52,7 @@
           "name": "endScreen",
           "label": "End screen",
           "type": "group",
+          "importance": "low",
           "fields": [
             {
               "name": "endScreenTitle",
@@ -219,6 +220,7 @@
         "name": "scoringOption",
         "type": "group",
         "label": "Scoring options",
+        "importance": "low",
         "fields": [
           {
             "name": "scoringOption",
