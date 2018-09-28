@@ -217,24 +217,31 @@
       },
       {
         "name": "scoringOption",
+        "type": "group",
         "label": "Scoring options",
-        "type": "select",
-        "description": "Select type of scoring",
-        "options": [
+        "fields": [
           {
-            "value": "static-end-score",
-            "label": "Statically set score for each end scenario"
-          },
-          {
-            "value": "dynamic-score",
-            "label": "Dynamically calculate score from user answers"
-          },
-          {
-            "value": "no-score",
-            "label": "No scoring"
+            "name": "scoringOption",
+            "label": "Scoring options",
+            "type": "select",
+            "description": "Select type of scoring",
+            "options": [
+              {
+                "value": "static-end-score",
+                "label": "Statically set score for each end scenario"
+              },
+              {
+                "value": "dynamic-score",
+                "label": "Dynamically calculate score from user answers"
+              },
+              {
+                "value": "no-score",
+                "label": "No scoring"
+              }
+            ],
+            "default": "static-end-score"
           }
-        ],
-        "default": "static-end-score"
+        ]
       }
     ]
   }
