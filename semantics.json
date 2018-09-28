@@ -55,28 +55,28 @@
           "fields": [
             {
               "name": "endScreenTitle",
-              "label": "Feedback title",
+              "label": "Title",
               "type": "text",
               "importance": "medium",
               "optional": true
             },
             {
               "name": "endScreenSubtitle",
-              "label": "Feedback text",
+              "label": "Text",
               "type": "text",
               "importance": "medium",
               "optional": true
             },
             {
               "name": "endScreenImage",
-              "label": "Feedback image",
+              "label": "Image",
               "type": "image",
               "importance": "medium",
               "optional": true
             },
             {
               "name": "endScreenScore",
-              "label": "Score for this scenario",
+              "label": "Score",
               "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario",
               "type": "number",
               "default": 0,
