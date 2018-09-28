@@ -47,10 +47,16 @@ H5P.BranchingScenario = function (params, contentId) {
         contentId: -1
       }
     ],
+    l10n: {}
+  }, params.branchingScenario); // Account for the wrapper!
+
+  // Set default localization
+  params.l10n = extend({
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
-    proceedButtonText: "Proceed"
-  }, params.branchingScenario); // Account for the wrapper!
+    proceedButtonText: "Proceed",
+    scoreText: "Your score:"
+  }, params.l10n);
 
   // Sanitize the (next)ContentIds that the editor didn't set
   params.content.forEach((item, index) => {
@@ -77,7 +83,7 @@ H5P.BranchingScenario = function (params, contentId) {
       titleText: startScreenTitle,
       subtitleText: startScreenSubtitle,
       image: startScreenImage,
-      buttonText: params.startScreenButtonText,
+      buttonText: params.l10n.startScreenButtonText,
       isCurrentScreen
     });
 
@@ -105,9 +111,9 @@ H5P.BranchingScenario = function (params, contentId) {
       titleText: endScreenData.endScreenTitle,
       subtitleText: endScreenData.endScreenSubtitle,
       image: endScreenData.endScreenImage,
-      buttonText: params.endScreenButtonText,
+      buttonText: params.l10n.endScreenButtonText,
       isCurrentScreen: false,
-      scoreText: params.scoreText,
+      scoreText: params.l10n.scoreText,
       score: self.scoring.getScore(endScreenData.endScreenScore),
       maxScore: self.scoring.getMaxScore(),
       showScore: self.scoring.shouldShowScore(),

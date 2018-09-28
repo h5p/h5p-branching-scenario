@@ -136,7 +136,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     this.navButton = navButton;
 
-    navButton.append(document.createTextNode(parent.params.proceedButtonText));
+    navButton.append(document.createTextNode(parent.params.l10n.proceedButtonText));
     buttonWrapper.append(navButton);
 
     const header = document.createElement('div');
@@ -223,7 +223,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       });
     };
 
-    var text = document.createTextNode(this.parent.params.proceedButtonText);
+    var text = document.createTextNode(this.parent.params.l10n.proceedButtonText);
     navButton.append(text);
 
     feedbackContent.append(navButton);
@@ -285,7 +285,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       content.params.visuals.fit = false;
     }
     if (library === 'H5P.BranchingQuestion') {
-      content.params.proceedButtonText = parent.params.proceedButtonText;
+      content.params.proceedButtonText = parent.params.l10n.proceedButtonText;
     }
 
     // Create content instance
