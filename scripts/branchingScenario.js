@@ -12,21 +12,6 @@ H5P.BranchingScenario = function (params, contentId) {
   self.currentHeight;
   self.currentId = 0;
 
-  const SCORE_TYPES = {
-    STATIC_SCORE: 'static-end-score',
-    DYNAMIC_SCORE: 'dynamic-score',
-    NO_SCORE: 'no-score',
-  };
-
-  /**
-   * Keep track of achieved score per slide.
-   * If a question is attempted multiple times (loops), last score counts.
-   *
-   * @type {Array}
-   */
-  self.scores = [];
-  self.visitedIndex = 0;
-
   /**
    * Extend an array just like JQuery's extend.
    * @param {...Object} arguments - Objects to be merged.
@@ -74,6 +59,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   self.params = params;
+  self.scoring = new H5P.BranchingScenario.Scoring(params);
 
   /**
    * Create a start screen object
@@ -114,13 +100,6 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
   const createEndScreen = function (endScreenData) {
-    const showScore = self.params.scoringOption === SCORE_TYPES.STATIC_SCORE
-      || self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
-
-    const score = self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE
-      ? self.getScore()
-      : endScreenData.endScreenScore;
-
     const endScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: false,
       titleText: endScreenData.endScreenTitle,
@@ -129,8 +108,9 @@ H5P.BranchingScenario = function (params, contentId) {
       buttonText: params.endScreenButtonText,
       isCurrentScreen: false,
       scoreText: params.scoreText,
-      score: score,
-      showScore: showScore,
+      score: self.scoring.getScore(endScreenData.endScreenScore),
+      maxScore: self.scoring.getMaxScore(),
+      showScore: self.scoring.shouldShowScore(),
     });
 
     endScreen.on('toggleFullScreen', () => {
@@ -175,9 +155,12 @@ H5P.BranchingScenario = function (params, contentId) {
     self.trigger('resize');
     self.triggerXAPI('progressed');
     const id = e.data.nextContentId;
-    const chosenAlternative = e.data.chosenAlternative;
     const nextLibrary = self.getLibrary(id);
-    self.addLibraryScore(chosenAlternative);
+    self.scoring.addLibraryScore(
+      this.currentId,
+      this.libraryScreen.currentLibraryId,
+      e.data.chosenAlternative
+    );
 
     //  Show the relevant end screen if there is no next library
     self.currentEndScreen = self.endScreens[id];
@@ -194,8 +177,8 @@ H5P.BranchingScenario = function (params, contentId) {
         self.container.append(endScreen.getElement());
         self.currentEndScreen = endScreen;
       }
-      else if (self.params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
-        self.currentEndScreen.setScore.call(self.currentEndScreen, self.getScore());
+      else if (self.scoring.isDynamicScoring()) {
+        self.currentEndScreen.setScore(self.getScore());
       }
 
       self.libraryScreen.hide();
@@ -213,8 +196,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('restarted', function() {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
-    self.visitedIndex = 0;
-    self.scores = [];
+    self.scoring.restart();
     self.startScreen.show();
 
     // Reset the library screen
@@ -272,94 +254,21 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
-   * Get score for a Branching Question alternative
-   * @param libraryParams
-   * @param chosenAlternative
-   * @returns {*}
-   */
-  self.getAlternativeScore = function (libraryParams, chosenAlternative) {
-    if (!(chosenAlternative >= 0)) {
-      return 0;
-    }
-
-    const hasAlternative = libraryParams
-      && libraryParams.type
-      && libraryParams.type.params
-      && libraryParams.type.params.branchingQuestion
-      && libraryParams.type.params.branchingQuestion.alternatives
-      && libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
-
-    if (!hasAlternative) {
-      return 0;
-    }
-    const alt = libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
-
-    const hasScore = alt && alt.feedback && alt.feedback.endScreenScore !== undefined;
-    if (!hasScore) {
-      return 0;
-    }
-
-    return alt.feedback.endScreenScore;
-  };
-
-  /**
-   * Retrieve current library's score
-   * @param {number} [chosenAlternative] Chosen alternative for branching questions
-   */
-  self.addLibraryScore = function (chosenAlternative) {
-    self.visitedIndex = self.visitedIndex + 1;
-    const libraryParams = params.content[self.currentId];
-    let currentLibraryScore = 0;
-
-
-    // For Branching Questions find score for chosen alternative
-    if (self.currentId !== self.libraryScreen.currentLibraryId) {
-      currentLibraryScore =
-        self.getAlternativeScore(libraryParams, chosenAlternative);
-    }
-    else {
-      const hasScore = libraryParams
-        && libraryParams.feedback
-        && libraryParams.feedback.endScreenScore !== undefined;
-      if (hasScore) {
-        currentLibraryScore = libraryParams.feedback.endScreenScore;
-      }
-    }
-
-    // Update existing score and detect loops
-    let isLoop = false;
-    let loopBackIndex = -1;
-    self.scores.forEach(function (score) {
-      if (score.id === self.currentId) {
-        score.score = currentLibraryScore;
-        loopBackIndex = score.visitedIndex;
-        isLoop = true;
-      }
-    });
-
-    if (isLoop) {
-      // Remove all scores visited after loop
-      self.scores = self.scores.filter(function (score) {
-        return score.visitedIndex <= loopBackIndex;
-      });
-      self.visitedIndex = loopBackIndex;
-    }
-    else {
-      self.scores.push({
-        visitedIndex: self.visitedIndex,
-        id: self.currentId,
-        score: currentLibraryScore,
-      });
-    }
-  };
-
-  /**
    * Get accumulative score for all attempted scenarios
+   *
+   * @returns {number} Current score for Brnaching Scenario
    */
   self.getScore = function () {
-    return self.scores.reduce(function (previousValue, score) {
-      return previousValue + score.score;
-    }, 0);
+    return self.scoring.getScore();
+  };
+
+  /**
+   * Get max score
+   *
+   * @returns {number} Max score for branching scenario
+   */
+  self.getMaxScore = function () {
+    return self.scoring.getMaxScore();
   };
 
   /**

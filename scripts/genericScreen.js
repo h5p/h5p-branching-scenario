@@ -13,6 +13,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * @param {string}  screenData.buttonText Text for the button
    * @param {boolean} screenData.isCurrentScreen Determines if the screen is shown immediately
    * @param {number} screenData.score Score that should be displayed
+   * @param {number} screenData.maxScore Max achievable score
    * @param {number} screenData.showScore Determines if score should be displayed
    *
    * @return {GenericScreen} A screen object
@@ -64,7 +65,8 @@ H5P.BranchingScenario.GenericScreen = (function() {
     if (screenData.showScore && screenData.score !== undefined) {
       self.scoreWrapper = this.createResultContainer(
         screenData.scoreText,
-        screenData.score
+        screenData.score,
+        screenData.maxScore
       );
       contentDiv.prepend(self.scoreWrapper);
     }
@@ -108,9 +110,10 @@ H5P.BranchingScenario.GenericScreen = (function() {
    *
    * @param  {string} scoreLabel Score label
    * @param  {number} score Score to be shown
+   * @param  {number} [maxScore] Max achievable score
    * @return {HTMLElement} Result container
    */
-  GenericScreen.prototype.createResultContainer = function(scoreLabel, score) {
+  GenericScreen.prototype.createResultContainer = function(scoreLabel, score, maxScore) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-result-wrapper');
 
@@ -123,8 +126,25 @@ H5P.BranchingScenario.GenericScreen = (function() {
 
     const scoreCircle = document.createElement('div');
     scoreCircle.classList.add('h5p-score-circle');
+
+    const achievedScore = document.createElement('span');
+    achievedScore.className = 'h5p-score-value';
     this.scoreValue = document.createTextNode(score.toString());
-    scoreCircle.append(this.scoreValue);
+    achievedScore.appendChild(this.scoreValue);
+
+    scoreCircle.appendChild(achievedScore);
+
+    if (maxScore && maxScore > 0) {
+      const scoreDelimiter = document.createElement('span');
+      scoreDelimiter.className = 'h5p-score-delimiter';
+      scoreDelimiter.textContent = '/';
+      scoreCircle.appendChild(scoreDelimiter);
+
+      const maxAchievableScore = document.createElement('span');
+      maxAchievableScore.className = 'h5p-max-score';
+      maxAchievableScore.textContent = maxScore.toString();
+      scoreCircle.appendChild(maxAchievableScore);
+    }
 
     resultContainer.append(scoreText);
     resultContainer.append(scoreCircle);

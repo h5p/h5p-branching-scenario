@@ -93,11 +93,15 @@
   margin: 0.3em 0.5em 0.3em 0.5em;
   display: inline-block;
   background: #2b2c3a;
-  padding: 0.3em 0.5em 0.3em 0.5em;
+  padding: 0.3em 0.7em 0.3em 0.7em;
   border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.h5p-branching-scenario .h5p-score-circle .h5p-score-delimiter {
+  margin: 0 0.4em;
 }
 
 .h5p-branching-scenario-title-text {
