@@ -1,6 +1,6 @@
-import { addResizeListener, removeResizeListener } from 'detect-resize';
+import { addResizeListener } from 'detect-resize';
 
-H5P.BranchingScenario.LibraryScreen = (function() {
+H5P.BranchingScenario.LibraryScreen = (function () {
 
   /**
    * LibraryScreen
@@ -47,7 +47,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @param  {string} libraryTitle Library specific title
    * @return {HTMLElement} Wrapping div
    */
-  LibraryScreen.prototype.createWrapper = function(courseTitle, libraryTitle) {
+  LibraryScreen.prototype.createWrapper = function (courseTitle, libraryTitle) {
     const wrapper = document.createElement('div');
 
     const titleDiv = document.createElement('div');
@@ -157,7 +157,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     addResizeListener(wrapper, handleWrapperResize);
 
     // Resize container on animation end
-    wrapper.addEventListener("animationend", function(event) {
+    wrapper.addEventListener("animationend", function (event) {
       if (event.animationName === 'slide-in' && self.currentLibraryElement) {
         parent.trigger('resize');
 
@@ -276,7 +276,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @param {number} id Id of the library
    * @return {undefined}
    */
-  LibraryScreen.prototype.appendRunnable = function(container, content, id) {
+  LibraryScreen.prototype.appendRunnable = function (container, content, id) {
     const parent = this.parent;
 
     const library = content.library.split(' ')[0];
@@ -291,7 +291,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     // Create content instance
     const instance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true);
 
-    instance.on('navigated', function(e) {
+    instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
     });
 
@@ -389,7 +389,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
    * @param {Object} target Target to trigger event on
    * @return {undefined}
    */
-  LibraryScreen.prototype.bubbleUp = function(origin, eventName, target) {
+  LibraryScreen.prototype.bubbleUp = function (origin, eventName, target) {
     origin.on(eventName, function (event) {
       // Prevent target from sending event back down
       target.bubblingUpwards = true;
@@ -410,7 +410,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
     self.wrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
-    self.wrapper.addEventListener('animationend', function(e) {
+    self.wrapper.addEventListener('animationend', function (e) {
       if (e.target.className === 'h5p-next-screen h5p-slide-in') {
         self.wrapper.classList.remove('h5p-next-screen');
         self.wrapper.classList.remove('h5p-slide-in');
@@ -445,7 +445,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
 
     self.wrapper.classList.add('h5p-slide-out');
 
-    self.wrapper.addEventListener('animationend', function() {
+    self.wrapper.addEventListener('animationend', function () {
       self.wrapper.classList.remove('h5p-current-screen');
       self.wrapper.classList.add('h5p-next-screen');
       self.wrapper.classList.remove('h5p-slide-out');
@@ -531,7 +531,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       }
 
       const self = this;
-      this.currentLibraryWrapper.addEventListener('animationend', function() {
+      this.currentLibraryWrapper.addEventListener('animationend', function () {
         self.currentLibraryWrapper.remove();
         self.currentLibraryWrapper = libraryWrapper;
         self.currentLibraryWrapper.classList.remove('h5p-next');
@@ -570,7 +570,7 @@ H5P.BranchingScenario.LibraryScreen = (function() {
       this.createNextLibraries(library);
       this.parent.navigating = false;
 
-      branchingQuestion.addEventListener('animationend', function() {
+      branchingQuestion.addEventListener('animationend', function () {
         const firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0];
         firstAlternative.focus();
       });

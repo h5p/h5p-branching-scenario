@@ -77,7 +77,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
-  const createStartScreen = function({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
+  const createStartScreen = function ({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
     const startScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
@@ -132,7 +132,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {number} id Id of the content type
    * @return {Object | boolean} Data required to create a library
    */
-  self.getLibrary = function(id) {
+  self.getLibrary = function (id) {
     for (let i = 0; i < params.content.length; i ++) {
       if (params.content[i].contentId === id) {
         return params.content[i];
@@ -144,7 +144,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Handle the start of the branching scenario
    */
-  self.on('started', function() {
+  self.on('started', function () {
     self.startScreen.hide();
     self.libraryScreen.show();
     self.triggerXAPI('progressed');
@@ -199,7 +199,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Handle restarting
    */
-  self.on('restarted', function() {
+  self.on('restarted', function () {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
     self.scoring.restart();
@@ -281,7 +281,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * Change the width of the branching question depending on the container changeLayoutToFitWidth
    * @return {undefined} undefined
    */
-  self.changeLayoutToFitWidth = function() {
+  self.changeLayoutToFitWidth = function () {
     const fontSize = parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).fontSize, 10);
     // Wide screen
     if (this.container.width() / fontSize > 43) {

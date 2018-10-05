@@ -1,4 +1,4 @@
-H5P.BranchingScenario.GenericScreen = (function() {
+H5P.BranchingScenario.GenericScreen = (function () {
 
   /**
    * GenericScreen constructor
@@ -48,7 +48,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
     navButton.classList.add(screenData.isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
     navButton.classList.add('transition');
 
-    navButton.onclick = function() {
+    navButton.onclick = function () {
       screenData.isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
       self.parent.navigating = true;
     };
@@ -90,7 +90,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    *
    * @return {HTMLElement} Wrapper
    */
-  GenericScreen.prototype.getElement = function() {
+  GenericScreen.prototype.getElement = function () {
     return this.screenWrapper;
   };
 
@@ -113,7 +113,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
    * @param  {number} [maxScore] Max achievable score
    * @return {HTMLElement} Result container
    */
-  GenericScreen.prototype.createResultContainer = function(scoreLabel, score, maxScore) {
+  GenericScreen.prototype.createResultContainer = function (scoreLabel, score, maxScore) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-result-wrapper');
 
@@ -192,7 +192,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
-    self.screenWrapper.addEventListener('animationend', function(event) {
+    self.screenWrapper.addEventListener('animationend', function (event) {
       if (event.animationName === 'slide-in') {
         self.screenWrapper.classList.remove('h5p-next-screen');
         self.screenWrapper.classList.remove('h5p-slide-in');
@@ -212,7 +212,7 @@ H5P.BranchingScenario.GenericScreen = (function() {
     self.screenWrapper.classList.add('h5p-slide-out');
 
     // Style as hidden
-    self.screenWrapper.addEventListener('animationend', function(event) {
+    self.screenWrapper.addEventListener('animationend', function (event) {
       if (event.animationName === 'slide-out') {
         self.screenWrapper.classList.add('h5p-branching-hidden');
         self.screenWrapper.classList.remove('h5p-current-screen');
