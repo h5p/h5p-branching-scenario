@@ -14,7 +14,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  background-color: rgba(0,0,0,0.8); /* Black background with opacity */
 }
 
 .h5p-branching-scenario .h5p-branching-question-wrapper {
@@ -36,7 +36,7 @@
 }
 
 .h5p-branching-scenario.h5p-wide-screen .h5p-branching-question-container {
-  width: 60%;
+  width: 80%;
 }
 
 .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-question-container {
@@ -44,6 +44,7 @@
 }
 
 .h5p-branching-scenario .h5p-branching-question {
+  border-radius: 0.188rem;
   width: 100%;
 }
 
@@ -88,11 +89,35 @@
 }
 
 .h5p-start-outside {
-  transform: translateY(300%);
-  -webkit-transform: translateY(300%);
+  transform: translateY(150%);
+  -webkit-transform: translateY(150%);
 }
 
 .h5p-fly-in {
   animation: fly-in 0.8s forwards;
   -webkit-animation: fly-in 0.8s forwards;
+}
+
+.h5p-branching-scenario .h5p-branching-question button {
+  padding: 0.6rem 1.5rem;
+}
+
+.h5p-branching-question-alternative {
+  padding: 0.5em 2.5em 0.5em 1.250em;
+  margin: 0.5em 0;
+  overflow: hidden;
+}
+
+.h5p-branching-question-icon {
+  top: -75px;
+  width: 130px;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question-container {
+  padding: 0;
+}
+
+.h5p-branching-scenario-feedback-dialog .h5p-branching-question {
+  width: auto;
+  max-width: 100%;
 }
