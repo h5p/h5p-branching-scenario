@@ -108,7 +108,6 @@
               "name": "type",
               "type": "library",
               "importance": "high",
-              "label": "Content",
               "options": [
                 "H5P.BranchingQuestion 1.0",
                 "H5P.CoursePresentation 1.20",
