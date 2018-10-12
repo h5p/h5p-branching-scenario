@@ -596,9 +596,33 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   LibraryScreen.prototype.resize = function (event) {
+    const canScaleImage = (this.currentLibraryInstance && this.currentLibraryInstance.libraryInfo.machineName === 'H5P.Image' && this.currentLibraryInstance.width && this.currentLibraryInstance.height);
+    if (canScaleImage) {
+      // Always reset scaling
+      this.currentLibraryElement.style.width = '';
+      this.currentLibraryElement.style.height = '';
+    }
+
     // Toggle full screen class for content (required for IV to resize properly)
     if (this.parent.isFullScreen()) {
       this.currentLibraryElement.classList.add('h5p-fullscreen');
+
+      // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
+      if (canScaleImage) {
+        const availableSpace = this.currentLibraryElement.getBoundingClientRect();
+        const availableAspectRatio = (availableSpace.height / availableSpace.width);
+
+        const aspectRatio = (this.currentLibraryInstance.height / this.currentLibraryInstance.width);
+
+        if (aspectRatio > availableAspectRatio) {
+          console.log('Reduce width');
+          this.currentLibraryElement.style.width = (availableSpace.height * (this.currentLibraryInstance.width / this.currentLibraryInstance.height)) + 'px';
+        }
+        else {
+          this.currentLibraryElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+          console.log('Reduce height');
+        }
+      }
     }
     else {
       this.currentLibraryElement.classList.remove('h5p-fullscreen');
