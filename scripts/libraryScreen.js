@@ -615,12 +615,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         const aspectRatio = (this.currentLibraryInstance.height / this.currentLibraryInstance.width);
 
         if (aspectRatio > availableAspectRatio) {
-          console.log('Reduce width');
           this.currentLibraryElement.style.width = (availableSpace.height * (this.currentLibraryInstance.width / this.currentLibraryInstance.height)) + 'px';
         }
         else {
           this.currentLibraryElement.style.height = (availableSpace.width * aspectRatio) + 'px';
-          console.log('Reduce height');
         }
       }
     }
