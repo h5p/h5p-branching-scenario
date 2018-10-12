@@ -506,6 +506,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (library.showContentTitle) {
         this.libraryTitle.innerHTML = library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '';
       }
+      else {
+        this.libraryTitle.innerHTML = '';
+      }
 
       // Slide out the current library
       this.currentLibraryWrapper.classList.add('h5p-slide-out');
