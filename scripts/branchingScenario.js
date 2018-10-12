@@ -61,7 +61,9 @@ H5P.BranchingScenario = function (params, contentId) {
   // Sanitize the (next)ContentIds that the editor didn't set
   params.content.forEach((item, index) => {
     item.contentId = index;
-    item.nextContentId = item.nextContentId || -1;
+    if (item.nextContentId === undefined) {
+      item.nextContentId = -1;
+    }
   });
 
   self.params = params;
@@ -133,12 +135,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {Object | boolean} Data required to create a library
    */
   self.getLibrary = function (id) {
-    for (let i = 0; i < params.content.length; i ++) {
-      if (params.content[i].contentId === id) {
-        return params.content[i];
-      }
-    }
-    return false;
+    return (params.content[id] !== undefined ? params.content[id] : false);
   };
 
   /**
