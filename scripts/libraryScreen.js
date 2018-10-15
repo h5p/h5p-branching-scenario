@@ -570,6 +570,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       questionContainer.classList.add('h5p-fly-in');
 
       this.currentLibraryWrapper.style.zIndex = 0;
+
+      // Resize if Branching Question contains many alternatives/much text
+      if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
+        this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
+      }
+
       this.createNextLibraries(library);
       this.parent.navigating = false;
 
