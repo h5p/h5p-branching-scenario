@@ -264,6 +264,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       libraryElement.classList.add('h5p-branching-hidden');
     }
 
+    // Special case when first node is BQ and library screen tries to display it
+    if (library.type && library.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+      libraryElement.classList.add('h5p-branching-hidden');
+    }
+
     return wrapper;
   };
 
@@ -483,7 +488,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.overlay = undefined;
     }
 
-    const questionWrapper = this.wrapper.querySelector('.h5p-branching-question-wrapper');
+    const wrapper = document.querySelector('.h5p-current-screen');
+    if (!wrapper) {
+      return;
+    }
+    const questionWrapper = wrapper.querySelector('.h5p-branching-question-wrapper');
     if (questionWrapper) {
       questionWrapper.parentNode.removeChild(questionWrapper);
     }
@@ -550,11 +559,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Remove existing branching questions
       this.branchingQuestions.forEach(bq => bq.remove());
 
+      // BS could be showing start screen or library screen
+      const wrapper = document.querySelector('.h5p-current-screen');
+
       // Add an overlay if it doesn't exist yet
       if (this.overlay === undefined) {
         this.overlay = document.createElement('div');
         this.overlay.className = 'h5p-branching-scenario-overlay';
-        this.wrapper.append(this.overlay);
+        wrapper.append(this.overlay);
         this.hideBackgroundFromReadspeaker();
       }
 
@@ -562,7 +574,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       branchingQuestion.className = 'h5p-branching-question-wrapper';
 
       this.appendRunnable(branchingQuestion, library.type);
-      this.wrapper.append(branchingQuestion);
+      wrapper.append(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 
       const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');

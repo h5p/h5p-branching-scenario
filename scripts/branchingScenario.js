@@ -142,9 +142,19 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle the start of the branching scenario
    */
   self.on('started', function () {
-    self.startScreen.hide();
-    self.libraryScreen.show();
-    self.triggerXAPI('progressed');
+    const startNode = this.params.content[0];
+    if (startNode && startNode.type && startNode.type.library && startNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+      // First node is Branching Question, no sliding, just trigger BQ overlay
+      self.trigger('navigated', {
+        nextContentId: 0
+      });
+    }
+    else {
+      // First node is info content
+      self.startScreen.hide();
+      self.libraryScreen.show();
+      self.triggerXAPI('progressed');
+    }
     self.currentId = 0;
   });
 
@@ -190,6 +200,15 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
       self.currentId = id;
+    }
+
+    // First node was BQ, so sliding from start screen to library screen is needed now
+    if (e.data.nextContentId !== 0 && document.querySelector('.h5p-start-screen').classList.contains('h5p-current-screen')) {
+      // Remove translation of info content which would tamper with timing of sliding
+      self.libraryScreen.wrapper.querySelector('.h5p-slide-in').classList.remove('h5p-next');
+
+      self.startScreen.hide();
+      self.libraryScreen.show();
     }
   });
 
