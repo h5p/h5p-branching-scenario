@@ -209,10 +209,9 @@ H5P.BranchingScenario = function (params, contentId) {
       const wrapper = self.libraryScreen.wrapper.querySelector('.h5p-slide-in');
       if (wrapper) {
         wrapper.classList.remove('h5p-next');
+        self.startScreen.hide();
+        self.libraryScreen.show();
       }
-
-      self.startScreen.hide();
-      self.libraryScreen.show();
     }
   });
 
