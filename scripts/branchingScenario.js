@@ -209,9 +209,10 @@ H5P.BranchingScenario = function (params, contentId) {
       const wrapper = self.libraryScreen.wrapper.querySelector('.h5p-slide-in');
       if (wrapper) {
         wrapper.classList.remove('h5p-next');
-        self.startScreen.hide();
-        self.libraryScreen.show();
       }
+
+      self.startScreen.hide();
+      self.libraryScreen.show();
     }
   });
 
@@ -222,6 +223,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     self.currentEndScreen.hide();
     self.scoring.restart();
+    self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
     self.startScreen.show();
 
     // Reset the library screen
