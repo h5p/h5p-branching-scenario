@@ -106,6 +106,7 @@
   padding: 0.5em 2.5em 0.5em 1.250em;
   margin: 0.5em 0;
   overflow: hidden;
+  text-align: left;
 }
 
 .h5p-branching-question-icon {
