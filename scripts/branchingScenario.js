@@ -194,6 +194,7 @@ H5P.BranchingScenario = function (params, contentId) {
         self.currentEndScreen.setScore(self.getScore());
       }
 
+      self.startScreen.hide();
       self.libraryScreen.hide();
       self.currentEndScreen.show();
     }
@@ -205,10 +206,12 @@ H5P.BranchingScenario = function (params, contentId) {
     // First node was BQ, so sliding from start screen to library screen is needed now
     if (e.data.nextContentId !== 0 && document.querySelector('.h5p-start-screen').classList.contains('h5p-current-screen')) {
       // Remove translation of info content which would tamper with timing of sliding
-      self.libraryScreen.wrapper.querySelector('.h5p-slide-in').classList.remove('h5p-next');
-
-      self.startScreen.hide();
-      self.libraryScreen.show();
+      const wrapper = self.libraryScreen.wrapper.querySelector('.h5p-slide-in');
+      if (wrapper) {
+        wrapper.classList.remove('h5p-next');
+        self.startScreen.hide();
+        self.libraryScreen.show();
+      }
     }
   });
 
