@@ -557,7 +557,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       const self = this;
       this.currentLibraryWrapper.addEventListener('animationend', function () {
         if (self.currentLibraryWrapper.parentNode !== null) {
-          self.currentLibraryWrapper.parentNode.removeChild(this.overlay);
+          self.currentLibraryWrapper.parentNode.removeChild(self.currentLibraryWrapper);
         }
         self.currentLibraryWrapper = libraryWrapper;
         self.currentLibraryWrapper.classList.remove('h5p-next');
