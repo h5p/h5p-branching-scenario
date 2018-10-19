@@ -37,7 +37,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     this.createNextLibraries(library);
 
-    this.wrapper.append(libraryWrapper);
+    this.wrapper.appendChild(libraryWrapper);
   }
 
   /**
@@ -58,21 +58,21 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     fullScreenButton.addEventListener('click', () => {
       this.trigger('toggleFullScreen');
     });
-    titleDiv.append(fullScreenButton);
+    titleDiv.appendChild(fullScreenButton);
 
     const headers = document.createElement('div');
     headers.className = 'h5p-branching-header';
 
     const headerTitle = document.createElement('h1');
     headerTitle.innerHTML = courseTitle;
-    headers.append(headerTitle);
+    headers.appendChild(headerTitle);
 
     const headerSubtitle = document.createElement('h2');
     headerSubtitle.classList.add('library-subtitle');
     headerSubtitle.innerHTML = libraryTitle ? libraryTitle : '';
-    headers.append(headerSubtitle);
+    headers.appendChild(headerSubtitle);
 
-    titleDiv.append(headers);
+    titleDiv.appendChild(headers);
 
     this.libraryTitle = headerSubtitle;
 
@@ -96,7 +96,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if (self.overlay === undefined) {
             self.overlay = document.createElement('div');
             self.overlay.className = 'h5p-branching-scenario-overlay';
-            self.wrapper.append(self.overlay);
+            self.wrapper.appendChild(self.overlay);
             self.hideBackgroundFromReadspeaker();
           }
 
@@ -116,7 +116,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           questionContainer.classList.add('h5p-start-outside');
           questionContainer.classList.add('h5p-fly-in');
           self.currentLibraryWrapper.style.zIndex = 0;
-          self.wrapper.append(branchingQuestion);
+          self.wrapper.appendChild(branchingQuestion);
         }
         else {
           const nextScreen = {
@@ -136,17 +136,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     this.navButton = navButton;
 
-    navButton.append(document.createTextNode(parent.params.l10n.proceedButtonText));
-    buttonWrapper.append(navButton);
+    navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
+    buttonWrapper.appendChild(navButton);
 
     const header = document.createElement('div');
     header.classList.add('h5p-screen-header');
 
     this.header = header;
 
-    header.append(titleDiv);
-    header.append(buttonWrapper);
-    wrapper.append(header);
+    header.appendChild(titleDiv);
+    header.appendChild(buttonWrapper);
+    wrapper.appendChild(header);
 
     const handleWrapperResize = () => {
       if (self.wrapper.clientHeight > 500) {
@@ -198,8 +198,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       imageContainer.classList.add('h5p-feedback-image');
       var image = document.createElement('img');
       image.src = H5P.getPath(feedback.image.path, self.parent.contentId);
-      imageContainer.append(image);
-      wrapper.append(imageContainer);
+      imageContainer.appendChild(image);
+      wrapper.appendChild(imageContainer);
     }
 
     var feedbackContent = document.createElement('div');
@@ -208,12 +208,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     var title = document.createElement('h1');
     title.innerHTML = feedback.title || '';
-    feedbackContent.append(title);
+    feedbackContent.appendChild(title);
 
     if (feedback.subtitle) {
       var subtitle = document.createElement('h2');
       subtitle.innerHTML = feedback.subtitle || '';
-      feedbackContent.append(subtitle);
+      feedbackContent.appendChild(subtitle);
     }
 
     var navButton = document.createElement('button');
@@ -224,9 +224,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     };
 
     var text = document.createTextNode(this.parent.params.l10n.proceedButtonText);
-    navButton.append(text);
+    navButton.appendChild(text);
 
-    feedbackContent.append(navButton);
+    feedbackContent.appendChild(navButton);
 
     var KEYCODE_TAB = 9;
     feedbackContent.addEventListener('keydown', function (e) {
@@ -237,7 +237,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     });
 
-    wrapper.append(feedbackContent);
+    wrapper.appendChild(feedbackContent);
 
     return wrapper;
   };
@@ -257,7 +257,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     libraryElement.classList.add('h5p-branching-scenario-content');
     this.appendRunnable(libraryElement, library.type, library.contentId);
 
-    wrapper.append(libraryElement);
+    wrapper.appendChild(libraryElement);
 
     if (isNextLibrary) {
       wrapper.classList.add('h5p-next');
@@ -336,7 +336,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Pre-render the next library if it is not a branching question
       if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         this.nextLibraries[library.nextContentId] = this.createLibraryElement(nextLibrary, true);
-        this.wrapper.append(this.nextLibraries[library.nextContentId]);
+        this.wrapper.appendChild(this.nextLibraries[library.nextContentId]);
       }
     }
 
@@ -354,7 +354,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         // Pre-render all the next libraries as long as they are not branching questions
         if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
           this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
-          this.wrapper.append(this.nextLibraries[nextContentId]);
+          this.wrapper.appendChild(this.nextLibraries[nextContentId]);
         }
       });
     }
@@ -443,7 +443,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Hide overlay and branching questions
     if (this.overlay) {
-      this.overlay.remove();
+      if (this.overlay.parentNode !== null) {
+        this.overlay.parentNode.removeChild(this.overlay);
+      }
       this.overlay = undefined;
       this.branchingQuestions.forEach(bq => bq.remove());
     }
@@ -454,7 +456,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       self.wrapper.classList.remove('h5p-current-screen');
       self.wrapper.classList.add('h5p-next-screen');
       self.wrapper.classList.remove('h5p-slide-out');
-      setTimeout(() => self.wrapper.remove(), 100);
+      setTimeout(() => {
+        if (self.wrapper.parentNode !== null) {
+          self.wrapper.parentNode.removeChild(self.wrapper);
+        }
+      }, 100);
     });
   };
 
@@ -471,7 +477,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.libraryFeedback = library.feedback;
 
     // Hide branching question
-    this.overlay.remove();
+    if (this.overlay.parentNode !== null) {
+      this.overlay.parentNode.removeChild(this.overlay);
+    }
     this.overlay = undefined;
     this.branchingQuestions.forEach(bq => bq.remove());
 
@@ -484,7 +492,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   LibraryScreen.prototype.hideFeedbackDialogs = function () {
     if (this.overlay) {
-      this.overlay.remove();
+      if (this.overlay.parentNode !== null) {
+        this.overlay.parentNode.removeChild(this.overlay);
+      }
       this.overlay = undefined;
     }
 
@@ -524,7 +534,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Remove the branching questions if they exist
       if (this.overlay) {
-        this.overlay.remove();
+        if (this.overlay.parentNode !== null) {
+          this.overlay.parentNode.removeChild(this.overlay);
+        }
         this.overlay = undefined;
         this.branchingQuestions.forEach(bq => bq.remove());
         this.showBackgroundToReadspeaker();
@@ -544,7 +556,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       const self = this;
       this.currentLibraryWrapper.addEventListener('animationend', function () {
-        self.currentLibraryWrapper.remove();
+        if (self.currentLibraryWrapper.parentNode !== null) {
+          self.currentLibraryWrapper.parentNode.removeChild(this.overlay);
+        }
         self.currentLibraryWrapper = libraryWrapper;
         self.currentLibraryWrapper.classList.remove('h5p-next');
         self.currentLibraryWrapper.classList.remove('h5p-slide-in');
@@ -566,7 +580,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.overlay === undefined) {
         this.overlay = document.createElement('div');
         this.overlay.className = 'h5p-branching-scenario-overlay';
-        wrapper.append(this.overlay);
+        wrapper.appendChild(this.overlay);
         this.hideBackgroundFromReadspeaker();
       }
 
@@ -574,7 +588,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       branchingQuestion.className = 'h5p-branching-question-wrapper';
 
       this.appendRunnable(branchingQuestion, library.type);
-      wrapper.append(branchingQuestion);
+      wrapper.appendChild(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 
       const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');
@@ -613,7 +627,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   LibraryScreen.prototype.remove = function () {
-    this.wrapper.remove();
+    if (this.wrapper.parentNode !== null) {
+      this.wrapper.parentNode.removeChild(this.wrapper);
+    }
   };
 
   LibraryScreen.prototype.resize = function (event) {

@@ -56,11 +56,11 @@ H5P.BranchingScenario.GenericScreen = (function () {
     self.navButton = navButton;
 
     const buttonTextNode = document.createTextNode(screenData.buttonText);
-    navButton.append(buttonTextNode);
+    navButton.appendChild(buttonTextNode);
 
-    contentDiv.append(title);
-    contentDiv.append(subtitle);
-    contentDiv.append(navButton);
+    contentDiv.appendChild(title);
+    contentDiv.appendChild(subtitle);
+    contentDiv.appendChild(navButton);
 
     if (screenData.showScore && screenData.score !== undefined) {
       self.scoreWrapper = this.createResultContainer(
@@ -76,13 +76,13 @@ H5P.BranchingScenario.GenericScreen = (function () {
     fullScreenButton.addEventListener('click', () => {
       this.trigger('toggleFullScreen');
     });
-    self.screenWrapper.append(fullScreenButton);
+    self.screenWrapper.appendChild(fullScreenButton);
 
 
-    self.screenWrapper.append(
+    self.screenWrapper.appendChild(
       self.createScreenBackground(screenData.isStartScreen, screenData.image)
     );
-    self.screenWrapper.append(contentDiv);
+    self.screenWrapper.appendChild(contentDiv);
   }
 
   /**
@@ -122,7 +122,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     const scoreText = document.createElement('div');
     scoreText.classList.add('h5p-score-text');
-    scoreText.append(document.createTextNode(scoreLabel));
+    scoreText.appendChild(document.createTextNode(scoreLabel));
 
     const scoreCircle = document.createElement('div');
     scoreCircle.classList.add('h5p-score-circle');
@@ -146,9 +146,9 @@ H5P.BranchingScenario.GenericScreen = (function () {
       scoreCircle.appendChild(maxAchievableScore);
     }
 
-    resultContainer.append(scoreText);
-    resultContainer.append(scoreCircle);
-    wrapper.append(resultContainer);
+    resultContainer.appendChild(scoreText);
+    resultContainer.appendChild(scoreCircle);
+    wrapper.appendChild(resultContainer);
     return wrapper;
   };
 
@@ -176,8 +176,8 @@ H5P.BranchingScenario.GenericScreen = (function () {
       backgroundImage.src = isStartScreen ? this.parent.getLibraryFilePath('assets/start-screen-default.jpg') : this.parent.getLibraryFilePath('assets/end-screen-default.jpg');
     }
 
-    backgroundWrapper.append(backgroundBanner);
-    backgroundWrapper.append(backgroundImage);
+    backgroundWrapper.appendChild(backgroundBanner);
+    backgroundWrapper.appendChild(backgroundImage);
 
     return backgroundWrapper;
   };
