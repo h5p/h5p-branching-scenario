@@ -187,7 +187,7 @@ H5P.BranchingScenario = function (params, contentId) {
           endScreenImage: e.data.feedback.image,
           endScreenScore: e.data.feedback.endScreenScore
         });
-        self.container.append(endScreen.getElement());
+        self.$container.append(endScreen.getElement());
         self.currentEndScreen = endScreen;
       }
       else if (self.scoring.isDynamicScoring()) {
@@ -234,7 +234,7 @@ H5P.BranchingScenario = function (params, contentId) {
       self.toggleFullScreen();
     });
 
-    self.container.append(self.libraryScreen.getElement());
+    self.$container.append(self.libraryScreen.getElement());
   });
 
   /**
@@ -261,7 +261,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     }
     else {
-      H5P.fullScreen(self.container, this);
+      H5P.fullScreen(self.$container, this);
     }
 
   };
@@ -273,10 +273,10 @@ H5P.BranchingScenario = function (params, contentId) {
    */
   self.isFullScreen = function () {
     return H5P.isFullscreen
-      || (self.container
-        && self.container[0].classList.contains('h5p-fullscreen'))
-      ||(self.container
-        && self.container[0].classList.contains('h5p-semi-fullscreen'));
+      || (self.$container
+        && self.$container[0].classList.contains('h5p-fullscreen'))
+      ||(self.$container
+        && self.$container[0].classList.contains('h5p-semi-fullscreen'));
   };
 
   /**
@@ -304,11 +304,11 @@ H5P.BranchingScenario = function (params, contentId) {
   self.changeLayoutToFitWidth = function () {
     const fontSize = parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).fontSize, 10);
     // Wide screen
-    if (this.container.width() / fontSize > 43) {
-      self.container[0].classList.add('h5p-wide-screen');
+    if (this.$container.width() / fontSize > 43) {
+      self.$container[0].classList.add('h5p-wide-screen');
     }
     else {
-      self.container[0].classList.add('h5p-mobile-screen');
+      self.$container[0].classList.add('h5p-mobile-screen');
     }
   };
 
@@ -319,18 +319,18 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {undefined} undefined
    */
   self.attach = function ($container) {
-    self.container = $container;
+    self.$container = $container;
     $container.addClass('h5p-branching-scenario').html('');
 
     if (!params.content || params.content.length === 0) {
       const contentMessage = document.createElement('div');
       contentMessage.innerHTML = '<h1>I really need some content ;-)</h1>';
-      self.container.append(contentMessage);
+      self.$container.append(contentMessage);
       return;
     }
 
     self.startScreen = createStartScreen(params.startScreen, true);
-    self.container.append(self.startScreen.getElement());
+    self.$container.append(self.startScreen.getElement());
     self.currentId = 0;
 
     // Note: the first library must always have an id of 0
@@ -338,11 +338,11 @@ H5P.BranchingScenario = function (params, contentId) {
     self.libraryScreen.on('toggleFullScreen', () => {
       self.toggleFullScreen();
     });
-    self.container.append(self.libraryScreen.getElement());
+    self.$container.append(self.libraryScreen.getElement());
 
     params.endScreens.forEach(endScreen => {
       self.endScreens[endScreen.contentId] = createEndScreen(endScreen);
-      self.container.append(self.endScreens[endScreen.contentId].getElement());
+      self.$container.append(self.endScreens[endScreen.contentId].getElement());
     });
   };
 };
