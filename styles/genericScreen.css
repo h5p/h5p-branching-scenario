@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 3em;
+  position: relative
 }
 
 .h5p-branching-scenario .h5p-screen-banner {
@@ -40,6 +41,9 @@
   -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
   -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
   box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .h5p-branching-scenario .h5p-image-container.h5p-default-start-image {
