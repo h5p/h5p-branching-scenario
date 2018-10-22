@@ -342,7 +342,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // If it is a branching question, load all the possible libraries
     else {
-      const ids = library.type.params.branchingQuestion.alternatives.map(alternative => alternative.nextContentId);
+      const alternatives = library.type.params.branchingQuestion.alternatives || [];
+      const ids = alternatives.map(alternative => alternative.nextContentId);
       ids.forEach(nextContentId => {
         const nextLibrary = this.parent.getLibrary(nextContentId);
 
@@ -607,7 +608,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       branchingQuestion.addEventListener('animationend', function () {
         const firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0];
-        firstAlternative.focus();
+        if (typeof firstAlternative !== 'undefined') {
+          firstAlternative.focus();
+        }
       });
     }
   };
