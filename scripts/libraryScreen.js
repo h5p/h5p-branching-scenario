@@ -319,7 +319,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     // Remove outdated 'next' libraries
     let nextLibraryElements = this.wrapper.getElementsByClassName('h5p-next');
     for (let i = 0; i < nextLibraryElements.length; i++) {
-      nextLibraryElements[i].remove();
+      nextLibraryElements[i].parentNode.removeChild(nextLibraryElements[i]);
     }
 
     this.nextLibraries = {};
