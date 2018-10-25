@@ -439,7 +439,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     for (let i = 0; i < this.nextLibraries.length; i++) {
       // Ensures it is hidden if remove() doesn't execute quickly enough
       this.nextLibraries[i].style.display = 'none';
-      this.nextLibraries[i].remove();
+      if (this.nextLibraries[i].parentNode !== null) {
+        this.nextLibraries[i].parentNode.removeChild(this.nextLibraries[i]);
+      }
     }
 
     // Hide overlay and branching questions
@@ -448,7 +450,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.overlay.parentNode.removeChild(this.overlay);
       }
       this.overlay = undefined;
-      this.branchingQuestions.forEach(bq => bq.remove());
+      this.branchingQuestions.forEach(bq => {
+        if (bq.parentNode !== null) {
+          bq.parentNode.removeChild(bq);
+        }
+      });
     }
 
     self.wrapper.classList.add('h5p-slide-out');
@@ -482,7 +488,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.overlay.parentNode.removeChild(this.overlay);
     }
     this.overlay = undefined;
-    this.branchingQuestions.forEach(bq => bq.remove());
+    this.branchingQuestions.forEach(bq => {
+      if (bq.parentNode !== null) {
+        bq.parentNode.removeChild(bq);
+      }
+    });
 
     // Prepare next libraries
     this.createNextLibraries(library);
@@ -539,7 +549,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           this.overlay.parentNode.removeChild(this.overlay);
         }
         this.overlay = undefined;
-        this.branchingQuestions.forEach(bq => bq.remove());
+        this.branchingQuestions.forEach(bq => {
+          if (bq.parentNode !== null) {
+            bq.parentNode.removeChild(bq);
+          }
+        });
         this.showBackgroundToReadspeaker();
       }
 
@@ -572,7 +586,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     else { // Show a branching question
 
       // Remove existing branching questions
-      this.branchingQuestions.forEach(bq => bq.remove());
+      this.branchingQuestions.forEach(bq => {
+        if (bq.parentNode !== null) {
+          bq.parentNode.removeChild(bq);
+        }
+      });
 
       // BS could be showing start screen or library screen
       const wrapper = document.querySelector('.h5p-current-screen');
