@@ -120,7 +120,8 @@
             },
             {
               "name": "showContentTitle",
-              "label": "Show content title",
+              "label": "Show content title in view",
+              "description": "If selected, the user will will see the content title in the top bar above this content",
               "type": "boolean",
               "importance": "high",
               "widget": "showWhen",
