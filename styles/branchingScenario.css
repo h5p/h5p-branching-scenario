@@ -113,6 +113,7 @@
   border-radius: 50%;
   color: white;
   cursor: pointer;
+  line-height: 1em;
 }
 
 .h5p-branching-scenario button.h5p-branching-full-screen:after {
