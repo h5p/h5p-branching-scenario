@@ -68,7 +68,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
         screenData.score,
         screenData.maxScore
       );
-      contentDiv.prepend(self.scoreWrapper);
+      contentDiv.insertBefore(self.scoreWrapper, contentDiv.firstChild);
     }
 
     const fullScreenButton = document.createElement('button');
