@@ -1,0 +1,91 @@
+{
+  "semantics": [
+    {
+      "label": "Titulua"
+    },
+    {
+      "label": "Hasierako pantaila",
+      "fields": [
+        {
+          "label": "Hasierako pantailaren titulua"
+        },
+        {
+          "label": "Hasierako pantailaren azpititulua"
+        },
+        {
+          "label": "Hasierako pantailaren irudia"
+        }
+      ]
+    },
+    {
+      "label": "Amaierako pantailen zerrenda",
+      "field": {
+        "label": "Amaierako pantaila",
+        "fields": [
+          {
+            "label": "Amaierako pantailaren titulua"
+          },
+          {
+            "label": "Amaierako pantailaren azpititulua"
+          },
+          {
+            "label": "Amaierako pantailaren irudia"
+          },
+          {
+            "label": "Edukiaren ID"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Aukerako erantzunen edukien zerrenda",
+      "entity": "edukia",
+      "field": {
+        "fields": [
+          {
+            "label": "Edukia"
+          },
+          {
+            "label": "Edukiaren titulua",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "Erakutsi edukiaren titulua",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          },
+          {
+            "label": "Edukiaren ID"
+          },
+          {
+            "label": "Hurrengo edukiaren ID (amaierako pantailak zenbaki negatiboez dfinituta daude)",
+            "showWhen": {
+              "rules": [
+                {}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "label": "Hasierako pantailaren botoiaren testua",
+      "default": "Hasi ikastaroa"
+    },
+    {
+      "label": "Amaierako pantailaren botoiaren testua",
+      "default": "Berrabiarazi ikastaroa"
+    },
+    {
+      "label": "Liburutegi-pantaila bakoitzaren botoiaren testua",
+      "default": "Ekin"
+    }
+  ]
+}
