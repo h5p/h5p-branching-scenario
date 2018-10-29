@@ -294,7 +294,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     // Create content instance
-    const instance = H5P.newRunnable(content, this.parent.contentId, H5P.jQuery(container), true);
+    // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
+    const instance = H5P.newRunnable(H5P.jQuery.extend(true, {}, content), this.parent.contentId, H5P.jQuery(container), true);
 
     instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
