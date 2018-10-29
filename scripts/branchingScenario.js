@@ -47,6 +47,7 @@ H5P.BranchingScenario = function (params, contentId) {
         contentId: -1
       }
     ],
+    scoringOption: 'static-end-score',
     l10n: {}
   }, params.branchingScenario); // Account for the wrapper!
 
