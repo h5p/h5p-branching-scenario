@@ -86,8 +86,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     navButton.onclick = function () {
       // Stop impatient users from breaking the view
       if (parent.navigating === false) {
-        const hasFeedback = !!(self.libraryFeedback.title
-          || self.libraryFeedback.subtitle
+        const hasFeedbackTitle = self.libraryFeedback.title
+          && self.libraryFeedback.title.trim();
+        const hasFeedbackSubtitle = self.libraryFeedback.subtitle
+          && self.libraryFeedback.subtitle.trim();
+
+        const hasFeedback = !!(hasFeedbackTitle
+          || hasFeedbackSubtitle
           || self.libraryFeedback.image
         );
 
