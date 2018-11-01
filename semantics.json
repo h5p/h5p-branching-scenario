@@ -128,7 +128,7 @@
               "showWhen": {
                 "rules": [
                   {
-                    "field": "content",
+                    "field": "type",
                     "equals": [
                       "H5P.CoursePresentation",
                       "H5P.AdvancedText",
