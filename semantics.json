@@ -123,22 +123,7 @@
               "label": "Show content title in view",
               "description": "If selected, the user will see the content title in the top bar above this content",
               "type": "boolean",
-              "importance": "high",
-              "widget": "showWhen",
-              "showWhen": {
-                "rules": [
-                  {
-                    "field": "type",
-                    "equals": [
-                      "H5P.CoursePresentation",
-                      "H5P.AdvancedText",
-                      "H5P.Image",
-                      "H5P.ImageHotspots",
-                      "H5P.InteractiveVideo",
-                      "H5P.Video"
-                    ]
-                  }
-                ]
+              "importance": "high"
               }
             },
             {
