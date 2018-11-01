@@ -124,7 +124,6 @@
               "description": "If selected, the user will see the content title in the top bar above this content",
               "type": "boolean",
               "importance": "high"
-              }
             },
             {
               "name": "nextContentId",
