@@ -37,12 +37,12 @@ H5P.BranchingScenario = function (params, contentId) {
   params = extend({
     content: [],
     startScreen: {
-      startScreenTitle: "Branching Scenario",
+      startScreenTitle: "",
       startScreenSubtitle: ""
     },
     endScreens: [
       {
-        endScreenTitle: "The End",
+        endScreenTitle: "",
         endScreenSubtitle: "",
         contentId: -1
       }

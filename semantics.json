@@ -24,7 +24,7 @@
             "placeholder": "Title for your course",
             "type": "text",
             "importance": "medium",
-            "optional": false
+            "optional": true
           },
           {
             "name": "startScreenSubtitle",
@@ -32,7 +32,7 @@
             "placeholder": "Details about the course",
             "type": "text",
             "importance": "medium",
-            "optional": false
+            "optional": true
           },
           {
             "name": "startScreenImage",
