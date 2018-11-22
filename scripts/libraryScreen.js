@@ -161,32 +161,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     addResizeListener(wrapper, handleWrapperResize);
 
-    // Resize container on animation end
-    wrapper.addEventListener("animationend", function (event) {
-      if (event.animationName === 'slide-in' && self.currentLibraryElement) {
+    const handleLibraryResize = () => {
+      // Fullscreen always use the full height available to it
+      if (parent.isFullScreen()) {
+        self.currentLibraryWrapper.style.height = '';
+        self.wrapper.style.minHeight = '';
         parent.trigger('resize');
-
-        const handleLibraryResize = () => {
-          // Fullscreen always use the full height available to it
-          if (parent.isFullScreen()) {
-            self.currentLibraryWrapper.style.height = '';
-            self.wrapper.style.minHeight = '';
-            parent.trigger('resize');
-            return;
-          }
-
-          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
-          // NOTE: This is a brittle hardcoding of the header height
-          self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
-          parent.trigger('resize');
-        };
-
-        setTimeout(() => {
-          // Make the library resize then make the wrapper resize to the new library height
-          addResizeListener(self.currentLibraryElement, handleLibraryResize);
-        }, 100);
+        return;
       }
-    });
+
+      self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
+      // NOTE: This is a brittle hardcoding of the header height
+      self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
+      parent.trigger('resize');
+    };
+
+    setTimeout(() => {
+      // Make the library resize then make the wrapper resize to the new library height
+      addResizeListener(self.currentLibraryElement, handleLibraryResize);
+    }, 100);
 
     return wrapper;
   };
@@ -420,13 +413,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const self = this;
     self.wrapper.classList.add('h5p-slide-in');
     self.wrapper.classList.remove('h5p-branching-hidden');
+    self.wrapper.classList.add('h5p-current-screen');
+    self.parent.trigger('resize');
 
     // Style as the current screen
     self.wrapper.addEventListener('animationend', function (e) {
-      if (e.target.className === 'h5p-next-screen h5p-slide-in') {
+      if (e.target.className === 'h5p-next-screen h5p-slide-in h5p-current-screen') {
         self.wrapper.classList.remove('h5p-next-screen');
         self.wrapper.classList.remove('h5p-slide-in');
-        self.wrapper.classList.add('h5p-current-screen');
         self.parent.navigating = false;
         self.wrapper.style.minHeight = self.parent.currentHeight;
         self.navButton.focus();

@@ -209,11 +209,14 @@ H5P.BranchingScenario.GenericScreen = (function () {
    */
   GenericScreen.prototype.hide = function () {
     const self = this;
+    const rect = self.screenWrapper.getBoundingClientRect();
+    self.screenWrapper.style.height = rect.height + 'px';
     self.screenWrapper.classList.add('h5p-slide-out');
 
     // Style as hidden
     self.screenWrapper.addEventListener('animationend', function (event) {
       if (event.animationName === 'slide-out') {
+        self.screenWrapper.style.height = '';
         self.screenWrapper.classList.add('h5p-branching-hidden');
         self.screenWrapper.classList.remove('h5p-current-screen');
         self.screenWrapper.classList.add('h5p-next-screen');

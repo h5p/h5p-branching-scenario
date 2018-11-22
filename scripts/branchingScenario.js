@@ -152,8 +152,8 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     else {
       // First node is info content
-      self.startScreen.hide();
       self.libraryScreen.show();
+      self.startScreen.hide();
       self.triggerXAPI('progressed');
     }
     self.currentId = 0;

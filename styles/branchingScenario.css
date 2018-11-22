@@ -68,12 +68,14 @@
 }
 
 .h5p-branching-scenario .h5p-current-screen.h5p-slide-out {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   animation: slide-out 0.8s forwards;
   -webkit-animation: slide-out 0.8s forwards;
 }
 
 .h5p-branching-scenario .h5p-next-screen {
-  position: absolute;
   transform: translateX(100%);
   -webkit-transform: translateX(100%);
   top: 0;
@@ -87,6 +89,7 @@
 }
 
 .h5p-branching-scenario .h5p-next-screen.h5p-slide-in {
+  position: relative;
   animation: slide-in 0.8s forwards;
   -webkit-animation: slide-in 0.8s forwards;
 }
