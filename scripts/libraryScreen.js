@@ -643,6 +643,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         self.parent.navigating = false;
         self.navButton.focus();
       });
+      this.resize(new H5P.Event('resize', {
+        element: libraryElement
+      }));
     }
     else { // Show a branching question
 
@@ -716,38 +719,57 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-  LibraryScreen.prototype.resize = function (event) {
-    const canScaleImage = (this.currentLibraryInstance && this.currentLibraryInstance.libraryInfo.machineName === 'H5P.Image' && this.currentLibraryInstance.width && this.currentLibraryInstance.height);
+  LibraryScreen.prototype.resize = function (e) {
+    const instance = this.currentLibraryInstance;
+    const element = (e && e.data && e.data.element ? e.data.element : this.currentLibraryElement);
+
+    const isImage = (instance && instance.libraryInfo.machineName === 'H5P.Image');
+    const isCP = (instance && instance.libraryInfo.machineName === 'H5P.CoursePresentation');
+    const isHotspots = (instance && instance.libraryInfo.machineName === 'H5P.ImageHotspots');
+    const hasSize = (instance && instance.width && instance.height);
+
+    const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots);
     if (canScaleImage) {
       // Always reset scaling
-      this.currentLibraryElement.style.width = '';
-      this.currentLibraryElement.style.height = '';
+      element.style.width = '';
+      element.style.height = '';
+
+      if (isHotspots) {
+        element.style.maxWidth = '';
+      }
     }
 
     // Toggle full screen class for content (required for IV to resize properly)
     if (this.parent.isFullScreen()) {
-      this.currentLibraryElement.classList.add('h5p-fullscreen');
+      element.classList.add('h5p-fullscreen');
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const availableSpace = this.currentLibraryElement.getBoundingClientRect();
+        const height = isHotspots ? instance.options.image.height : instance.height;
+        const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : instance.width);
+        const aspectRatio = (height / width);
+
+        const availableSpace = element.getBoundingClientRect();
         const availableAspectRatio = (availableSpace.height / availableSpace.width);
 
-        const aspectRatio = (this.currentLibraryInstance.height / this.currentLibraryInstance.width);
-
         if (aspectRatio > availableAspectRatio) {
-          this.currentLibraryElement.style.width = (availableSpace.height * (this.currentLibraryInstance.width / this.currentLibraryInstance.height)) + 'px';
+          if (isHotspots) {
+            element.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
+          }
+          else {
+            element.style.width = (availableSpace.height * (width / height)) + 'px';
+          }
         }
         else {
-          this.currentLibraryElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+          element.style.height = (availableSpace.width * aspectRatio) + 'px';
         }
       }
     }
     else {
-      this.currentLibraryElement.classList.remove('h5p-fullscreen');
+      element.classList.remove('h5p-fullscreen');
     }
 
-    this.currentLibraryInstance.trigger('resize', event);
+    instance.trigger('resize', e);
   };
 
   return LibraryScreen;
