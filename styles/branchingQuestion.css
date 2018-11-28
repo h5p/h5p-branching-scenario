@@ -50,6 +50,7 @@
 
 .h5p-branching-scenario .h5p-branching-question h1 {
   font-family: H5PRobotoLight;
+  line-height: 1.25;
 }
 
 .h5p-branching-scenario .h5p-branching-question h2 {
@@ -163,4 +164,9 @@
 
 .h5p-branching-question .h5p-feedback-content h2 {
   font-size: 1em;
+}
+
+.h5p-branching-question .h5p-feedback-content-content {
+  max-height: 14em;
+  overflow: auto;
 }

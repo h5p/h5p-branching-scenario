@@ -232,14 +232,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     feedbackContent.classList.add('h5p-branching-question');
     feedbackContent.classList.add('h5p-feedback-content');
 
+    var feedbackText = document.createElement('div');
+    feedbackText.classList.add('h5p-feedback-content-content');
+    feedbackContent.appendChild(feedbackText);
+
     var title = document.createElement('h1');
     title.innerHTML = feedback.title || '';
-    feedbackContent.appendChild(title);
+    feedbackText.appendChild(title);
 
     if (feedback.subtitle) {
       var subtitle = document.createElement('h2');
       subtitle.innerHTML = feedback.subtitle || '';
-      feedbackContent.appendChild(subtitle);
+      feedbackText.appendChild(subtitle);
     }
 
     var navButton = document.createElement('button');
