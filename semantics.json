@@ -147,7 +147,14 @@
                   "name": "subtitle",
                   "type": "text",
                   "label": "Feedback text",
-                  "optional": true
+                  "optional": true,
+		  "widget": "html",
+                  "enterMode": "p",
+                  "tags": [
+                    "strong",
+                    "em",
+                    "del"
+                  ]
                 },
                 {
                   "name": "image",
