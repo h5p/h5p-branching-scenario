@@ -11,6 +11,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * @return {LibraryScreen} A screen oject
    */
   function LibraryScreen(parent, courseTitle, library) {
+    const self = this;
     H5P.EventDispatcher.call(this);
 
     this.parent = parent;
@@ -25,6 +26,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.branchingQuestions = [];
     this.navButton;
     this.header;
+    this.shouldAutoplay = [];
 
     this.wrapper = library.showContentTitle && library.type && library.type.metadata && library.type.metadata.title ? this.createWrapper(courseTitle, library.type.metadata.title) : this.createWrapper(courseTitle);
     this.wrapper.classList.add('h5p-next-screen');
@@ -38,6 +40,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.createNextLibraries(library);
 
     this.wrapper.appendChild(libraryWrapper);
+
+    self.triggerAutoplay = function (e) {
+      const id = (e.data !== undefined && e.data.nextContentId !== undefined ? e.data.nextContentId : 0);
+      if (id < 0 || id !== self.currentLibraryId) {
+        return; // All of the stars did not align, skip autoplay
+      }
+
+      const library = parent.getLibrary(id);
+      if (library.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+        return;
+      }
+
+      if (self.shouldAutoplay[self.currentLibraryId] && self.currentLibraryInstance.play !== undefined) {
+        self.currentLibraryInstance.play();
+      }
+    };
+
+    parent.on('started', self.triggerAutoplay);
+    parent.on('navigated', self.triggerAutoplay);
   }
 
   /**
@@ -298,9 +319,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       content.params.proceedButtonText = parent.params.l10n.proceedButtonText;
     }
 
+    const contentClone = H5P.jQuery.extend(true, {}, content);
+    if (hasAutoplay(contentClone.params)) {
+      this.shouldAutoplay[id] = true;
+    }
+
     // Create content instance
     // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
-    const instance = H5P.newRunnable(H5P.jQuery.extend(true, {}, content), this.parent.contentId, H5P.jQuery(container), true);
+    const instance = H5P.newRunnable(contentClone, this.parent.contentId, H5P.jQuery(container), true);
 
     instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
@@ -313,6 +339,35 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Remove any fullscreen buttons
     this.disableFullscreen(instance);
+  };
+
+  /**
+   * Check if params has autoplay enabled
+   *
+   * @param {Object} params
+   * @return {boolean}
+   */
+  const hasAutoplay = function (params) {
+    if (params.autoplay) {
+      params.autoplay = false;
+      return true;
+    }
+    else if (params.playback && params.playback.autoplay) {
+      params.playback.autoplay = false;
+      return true;
+    }
+    else if (params.media && params.media.params &&
+             params.media.params.playback &&
+             params.media.params.playback.autoplay) {
+      params.media.params.playback.autoplay = false;
+      return true;
+    }
+    else if (params.media && params.media.params &&
+             params.media.params.autoplay) {
+      params.media.params.autoplay = false;
+      return true;
+    }
+    return false;
   };
 
   /**
@@ -654,6 +709,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   LibraryScreen.prototype.remove = function () {
+    this.parent.off('started', this.triggerAutoplay);
+    this.parent.off('navigated', this.triggerAutoplay);
     if (this.wrapper.parentNode !== null) {
       this.wrapper.parentNode.removeChild(this.wrapper);
     }
