@@ -241,7 +241,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     feedbackText.appendChild(title);
 
     if (feedback.subtitle) {
-      var subtitle = document.createElement('h2');
+      var subtitle = document.createElement('div');
       subtitle.innerHTML = feedback.subtitle || '';
       feedbackText.appendChild(subtitle);
     }

@@ -121,6 +121,7 @@
   color: white;
   font-size: 1.083em;
   font-family: H5PRobotoRegular;
+  margin: 0.83em 0;
 }
 
 .h5p-branching-scenario .h5p-start-button, .h5p-end-button, .h5p-nav-button {

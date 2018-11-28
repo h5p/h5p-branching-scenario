@@ -36,11 +36,15 @@ H5P.BranchingScenario.GenericScreen = (function () {
     const contentDiv = document.createElement('div');
     contentDiv.classList.add('h5p-branching-scenario-screen-content');
 
+    var feedbackText = document.createElement('div');
+    feedbackText.classList.add('h5p-feedback-content-content');
+    contentDiv.appendChild(feedbackText);
+
     const title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
     title.innerHTML = screenData.titleText;
 
-    const subtitle = document.createElement('h2');
+    const subtitle = document.createElement('div');
     subtitle.className = 'h5p-branching-scenario-subtitle-text';
     subtitle.innerHTML = screenData.subtitleText;
 
@@ -58,8 +62,8 @@ H5P.BranchingScenario.GenericScreen = (function () {
     const buttonTextNode = document.createTextNode(screenData.buttonText);
     navButton.appendChild(buttonTextNode);
 
-    contentDiv.appendChild(title);
-    contentDiv.appendChild(subtitle);
+    feedbackText.appendChild(title);
+    feedbackText.appendChild(subtitle);
     contentDiv.appendChild(navButton);
 
     if (screenData.showScore && screenData.score !== undefined) {
