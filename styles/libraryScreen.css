@@ -145,5 +145,6 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  margin-top: 20px;
   transform: translate(-50%, -50%);
 }
