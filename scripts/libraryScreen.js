@@ -312,6 +312,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * @return {undefined}
    */
   LibraryScreen.prototype.appendRunnable = function (container, content, id) {
+    const self = this;
     const parent = this.parent;
 
     const library = content.library.split(' ')[0];
@@ -332,6 +333,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
     const instance = H5P.newRunnable(contentClone, this.parent.contentId, H5P.jQuery(container), true);
 
+    // Proceed to Branching Question automatically after video has ended
+    if (content.library.indexOf('H5P.Video ') === 0 && this.nextIsBranching(id)) {
+      instance.on('stateChange', function (event) {
+        if (event.data === H5P.Video.ENDED && self.navButton) {
+          self.navButton.click();
+        }
+      });
+    }
+
     instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
     });
@@ -343,6 +353,20 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Remove any fullscreen buttons
     this.disableFullscreen(instance);
+  };
+
+  /**
+   * Check if next node is a Branching Question.
+   *
+   * @param {number} id Id of node to check for.
+   * @return {boolean} True, if next node is BQ, else false.
+   */
+  LibraryScreen.prototype.nextIsBranching = function (id) {
+    const nextContentId = (id !== undefined) ? this.parent.params.content[id].nextContentId : undefined;
+
+    return (nextContentId !== undefined) ?
+      this.parent.params.content[nextContentId].type.library.indexOf('H5P.BranchingQuestion ') === 0 :
+      false;
   };
 
   /**
