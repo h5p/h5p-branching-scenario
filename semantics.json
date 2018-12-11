@@ -199,7 +199,7 @@
                 "label": "No scoring"
               }
             ],
-            "default": "static-end-score"
+            "default": "no-score"
           }
         ]
       },
