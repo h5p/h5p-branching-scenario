@@ -166,7 +166,7 @@ H5P.BranchingScenario.Scoring = (function () {
             content = params.content[p.index];
           }
 
-          if (hasEndScreenScore(content)) {
+          if (hasEndScreenScore(content) && content.nextContentId && content.nextContentId > -1) {
             return content.feedback.endScreenScore;
           }
 
@@ -204,7 +204,7 @@ H5P.BranchingScenario.Scoring = (function () {
       }
       const alt = libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
 
-      if (!hasEndScreenScore(alt)) {
+      if (!hasEndScreenScore(alt) || !alt.nextContentId || alt.nextContentId < 0) {
         return 0;
       }
 
@@ -271,7 +271,7 @@ H5P.BranchingScenario.Scoring = (function () {
           getAlternativeScore(libraryParams, chosenAlternative);
       }
       else {
-        if (hasEndScreenScore(libraryParams)) {
+        if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
           currentLibraryScore = libraryParams.feedback.endScreenScore;
         }
       }
