@@ -555,6 +555,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       setTimeout(() => {
         if (self.wrapper.parentNode !== null) {
           self.wrapper.parentNode.removeChild(self.wrapper);
+          self.parent.trigger('resize');
         }
       }, 100);
     });

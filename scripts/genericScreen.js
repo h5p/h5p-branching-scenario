@@ -179,6 +179,9 @@ H5P.BranchingScenario.GenericScreen = (function () {
     else {
       backgroundImage.src = isStartScreen ? this.parent.getLibraryFilePath('assets/start-screen-default.jpg') : this.parent.getLibraryFilePath('assets/end-screen-default.jpg');
     }
+    backgroundImage.addEventListener('load', () => {
+      this.parent.trigger('resize');
+    });
 
     backgroundWrapper.appendChild(backgroundBanner);
     backgroundWrapper.appendChild(backgroundImage);
