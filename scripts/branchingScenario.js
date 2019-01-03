@@ -183,10 +183,16 @@ H5P.BranchingScenario = function (params, contentId) {
 
 
     // Re-display library screen if it has been hidden by an ending screen
-    if (self.currentEndScreen && self.currentEndScreen.isShowing) {
+    if (self.currentEndScreen && self.currentEndScreen.isShowing && nextLibrary) {
       if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
         self.currentEndScreen.hide();
         self.currentEndScreen = null;
+        self.libraryScreen.show();
+      }
+    }
+    else if (self.startScreen && self.startScreen.isShowing && nextLibrary) {
+      if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
+        self.startScreen.hide();
         self.libraryScreen.show();
       }
     }
@@ -203,10 +209,9 @@ H5P.BranchingScenario = function (params, contentId) {
       e.data.chosenAlternative
     );
 
-    //  Show the relevant end screen if there is no next library
-    self.currentEndScreen = self.endScreens[id];
-
     if (nextLibrary === false) {
+      //  Show the relevant end screen if there is no next library
+      self.currentEndScreen = self.endScreens[id];
       // Custom end screen
       if (e.data.feedback) {
         const endScreen = createEndScreen({

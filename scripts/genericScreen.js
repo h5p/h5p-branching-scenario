@@ -23,7 +23,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     const self = this;
     self.parent = parent;
-    self.isShowing = false;
+    self.isShowing = screenData.isStartScreen;
     self.screenWrapper = document.createElement('div');
     self.screenWrapper.classList.add(screenData.isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
     self.screenWrapper.classList.add(screenData.isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
