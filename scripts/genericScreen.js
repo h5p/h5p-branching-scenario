@@ -23,6 +23,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     const self = this;
     self.parent = parent;
+    self.isShowing = false;
     self.screenWrapper = document.createElement('div');
     self.screenWrapper.classList.add(screenData.isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
     self.screenWrapper.classList.add(screenData.isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
@@ -195,6 +196,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
    */
   GenericScreen.prototype.show = function () {
     const self = this;
+    self.isShowing = true;
     self.screenWrapper.classList.add('h5p-slide-in');
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
@@ -216,6 +218,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
    */
   GenericScreen.prototype.hide = function () {
     const self = this;
+    self.isShowing = false;
     self.screenWrapper.classList.add('h5p-slide-out');
 
     // Style as hidden
