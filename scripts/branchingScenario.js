@@ -165,6 +165,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function (e) {
     const id = e.data.nextContentId;
     const nextLibrary = self.getLibrary(id);
+    let resizeScreen = true;
 
     if (!self.libraryScreen) {
       self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(
@@ -194,6 +195,7 @@ H5P.BranchingScenario = function (params, contentId) {
       if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
         self.startScreen.hide();
         self.libraryScreen.show();
+        resizeScreen = false;
       }
     }
     else {
@@ -201,7 +203,9 @@ H5P.BranchingScenario = function (params, contentId) {
       self.libraryScreen.hideFeedbackDialogs();
     }
 
-    self.trigger('resize');
+    if (resizeScreen) {
+      self.trigger('resize');
+    }
     self.triggerXAPI('progressed');
     self.scoring.addLibraryScore(
       this.currentId,
