@@ -75,12 +75,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
 
-    const fullScreenButton = document.createElement('button');
-    fullScreenButton.className = 'h5p-branching-full-screen';
-    fullScreenButton.addEventListener('click', () => {
-      this.trigger('toggleFullScreen');
-    });
-    titleDiv.appendChild(fullScreenButton);
+    if (H5P.canHasFullScreen) {
+      const fullScreenButton = document.createElement('button');
+      fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.addEventListener('click', () => {
+        this.trigger('toggleFullScreen');
+      });
+      titleDiv.appendChild(fullScreenButton);
+    }
 
     const headers = document.createElement('div');
     headers.className = 'h5p-branching-header';
