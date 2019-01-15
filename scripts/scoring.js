@@ -72,7 +72,9 @@ H5P.BranchingScenario.Scoring = (function () {
       }
 
       const isLoop = visitedNodes.some(function (node) {
-        return node.index === content.nextContentId;
+        // Only check 'content' type, not alternatives, as we can't loop
+        // to alternatives
+        return node.type === 'content' && node.index === content.nextContentId;
       });
 
       // Skip loops as they are already explored
