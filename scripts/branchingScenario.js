@@ -232,7 +232,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
 
       self.startScreen.hide();
-      self.libraryScreen.hide();
+      self.libraryScreen.hide(true);
       self.currentEndScreen.show();
     }
     else {
