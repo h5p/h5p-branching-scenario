@@ -265,8 +265,12 @@ H5P.BranchingScenario.Scoring = (function () {
       const libraryParams = params.content[currentId];
       let currentLibraryScore = 0;
 
+      // BQ if library id differs or if it is the first content
+      const isBranchingQuestion = currentId !== libraryId
+        || (currentId === 0 && this.isBranchingQuestion(libraryParams));
+
       // For Branching Questions find score for chosen alternative
-      if (currentId !== libraryId) {
+      if (isBranchingQuestion) {
         currentLibraryScore =
           getAlternativeScore(libraryParams, chosenAlternative);
       }
