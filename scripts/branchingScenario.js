@@ -184,11 +184,19 @@ H5P.BranchingScenario = function (params, contentId) {
 
 
     // Re-display library screen if it has been hidden by an ending screen
-    if (self.currentEndScreen && self.currentEndScreen.isShowing && nextLibrary) {
-      if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
+    if (self.currentEndScreen && self.currentEndScreen.isShowing) {
+      if (nextLibrary) {
+        if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
+          self.currentEndScreen.hide();
+          self.currentEndScreen = null;
+          self.libraryScreen.show();
+        }
+      }
+      else {
+        // Showing two end screens after each other
+        self.libraryScreen.hideFeedbackDialogs();
         self.currentEndScreen.hide();
         self.currentEndScreen = null;
-        self.libraryScreen.show();
       }
     }
     else if (self.startScreen && self.startScreen.isShowing && nextLibrary) {
