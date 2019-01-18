@@ -381,7 +381,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
     if (!params.content || params.content.length === 0) {
       const contentMessage = document.createElement('div');
-      contentMessage.innerHTML = '<h1>I really need some content ;-)</h1>';
+      contentMessage.innerHTML = 'No content';
       self.$container.append(contentMessage);
       return;
     }
