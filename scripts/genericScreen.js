@@ -76,13 +76,14 @@ H5P.BranchingScenario.GenericScreen = (function () {
       contentDiv.insertBefore(self.scoreWrapper, contentDiv.firstChild);
     }
 
-    const fullScreenButton = document.createElement('button');
-    fullScreenButton.className = 'h5p-branching-full-screen';
-    fullScreenButton.addEventListener('click', () => {
-      this.trigger('toggleFullScreen');
-    });
-    self.screenWrapper.appendChild(fullScreenButton);
-
+    if (H5P.canHasFullScreen) {
+      const fullScreenButton = document.createElement('button');
+      fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.addEventListener('click', () => {
+        this.trigger('toggleFullScreen');
+      });
+      self.screenWrapper.appendChild(fullScreenButton);
+    }
 
     self.screenWrapper.appendChild(
       self.createScreenBackground(screenData.isStartScreen, screenData.image)

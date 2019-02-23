@@ -72,7 +72,9 @@ H5P.BranchingScenario.Scoring = (function () {
       }
 
       const isLoop = visitedNodes.some(function (node) {
-        return node.index === content.nextContentId;
+        // Only check 'content' type, not alternatives, as we can't loop
+        // to alternatives
+        return node.type === 'content' && node.index === content.nextContentId;
       });
 
       // Skip loops as they are already explored
@@ -265,8 +267,12 @@ H5P.BranchingScenario.Scoring = (function () {
       const libraryParams = params.content[currentId];
       let currentLibraryScore = 0;
 
+      // BQ if library id differs or if it is the first content
+      const isBranchingQuestion = currentId !== libraryId
+        || (currentId === 0 && this.isBranchingQuestion(libraryParams));
+
       // For Branching Questions find score for chosen alternative
-      if (currentId !== libraryId) {
+      if (isBranchingQuestion) {
         currentLibraryScore =
           getAlternativeScore(libraryParams, chosenAlternative);
       }
@@ -278,12 +284,27 @@ H5P.BranchingScenario.Scoring = (function () {
 
       // Update existing score and detect loops
       let isLoop = false;
+
+      // In preview mode it is possible to produce a reverse loop, e.g. start
+      // in the order 3->2->3. In this case we only remove the old score
+      let duplicateIndex = null;
       let loopBackIndex = -1;
-      scores.forEach(function (score) {
+      scores.forEach(function (score, index) {
         if (score.id === currentId) {
           score.score = currentLibraryScore;
           loopBackIndex = score.visitedIndex;
-          isLoop = true;
+
+          // If our current id params is not pointing to the next item
+          // in our scores array, there has been a jump, and thus there is a
+          // reverse loop
+          const isPointingToNextScore = scores.length > index + 1
+            && params.content[score.id].nextContentId === scores[index + 1].id;
+          if (!isPointingToNextScore) {
+            duplicateIndex = index;
+          }
+          else {
+            isLoop = true;
+          }
         }
       });
 
@@ -295,6 +316,12 @@ H5P.BranchingScenario.Scoring = (function () {
         visitedIndex = loopBackIndex;
       }
       else {
+        // For reverse loops we remove the old item first, so the scores
+        // will be in the proper order
+        if (duplicateIndex !== null) {
+          scores.splice(duplicateIndex, 1);
+        }
+
         scores.push({
           visitedIndex: visitedIndex,
           id: currentId,

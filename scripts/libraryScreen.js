@@ -75,12 +75,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
 
-    const fullScreenButton = document.createElement('button');
-    fullScreenButton.className = 'h5p-branching-full-screen';
-    fullScreenButton.addEventListener('click', () => {
-      this.trigger('toggleFullScreen');
-    });
-    titleDiv.appendChild(fullScreenButton);
+    if (H5P.canHasFullScreen) {
+      const fullScreenButton = document.createElement('button');
+      fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.addEventListener('click', () => {
+        this.trigger('toggleFullScreen');
+      });
+      titleDiv.appendChild(fullScreenButton);
+    }
 
     const headers = document.createElement('div');
     headers.className = 'h5p-branching-header';
@@ -547,9 +549,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   /**
    * Slides the screen out and styles it to be hidden
+   * @param {boolean} skipAnimationListener Skips waiting for animation before removing
+   *  elements. Useful when animation would not have time to run anyway.
    * @return {undefined}
    */
-  LibraryScreen.prototype.hide = function () {
+  LibraryScreen.prototype.hide = function (skipAnimationListener) {
     const self = this;
     self.isShowing = false;
 
@@ -577,7 +581,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     self.wrapper.classList.add('h5p-slide-out');
 
-    self.wrapper.addEventListener('animationend', function () {
+    function removeElements() {
       self.wrapper.classList.remove('h5p-current-screen');
       self.wrapper.classList.add('h5p-next-screen');
       self.wrapper.classList.remove('h5p-slide-out');
@@ -589,7 +593,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           self.parent.trigger('resize');
         }
       }, 100);
-    });
+    }
+
+    if (skipAnimationListener) {
+      setTimeout(() => {
+        removeElements();
+      }, 800);
+    }
+    else {
+      self.wrapper.addEventListener('animationend', removeElements);
+    }
   };
 
   /**

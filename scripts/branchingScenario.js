@@ -10,7 +10,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.endScreens = {};
   self.navigating;
   self.currentHeight;
-  self.currentId = 0;
+  self.currentId = -1;
 
   /**
    * Extend an array just like JQuery's extend.
@@ -163,7 +163,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle progression
    */
   self.on('navigated', function (e) {
-    const id = e.data.nextContentId;
+    const id = parseInt(e.data.nextContentId);
     const nextLibrary = self.getLibrary(id);
     let resizeScreen = true;
 
@@ -184,11 +184,19 @@ H5P.BranchingScenario = function (params, contentId) {
 
 
     // Re-display library screen if it has been hidden by an ending screen
-    if (self.currentEndScreen && self.currentEndScreen.isShowing && nextLibrary) {
-      if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
+    if (self.currentEndScreen && self.currentEndScreen.isShowing) {
+      if (nextLibrary) {
+        if (!H5P.BranchingScenario.LibraryScreen.isBranching(nextLibrary)) {
+          self.currentEndScreen.hide();
+          self.currentEndScreen = null;
+          self.libraryScreen.show();
+        }
+      }
+      else {
+        // Showing two end screens after each other
+        self.libraryScreen.hideFeedbackDialogs();
         self.currentEndScreen.hide();
         self.currentEndScreen = null;
-        self.libraryScreen.show();
       }
     }
     else if (self.startScreen && self.startScreen.isShowing && nextLibrary) {
@@ -206,12 +214,14 @@ H5P.BranchingScenario = function (params, contentId) {
     if (resizeScreen) {
       self.trigger('resize');
     }
-    self.triggerXAPI('progressed');
-    self.scoring.addLibraryScore(
-      this.currentId,
-      this.libraryScreen.currentLibraryId,
-      e.data.chosenAlternative
-    );
+    if (self.currentId !== -1) {
+      self.triggerXAPI('progressed');
+      self.scoring.addLibraryScore(
+        this.currentId,
+        this.libraryScreen.currentLibraryId,
+        e.data.chosenAlternative
+      );
+    }
 
     if (nextLibrary === false) {
       //  Show the relevant end screen if there is no next library
@@ -232,7 +242,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
 
       self.startScreen.hide();
-      self.libraryScreen.hide();
+      self.libraryScreen.hide(true);
       self.currentEndScreen.show();
     }
     else {
@@ -264,6 +274,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.scoring.restart();
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
     self.startScreen.show();
+    self.currentId = -1;
 
     // Reset the library screen
     if (self.libraryScreen) {
@@ -370,14 +381,14 @@ H5P.BranchingScenario = function (params, contentId) {
 
     if (!params.content || params.content.length === 0) {
       const contentMessage = document.createElement('div');
-      contentMessage.innerHTML = '<h1>I really need some content ;-)</h1>';
+      contentMessage.innerHTML = 'No content';
       self.$container.append(contentMessage);
       return;
     }
 
     self.startScreen = createStartScreen(params.startScreen, true);
     self.$container.append(self.startScreen.getElement());
-    self.currentId = 0;
+    self.currentId = -1;
 
     // Note: the first library must always have an id of 0
     self.libraryScreen = new H5P.BranchingScenario.LibraryScreen(self, params.startScreen.startScreenTitle, self.getLibrary(0));
