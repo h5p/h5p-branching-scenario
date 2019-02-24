@@ -1,9 +1,9 @@
 {
-  "title": "Branching Scenario",
+  "title": "Branching Scenario (beta)",
   "description": "description",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 1,
+  "patchVersion": 2,
   "runnable": 1,
   "embedTypes": [
     "iframe"
