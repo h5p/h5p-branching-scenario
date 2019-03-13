@@ -244,3 +244,22 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.h5p-branching-scenario.h5p-phone-size .h5p-branching-question h1 {
+  font-size: 1.25em;
+  line-height: 1;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-branching-question .h5p-branching-question.h5p-feedback-image {
+  max-width: 15%;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-branching-question button {
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-feedback-content {
+  padding: 0em;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-branching-scenario-feedback-dialog {
+  padding: 1em;
+  box-sizing: border-box;
+}
