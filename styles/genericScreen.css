@@ -1,4 +1,5 @@
-.h5p-branching-scenario .h5p-start-screen, .h5p-end-screen {
+.h5p-branching-scenario .h5p-start-screen,
+.h5p-end-screen {
   min-height: 45em;
   background: radial-gradient(at top,#5f6883,#494a5c); /* TODO: handle all browsers */
   text-align: center;
@@ -7,7 +8,8 @@
   justify-content: center;
 }
 
-.h5p-branching-scenario .h5p-start-screen.h5p-branching-hidden, .h5p-end-screen.h5p-branching-hidden {
+.h5p-branching-scenario .h5p-start-screen.h5p-branching-hidden,
+.h5p-end-screen.h5p-branching-hidden {
   display: none;
 }
 
@@ -124,7 +126,9 @@
   margin: 0.83em 0;
 }
 
-.h5p-branching-scenario .h5p-start-button, .h5p-end-button, .h5p-nav-button {
+.h5p-branching-scenario .h5p-start-button,
+.h5p-end-button,
+.h5p-nav-button {
   margin: 3rem 1rem 0rem 1rem;
   border-style: solid;
   border-width: 0.1250rem;
@@ -137,7 +141,8 @@
   font-family: H5PRobotoMedium;
 }
 
-.h5p-branching-scenario .h5p-start-button, .h5p-end-button {
+.h5p-branching-scenario .h5p-start-button,
+.h5p-end-button {
   padding: 0.9rem 1.5rem;
 }
 
@@ -145,13 +150,17 @@
   padding: 0.6rem 1.5rem;
 }
 
-.h5p-branching-scenario .h5p-start-button:hover, .h5p-end-button:hover, .h5p-nav-button:hover {
+.h5p-branching-scenario .h5p-start-button:hover,
+.h5p-end-button:hover,
+.h5p-nav-button:hover {
   border-color: #b0f88f;
   color: #4b4c60;
   background: #b0f88f;
 }
 
-.h5p-branching-scenario .h5p-start-button:active, .h5p-end-button:active, .h5p-nav-button:active {
+.h5p-branching-scenario .h5p-start-button:active,
+.h5p-end-button:active,
+.h5p-nav-button:active {
   border-color: #9fe281;
   color: #4b4c60;
   background: #9fe281;
