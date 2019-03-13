@@ -225,3 +225,22 @@
 .h5p-branching-scenario.h5p-phone-size .h5p-screen-background {
   height: auto;
 }
+
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-title-wrapper h1 {
+  font-size: 1.15rem;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-nav-button:after {
+  font-size: 1.5rem;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button {
+  border-radius: 2rem;
+  padding: 0.6rem 1rem;
+  font-size: 0;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button:after {
+  padding-left: 0;
+}
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-title-wrapper {
+  margin-left: 10px;
+  margin-right: 10px;
+}
