@@ -808,9 +808,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const isImage = (instance && instance.libraryInfo.machineName === 'H5P.Image');
     const isCP = (instance && instance.libraryInfo.machineName === 'H5P.CoursePresentation');
     const isHotspots = (instance && instance.libraryInfo.machineName === 'H5P.ImageHotspots');
+    const isVideo = (instance && instance.libraryInfo.machineName === 'H5P.Video');
     const hasSize = (instance && instance.width && instance.height);
 
-    const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots);
+    const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots || isVideo);
     if (canScaleImage) {
       // Always reset scaling
       element.style.width = '';
@@ -827,8 +828,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const height = isHotspots ? instance.options.image.height : instance.height;
-        const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : instance.width);
+        const videoRect = (isVideo ? element.firstChild.getBoundingClientRect() : null);
+        const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
+        const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
         const aspectRatio = (height / width);
 
         const availableSpace = element.getBoundingClientRect();
