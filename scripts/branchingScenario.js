@@ -308,7 +308,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Add classname for phone size adjustments
     const rect = self.$container[0].getBoundingClientRect();
-    if (rect.width <= 480) {
+    if (rect.width < 768) {
       self.$container.addClass('h5p-phone-size');
     }
     else {
