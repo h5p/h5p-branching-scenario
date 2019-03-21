@@ -10,10 +10,12 @@
           "label": "شاشة البدء",
           "fields": [
             {
-              "label": "عنوان شاشةالبدء"
+              "label": "عنوان شاشةالبدء",
+              "placeholder": "Title for your course"
             },
             {
-              "label": "العنوان الفرعي لشاشة البدء"
+              "label": "العنوان الفرعي لشاشة البدء",
+              "placeholder": "Details about the course"
             },
             {
               "label": "صورة شاشة البدء"
@@ -26,16 +28,20 @@
             "label": "شاشة النهاية",
             "fields": [
               {
-                "label": "عنوان شاشة النهاية"
+                "label": "Title"
               },
               {
-                "label": "العنوان الفرعي لشاشة النهاية"
+                "label": "Text"
               },
               {
-                "label": "صورة شاشة النهاية"
+                "label": "Image"
               },
               {
-                "label": "معرف المتوى"
+                "label": "Score",
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+              },
+              {
+                "label": "Content ID"
               }
             ]
           }
@@ -45,50 +51,75 @@
           "entity": "content",
           "field": {
             "fields": [
+              {},
               {
-                "label": "المحتوى"
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
-                "label": "عنوان المحتوى",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
+                "label": "Next Content ID (end screens are defined by negative numbers)"
               },
               {
-                "label": "عنوان اظهار المحتوى",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
-              },
-              {
-                "label": "معرف المحتوى"
-              },
-              {
-                "label": "معرف المحتوى التالي (يتم تعريف شاشات النهاية بالأرقام السالبة)",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ]
               }
             ]
           }
         },
         {
-          "label": "نص للزر على شاشة البداية",
-          "default": "Start the course"
+          "label": "Scoring options",
+          "fields": [
+            {
+              "label": "Scoring options",
+              "description": "Select type of scoring",
+              "options": [
+                {
+                  "label": "Statically set score for each end scenario"
+                },
+                {
+                  "label": "Dynamically calculate score from user answers"
+                },
+                {
+                  "label": "No scoring"
+                }
+              ]
+            }
+          ]
         },
         {
-          "label": "نص للزر على شاشة النهاية",
-          "default": "Restart the course"
-        },
-        {
-          "label": "نص للزر على كل من شاشات المكتبة",
-          "default": "Proceed"
+          "label": "Localization",
+          "fields": [
+            {
+              "label": "Text for the button on the start screen",
+              "default": "Start the course"
+            },
+            {
+              "label": "Text for the button on the end screen",
+              "default": "Restart the course"
+            },
+            {
+              "label": "Text for the button on each of the library screens",
+              "default": "Proceed"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            }
+          ]
         }
       ]
     }

@@ -10,10 +10,12 @@
           "label": "Hasierako pantaila",
           "fields": [
             {
-              "label": "Hasierako pantailaren titulua"
+              "label": "Hasierako pantailaren titulua",
+              "placeholder": "Title for your course"
             },
             {
-              "label": "Hasierako pantailaren azpititulua"
+              "label": "Hasierako pantailaren azpititulua",
+              "placeholder": "Details about the course"
             },
             {
               "label": "Hasierako pantailaren irudia"
@@ -26,16 +28,20 @@
             "label": "Amaierako pantaila",
             "fields": [
               {
-                "label": "Amaierako pantailaren titulua"
+                "label": "Title"
               },
               {
-                "label": "Amaierako pantailaren azpititulua"
+                "label": "Text"
               },
               {
-                "label": "Amaierako pantailaren irudia"
+                "label": "Image"
               },
               {
-                "label": "Edukiaren ID"
+                "label": "Score",
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+              },
+              {
+                "label": "Content ID"
               }
             ]
           }
@@ -45,50 +51,75 @@
           "entity": "edukia",
           "field": {
             "fields": [
+              {},
               {
-                "label": "Edukia"
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
-                "label": "Edukiaren titulua",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
+                "label": "Next Content ID (end screens are defined by negative numbers)"
               },
               {
-                "label": "Erakutsi edukiaren titulua",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
-              },
-              {
-                "label": "Edukiaren ID"
-              },
-              {
-                "label": "Hurrengo edukiaren ID (amaierako pantailak zenbaki negatiboez dfinituta daude)",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                }
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ]
               }
             ]
           }
         },
         {
-          "label": "Hasierako pantailaren botoiaren testua",
-          "default": "Hasi ikastaroa"
+          "label": "Scoring options",
+          "fields": [
+            {
+              "label": "Scoring options",
+              "description": "Select type of scoring",
+              "options": [
+                {
+                  "label": "Statically set score for each end scenario"
+                },
+                {
+                  "label": "Dynamically calculate score from user answers"
+                },
+                {
+                  "label": "No scoring"
+                }
+              ]
+            }
+          ]
         },
         {
-          "label": "Amaierako pantailaren botoiaren testua",
-          "default": "Berrabiarazi ikastaroa"
-        },
-        {
-          "label": "Liburutegi-pantaila bakoitzaren botoiaren testua",
-          "default": "Ekin"
+          "label": "Localization",
+          "fields": [
+            {
+              "label": "Text for the button on the start screen",
+              "default": "Start the course"
+            },
+            {
+              "label": "Text for the button on the end screen",
+              "default": "Restart the course"
+            },
+            {
+              "label": "Text for the button on each of the library screens",
+              "default": "Proceed"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            }
+          ]
         }
       ]
     }
