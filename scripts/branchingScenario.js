@@ -11,6 +11,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.navigating;
   self.currentHeight;
   self.currentId = -1;
+  self.xAPIDataCollector = [];
 
   /**
    * Extend an array just like JQuery's extend.
@@ -180,6 +181,16 @@ H5P.BranchingScenario = function (params, contentId) {
 
       self.$container.append(self.libraryScreen.getElement());
       self.currentId = id;
+    }
+    else {
+      // Try to collect xAPIData for last screen
+      const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
+      if (xAPIData) {
+        self.collectXAPIData({
+          id: self.currentId,
+          data: xAPIData
+        });
+      }
     }
 
 
@@ -416,6 +427,58 @@ H5P.BranchingScenario = function (params, contentId) {
       self.endScreens[endScreen.contentId] = createEndScreen(endScreen);
       self.$container.append(self.endScreens[endScreen.contentId].getElement());
     });
+  };
+
+  /**
+   * Collect all XAPI Data in a list
+   *
+   * @param {Object} data
+   */
+  self.collectXAPIData = function (data) {
+    for (let i = 0; i < self.xAPIDataCollector.length; i++) {
+      if (self.xAPIDataCollector[i].id === self.currentId) {
+        // Update to avoid duplicates (i.e. same behavior as other content types)
+        self.xAPIDataCollector[i] = data;
+        return;
+      }
+    }
+    self.xAPIDataCollector.push(data);
+  };
+
+  /**
+   * Get xAPI data.
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  self.getXAPIData = function () {
+    if (!self.currentEndScreen) {
+      console.error('Called getXAPIData before finished.')
+      return;
+    }
+
+    const xAPIEvent = self.createXAPIEventTemplate('answered');
+
+    // Extend definition
+    const definition = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
+    H5P.jQuery.extend(definition, {
+      interactionType: 'compound',
+      type: 'http://adlnet.gov/expapi/activities/cmi.interaction'
+    });
+
+    const score = self.scoring.getScore(self.currentEndScreen.getScore());
+    const maxScore = self.scoring.getMaxScore();
+    xAPIEvent.setScoredResult(score, maxScore, this, true, score === maxScore);
+
+    const children = [];
+    for (let i = 0; i < self.xAPIDataCollector.length; i++) {
+      children.push(self.xAPIDataCollector[i].data);
+    }
+
+    return {
+      statement: xAPIEvent.data.statement,
+      children: children
+    };
   };
 };
 

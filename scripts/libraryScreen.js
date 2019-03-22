@@ -359,6 +359,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
+   * Used to get XAPI data for "previous" library.
+   *
+   * @param {number} id Id of the instance node
+   * @return {Object} XAPI Data
+   */
+  LibraryScreen.prototype.getXAPIData = function (id) {
+    if (this.libraryInstances[id] && this.libraryInstances[id].getXAPIData) {
+      return this.libraryInstances[id].getXAPIData();
+    }
+  };
+
+  /**
    * Check if next node is a Branching Question.
    *
    * @param {number} id Id of node to check for.

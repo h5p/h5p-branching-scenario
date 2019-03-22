@@ -89,6 +89,15 @@ H5P.BranchingScenario.GenericScreen = (function () {
       self.createScreenBackground(screenData.isStartScreen, screenData.image)
     );
     self.screenWrapper.appendChild(contentDiv);
+
+    /**
+     * Get score for screen
+     *
+     * @return score
+     */
+    self.getScore = function () {
+      return screenData.score;
+    };
   }
 
   /**
