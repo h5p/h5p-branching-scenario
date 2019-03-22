@@ -764,7 +764,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       const branchingQuestion = document.createElement('div');
       branchingQuestion.className = 'h5p-branching-question-wrapper';
 
-      this.appendRunnable(branchingQuestion, library.type);
+      this.appendRunnable(branchingQuestion, library.type, library.contentId);
       wrapper.appendChild(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 
