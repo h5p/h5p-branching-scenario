@@ -255,6 +255,8 @@ H5P.BranchingScenario = function (params, contentId) {
       self.startScreen.hide();
       self.libraryScreen.hide(true);
       self.currentEndScreen.show();
+
+      self.triggerXAPICompleted(self.scoring.getScore(self.currentEndScreen.getScore()), self.scoring.getMaxScore());
     }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
@@ -277,7 +279,6 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle restarting
    */
   self.on('restarted', function () {
-    self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     if (self.currentEndScreen) {
       self.currentEndScreen.hide();
       self.currentEndScreen = null;
