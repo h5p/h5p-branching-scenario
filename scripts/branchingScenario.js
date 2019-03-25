@@ -403,6 +403,10 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {undefined} undefined
    */
   self.attach = function ($container) {
+    if (this.isRoot !== undefined && this.isRoot()) {
+      this.setActivityStarted();
+    }
+
     self.$container = $container;
     $container.addClass('h5p-branching-scenario').html('');
 
