@@ -186,10 +186,7 @@ H5P.BranchingScenario = function (params, contentId) {
       // Try to collect xAPIData for last screen
       const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
       if (xAPIData) {
-        self.collectXAPIData({
-          id: self.currentId,
-          data: xAPIData
-        });
+        self.xAPIDataCollector.push(xAPIData);
       }
     }
 
@@ -284,6 +281,7 @@ H5P.BranchingScenario = function (params, contentId) {
       self.currentEndScreen = null;
     }
     self.scoring.restart();
+    self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
     self.startScreen.show();
     self.currentId = -1;
@@ -435,22 +433,6 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
-   * Collect all XAPI Data in a list
-   *
-   * @param {Object} data
-   */
-  self.collectXAPIData = function (data) {
-    for (let i = 0; i < self.xAPIDataCollector.length; i++) {
-      if (self.xAPIDataCollector[i].id === self.currentId) {
-        // Update to avoid duplicates (i.e. same behavior as other content types)
-        self.xAPIDataCollector[i] = data;
-        return;
-      }
-    }
-    self.xAPIDataCollector.push(data);
-  };
-
-  /**
    * Get xAPI data.
    * Contract used by report rendering engine.
    *
@@ -470,19 +452,17 @@ H5P.BranchingScenario = function (params, contentId) {
       interactionType: 'compound',
       type: 'http://adlnet.gov/expapi/activities/cmi.interaction'
     });
+    definition.extensions = {
+      'https://h5p.org/x-api/no-question-score': 1
+    };
 
     const score = self.scoring.getScore(self.currentEndScreen.getScore());
     const maxScore = self.scoring.getMaxScore();
     xAPIEvent.setScoredResult(score, maxScore, this, true, score === maxScore);
 
-    const children = [];
-    for (let i = 0; i < self.xAPIDataCollector.length; i++) {
-      children.push(self.xAPIDataCollector[i].data);
-    }
-
     return {
       statement: xAPIEvent.data.statement,
-      children: children
+      children: self.xAPIDataCollector
     };
   };
 };
