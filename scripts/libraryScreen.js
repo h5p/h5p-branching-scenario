@@ -334,7 +334,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Create content instance
     // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
-    const instance = H5P.newRunnable(contentClone, this.parent.contentId, H5P.jQuery(container), true);
+    const instance = H5P.newRunnable(
+      contentClone,
+      this.parent.contentId,
+      H5P.jQuery(container),
+      true,
+      {
+        parent: this.parent,
+      }
+    );
     instance.setActivityStarted();
 
     // Proceed to Branching Question automatically after video has ended
