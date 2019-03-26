@@ -3,7 +3,7 @@
   "description": "description",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 2,
+  "patchVersion": 9,
   "runnable": 1,
   "embedTypes": [
     "iframe"
@@ -42,7 +42,7 @@
       "machineName": "H5PEditor.ShowWhen",
       "majorVersion": 1,
       "minorVersion": 0
-    }, 
+    },
     {
       "machineName": "H5PEditor.BranchingScenario",
       "majorVersion": 1,

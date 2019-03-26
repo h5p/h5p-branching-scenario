@@ -8,6 +8,7 @@
   margin-left: 20px;
   margin-right: 20px;
   overflow: hidden;
+  flex-grow: 1;
 }
 
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper h1 {
@@ -135,10 +136,7 @@
   max-height: 100%;
 }
 
-.h5p-branching-scenario .h5p-branching-full-screen,
-.h5p-branching-scenario .h5p-branching-header {
-  display: inline-block;
-}
+.h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
 .h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
 .h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
 .h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {

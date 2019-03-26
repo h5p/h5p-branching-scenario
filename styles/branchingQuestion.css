@@ -131,6 +131,10 @@
   overflow: auto;
 }
 
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question-container {
+  padding-top: 2.75em;
+}
+
 .h5p-branching-question {
   background-color: #FFFFFF;
   padding: 1em;

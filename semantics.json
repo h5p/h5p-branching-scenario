@@ -148,7 +148,7 @@
                   "type": "text",
                   "label": "Feedback text",
                   "optional": true,
-		  "widget": "html",
+                  "widget": "html",
                   "enterMode": "p",
                   "tags": [
                     "strong",

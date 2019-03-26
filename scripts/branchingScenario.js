@@ -11,6 +11,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.navigating;
   self.currentHeight;
   self.currentId = -1;
+  self.xAPIDataCollector = [];
 
   /**
    * Extend an array just like JQuery's extend.
@@ -181,6 +182,13 @@ H5P.BranchingScenario = function (params, contentId) {
       self.$container.append(self.libraryScreen.getElement());
       self.currentId = id;
     }
+    else {
+      // Try to collect xAPIData for last screen
+      const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
+      if (xAPIData) {
+        self.xAPIDataCollector.push(xAPIData);
+      }
+    }
 
 
     // Re-display library screen if it has been hidden by an ending screen
@@ -244,6 +252,8 @@ H5P.BranchingScenario = function (params, contentId) {
       self.startScreen.hide();
       self.libraryScreen.hide(true);
       self.currentEndScreen.show();
+
+      self.triggerXAPICompleted(self.scoring.getScore(self.currentEndScreen.getScore()), self.scoring.getMaxScore());
     }
     else {
       self.libraryScreen.showNextLibrary(nextLibrary);
@@ -266,12 +276,12 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle restarting
    */
   self.on('restarted', function () {
-    self.triggerXAPIScored(null, null, 'answered', true); // TODO: decide on how score works
     if (self.currentEndScreen) {
       self.currentEndScreen.hide();
       self.currentEndScreen = null;
     }
     self.scoring.restart();
+    self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
     self.startScreen.show();
     self.currentId = -1;
@@ -305,6 +315,21 @@ H5P.BranchingScenario = function (params, contentId) {
       self.libraryScreen.resize(event);
     }
     self.changeLayoutToFitWidth();
+
+    // Add classname for phone size adjustments
+    const rect = self.$container[0].getBoundingClientRect();
+    if (rect.width <= 480) {
+      self.$container.addClass('h5p-phone-size');
+    }
+    else {
+      self.$container.removeClass('h5p-phone-size');
+    }
+    if (rect.width < 768) {
+      self.$container.addClass('h5p-medium-tablet-size');
+    }
+    else {
+      self.$container.removeClass('h5p-medium-tablet-size');
+    }
   });
 
   /**
@@ -376,6 +401,10 @@ H5P.BranchingScenario = function (params, contentId) {
    * @return {undefined} undefined
    */
   self.attach = function ($container) {
+    if (this.isRoot !== undefined && this.isRoot()) {
+      this.setActivityStarted();
+    }
+
     self.$container = $container;
     $container.addClass('h5p-branching-scenario').html('');
 
@@ -401,6 +430,40 @@ H5P.BranchingScenario = function (params, contentId) {
       self.endScreens[endScreen.contentId] = createEndScreen(endScreen);
       self.$container.append(self.endScreens[endScreen.contentId].getElement());
     });
+  };
+
+  /**
+   * Get xAPI data.
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  self.getXAPIData = function () {
+    if (!self.currentEndScreen) {
+      console.error('Called getXAPIData before finished.')
+      return;
+    }
+
+    const xAPIEvent = self.createXAPIEventTemplate('answered');
+
+    // Extend definition
+    const definition = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
+    H5P.jQuery.extend(definition, {
+      interactionType: 'compound',
+      type: 'http://adlnet.gov/expapi/activities/cmi.interaction'
+    });
+    definition.extensions = {
+      'https://h5p.org/x-api/no-question-score': 1
+    };
+
+    const score = self.scoring.getScore(self.currentEndScreen.getScore());
+    const maxScore = self.scoring.getMaxScore();
+    xAPIEvent.setScoredResult(score, maxScore, this, true, score === maxScore);
+
+    return {
+      statement: xAPIEvent.data.statement,
+      children: self.xAPIDataCollector
+    };
   };
 };
 

@@ -4,28 +4,28 @@
       "label": "Branching Scenario Editor",
       "fields": [
         {
-          "label": "Titulua"
+          "label": "Название"
         },
         {
-          "label": "Hasierako pantaila",
+          "label": "Начальный экран",
           "fields": [
             {
-              "label": "Hasierako pantailaren titulua",
+              "label": "Название начального экрана",
               "placeholder": "Title for your course"
             },
             {
-              "label": "Hasierako pantailaren azpititulua",
+              "label": "Подзаголовок начального экрана",
               "placeholder": "Details about the course"
             },
             {
-              "label": "Hasierako pantailaren irudia"
+              "label": "Изображение начального экрана"
             }
           ]
         },
         {
-          "label": "Amaierako pantailen zerrenda",
+          "label": "Список заключительных экранов",
           "field": {
-            "label": "Amaierako pantaila",
+            "label": "Заключительный экран",
             "fields": [
               {
                 "label": "Title"
@@ -47,8 +47,8 @@
           }
         },
         {
-          "label": "Aukerako erantzunen edukien zerrenda",
-          "entity": "edukia",
+          "label": "Список содержимого сценария ветвления",
+          "entity": "контент",
           "field": {
             "fields": [
               {},
