@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor Branching Scenario",
+      "fields": [
+        {
+          "label": "Título"
+        },
+        {
+          "label": "Pantalla inicial",
+          "fields": [
+            {
+              "label": "Título de la pantalla inicial",
+              "placeholder": "Título para tu curso"
+            },
+            {
+              "label": "Subtítulo de la pantalla inicial",
+              "placeholder": "Detalles sobre el curso"
+            },
+            {
+              "label": "Imagen de la pantalla inicial"
+            }
+          ]
+        },
+        {
+          "label": "Lista de pantallas finales",
+          "field": {
+            "label": "Pantalla final",
+            "fields": [
+              {
+                "label": "Título"
+              },
+              {
+                "label": "Texto"
+              },
+              {
+                "label": "Imagen"
+              },
+              {
+                "label": "Puntuación",
+                "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen el escenario final por defecto"
+              },
+              {
+                "label": "Identificador de contenido"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista dle contenido branching scenario",
+          "entity": "content",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Mostrar el título del contenido",
+                "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior"
+              },
+              {
+                "label": "Siguiente identificador de contenido (las pantallas finales se definen con números negativos)"
+              },
+              {
+                "label": "Retroalimentación",
+                "fields": [
+                  {
+                    "label": "Título de la retroalimentación"
+                  },
+                  {
+                    "label": "Texto de retroalimentación"
+                  },
+                  {
+                    "label": "Imagen de retroalimentación"
+                  },
+                  {
+                    "label": "Puntuación de este escenario",
+                    "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen este escenario"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opciones de puntuación",
+          "fields": [
+            {
+              "label": "Opciones de puntuación",
+              "description": "Selecciona el tipo de puntuación",
+              "options": [
+                {
+                  "label": "Establecer la puntuación estáticamente para cada escenario final"
+                },
+                {
+                  "label": "Calcular la puntación dinámicamente según las respuestas de los usuarios"
+                },
+                {
+                  "label": "Sin puntuación"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Localización",
+          "fields": [
+            {
+              "label": "Texto para el botón de la pantalla inicial",
+              "default": "Comienza el curso"
+            },
+            {
+              "label": "Texto para el botón de la pantalla final",
+              "default": "Reinicia el curso"
+            },
+            {
+              "label": "Texto para el botón en cada pantalla de la biblioteca",
+              "default": "Empezar"
+            },
+            {
+              "label": "Etiqueta para la puntuación en la pantalla final",
+              "default": "Tu puntuación:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
