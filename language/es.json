@@ -47,7 +47,7 @@
           }
         },
         {
-          "label": "Lista dle contenido branching scenario",
+          "label": "Lista del contenido branching scenario",
           "entity": "content",
           "field": {
             "fields": [
@@ -113,7 +113,7 @@
             },
             {
               "label": "Texto para el botón en cada pantalla de la biblioteca",
-              "default": "Empezar"
+              "default": "Continuar"
             },
             {
               "label": "Etiqueta para la puntuación en la pantalla final",
