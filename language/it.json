@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor di Branching Scenario",
+      "fields": [
+        {
+          "label": "Titolo"
+        },
+        {
+          "label": "Schermata di inizio",
+          "fields": [
+            {
+              "label": "Titolo della schermata di inizio",
+              "placeholder": "Titolo del corso"
+            },
+            {
+              "label": "Sottotitolo della schermata di inizio",
+              "placeholder": "Dettagli del corso"
+            },
+            {
+              "label": "Immagine della schermata di inizio"
+            }
+          ]
+        },
+        {
+          "label": "Lista delle schermate finali",
+          "field": {
+            "label": "Schermata finale",
+            "fields": [
+              {
+                "label": "Titolo"
+              },
+              {
+                "label": "Testo"
+              },
+              {
+                "label": "Immagine"
+              },
+              {
+                "label": "Punteggio",
+                "description": "Il punteggio sarà inviato a ogni LMS, LRS o a ogni altro servizio collegato che riceva punteggi da H5P per utenti che raggiungano lo scenario finale predefinito"
+              },
+              {
+                "label": "ID del contenuto"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista dei contenuti del branching scenario",
+          "entity": "contenuti",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Mostra il titolo dei contenuti nella visualizzazione",
+                "description": "Se selezionato, l'utente vedrà il titolo del contenuto nella barra sopra questo contenuto"
+              },
+              {
+                "label": "ID del prossimo contenuto (le schermate finali sono definite da numeri negativi)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Titolo del feedback"
+                  },
+                  {
+                    "label": "Testo del feedback"
+                  },
+                  {
+                    "label": "Immagine del feedback"
+                  },
+                  {
+                    "label": "Punteggio per questo scenario",
+                    "description": "Il punteggio sarà inviato a ogni LMS, LRS o a ogni altro servizio collegato che riceva punteggi da H5P per utenti che raggiungano lo scenario finale predefinito"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opzioni di punteggio",
+          "fields": [
+            {
+              "label": "Opzioni di punteggio",
+              "description": "Scegli il tipo di punteggio",
+              "options": [
+                {
+                  "label": "Imposta statisticamente un punteggio per ogni finale di scenario"
+                },
+                {
+                  "label": "Calcola dinamicamente il punteggio in base alle risposte dell'utente"
+                },
+                {
+                  "label": "Nessun punteggio"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Localizzazione",
+          "fields": [
+            {
+              "label": "Testo per il pulsante sulla schermata di inizio",
+              "default": "Inizia il corso"
+            },
+            {
+              "label": "Testo per il pulsante sulla schermata finale",
+              "default": "Riavvia il corso"
+            },
+            {
+              "label": "Testo per il pulsante su ognuna delle schermate della libreria",
+              "default": "Procedi"
+            },
+            {
+              "label": "Etichetta per il punteggio sulla schermata finale",
+              "default": "Il tuo punteggio:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
