@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Vertakkingsscenario editor",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startscherm",
+          "fields": [
+            {
+              "label": "Titel startscherm",
+              "placeholder": "Titel van de cursus"
+            },
+            {
+              "label": "Ondertitel startscherm",
+              "placeholder": "Details over de cursus"
+            },
+            {
+              "label": "Afbeelding startscherm"
+            }
+          ]
+        },
+        {
+          "label": "Lijst van eindschermen",
+          "field": {
+            "label": "Eindscherm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Afbeelding"
+              },
+              {
+                "label": "Score",
+                "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die het standaard eindscenario bereiken."
+              },
+              {
+                "label": "ID van de inhoud"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lijst van de inhoud van de vertakkingsscenario's",
+          "entity": "inhoud",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Toon visueel de titel van de inhoudsopgave",
+                "description": "Indien geselecteerd, ziet de gebruiker de inhoudsopgave in de bovenste balk boven deze inhoud."
+              },
+              {
+                "label": "Volgende ID van de inhoud (eindschermen worden gedefinieerd door negatieve getallen)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback titel"
+                  },
+                  {
+                    "label": "Feedback tekst"
+                  },
+                  {
+                    "label": "Feedback afbeelding"
+                  },
+                  {
+                    "label": "Score voor dit scenario",
+                    "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die dit scenario bereiken."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Score opties",
+          "fields": [
+            {
+              "label": "Score opties",
+              "description": "Selecteer het scoringstype",
+              "options": [
+                {
+                  "label": "Statistisch vastgestelde score voor elk eindscenario"
+                },
+                {
+                  "label": "Dynamisch berekende score op basis van de antwoorden van de gebruikers"
+                },
+                {
+                  "label": "Geen score"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalisatie",
+          "fields": [
+            {
+              "label": "Tekst voor de knop op het startscherm",
+              "default": "Start de cursus"
+            },
+            {
+              "label": "Tekst voor de knop op het eindscherm",
+              "default": "Restart the course"
+            },
+            {
+              "label": "Tekst voor de knop op elk bibliotheekscherm",
+              "default": "Ga verder"
+            },
+            {
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
