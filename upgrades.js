@@ -12,12 +12,10 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {function} finished
        */
       1: function (parameters, finished, extras) {
-        parameters.behaviour = {
-          enableBackButton: false
-        };
+        parameters.branchingScenario.behaviour = false;
 
-        if (parameters.l10n) {
-          parameters.l10n.backButtonText = 'Text for the back button on each of the library screens and branching questions';
+        if (parameters.branchingScenario.l10n) {
+          parameters.branchingScenario.l10n.backButtonText = 'Back';
         }
 
         finished(null, parameters, extras);
