@@ -94,6 +94,11 @@
   box-sizing: border-box;
 }
 
+.h5p-branching-scenario .h5p-previous {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
 .h5p-branching-scenario .h5p-next {
   transform: translateX(100%);
   -webkit-transform: translateX(100%);
@@ -102,6 +107,17 @@
 .h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out {
   animation: slide-out 0.8s forwards;
   -webkit-animation: slide-out 0.8s forwards;
+  position: absolute;
+  top: 3.8em;
+  left: 0;
+  height: calc(100% - 7em);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out-reverse {
+  animation: slide-out-reverse 0.8s forwards;
+  -webkit-animation: slide-out-reverse 0.8s forwards;
   position: absolute;
   top: 3.8em;
   left: 0;
