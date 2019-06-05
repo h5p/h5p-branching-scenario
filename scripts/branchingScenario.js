@@ -357,7 +357,7 @@ H5P.BranchingScenario = function (params, contentId) {
     return H5P.isFullscreen
       || (self.$container
         && self.$container[0].classList.contains('h5p-fullscreen'))
-      ||(self.$container
+      || (self.$container
         && self.$container[0].classList.contains('h5p-semi-fullscreen'));
   };
 
@@ -440,7 +440,7 @@ H5P.BranchingScenario = function (params, contentId) {
    */
   self.getXAPIData = function () {
     if (!self.currentEndScreen) {
-      console.error('Called getXAPIData before finished.')
+      console.error('Called getXAPIData before finished.');
       return;
     }
 
