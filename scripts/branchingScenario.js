@@ -12,6 +12,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.currentHeight;
   self.currentId = -1;
   self.xAPIDataCollector = [];
+  self.userPath = [];
 
   /**
    * Extend an array just like JQuery's extend.
@@ -49,6 +50,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     ],
     scoringOption: 'no-score',
+    behaviour: false,
     l10n: {}
   }, params.branchingScenario); // Account for the wrapper!
 
@@ -57,7 +59,8 @@ H5P.BranchingScenario = function (params, contentId) {
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
-    scoreText: "Your score:"
+    scoreText: "Your score:",
+    backButtonText: "Back"
   }, params.l10n);
 
   // Sanitize the (next)ContentIds that the editor didn't set
@@ -156,6 +159,7 @@ H5P.BranchingScenario = function (params, contentId) {
       self.startScreen.hide();
       self.libraryScreen.show();
       self.triggerXAPI('progressed');
+      self.userPath.push(0);
     }
     self.currentId = 0;
   });
@@ -164,7 +168,20 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle progression
    */
   self.on('navigated', function (e) {
+    if (self.userPath.length - e.data.reverse < 2) {
+      self.disableBackButton();
+    }
+    else {
+      self.enableBackButton();
+    }
+
+    if (e.data.reverse) {
+      self.userPath.pop();
+      e.data.nextContentId = self.userPath.pop() || 0;
+    }
+
     const id = parseInt(e.data.nextContentId);
+    self.userPath.push(id);
     const nextLibrary = self.getLibrary(id);
     let resizeScreen = true;
 
@@ -285,6 +302,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
     self.startScreen.show();
     self.currentId = -1;
+    self.userPath = [];
 
     // Reset the library screen
     if (self.libraryScreen) {
@@ -392,6 +410,28 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.$container[0].classList.add('h5p-mobile-screen');
     }
+  };
+
+  /**
+   * Disable back button.
+   */
+  self.disableBackButton = function () {
+    if (!self.libraryScreen.backButton) {
+      return;
+    }
+    self.libraryScreen.backButton.classList.add('h5p-disabled');
+    self.libraryScreen.backButton.setAttribute('disabled', true);
+  };
+
+  /**
+   * Enable back button.
+   */
+  self.enableBackButton = function () {
+    if (!self.libraryScreen.backButton) {
+      return;
+    }
+    self.libraryScreen.backButton.classList.remove('h5p-disabled');
+    self.libraryScreen.backButton.removeAttribute('disabled');
   };
 
   /**

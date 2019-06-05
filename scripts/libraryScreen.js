@@ -71,6 +71,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * @return {HTMLElement} Wrapping div
    */
   LibraryScreen.prototype.createWrapper = function (courseTitle, libraryTitle, showLibraryTitle) {
+    const self = this;
+    const parent = this.parent;
     const wrapper = document.createElement('div');
 
     const titleDiv = document.createElement('div');
@@ -105,11 +107,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
+
+    // Append back button if enabled in settings
+    if (parent.params.behaviour === true) {
+      this.backButton = this.createBackButton(parent.params.l10n.backButtonText);
+      buttonWrapper.appendChild(this.backButton);
+    }
+
+    // Proceed button
     const navButton = document.createElement('button');
     navButton.classList.add('transition');
 
-    const self = this;
-    const parent = this.parent;
     navButton.onclick = function () {
       // Stop impatient users from breaking the view
       if (parent.navigating === false) {
@@ -217,6 +225,42 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     });
 
     return wrapper;
+  };
+
+  /**
+   * Append back button.
+   * @param {string} label Button label.
+   * @return {HTMLElement} Back button.
+   */
+  LibraryScreen.prototype.createBackButton = function (label) {
+    const self = this;
+
+    const backButton = document.createElement('button');
+    backButton.classList.add('transition');
+    backButton.classList.add('h5p-back-button');
+
+    // No need to enable if first node is Branching Question
+    if (this.parent.params.content.length > 0 && this.parent.params.content[0].type.library !== 'H5P.BranchingQuestion') {
+      backButton.classList.add('h5p-disabled');
+      backButton.setAttribute('disabled', true);
+    }
+
+    // Navigation
+    backButton.addEventListener('click', () => {
+      // Stop impatient users from breaking the view
+      if (self.parent.navigating === true) {
+        return;
+      }
+
+      self.parent.trigger('navigated', {
+        reverse: true
+      });
+      self.parent.navigating = true;
+    });
+
+    backButton.appendChild(document.createTextNode(label));
+
+    return backButton;
   };
 
   LibraryScreen.prototype.createFeedbackScreen = function (feedback, nextContentId) {

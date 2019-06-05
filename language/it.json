@@ -101,6 +101,15 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Enable backwards navigation",
+              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+            }
+          ]
+        },
+        {
           "label": "Localizzazione",
           "fields": [
             {
@@ -110,6 +119,10 @@
             {
               "label": "Testo per il pulsante sulla schermata finale",
               "default": "Riavvia il corso"
+            },
+            {
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
             },
             {
               "label": "Testo per il pulsante su ognuna delle schermate della libreria",

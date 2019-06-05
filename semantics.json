@@ -205,6 +205,22 @@
         ]
       },
       {
+        "name": "behaviour",
+        "type": "group",
+        "label": "Behavioural settings",
+        "importance": "low",
+        "fields": [
+          {
+            "name": "enableBackwardsNavigation",
+            "type": "boolean",
+            "label": "Enable backwards navigation",
+            "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions.",
+            "optional": "true",
+            "default": false
+          }
+        ]
+      },
+      {
         "name": "l10n",
         "type": "group",
         "label": "Localization",
@@ -224,6 +240,13 @@
             "type": "text",
             "importance": "low",
             "default": "Restart the course"
+          },
+          {
+            "name": "backButtonText",
+            "label": "Text for the back button on each of the library screens and branching questions",
+            "type": "text",
+            "importance": "low",
+            "default": "Back"
           },
           {
             "name": "proceedButtonText",

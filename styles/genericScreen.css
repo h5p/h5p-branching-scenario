@@ -127,6 +127,7 @@
 
 .h5p-branching-scenario .h5p-start-button,
 .h5p-end-button,
+.h5p-back-button,
 .h5p-nav-button {
   margin: 3rem 1rem 0rem 1rem;
   border-style: solid;
@@ -145,12 +146,14 @@
   padding: 0.9rem 1.5rem;
 }
 
+.h5p-branching-scenario .h5p-back-button,
 .h5p-branching-scenario .h5p-nav-button {
   padding: 0.6rem 1.5rem;
 }
 
 .h5p-branching-scenario .h5p-start-button:hover,
 .h5p-end-button:hover,
+.h5p-back-button:not(.h5p-disabled):hover,
 .h5p-nav-button:hover {
   border-color: #b0f88f;
   color: #4b4c60;
@@ -159,10 +162,16 @@
 
 .h5p-branching-scenario .h5p-start-button:active,
 .h5p-end-button:active,
+.h5p-back-button:not(.h5p-disabled):active,
 .h5p-nav-button:active {
   border-color: #9fe281;
   color: #4b4c60;
   background: #9fe281;
+}
+
+.h5p-back-button.h5p-disabled {
+  opacity: 0.2;
+  cursor: unset;
 }
 
 .h5p-branching-scenario .h5p-start-button:after {
@@ -218,6 +227,7 @@
 }
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-start-button,
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-end-button,
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-back-button,
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-nav-button {
   font-size: 1rem;
   margin: 0.5rem 1rem 0rem 1rem;
@@ -229,14 +239,17 @@
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-header .h5p-title-wrapper h1 {
   font-size: 1.15rem;
 }
+.h5p-branching-scenario.h5p-phone-size .h5p-back-button:before,
 .h5p-branching-scenario.h5p-phone-size .h5p-nav-button:after {
   font-size: 1.5rem;
 }
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-back-button,
 .h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button {
   border-radius: 2rem;
   padding: 0.6rem 1rem;
   font-size: 0;
 }
+.h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-back-button:before,
 .h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button:after {
   padding-left: 0;
 }

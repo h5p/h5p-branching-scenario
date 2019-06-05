@@ -38,6 +38,12 @@
   overflow: hidden;
 }
 
+.h5p-branching-scenario .h5p-screen-header .h5p-back-button:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f100";
+  padding-right: 10px;
+}
+
 .h5p-branching-scenario .h5p-screen-header .h5p-nav-button:after {
   font-family: 'H5PFontAwesome4';
   content: "\f101";
@@ -46,10 +52,11 @@
 
 .h5p-branching-scenario .h5p-nav-button-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 }
 
+.h5p-branching-scenario .h5p-back-button,
 .h5p-branching-scenario .h5p-nav-button {
   margin-right: 20px;
   margin-left: 0;
