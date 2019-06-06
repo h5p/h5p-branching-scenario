@@ -168,19 +168,24 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle progression
    */
   self.on('navigated', function (e) {
-    if (self.userPath.length - e.data.reverse < 2) {
+
+    // Disable back button if no node to go back to
+    if (self.userPath.length - Number(e.data.reverse || 0) < 2) {
       self.disableBackButton();
     }
     else {
       self.enableBackButton();
     }
 
+    // Trace back user steps
     if (e.data.reverse) {
       self.userPath.pop();
       e.data.nextContentId = self.userPath.pop() || 0;
     }
 
     const id = parseInt(e.data.nextContentId);
+
+    // Keep track of user steps
     self.userPath.push(id);
     const nextLibrary = self.getLibrary(id);
     let resizeScreen = true;

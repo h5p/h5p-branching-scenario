@@ -744,7 +744,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.libraryFeedback = library.feedback;
 
     // Show normal h5p library
-    if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+    if (!LibraryScreen.isBranching(library)) {
       // Update the title
       const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
       this.libraryTitle.setAttribute('aria-label', contentTitle ? contentTitle : 'Untitled Content');
@@ -778,7 +778,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.showBackgroundToReadspeaker();
       }
 
-
       // Initialize library if necessary
       if (!this.nextLibraries[library.contentId]) {
         this.createNextLibrary(library);
@@ -790,6 +789,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.wrapper.appendChild(libraryWrapper);
       }
 
+      // Move next library left of current library if sliding backwards
       if (reverse) {
         libraryWrapper.classList.remove('h5p-next');
         libraryWrapper.classList.add('h5p-previous');
