@@ -661,6 +661,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       self.wrapper.classList.add('h5p-next-screen');
       self.wrapper.classList.remove('h5p-slide-out');
       self.wrapper.classList.remove('h5p-slide-out-reverse');
+      self.wrapper.classList.remove('h5p-slide-pseudo');
       setTimeout(() => {
         if (self.wrapper.parentNode !== null) {
           self.wrapper.parentNode.removeChild(self.wrapper);
