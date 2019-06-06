@@ -749,11 +749,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.libraryTitle.setAttribute('aria-label', contentTitle ? contentTitle : 'Untitled Content');
       this.libraryTitle.innerHTML = (library.showContentTitle && contentTitle ? contentTitle : '&nbsp;');
 
-      // Slide out the current library
-      if (reverse) {
+      if (this.currentLibraryId === library.contentId) {
+        // Target slide is already being displayed
+        this.currentLibraryWrapper.classList.add('h5p-slide-pseudo');
+      }
+      else if (reverse) {
+        // Slide out the current library in reverse direction
         this.currentLibraryWrapper.classList.add('h5p-slide-out-reverse');
       }
       else {
+        // Slide out the current library
         this.currentLibraryWrapper.classList.add('h5p-slide-out');
       }
 

@@ -104,6 +104,11 @@
   -webkit-transform: translateX(100%);
 }
 
+.h5p-branching-scenario .h5p-library-wrapper.h5p-slide-pseudo {
+  animation: slide-pseudo 0s forwards;
+  -webkit-animation: slide-pseudo 0s forwards;
+}
+
 .h5p-branching-scenario .h5p-library-wrapper.h5p-slide-out {
   animation: slide-out 0.8s forwards;
   -webkit-animation: slide-out 0.8s forwards;

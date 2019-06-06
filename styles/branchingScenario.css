@@ -33,6 +33,16 @@
   font-weight: normal;
 }
 
+@keyframes slide-pseudo {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-out {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(0%); }
+}
+
 @keyframes slide-out {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
