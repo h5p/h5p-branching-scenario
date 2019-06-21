@@ -170,11 +170,11 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function (e) {
 
     // Disable back button if no node to go back to
-    if (self.userPath.length - Number(e.data.reverse || 0) < 2) {
-      self.disableBackButton();
+    if (self.userPath.length - 2 * Number(e.data.reverse || 0) > 0) {
+      self.enableBackButton();
     }
     else {
-      self.enableBackButton();
+      self.disableBackButton();
     }
 
     // Trace back user steps
