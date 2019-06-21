@@ -205,6 +205,22 @@
         ]
       },
       {
+        "name": "behaviour",
+        "type": "group",
+        "label": "Behavioural settings",
+        "importance": "low",
+        "fields": [
+          {
+            "name": "requiresFinishing",
+            "type": "boolean",
+            "label": "Require content finished",
+            "description": "This option determines if the \"Proceed\" button should only be enabled once the content has been finished",
+            "optional": "true",
+            "default": false
+          }
+        ]
+      },
+      {
         "name": "l10n",
         "type": "group",
         "label": "Localization",

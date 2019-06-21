@@ -22,6 +22,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.libraryFeedback = library.feedback;
     this.nextLibraries = {};
     this.libraryInstances = {};
+    this.libraryFinishingRequirements = [];
     this.libraryTitle;
     this.branchingQuestions = [];
     this.navButton;
@@ -352,6 +353,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         parent: this.parent,
       }
     );
+
+    if (this.parent.params.behaviour === true) {
+      this.libraryFinishingRequirements[id] = this.requiresFinishing(instance, content.library.split(' ')[0]);
+      this.addFinishedListeners(instance, content.library.split(' ')[0]);
+    }
+
     instance.setActivityStarted();
 
     // Proceed to Branching Question automatically after video has ended
@@ -374,6 +381,114 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Remove any fullscreen buttons
     this.disableFullscreen(instance);
+  };
+
+  /**
+   * Check whether instance needs to be finished by user.
+   * @param {object} instance Instance of the content type.
+   * @param {string} library Library that's active on screen (H5P.Foo).
+   */
+  LibraryScreen.prototype.requiresFinishing = function (instance, library) {
+    let requiresFinishing = false;
+
+    if (instance) {
+      requiresFinishing = requiresFinishing || (instance.getScore && typeof instance.getScore === 'function');
+    }
+
+    /*
+     * Some libraries need to tuned explicitly because there's no way to
+     * detect whether they are a "finishable" content type
+     */
+    if (library) {
+      requiresFinishing = requiresFinishing || (library === 'H5P.Audio' || library === 'H5P.Video');
+    }
+
+    // Exceptions
+    if (
+      library === 'H5P.CoursePresentation' &&
+      instance &&
+      (instance.children.length + (instance.isTask ? 1 : 0) === 1) ||
+      instance.activeSurface === true
+    ) {
+      requiresFinishing = false;
+    }
+
+    return requiresFinishing;
+  };
+
+  /**
+   * Add listeners for screen finished.
+   * Will require to handle some content types explicitly.
+   * @param {object} instance Instance of the content type.
+   * @param {string} library Library that's active on screen (H5P.Foo).
+   */
+  LibraryScreen.prototype.addFinishedListeners = function (instance, library) {
+    const that = this;
+
+    if (typeof library !== 'string' || !instance) {
+      return;
+    }
+
+    switch (library) {
+      case 'H5P.CoursePresentation':
+        // Permit progression when final slide has been reached
+        instance.on('xAPI', (event) => {
+          if (event.data.statement.verb.display['en-US'] === 'progressed') {
+            const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
+            if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
+              that.parent.enableNavButton();
+            }
+          }
+        });
+        break;
+
+      case 'H5P.InteractiveVideo':
+        if (instance.isTask) {
+          // Permit progression when results have been submitted or video ended if no tasks
+          instance.on('xAPI', (event) => {
+            if (event.data.statement.verb.display['en-US'] === 'completed') {
+              that.parent.enableNavButton();
+            }
+          });
+        }
+        else {
+          instance.video.on('stateChange', function (event) {
+            if (event.data === H5P.Video.ENDED) {
+              that.parent.enableNavButton();
+            }
+          });
+        }
+        break;
+
+      // Permit progression when video ended
+      case 'H5P.Video':
+        instance.on('stateChange', function (event) {
+          if (event.data === H5P.Video.ENDED) {
+            that.parent.enableNavButton();
+          }
+        });
+        break;
+
+      // Permit progression when audio ended
+      case 'H5P.Audio':
+        instance.audio.on('ended', function () {
+          that.parent.enableNavButton();
+        });
+        break;
+
+      // Permit progression when xAPI sends "answered" or "completed"
+      default:
+        if (typeof instance.getAnswerGiven === 'function') {
+          instance.on('xAPI', (event) => {
+            if (
+              event.data.statement.verb.display['en-US'] === 'answered' ||
+              event.data.statement.verb.display['en-US'] === 'completed'
+            ) {
+              that.parent.enableNavButton();
+            }
+          });
+        }
+    }
   };
 
   /**
@@ -560,6 +675,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    */
   LibraryScreen.prototype.show = function () {
     const self = this;
+
+    if (self.parent.params.behaviour === true && self.libraryFinishingRequirements[self.currentLibraryId] === true) {
+      self.parent.disableNavButton();
+    }
+
     self.isShowing = true;
     self.wrapper.classList.add('h5p-slide-in');
     self.wrapper.classList.remove('h5p-branching-hidden');
@@ -739,6 +859,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       this.currentLibraryId = library.contentId;
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
+
+      if (this.parent.params.behaviour === true && this.libraryFinishingRequirements[library.contentId] === true) {
+        this.parent.disableNavButton();
+      }
+      else {
+        this.parent.enableNavButton();
+      }
+
       if (this.currentLibraryInstance.resize) {
         this.currentLibraryInstance.resize();
       }
@@ -761,6 +889,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }));
     }
     else { // Show a branching question
+      if (this.parent.params.behaviour === true) {
+        this.parent.disableNavButton();
+      }
 
       // Remove existing branching questions
       this.branchingQuestions.forEach(bq => {

@@ -101,6 +101,15 @@
           ]
         },
         {
+          "label": "Interaktionseinstellungen",
+          "fields": [
+            {
+              "label": "Inhalt muss abgeschlossen werden",
+              "description": "Diese Option legt fest, ob der \"Weiter\"-Knopf nur aktiviert wird, sobald der Inhalt abgeschlossen wurde"
+            }
+          ]
+        },
+        {
           "label": "Bezeichnungen und Beschriftungen",
           "fields": [
             {

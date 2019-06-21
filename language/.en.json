@@ -101,6 +101,15 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Require content finished",
+              "description": "This option determines if the \"Proceed\" button should only be enabled once the content has been finished"
+            }
+          ]
+        },
+        {
           "label": "Localization",
           "fields": [
             {

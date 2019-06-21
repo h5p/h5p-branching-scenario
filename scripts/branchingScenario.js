@@ -49,7 +49,8 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     ],
     scoringOption: 'no-score',
-    l10n: {}
+    l10n: {},
+    behaviour: false
   }, params.branchingScenario); // Account for the wrapper!
 
   // Set default localization
@@ -359,6 +360,28 @@ H5P.BranchingScenario = function (params, contentId) {
         && self.$container[0].classList.contains('h5p-fullscreen'))
       ||(self.$container
         && self.$container[0].classList.contains('h5p-semi-fullscreen'));
+  };
+
+  /**
+   * Disable proceed button.
+   */
+  self.disableNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.add('h5p-disabled');
+    self.libraryScreen.navButton.setAttribute('disabled', true);
+  };
+
+  /**
+   * Enable proceed button.
+   */
+  self.enableNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.remove('h5p-disabled');
+    self.libraryScreen.navButton.removeAttribute('disabled');
   };
 
   /**
