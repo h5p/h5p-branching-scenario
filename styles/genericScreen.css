@@ -252,6 +252,7 @@
 .h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-back-button:before,
 .h5p-branching-scenario.h5p-phone-size .h5p-screen-header .h5p-nav-button:after {
   padding-left: 0;
+  padding-right: 0;
 }
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-screen-header .h5p-title-wrapper {
   margin-left: 10px;
