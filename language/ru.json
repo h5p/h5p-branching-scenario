@@ -101,7 +101,7 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Настройки поведения",
           "fields": [
             {
               "label": "Enable backwards navigation",

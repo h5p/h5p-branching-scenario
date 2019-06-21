@@ -101,7 +101,7 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Impostazioni esecuzione",
           "fields": [
             {
               "label": "Enable backwards navigation",
