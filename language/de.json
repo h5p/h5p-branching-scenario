@@ -104,8 +104,8 @@
           "label": "Interaktionseinstellungen",
           "fields": [
             {
-              "label": "Enable backwards navigation",
-              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+              "label": "Rückwärtsnavigation erlauben",
+              "description": "Diese Option legt fest, ob der \"Zurück\"-Button für alle Inhaltsbildschirme und Verzweigungen angezeigt wird oder nicht."
             }
           ]
         },
@@ -121,8 +121,8 @@
               "default": "Kurs neu starten"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
+              "label": "Text des \"Zurück\"-Buttons auf jedem Inhaltsbildschirm und jeder Verzweigung",
+              "default": "Zurück"
             },
             {
               "label": "Text des Buttons auf jedem Inhaltsbildschirm",
