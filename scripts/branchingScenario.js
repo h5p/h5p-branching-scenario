@@ -421,7 +421,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * Disable back button.
    */
   self.disableBackButton = function () {
-    if (!self.libraryScreen.backButton) {
+    if (!self.libraryScreen || !self.libraryScreen.backButton) {
       return;
     }
     self.libraryScreen.backButton.classList.add('h5p-disabled');
@@ -432,7 +432,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * Enable back button.
    */
   self.enableBackButton = function () {
-    if (!self.libraryScreen.backButton) {
+    if (!self.libraryScreen || !self.libraryScreen.backButton) {
       return;
     }
     self.libraryScreen.backButton.classList.remove('h5p-disabled');
