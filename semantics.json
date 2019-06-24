@@ -171,6 +171,20 @@
                   "optional": true
                 }
               ]
+            },
+            {
+              "name": "contentBehaviour",
+              "type": "group",
+              "label": "Behavioural settings",
+              "fields": [
+                {
+                  "name": "requiresFinishing",
+                  "type": "boolean",
+                  "label": "Require content to be finished to proceed",
+                  "optional": true,
+                  "default": false
+                }
+              ]
             }
           ]
         }
@@ -211,12 +225,26 @@
         "importance": "low",
         "fields": [
           {
-            "name": "requiresFinishing",
-            "type": "boolean",
-            "label": "Require content finished",
-            "description": "This option determines if the \"Proceed\" button should only be enabled once the content has been finished",
+            "name": "overrideFinishing",
+            "type": "select",
+            "label": "Override require content finished",
+            "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button",
             "optional": "true",
-            "default": false
+            "options": [
+              {
+                "value": "individual",
+                "label": "Use individual content settings"
+              },
+              {
+                "value": "requireFinished",
+                "label": "Require all contents to be finished"
+              },
+              {
+                "value": "ignoreFinished",
+                "label": "Require no content to be finished"
+              }
+            ],
+            "default": "individual"
           }
         ]
       },

@@ -12,7 +12,23 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {function} finished
        */
       1: function (parameters, finished, extras) {
-        parameters.branchingScenario.behaviour = false;
+        // Sanitization
+        parameters.branchingScenario = parameters.branchingScenario || {};
+        parameters.branchingScenario.content = parameters.branchingScenario.content || [];
+
+        // Individual require finished override value
+        parameters.branchingScenario.content.forEach( function (contentNode) {
+          // No setting required for Branching Question
+          if (!contentNode.type || !contentNode.type.library || contentNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+            return;
+          }
+
+          // Mind the one-item behavior of semantics groups
+          contentNode.contentBehaviour = false;
+        });
+
+        // Global require finished override select default value, mind the one-item behavior of semantics groups
+        parameters.branchingScenario.behaviour = 'individual';
 
         finished(null, parameters, extras);
       }

@@ -76,6 +76,14 @@
                     "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas selle stsenaariumini jõudnud kasutajate tulemusi"
                   }
                 ]
+              },
+              {
+                "label": "Käitumisseaded",
+                "fields": [
+                  {
+                    "label": "Require content to be finished to proceed"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +112,19 @@
           "label": "Käitumisseaded",
           "fields": [
             {
-              "label": "Require content finished",
-              "description": "This option determines if the \"Proceed\" button should only be enabled once the content has been finished"
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Require all contents to be finished"
+                },
+                {
+                  "label": "Require no content to be finished"
+                }
+              ]
             }
           ]
         },

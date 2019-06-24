@@ -354,7 +354,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     );
 
-    if (this.parent.params.behaviour === true) {
+    // Using "contentBehaviour" instead of just "behaviour" because H5PEditor.findSemanticsField returns first value found for TabViewSettings
+    if (
+      this.parent.params.behaviour === 'requireFinished' ||
+      this.parent.params.behaviour === 'individual' &&
+      this.parent.params.content[id].contentBehaviour === true
+    ) {
       this.libraryFinishingRequirements[id] = this.requiresFinishing(instance, content.library.split(' ')[0]);
       this.addFinishedListeners(instance, content.library.split(' ')[0]);
     }
@@ -676,7 +681,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.show = function () {
     const self = this;
 
-    if (self.parent.params.behaviour === true && self.libraryFinishingRequirements[self.currentLibraryId] === true) {
+    if (self.libraryFinishingRequirements[self.currentLibraryId] === true) {
       self.parent.disableNavButton();
     }
 
@@ -860,7 +865,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.currentLibraryId = library.contentId;
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
 
-      if (this.parent.params.behaviour === true && this.libraryFinishingRequirements[library.contentId] === true) {
+      if (this.libraryFinishingRequirements[library.contentId] === true) {
         this.parent.disableNavButton();
       }
       else {
