@@ -13,6 +13,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.currentId = -1;
   self.xAPIDataCollector = [];
   self.userPath = [];
+  self.backwardsAllowedFlags = [];
 
   /**
    * Extend an array just like JQuery's extend.
@@ -50,7 +51,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     ],
     scoringOption: 'no-score',
-    behaviour: false,
+    behaviour: 'individual',
     l10n: {}
   }, params.branchingScenario); // Account for the wrapper!
 
@@ -69,6 +70,15 @@ H5P.BranchingScenario = function (params, contentId) {
     if (item.nextContentId === undefined) {
       item.nextContentId = -1;
     }
+  });
+
+  // Compute pattern for enabling/disabling back button
+  self.backwardsAllowedFlags = params.content.map( content => {
+    if (params.behaviour === 'individual') {
+      return content.contentBehaviour || false;
+    }
+
+    return params.behaviour === 'allBackwards';
   });
 
   self.params = params;
@@ -168,15 +178,6 @@ H5P.BranchingScenario = function (params, contentId) {
    * Handle progression
    */
   self.on('navigated', function (e) {
-
-    // Disable back button if no node to go back to
-    if (self.userPath.length - 2 * Number(e.data.reverse || 0) > 0) {
-      self.enableBackButton();
-    }
-    else {
-      self.disableBackButton();
-    }
-
     // Trace back user steps
     if (e.data.reverse) {
       self.userPath.pop();
@@ -187,6 +188,15 @@ H5P.BranchingScenario = function (params, contentId) {
 
     // Keep track of user steps
     self.userPath.push(id);
+
+    // Disable back button if no node to go back to or not allowed
+    if (self.canEnableBackButton(id) === false || self.userPath.length === 1) {
+      self.disableBackButton();
+    }
+    else {
+      self.enableBackButton();
+    }
+
     const nextLibrary = self.getLibrary(id);
     let resizeScreen = true;
 
@@ -437,6 +447,31 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.libraryScreen.backButton.classList.remove('h5p-disabled');
     self.libraryScreen.backButton.removeAttribute('disabled');
+  };
+
+  /**
+   * Get user path.
+   * @return {object[]} User path.
+   */
+  self.getUserPath = function () {
+    return self.userPath;
+  };
+
+  /**
+   * Check if a node is allowed to have the back button enabled.
+   * @param {number} id Id of node to check.
+   * @return {boolean} True if node is allowed to have the back button enabled, else false.
+   */
+  self.canEnableBackButton = function (id) {
+    if (typeof id !== 'number') {
+      return false;
+    }
+
+    if (id < 0 || id > self.backwardsAllowedFlags.length - 1) {
+      return false;
+    }
+
+    return self.backwardsAllowedFlags[id];
   };
 
   /**

@@ -76,6 +76,15 @@
                     "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen este escenario"
                   }
                 ]
+              },
+              {
+                "label": "Ajustes de comportamiento",
+                "fields": [
+                  {
+                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                    "label": "Enable backwards navigation"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +113,19 @@
           "label": "Ajustes de comportamiento",
           "fields": [
             {
-              "label": "Enable backwards navigation",
-              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Enable backwards navigation for all contents"
+                },
+                {
+                  "label": "Disable backwards navigation for all contents"
+                }
+              ]
             }
           ]
         },

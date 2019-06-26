@@ -76,6 +76,15 @@
                     "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
                   }
                 ]
+              },
+              {
+                "label": "Options générales",
+                "fields": [
+                  {
+                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                    "label": "Enable backwards navigation"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +113,19 @@
           "label": "Options générales",
           "fields": [
             {
-              "label": "Enable backwards navigation",
-              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Enable backwards navigation for all contents"
+                },
+                {
+                  "label": "Disable backwards navigation for all contents"
+                }
+              ]
             }
           ]
         },

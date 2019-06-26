@@ -76,6 +76,15 @@
                     "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
                   }
                 ]
+              },
+              {
+                "label": "Interaktionseinstellungen",
+                "fields": [
+                  {
+                    "description": "Diese Option legt fest, ob der \"Zurück\"-Button für diesen Inhalt aktiviert wird.",
+                    "label": "Erlaube Rückwärtsnavigation"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +113,19 @@
           "label": "Interaktionseinstellungen",
           "fields": [
             {
-              "label": "Rückwärtsnavigation erlauben",
-              "description": "Diese Option legt fest, ob der \"Zurück\"-Button für alle Inhaltsbildschirme und Verzweigungen angezeigt wird oder nicht."
+              "label": "Überschreiben der Optionen zur Rückwärtsnavigation",
+              "description": "Überschreibt die individuellen Einstellungen zur Ermöglichung der Rückwärtsnavigation",
+              "options": [
+                {
+                  "label": "Nutze die individuellen Einstellungen des Inhalts"
+                },
+                {
+                  "label": "Erlaube Rückwärtsnavigation für alle Inhalte"
+                },
+                {
+                  "label": "Verbiete Rückwärtsnavigation für alle Inhalte"
+                }
+              ]
             }
           ]
         },

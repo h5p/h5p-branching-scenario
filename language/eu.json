@@ -76,6 +76,15 @@
                     "description": "Eskenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
                   }
                 ]
+              },
+              {
+                "label": "Portaera-ezarpenak",
+                "fields": [
+                  {
+                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                    "label": "Enable backwards navigation"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +113,19 @@
           "label": "Portaera-ezarpenak",
           "fields": [
             {
-              "label": "Enable backwards navigation",
-              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Enable backwards navigation for all contents"
+                },
+                {
+                  "label": "Disable backwards navigation for all contents"
+                }
+              ]
             }
           ]
         },

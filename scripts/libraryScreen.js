@@ -108,8 +108,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
 
-    // Append back button if enabled in settings
-    if (parent.params.behaviour === true) {
+    // Append back button if at least one node has it enabled
+    if (parent.backwardsAllowedFlags.indexOf(true) !== -1) {
       this.backButton = this.createBackButton(parent.params.l10n.backButtonText);
       buttonWrapper.appendChild(this.backButton);
     }

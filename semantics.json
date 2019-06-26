@@ -171,6 +171,21 @@
                   "optional": true
                 }
               ]
+            },
+            {
+              "name": "contentBehaviour",
+              "type": "group",
+              "label": "Behavioural settings",
+              "fields": [
+                {
+                  "name": "enableBackwardsNavigation",
+                  "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                  "type": "boolean",
+                  "label": "Enable backwards navigation",
+                  "optional": true,
+                  "default": false
+                }
+              ]
             }
           ]
         }
@@ -211,12 +226,26 @@
         "importance": "low",
         "fields": [
           {
-            "name": "enableBackwardsNavigation",
-            "type": "boolean",
-            "label": "Enable backwards navigation",
-            "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions.",
+            "name": "overrideBackwardsNavigation",
+            "type": "select",
+            "label": "Override backwards navigation",
+            "description": "Override the individual settings for enabling backwards navigation",
             "optional": "true",
-            "default": false
+            "options": [
+              {
+                "value": "individual",
+                "label": "Use individual content settings"
+              },
+              {
+                "value": "allBackwards",
+                "label": "Enable backwards navigation for all contents"
+              },
+              {
+                "value": "noneBackwards",
+                "label": "Disable backwards navigation for all contents"
+              }
+            ],
+            "default": "individual"
           }
         ]
       },

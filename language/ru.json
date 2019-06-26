@@ -76,6 +76,15 @@
                     "description": "Оценка будет отправлена в любую LMS, LRS или любую другую подключенную службу, которая получает оценки от H5P для пользователей, которые достигли этого сценария."
                   }
                 ]
+              },
+              {
+                "label": "Настройки поведения",
+                "fields": [
+                  {
+                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                    "label": "Enable backwards navigation"
+                  }
+                ]
               }
             ]
           }
@@ -104,8 +113,19 @@
           "label": "Настройки поведения",
           "fields": [
             {
-              "label": "Enable backwards navigation",
-              "description": "This option determines if the \"Back\" button will be shown for all contents and branching questions."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Enable backwards navigation for all contents"
+                },
+                {
+                  "label": "Disable backwards navigation for all contents"
+                }
+              ]
             }
           ]
         },

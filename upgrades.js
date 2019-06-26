@@ -12,7 +12,18 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {function} finished
        */
       1: function (parameters, finished, extras) {
-        parameters.branchingScenario.behaviour = false;
+        // Sanitization
+        parameters.branchingScenario = parameters.branchingScenario || {};
+        parameters.branchingScenario.content = parameters.branchingScenario.content || [];
+
+        // Individual require finished override value
+        parameters.branchingScenario.content.forEach( function (contentNode) {
+          // Mind the one-item behavior of semantics groups
+          contentNode.contentBehaviour = false;
+        });
+
+        // Global backwards navigation default value, mind the one-item behavior of semantics groups
+        parameters.branchingScenario.behaviour = 'individual';
 
         if (parameters.branchingScenario.l10n) {
           parameters.branchingScenario.l10n.backButtonText = 'Back';
