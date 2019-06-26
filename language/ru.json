@@ -81,7 +81,8 @@
                 "label": "Настройки поведения",
                 "fields": [
                   {
-                    "label": "Require content to be finished to proceed"
+                    "label": "Require content to be finished to proceed",
+                    "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
                   }
                 ]
               }
@@ -113,7 +114,7 @@
           "fields": [
             {
               "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
               "options": [
                 {
                   "label": "Use individual content settings"
