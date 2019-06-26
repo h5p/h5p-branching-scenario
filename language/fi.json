@@ -1,79 +1,79 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Haarautuvaskenaario",
       "fields": [
         {
-          "label": "Title"
+          "label": "Otsikko"
         },
         {
-          "label": "Start screen",
+          "label": "Aloitusruutu",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Aloitusruudun otsikko",
+              "placeholder": "Kurssisi otsikko"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Aloitusruudun teksti ",
+              "placeholder": "Kurssin kuvaus"
             },
             {
-              "label": "Start screen image"
+              "label": "Aloitusruudun kuva"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Lista haaranpäätteistä",
           "field": {
-            "label": "End screen",
+            "label": "Haaranpääte",
             "fields": [
               {
-                "label": "Title"
+                "label": "otsikko"
               },
               {
-                "label": "Text"
+                "label": "teksti"
               },
               {
-                "label": "Image"
+                "label": "kuva"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Pisteet",
+                "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) Pisteet lähetetään silloin kun käyttäjä saavuttaa haaranpäätteen."
               },
               {
-                "label": "Content ID"
+                "label": "Aineiston ID"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "Lista Haarautuvan skenaarion sisällöstä",
+          "entity": "sisältö",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Näytä sisältö-otsikko",
+                "description": "Jos valittuna käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella."
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "Seuraava sisältö-ID (haaranpäätteet määritetään negatiivisilla numeroilla)"
               },
               {
-                "label": "Feedback",
+                "label": "Palaute",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Palautteen otsikko"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Palautteen teksti"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Palautteen kuva"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Tämän skenaarion pisteet",
+                    "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille jotka saavuttavat tämän haarakohdan"
                   }
                 ]
               }
@@ -81,43 +81,43 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Pisteytyksen asetukset",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Pisteytyksen asetukset",
+              "description": "Valitse pisteytystyyppi",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Määritän itse haaranpäätteiden pisteytyksen"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Automaattinenpisteytys käyttäjän vastausten perusteella"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Ei pisteytystä"
                 }
               ]
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lokalisaatio",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "label": "Aloitusruudun painikkeen teksti",
+              "default": "Aloita kurssi"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "label": "Lopetusruudun painikkeen teksti",
+              "default": "Aloita uudelleen alusta."
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
+              "label": "Painikeen, jolla jatketaan aineistotyypistä toiseen, teksti",
+              "default": "Jatka"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Haaranpäätteen teksti pisteytykselle",
+              "default": "Pisteesi:"
             }
           ]
         }
