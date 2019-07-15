@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Haarautuvaskenaario",
+      "fields": [
+        {
+          "label": "Otsikko"
+        },
+        {
+          "label": "Aloitusruutu",
+          "fields": [
+            {
+              "label": "Aloitusruudun otsikko",
+              "placeholder": "Kurssisi otsikko"
+            },
+            {
+              "label": "Aloitusruudun teksti ",
+              "placeholder": "Kurssin kuvaus"
+            },
+            {
+              "label": "Aloitusruudun kuva"
+            }
+          ]
+        },
+        {
+          "label": "Lista haaranpäätteistä",
+          "field": {
+            "label": "Haaranpääte",
+            "fields": [
+              {
+                "label": "otsikko"
+              },
+              {
+                "label": "teksti"
+              },
+              {
+                "label": "kuva"
+              },
+              {
+                "label": "Pisteet",
+                "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) Pisteet lähetetään silloin kun käyttäjä saavuttaa haaranpäätteen."
+              },
+              {
+                "label": "Aineiston ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista Haarautuvan skenaarion sisällöstä",
+          "entity": "sisältö",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Näytä sisältö-otsikko",
+                "description": "Jos valittuna käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella."
+              },
+              {
+                "label": "Seuraava sisältö-ID (haaranpäätteet määritetään negatiivisilla numeroilla)"
+              },
+              {
+                "label": "Palaute",
+                "fields": [
+                  {
+                    "label": "Palautteen otsikko"
+                  },
+                  {
+                    "label": "Palautteen teksti"
+                  },
+                  {
+                    "label": "Palautteen kuva"
+                  },
+                  {
+                    "label": "Tämän skenaarion pisteet",
+                    "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille jotka saavuttavat tämän haarakohdan"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Pisteytyksen asetukset",
+          "fields": [
+            {
+              "label": "Pisteytyksen asetukset",
+              "description": "Valitse pisteytystyyppi",
+              "options": [
+                {
+                  "label": "Määritän itse haaranpäätteiden pisteytyksen"
+                },
+                {
+                  "label": "Automaattinenpisteytys käyttäjän vastausten perusteella"
+                },
+                {
+                  "label": "Ei pisteytystä"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalisaatio",
+          "fields": [
+            {
+              "label": "Aloitusruudun painikkeen teksti",
+              "default": "Aloita kurssi"
+            },
+            {
+              "label": "Lopetusruudun painikkeen teksti",
+              "default": "Aloita uudelleen alusta."
+            },
+            {
+              "label": "Painikeen, jolla jatketaan aineistotyypistä toiseen, teksti",
+              "default": "Jatka"
+            },
+            {
+              "label": "Haaranpäätteen teksti pisteytykselle",
+              "default": "Pisteesi:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

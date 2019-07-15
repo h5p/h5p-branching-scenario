@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Hargneva stsenaariumi redaktor",
+      "fields": [
+        {
+          "label": "Pealkiri"
+        },
+        {
+          "label": "Algusvaate",
+          "fields": [
+            {
+              "label": "Algusvaate tiitel",
+              "placeholder": "Sinu kursuse tiitel"
+            },
+            {
+              "label": "Algusvaate subtiitel",
+              "placeholder": "Kursuse detailid"
+            },
+            {
+              "label": "Algusvaate pilt"
+            }
+          ]
+        },
+        {
+          "label": "Lõppvaadete loetelu",
+          "field": {
+            "label": "Lõppvaade",
+            "fields": [
+              {
+                "label": "Pealkiri"
+              },
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Pilt"
+              },
+              {
+                "label": "Punktisumma",
+                "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas vaikelõpustsenaariumini jõudnud kasutajate tulemusi"
+              },
+              {
+                "label": "Sisu ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hargneva stsenaariumisisu loetelu",
+          "entity": "sisu",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Näita sisu pealkirja vaates",
+                "description": "Kui märgitud, siis kasutaja näeb sisu tiitlit selle sisu ülaosas"
+              },
+              {
+                "label": "Järgmine sisu ID (lõppvaadete arvud on negatiivsed)"
+              },
+              {
+                "label": "Tagasiside",
+                "fields": [
+                  {
+                    "label": "Tagasiside pealkiri"
+                  },
+                  {
+                    "label": "Tagasiside tekst"
+                  },
+                  {
+                    "label": "Tagasiside pilt"
+                  },
+                  {
+                    "label": "Selle stsenaariumi punktisumma",
+                    "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas selle stsenaariumini jõudnud kasutajate tulemusi"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Punktiarvestuse valikud",
+          "fields": [
+            {
+              "label": "Punktiarvestuse valikud",
+              "description": "Vali punktiarvestuse tüüp",
+              "options": [
+                {
+                  "label": "Määra iga stsenaariumi jaoks staatiline punktisumma"
+                },
+                {
+                  "label": "Arvuta punktisumma dünaamiliselt kasutaja vastuste alusel"
+                },
+                {
+                  "label": "Punktiarvestust ei ole"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Kohandamine",
+          "fields": [
+            {
+              "label": "Algusvaate nupu tekst",
+              "default": "Alusta kursust"
+            },
+            {
+              "label": "Lõppvaate nupu tekst",
+              "default": "Taasalusta kursust"
+            },
+            {
+              "label": "Igal kogumikkuval oleva nupu tekst",
+              "default": "Jätka"
+            },
+            {
+              "label": "Lõppvaatel näidatava punktisumma silt",
+              "default": "Sinu punktid:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

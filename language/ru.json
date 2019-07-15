@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Редактор Сценария Ветвления",
       "fields": [
         {
           "label": "Название"
@@ -10,15 +10,15 @@
           "label": "Начальный экран",
           "fields": [
             {
-              "label": "Название начального экрана",
-              "placeholder": "Title for your course"
+              "label": "Название стартовом экрана",
+              "placeholder": "Название для Вашего курса"
             },
             {
               "label": "Подзаголовок начального экрана",
-              "placeholder": "Details about the course"
+              "placeholder": "Подробности о курсе"
             },
             {
-              "label": "Изображение начального экрана"
+              "label": "Изображение на стартовом экране"
             }
           ]
         },
@@ -28,20 +28,20 @@
             "label": "Заключительный экран",
             "fields": [
               {
-                "label": "Title"
+                "label": "Заголовок"
               },
               {
-                "label": "Text"
+                "label": "Текст"
               },
               {
-                "label": "Image"
+                "label": "Изображение"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Оценка",
+                "description": "Оценка будет отправлена в любую LMS, LRS или любую другую подключенную службу, которая получает оценки от H5P для пользователей, достигших конечного сценария по умолчанию"
               },
               {
-                "label": "Content ID"
+                "label": "Идентификатор контента"
               }
             ]
           }
@@ -53,27 +53,27 @@
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Показать заголовок контента в просмотре",
+                "description": "Если выбрано, пользователь увидит заголовок контента в верхней панели над этим контентом."
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "ID следующего контента (конечные экраны определяются отрицательными числами)"
               },
               {
-                "label": "Feedback",
+                "label": "Обратная связь",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Заголовок обратной связи"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Текст обратной связи"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Изображение обратной связи"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Оценка по этому сценарию",
+                    "description": "Оценка будет отправлена в любую LMS, LRS или любую другую подключенную службу, которая получает оценки от H5P для пользователей, которые достигли этого сценария."
                   }
                 ]
               }
@@ -81,43 +81,43 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Варианты оценки",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Варианты оценки",
+              "description": "Выберите тип оценки",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Статически установленная оценка для каждого конечного сценария"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Динамически рассчитывать оценку по ответам пользователя"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Без оценки"
                 }
               ]
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Локализация",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "label": "Текст для кнопки на стартовом экране",
+              "default": "Начать курс"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "label": "Текст для кнопки на конечном экране",
+              "default": "Перезапустить курс"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
+              "label": "Текст для кнопки на каждом из экранов библиотеки",
+              "default": "Продолжить"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Надпись для оценки на конечном экране",
+              "default": "Ваша оценка:"
             }
           ]
         }
