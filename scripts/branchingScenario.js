@@ -11,6 +11,8 @@ H5P.BranchingScenario = function (params, contentId) {
   self.navigating;
   self.currentHeight;
   self.currentId = -1;
+  self.currentDuration = 0;
+  self.previousTime = 0;
   self.xAPIDataCollector = [];
 
   /**
@@ -223,7 +225,19 @@ H5P.BranchingScenario = function (params, contentId) {
       self.trigger('resize');
     }
     if (self.currentId !== -1) {
-      self.triggerXAPI('progressed');
+      var extra = new Object();
+      extra.result = {};
+      if (self.currentId == 0) {
+        self.currentTime = Math.round((Date.now() - self.activityStartTime ) / 10) / 100;
+	    self.previousTime = Date.now() - self.activityStartTime;
+      }
+      else {
+        self.currentTime = Math.round((Date.now() - self.activityStartTime - self.previousTime) / 10) / 100;
+	    self.previousTime = self.previousTime + (Date.now() - self.activityStartTime - self.previousTime); 
+      }
+      extra.result.duration = 'PT' + self.currentTime + 'S';
+      extra.result.extensions = {'http://id.tincanapi.com/activitytype/step':this.currentId};
+      self.triggerXAPI('progressed',extra);
       self.scoring.addLibraryScore(
         this.currentId,
         this.libraryScreen.currentLibraryId,
