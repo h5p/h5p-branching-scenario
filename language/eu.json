@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Adarkatze Eskenatokien Editorea",
       "fields": [
         {
           "label": "Titulua"
@@ -11,7 +11,7 @@
           "fields": [
             {
               "label": "Hasierako pantailaren titulua",
-              "placeholder": "Title for your course"
+              "placeholder": "Izenburua zure ikastaroarentzat"
             },
             {
               "label": "Hasierako pantailaren azpititulua",
@@ -28,20 +28,20 @@
             "label": "Amaierako pantaila",
             "fields": [
               {
-                "label": "Title"
+                "label": "Izenburua"
               },
               {
-                "label": "Text"
+                "label": "Testua"
               },
               {
-                "label": "Image"
+                "label": "Irudia"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Kalifikazioa",
+                "description": "Lehenetsitako eskenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
               },
               {
-                "label": "Content ID"
+                "label": "Edukiaren IDa"
               }
             ]
           }
@@ -53,27 +53,27 @@
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Erakutsi edukiaren izenburua ikuspegian",
+                "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran"
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "Hurrengo Edukiaren IDa (amaierako pantailek zenbaki negatiboen bitartez identifikatzen dira)"
               },
               {
-                "label": "Feedback",
+                "label": "Feedbacka",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Feedbackaren izenburua"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Feedbackaren testua"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Feedbackaren irudia"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Eskenatoki honen kalifikazioa",
+                    "description": "Eskenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
                   }
                 ]
               }
@@ -81,43 +81,43 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Kalifikazioaren aukerak",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Kalifikazioaren aukerak",
+              "description": "Aukeratu kalifikazio-mota",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Estatistikoki zehaztu eskenatoki bakoitzaren amaieraren kalifikazioa"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Dinamikoki kalkulatu kalifikazioa erabiltzaileen erantzunen arabera"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Kalifikaziorik ez"
                 }
               ]
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Kokapena",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "label": "Hasiera-pantailako botoiaren testua",
+              "default": "Hasi ikastaroa"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "label": "Amaiera-pantailako botoiaren testua",
+              "default": "Berriz hasi ikastaroa"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
+              "label": "Liburutegi-pantailetako botoi bakoitzarentzako testua",
+              "default": "Jarraitu"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Kalifikazioaren etiketa amaiera-pantailan",
+              "default": "Zure kalifikazioa:"
             }
           ]
         }

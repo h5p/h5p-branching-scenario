@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor für Branching Scenario",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startbildschirm",
+          "fields": [
+            {
+              "label": "Kurstitel",
+              "placeholder": "Titel für den Kurs"
+            },
+            {
+              "label": "Kursdetails",
+              "placeholder": "Details zum Kurs"
+            },
+            {
+              "label": "Kursbild"
+            }
+          ]
+        },
+        {
+          "label": "Liste der Endbildschirme",
+          "field": {
+            "label": "Endbildschirm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Bild"
+              },
+              {
+                "label": "Punkte",
+                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte werden an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+              },
+              {
+                "label": "Inhalts-ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Liste der Branching-Scenario-Inhalte",
+          "entity": "Inhalt",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Zeige den Inhaltstitel",
+                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
+              },
+              {
+                "label": "Nächste Inhalts-ID (Endbildschirme werden durch negative Zahlen definiert)"
+              },
+              {
+                "label": "Rückmeldung",
+                "fields": [
+                  {
+                    "label": "Rückmeldungstitel"
+                  },
+                  {
+                    "label": "Rückmeldungstext"
+                  },
+                  {
+                    "label": "Rückmeldungsbild"
+                  },
+                  {
+                    "label": "Punkte für dieses Szenario",
+                    "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte werden an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Optionen für die Bepunktung",
+          "fields": [
+            {
+              "label": "Optionen für die Bepunktung",
+              "description": "Wähle die Art der Bepunktung",
+              "options": [
+                {
+                  "label": "Setze die Punktzahl für jedes Endszenario statisch"
+                },
+                {
+                  "label": "Berechne die Punktzahl für die Antworten der Lernenden dynamisch"
+                },
+                {
+                  "label": "Keine Bepunktung"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Übersetzungen",
+          "fields": [
+            {
+              "label": "Text des Buttons auf dem Startbildschirm",
+              "default": "Starte den Kurs"
+            },
+            {
+              "label": "Text des Buttons auf dem Endbildschirm",
+              "default": "Starte den Kurs neu"
+            },
+            {
+              "label": "Text des Buttons auf jedem Inhaltsbildschirm",
+              "default": "Weiter"
+            },
+            {
+              "label": "Beschriftung der Punkte auf dem Endbildschirm",
+              "default": "Deine Punktzahl:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

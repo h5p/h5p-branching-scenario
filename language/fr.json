@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editeur de scénario",
+      "fields": [
+        {
+          "label": "Titre"
+        },
+        {
+          "label": "Ecran de départ",
+          "fields": [
+            {
+              "label": "Titre de l'écran de départ",
+              "placeholder": "Titre de votre cours"
+            },
+            {
+              "label": "Sous-titre de l'écran de départ",
+              "placeholder": "Détails sur votre cours"
+            },
+            {
+              "label": "Image de l'écran de départ"
+            }
+          ]
+        },
+        {
+          "label": "Liste des écrans de fin",
+          "field": {
+            "label": "Ecran de fin",
+            "fields": [
+              {
+                "label": "Titre"
+              },
+              {
+                "label": "Texte"
+              },
+              {
+                "label": "Image"
+              },
+              {
+                "label": "Score",
+                "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent le scénario de fin par défaut"
+              },
+              {
+                "label": "Identifiant du contenu"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Liste de contenus de scénario de branchement",
+          "entity": "contenu",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Voir le titre du contenu dans la vue",
+                "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"
+              },
+              {
+                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Titre du feedback"
+                  },
+                  {
+                    "label": "Teste du feedback"
+                  },
+                  {
+                    "label": "Image du feedback"
+                  },
+                  {
+                    "label": "Score pour ce scénario",
+                    "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Options de notation",
+          "fields": [
+            {
+              "label": "Options de notation",
+              "description": "Sélectionnez le type de notation",
+              "options": [
+                {
+                  "label": "Définir de façon statique le score pour chaque scénario de fin"
+                },
+                {
+                  "label": "Calculer dynamiquement le score à partir des réponses de l'utilisateur"
+                },
+                {
+                  "label": "Pas de score"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Localisation",
+          "fields": [
+            {
+              "label": "Texte pour le bouton de l'écran de départ",
+              "default": "Commencer le cours"
+            },
+            {
+              "label": "Texte pour le bouton de l'écran de fin",
+              "default": "Recommencer le cours"
+            },
+            {
+              "label": "Texte pour le bouton de chaque écran de la bibliothèque",
+              "default": "Continuer"
+            },
+            {
+              "label": "Libellé pour le score affiché sur l'écran de fin",
+              "default": "Votre score:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
