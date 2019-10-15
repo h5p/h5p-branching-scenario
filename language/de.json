@@ -10,7 +10,7 @@
           "label": "Startbildschirm",
           "fields": [
             {
-              "label": "Kurstitel",
+              "label": "Startbildschirm",
               "placeholder": "Titel für den Kurs"
             },
             {
@@ -38,7 +38,7 @@
               },
               {
                 "label": "Punkte",
-                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte werden an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
               },
               {
                 "label": "Inhalts-ID"
@@ -53,7 +53,7 @@
             "fields": [
               {},
               {
-                "label": "Zeige den Inhaltstitel",
+                "label": "Titel anzeigen",
                 "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
               },
               {
@@ -63,17 +63,17 @@
                 "label": "Rückmeldung",
                 "fields": [
                   {
-                    "label": "Rückmeldungstitel"
+                    "label": "Titel der Rückmeldung"
                   },
                   {
-                    "label": "Rückmeldungstext"
+                    "label": "Text der Rückmeldung"
                   },
                   {
-                    "label": "Rückmeldungsbild"
+                    "label": "Bild der Rückmeldung"
                   },
                   {
                     "label": "Punkte für dieses Szenario",
-                    "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte werden an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+                    "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
                   }
                 ]
               }
@@ -88,7 +88,7 @@
               "description": "Wähle die Art der Bepunktung",
               "options": [
                 {
-                  "label": "Setze die Punktzahl für jedes Endszenario statisch"
+                  "label": "Stelle die Punktzahl für jedes Endszenario fest ein"
                 },
                 {
                   "label": "Berechne die Punktzahl für die Antworten der Lernenden dynamisch"
@@ -101,15 +101,15 @@
           ]
         },
         {
-          "label": "Übersetzungen",
+          "label": "Bezeichnungen und Beschriftungen",
           "fields": [
             {
               "label": "Text des Buttons auf dem Startbildschirm",
-              "default": "Starte den Kurs"
+              "default": "Kurs starten"
             },
             {
               "label": "Text des Buttons auf dem Endbildschirm",
-              "default": "Starte den Kurs neu"
+              "default": "Kurs neu starten"
             },
             {
               "label": "Text des Buttons auf jedem Inhaltsbildschirm",
