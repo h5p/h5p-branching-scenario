@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Urejevalnik scenarijev",
+      "fields": [
+        {
+          "label": "Naslov"
+        },
+        {
+          "label": "Začetni zaslon",
+          "fields": [
+            {
+              "label": "Naslov začetnega zaslona",
+              "placeholder": "Naslov učne enote"
+            },
+            {
+              "label": "Podnaslov začetnega zaslona",
+              "placeholder": "Podrobnosti o učni enoti"
+            },
+            {
+              "label": "Slika začetnega zaslona"
+            }
+          ]
+        },
+        {
+          "label": "Seznam končnih zaslonov",
+          "field": {
+            "label": "Končni zaslon",
+            "fields": [
+              {
+                "label": "Naslov"
+              },
+              {
+                "label": "Besedilo"
+              },
+              {
+                "label": "Slika"
+              },
+              {
+                "label": "Točke",
+                "description": "Rezultat udeležencev je lahko poslan drugi povezani storitvi (npr. LMS, LRS)."
+              },
+              {
+                "label": "ID vsebine"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Seznam vsebine",
+          "entity": "vsebina",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Prikaži naslov vsebine ob ogledu",
+                "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino."
+              },
+              {
+                "label": "Vsebina z naslednjo ID (končni zasloni so definirani z negativnimi vrednostmi)"
+              },
+              {
+                "label": "Povratna informacija",
+                "fields": [
+                  {
+                    "label": "Naslov povratne informacije"
+                  },
+                  {
+                    "label": "Vsebina povratne informacije"
+                  },
+                  {
+                    "label": "Slika"
+                  },
+                  {
+                    "label": "Rezultat izbranega scenarija",
+                    "description": "Rezultat udeležencev je lahko poslan drugi povezani storitvi (npr. LMS, LRS)."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Nastavitve točkovanja",
+          "fields": [
+            {
+              "label": "Nastavitve točkovanja",
+              "description": "Izbira načina točkovanja.",
+              "options": [
+                {
+                  "label": "Statična nastavitev točk za vsak zaključek scenarija"
+                },
+                {
+                  "label": "Dinamična določitev točk na podlagi odgovorov udeležencev"
+                },
+                {
+                  "label": "Brez točkovanja"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Določitev",
+          "fields": [
+            {
+              "label": "Besedilo gumba za začetek aktivnosti na začetnem zaslonu",
+              "default": "Začetek"
+            },
+            {
+              "label": "Besedilo gumba za ponoven začetek aktivnosti na končnem zaslonu",
+              "default": "Začni znova"
+            },
+            {
+              "label": "Besedilo gumba za nadaljevanje na vmesnih zaslonih",
+              "default": "Nadaljuj"
+            },
+            {
+              "label": "Besedilo za prikaz rezultatov na končnem zaslonu",
+              "default": "Rezultat:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

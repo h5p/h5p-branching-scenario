@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de cenário de ramificação",
+      "fields": [
+        {
+          "label": "Titulo"
+        },
+        {
+          "label": "Tela de início",
+          "fields": [
+            {
+              "label": "Titulo da tela de início",
+              "placeholder": "Titulo para seu curso"
+            },
+            {
+              "label": "Subtitulo da tela de início",
+              "placeholder": "Detalhes sobre o curso"
+            },
+            {
+              "label": "Imagem da tela de inicio"
+            }
+          ]
+        },
+        {
+          "label": "Lista das telas de fim",
+          "field": {
+            "label": "Tela de fim",
+            "fields": [
+              {
+                "label": "Titulo"
+              },
+              {
+                "label": "Texto"
+              },
+              {
+                "label": "Imagem"
+              },
+              {
+                "label": "Pontuação",
+                "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram ao cenário de fim padrão"
+              },
+              {
+                "label": "ID do conteúdo"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista dos conteúdos dos cenários de ramificação",
+          "entity": "conteudo",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Mostra o conteúdo do titulo na tela",
+                "description": "Se selecionado, o usuário verá o titulo do conteúdo na barra superior desde componente"
+              },
+              {
+                "label": "Próximo Id de conteúdo (as telas finais são definidas por números negativos)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Titulo de feedback"
+                  },
+                  {
+                    "label": "Texto de feedback"
+                  },
+                  {
+                    "label": "Imagem de feedback"
+                  },
+                  {
+                    "label": "Placar para este cenário",
+                    "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram neste cenário de fim"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opções de pontuação",
+          "fields": [
+            {
+              "label": "Opções de pontuação",
+              "description": "Selecione o tipo de pontuação",
+              "options": [
+                {
+                  "label": "Defina um valor stático para cada cenário"
+                },
+                {
+                  "label": "Calcule dinamicamente o placar de acordo com as respostas do usuário"
+                },
+                {
+                  "label": "Sem pontuação"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Localização",
+          "fields": [
+            {
+              "label": "Texto para o botão no começo da tela",
+              "default": "Começo do curso"
+            },
+            {
+              "label": "Texto para o botão no fim da tela",
+              "default": "Reinicie o curso"
+            },
+            {
+              "label": "Texto para o botão de cada tela da biblioteca",
+              "default": "Continuar"
+            },
+            {
+              "label": "Rótulo para o placar na tela de fim",
+              "default": "Seu placar:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
