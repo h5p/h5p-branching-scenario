@@ -24,11 +24,16 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
           }
 
           // Mind the one-item behavior of semantics groups
-          contentNode.contentBehaviour = false;
+          if (typeof contentNode.contentBehaviour === 'undefined') {
+            contentNode.contentBehaviour = false;
+          }
         });
 
         // Global require finished override select default value, mind the one-item behavior of semantics groups
-        parameters.branchingScenario.behaviour = 'individual';
+        if (typeof parameters.branchingScenario.behaviour === 'undefined') {
+          parameters.branchingScenario.behaviour = 'individual';
+        }
+
 
         finished(null, parameters, extras);
       }
