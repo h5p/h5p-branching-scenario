@@ -11,7 +11,7 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {Object} parameters
        * @param {function} finished
        */
-      1: function (parameters, finished, extras) {
+      2: function (parameters, finished, extras) {
         // Sanitization
         parameters.branchingScenario = parameters.branchingScenario || {};
         parameters.branchingScenario.content = parameters.branchingScenario.content || [];
@@ -19,11 +19,15 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
         // Individual require finished override value
         parameters.branchingScenario.content.forEach( function (contentNode) {
           // Mind the one-item behavior of semantics groups
-          contentNode.contentBehaviour = false;
+          if (typeof contentNode.contentBehaviour === 'undefined') {
+            contentNode.contentBehaviour = false;
+          }
         });
 
         // Global backwards navigation default value, mind the one-item behavior of semantics groups
-        parameters.branchingScenario.behaviour = 'individual';
+        if (typeof parameters.branchingScenario.behaviour === 'undefined') {
+          parameters.branchingScenario.behaviour = 'individual';
+        }
 
         if (parameters.branchingScenario.l10n) {
           parameters.branchingScenario.l10n.backButtonText = 'Back';
