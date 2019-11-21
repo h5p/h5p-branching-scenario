@@ -11,7 +11,7 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {Object} parameters
        * @param {function} finished
        */
-      1: function (parameters, finished, extras) {
+      2: function (parameters, finished, extras) {
         // Sanitization
         parameters.branchingScenario = parameters.branchingScenario || {};
         parameters.branchingScenario.content = parameters.branchingScenario.content || [];
