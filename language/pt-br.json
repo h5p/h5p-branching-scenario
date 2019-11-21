@@ -76,6 +76,15 @@
                     "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram neste cenário de fim"
                   }
                 ]
+              },
+              {
+                "label": "Behavioural settings",
+                "fields": [
+                  {
+                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
+                    "label": "Enable backwards navigation"
+                  }
+                ]
               }
             ]
           }
@@ -101,6 +110,26 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Enable backwards navigation for all contents"
+                },
+                {
+                  "label": "Disable backwards navigation for all contents"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "Localização",
           "fields": [
             {
@@ -110,6 +139,10 @@
             {
               "label": "Texto para o botão no fim da tela",
               "default": "Reinicie o curso"
+            },
+            {
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
             },
             {
               "label": "Texto para o botão de cada tela da biblioteca",
