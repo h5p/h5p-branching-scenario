@@ -50,7 +50,7 @@ H5P.BranchingScenario = function (params, contentId) {
     ],
     scoringOption: 'no-score',
     l10n: {},
-    behaviour: false
+    behaviour: 'individual'
   }, params.branchingScenario); // Account for the wrapper!
 
   // Set default localization
