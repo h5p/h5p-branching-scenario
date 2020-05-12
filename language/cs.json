@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor větvení scénářů",
+      "fields": [
+        {
+          "label": "Nadpis"
+        },
+        {
+          "label": "Úvodní obrazovka",
+          "fields": [
+            {
+              "label": "Název úvodní obrazovky",
+              "placeholder": "Návev kurzu"
+            },
+            {
+              "label": "Podtitul úvodní obrazovky",
+              "placeholder": "Podrobnosti o kurzu"
+            },
+            {
+              "label": "Obrázek úvodní obrazovky"
+            }
+          ]
+        },
+        {
+          "label": "Seznam koncových obrazovek",
+          "field": {
+            "label": "Koncová obrazovka",
+            "fields": [
+              {
+                "label": "Nadpis"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Obrázek"
+              },
+              {
+                "label": "Slóre",
+                "description": "Skóre bude odesláno do jakéhokoli LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou výchozího koncového scénáře"
+              },
+              {
+                "label": "ID obsahu"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Seznam obsahu scénáře větvení",
+          "entity": "obsah",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Zobrazit název obsahu v zobrazení",
+                "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
+              },
+              {
+                "label": "Další ID obsahu (koncové obrazovky jsou definovány zápornými čísly)"
+              },
+              {
+                "label": "Zpětná vazba",
+                "fields": [
+                  {
+                    "label": "Nadpis zpětné vazby"
+                  },
+                  {
+                    "label": "Text zpětné vazby"
+                  },
+                  {
+                    "label": "Obrázek zpětné vazby"
+                  },
+                  {
+                    "label": "Skóre pro tento scénář",
+                    "description": "Skóre bude odesláno do všech LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou tohoto scénáře"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Možnosti bodování",
+          "fields": [
+            {
+              "label": "Možnosti bodování",
+              "description": "Vyberte typ bodování",
+              "options": [
+                {
+                  "label": "Staticky stanovené skóre pro každý scénář"
+                },
+                {
+                  "label": "Dynamicky vypočítat skóre z odpovědí uživatele"
+                },
+                {
+                  "label": "Žádné hodnocení"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalizace",
+          "fields": [
+            {
+              "label": "Text tlačítka na úvodní obrazovce",
+              "default": "Zahájit kurz"
+            },
+            {
+              "label": "Text tlačítka na koncové obrazovce",
+              "default": "Restartovat kurz"
+            },
+            {
+              "label": "Text tlačítka na každé obrazovce knihovny",
+              "default": "Pokračovat"
+            },
+            {
+              "label": "Označte skóre na koncové obrazovce",
+              "default": "Vaše skóre:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
