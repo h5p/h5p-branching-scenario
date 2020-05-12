@@ -47,13 +47,13 @@
           }
         },
         {
-          "label": "Lista dei contenuti del branching scenario",
-          "entity": "contenuti",
+          "label": "Lista dei contenuti del Branching Scenario",
+          "entity": "contenuto",
           "field": {
             "fields": [
               {},
               {
-                "label": "Mostra il titolo dei contenuti nella visualizzazione",
+                "label": "Mostra il titolo del contenuto nella visualizzazione",
                 "description": "Se selezionato, l'utente vedrà il titolo del contenuto nella barra sopra questo contenuto"
               },
               {
