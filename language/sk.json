@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Editor vetveného scenára",
+      "fields": [
+        {
+          "label": "Názov"
+        },
+        {
+          "label": "Úvodná obrazovka",
+          "fields": [
+            {
+              "label": "Nadpis na úvodnej obrazovke",
+              "placeholder": "Nadpis scenára"
+            },
+            {
+              "label": "Podnadpis scenára",
+              "placeholder": "Detaily o scenári"
+            },
+            {
+              "label": "Obrázok úvodnej obrazovky"
+            }
+          ]
+        },
+        {
+          "label": "Zoznam záverečných obrazoviek",
+          "field": {
+            "label": "Záverečná obrazovka",
+            "fields": [
+              {
+                "label": "Názov"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Obrázok"
+              },
+              {
+                "label": "Hodnotenie",
+                "description": "Hodnotenie sa odošle každému LMS, LRS alebo akejkoľvek inej pripojenej službe, ktorá prijíma hodnotenie od H5P pre používateľov, ktorí ukončia scenár."
+              },
+              {
+                "label": "Obsahové ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Zoznam obsahov vetveného scenára",
+          "entity": "obsah",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Zobraziť nadpis obsahu v scenári",
+                "description": "Ak je vybrané, používateľ uvidí názov obsahu v hornom paneli nad obsahom scenára"
+              },
+              {
+                "label": "Nasledujúce ID obsahu (koncové obrazovky sú definované zápornými číslami)"
+              },
+              {
+                "label": "Spätná väzba",
+                "fields": [
+                  {
+                    "label": "Nadpis spätnej väzby"
+                  },
+                  {
+                    "label": "Text spätnej väzby"
+                  },
+                  {
+                    "label": "Obrázok spätnej väzby"
+                  },
+                  {
+                    "label": "Hodnotenie vetveného scenára",
+                    "description": "Hodnotenie sa odošle každému LMS, LRS alebo akejkoľvek inej pripojenej službe, ktorá prijíma hodnotenie od H5P pre používateľov, ktorí ukončia scenár."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Možnosti hodnotenia",
+          "fields": [
+            {
+              "label": "Možnosti hodnotenia",
+              "description": "Vyber typ hodnotenia",
+              "options": [
+                {
+                  "label": "Staticky stanovené skóre pre každý konečný scenár"
+                },
+                {
+                  "label": "Dynamicky vypočítané skóre z odpovedí používateľov"
+                },
+                {
+                  "label": "Bez hodnotenia"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalizácia",
+          "fields": [
+            {
+              "label": "Text pre tlačidlo na úvodnej obrazovke",
+              "default": "Začať kurz"
+            },
+            {
+              "label": "Text pre tlačidlo na záverečnej obrazovke",
+              "default": "Reštartovať kurz"
+            },
+            {
+              "label": "Text pre tlačidlo na každej obrazovke scenára",
+              "default": "Pokračovať"
+            },
+            {
+              "label": "Nadpis pre hodnotenie na záverečnej obrazovke",
+              "default": "Vaše hodnotenie:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
