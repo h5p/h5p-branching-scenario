@@ -138,7 +138,7 @@
             },
             {
               "label": "Tekst voor de knop op het eindscherm",
-              "default": "Restart the course"
+              "default": "Herstart de cursus"
             },
             {
               "label": "Text for the back button on each of the library screens and branching questions",
