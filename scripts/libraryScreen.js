@@ -54,8 +54,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         return;
       }
 
-      if (self.shouldAutoplay[self.currentLibraryId] && self.currentLibraryInstance.play !== undefined) {
-        self.currentLibraryInstance.play();
+      if (self.shouldAutoplay[self.currentLibraryId]) {
+        if (self.currentLibraryInstance.play !== undefined) {
+          self.currentLibraryInstance.play();
+        }
+        else if (self.currentLibraryInstance.elementInstances) {
+          for (let i = 0; i < self.currentLibraryInstance.elementInstances[0].length; i++) {
+            const elementInstance = self.currentLibraryInstance.elementInstances[0][i];
+            if (elementInstance.play !== undefined) {
+              elementInstance.play();
+            }
+          }
+        }
       }
     };
 
@@ -473,6 +483,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Handle auto-play for Interactive Video :-)
       params.override.autoplay = false;
       return true;
+    }
+    else if (params.presentation && params.presentation.slides[0].elements) {
+      for (let i = 0; i < params.presentation.slides[0].elements.length; i++) {
+        const instanceParams = params.presentation.slides[0].elements[i];
+        if (!instanceParams.displayAsButton && instanceParams.action && instanceParams.action.params && hasAutoplay(instanceParams.action.params)) {
+          return true;
+        }
+      }
     }
     return false;
   };
