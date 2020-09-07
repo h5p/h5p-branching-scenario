@@ -377,6 +377,47 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
+   * Try to stop any playback on the instance.
+   *
+   * @param {number} id Id of the instance node
+   */
+  LibraryScreen.prototype.stopPlayback = function (id) {
+    const instance = this.libraryInstances[id];
+    if (instance) {
+      try {
+        if (instance.pause !== undefined &&
+            (instance.pause instanceof Function ||
+              typeof instance.pause === 'function')) {
+          instance.pause();
+        }
+        else if (instance.video !== undefined &&
+                 instance.video.pause !== undefined &&
+                 (instance.video.pause instanceof Function ||
+                   typeof instance.video.pause === 'function')) {
+          instance.video.pause();
+        }
+        else if (instance.stop !== undefined &&
+                 (instance.stop instanceof Function ||
+                   typeof instance.stop === 'function')) {
+          instance.stop();
+        }
+        else if (instance.pauseMedia !== undefined &&
+                 (instance.pauseMedia instanceof Function ||
+                   typeof instance.pauseMedia === 'function') &&
+                 instance.elementInstances[instance.currentSlideIndex]) {
+          for (let i = 0; i < instance.elementInstances[instance.currentSlideIndex].length; i++) {
+            instance.pauseMedia(instance.elementInstances[instance.currentSlideIndex][i]);
+          }
+        }
+      }
+      catch (err) {
+        // Prevent crashing, but tell developers there's something wrong.
+        H5P.error(err);
+      }
+    }
+  };
+
+  /**
    * Used to get XAPI data for "previous" library.
    *
    * @param {number} id Id of the instance node

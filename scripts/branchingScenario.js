@@ -183,6 +183,9 @@ H5P.BranchingScenario = function (params, contentId) {
       self.currentId = id;
     }
     else {
+      // Try to stop any playback
+      self.libraryScreen.stopPlayback(self.currentId);
+
       // Try to collect xAPIData for last screen
       const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
       if (xAPIData) {
