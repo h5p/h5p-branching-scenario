@@ -428,6 +428,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       params.media.params.autoplay = false;
       return true;
     }
+    else if (params.override && params.override.autoplay) {
+      // Handle auto-play for Interactive Video :-)
+      params.override.autoplay = false;
+      return true;
+    }
     return false;
   };
 
