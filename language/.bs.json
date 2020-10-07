@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Branching Scenario Editor",
+      "fields": [
+        {
+          "label": "Naslov"
+        },
+        {
+          "label": "Početni ekran",
+          "fields": [
+            {
+              "label": "Naslov na početnom ekranu",
+              "placeholder": "Naslov vašeg kursa"
+            },
+            {
+              "label": "Podnaslov na početnom ekranu",
+              "placeholder": "Detalji o kursu"
+            },
+            {
+              "label": "Slika na početnom ekranu"
+            }
+          ]
+        },
+        {
+          "label": "Lista završnih ekrana",
+          "field": {
+            "label": "Završni ekran",
+            "fields": [
+              {
+                "label": "Naslov"
+              },
+              {
+                "label": "Tekst"
+              },
+              {
+                "label": "Slika"
+              },
+              {
+                "label": "Rezultat",
+                "description": "Rezultat će biti poslan bilo kojem LMS, LRS ili bilo kojem povezanom sistemu koji prima rezultate od H5P za korisnike koji dođu do kraja defaultnog scenarija"
+              },
+              {
+                "label": "Content ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Spisak sadržaja za višestruki scenario",
+          "entity": "content",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Prikaži naslov sadržaja u pregledu",
+                "description": "Ako je označeno, korisnik će vidjeti naslov sadržaja iznad ovoga"
+              },
+              {
+                "label": "ID sljedećeg sadržaja (završni ekrani su definirani negativnim brojevima)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback naslov"
+                  },
+                  {
+                    "label": "Feedback tekst"
+                  },
+                  {
+                    "label": "Feedback slika"
+                  },
+                  {
+                    "label": "Rezultat za ovaj scenario",
+                    "description": "Rezultat će biti poslan bilo kojem LMS, LRS ili bilo kojem povezanom sistemu koji prima rezultate od H5P za korisnike koji dođu do kraja ovog scenarija"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opcije rezultata",
+          "fields": [
+            {
+              "label": "Opcije rezultata",
+              "description": "Odaberi način postizanja rezultata",
+              "options": [
+                {
+                  "label": "Statistiki odredi rezultat za svaki scenario"
+                },
+                {
+                  "label": "Dinamički izračunaj rezultat od korisničkih odgovora"
+                },
+                {
+                  "label": "Nema praćenja rezultata"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalizacija",
+          "fields": [
+            {
+              "label": "Tekst za dugme na početnom ekranu",
+              "default": "Započni kurs"
+            },
+            {
+              "label": "Tekst za dugme na završnom ekranu",
+              "default": "Restartaj kurs"
+            },
+            {
+              "label": "Tekst za dugme na ekranima biblioteka",
+              "default": "Nastavi"
+            },
+            {
+              "label": "Oznaka za rezultat na završnom ekranu",
+              "default": "Tvoj rezultat:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
