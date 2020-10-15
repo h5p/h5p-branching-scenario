@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Golygydd Senario Ganghennog",
+      "fields": [
+        {
+          "label": "Teitl"
+        },
+        {
+          "label": "Sgrin gychwyn",
+          "fields": [
+            {
+              "label": "Teitl y sgrin gychwyn",
+              "placeholder": "Teitl ar gyfer eich cwrs"
+            },
+            {
+              "label": "Is-deitl y sgrin gychwyn",
+              "placeholder": "Manylion y cwrs"
+            },
+            {
+              "label": "Delwedd y sgrin gychwyn"
+            }
+          ]
+        },
+        {
+          "label": "Rhestr sgriniau diweddu",
+          "field": {
+            "label": "Sgrin ddiweddu",
+            "fields": [
+              {
+                "label": "Teitl"
+              },
+              {
+                "label": "Testun"
+              },
+              {
+                "label": "Delwedd"
+              },
+              {
+                "label": "Sgôr",
+                "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario ddiweddu diofyn"
+              },
+              {
+                "label": "ID Cynnwys"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Rhestr cynnwys senario ganghennog",
+          "entity": "cynnwys",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Dangos teitl y cynnwys yn yr olygfa",
+                "description": "Os wedi'i ddewis, bydd y defnyddiwr yn gweld teitl y cynnwys yn y bar ar y brig uwchben y cynnwys hwn"
+              },
+              {
+                "label": "ID Cynnwys Nesaf (caiff sgriniau diweddu eu hadnabod gan rifau negatif)"
+              },
+              {
+                "label": "Adborth",
+                "fields": [
+                  {
+                    "label": "Teitl adborth"
+                  },
+                  {
+                    "label": "Testun adborth"
+                  },
+                  {
+                    "label": "Delwedd adborth"
+                  },
+                  {
+                    "label": "Sgôr am y senario hon",
+                    "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario hon"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opsiynau Sgorio",
+          "fields": [
+            {
+              "label": "Opsiynau sgorio",
+              "description": "Dewiswch math y sgorio",
+              "options": [
+                {
+                  "label": "Gosodwch (yn statig) y sgôr ar gyfer pob senario diweddu"
+                },
+                {
+                  "label": "Cyfrifwch y sgôr (yn ddeinamig) o atebion defnyddwyr"
+                },
+                {
+                  "label": "Dim sgorio"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lleoleiddio",
+          "fields": [
+            {
+              "label": "testun ar gyfer y botwm ar y sgrin gychwyn",
+              "default": "Dechreuwch y cwrs"
+            },
+            {
+              "label": "Testun ar gyfer y botwm ar y sgrin ddiweddu",
+              "default": "Ailddechreuwch y cwrs"
+            },
+            {
+              "label": "Testun ar gyfer y botwm ar bob un o'r sgriniau llyfrgell",
+              "default": "Bwrw ymlaen"
+            },
+            {
+              "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
+              "default": "Eich sgôr:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
