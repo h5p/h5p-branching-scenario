@@ -1,0 +1,127 @@
+{
+  "semantics": [
+    {
+      "label": "Redigerare för Branching Scenario",
+      "fields": [
+        {
+          "label": "Titel"
+        },
+        {
+          "label": "Startskärm",
+          "fields": [
+            {
+              "label": "Redigera skärmtitel",
+              "placeholder": "Titel för din kurs"
+            },
+            {
+              "label": "Undertext för startskärm",
+              "placeholder": "Information om kursen"
+            },
+            {
+              "label": "Bild på startskärm"
+            }
+          ]
+        },
+        {
+          "label": "Lista med slutskärmar",
+          "field": {
+            "label": "Slutskärm",
+            "fields": [
+              {
+                "label": "Titel"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Bild"
+              },
+              {
+                "label": "Poäng",
+                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot"
+              },
+              {
+                "label": "Innehålls-ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista över innehåll i branching scenario",
+          "entity": "innehåll",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Visa innehållstitel i vy",
+                "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
+              },
+              {
+                "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
+              },
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback-titel"
+                  },
+                  {
+                    "label": "Feedback-text"
+                  },
+                  {
+                    "label": "Feedback-bild"
+                  },
+                  {
+                    "label": "Poäng för detta scenario",
+                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som slutför detta scenario"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Inställningar för poängsättning",
+          "fields": [
+            {
+              "label": "Inställningar för poängsättning",
+              "description": "Välj typ av poängsättning",
+              "options": [
+                {
+                  "label": "Använd statistik för att ange poäng för varje slutscenario"
+                },
+                {
+                  "label": "Kalkylera poäng från användares svar dynamiskt"
+                },
+                {
+                  "label": "Ingen poängsättning"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Lokalisering",
+          "fields": [
+            {
+              "label": "Text för knappen på startskärmen",
+              "default": "Starta kursen"
+            },
+            {
+              "label": "Text för knappen på slutskärmen",
+              "default": "Starta om kursen"
+            },
+            {
+              "label": "Text för knappen på varje skärm i biblioteket",
+              "default": "Fortsätt"
+            },
+            {
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
