@@ -136,6 +136,7 @@
               "name": "feedback",
               "type": "group",
               "label": "Feedback",
+              "expanded": true,
               "fields": [
                 {
                   "name": "title",
