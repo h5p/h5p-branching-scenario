@@ -862,8 +862,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       this.currentLibraryWrapper.style.zIndex = 0;
 
-      // Resize if Branching Question contains many alternatives/much text
-      if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
+      /**
+       * Resizes the wrapper to the height of the container. If the current BQ is at the very start of the content type then resize parent wrapper
+       */
+      if (this.currentLibraryWrapper.style.height === "") {
+        const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
+        wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
+      } 
+      else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
       }
 
