@@ -24,7 +24,15 @@
             "placeholder": "Title for your course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code"
+            ]
           },
           {
             "name": "startScreenSubtitle",
@@ -32,7 +40,15 @@
             "placeholder": "Details about the course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code"
+            ]
           },
           {
             "name": "startScreenImage",
@@ -59,14 +75,30 @@
               "label": "Title",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code"
+              ]
             },
             {
               "name": "endScreenSubtitle",
               "label": "Text",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code"
+              ]
             },
             {
               "name": "endScreenImage",
@@ -142,7 +174,14 @@
                   "name": "title",
                   "type": "text",
                   "label": "Feedback title",
-                  "optional": true
+                  "widget": "html",
+                  "enterMode": "p",
+                  "tags": [
+                    "strong",
+                    "em",
+                    "del",
+                    "code"
+                  ]
                 },
                 {
                   "name": "subtitle",
