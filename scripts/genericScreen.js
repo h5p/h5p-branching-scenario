@@ -98,6 +98,11 @@ H5P.BranchingScenario.GenericScreen = (function () {
     self.getScore = function () {
       return screenData.score;
     };
+
+    self.getMaxScore = function () {
+      return screenData.maxScore;
+    };
+
   }
 
   /**
@@ -117,6 +122,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
   GenericScreen.prototype.setScore = function (score) {
     if (this.scoreValue && score !== undefined) {
       this.scoreValue.textContent = score.toString();
+    }
+  };
+
+  /**
+   * Set max score for screen
+   *
+   * @param maxScore
+   */
+  GenericScreen.prototype.setMaxScore = function (maxScore) {
+    if (maxScore !== undefined) {
+      this.maxScoreValue.textContent = maxScore.toString();
     }
   };
 
@@ -149,17 +165,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     scoreCircle.appendChild(achievedScore);
 
-    if (maxScore && maxScore > 0) {
-      const scoreDelimiter = document.createElement('span');
-      scoreDelimiter.className = 'h5p-score-delimiter';
-      scoreDelimiter.textContent = '/';
-      scoreCircle.appendChild(scoreDelimiter);
+    const scoreDelimiter = document.createElement('span');
+    scoreDelimiter.className = 'h5p-score-delimiter';
+    scoreDelimiter.textContent = '/';
+    scoreCircle.appendChild(scoreDelimiter);
 
-      const maxAchievableScore = document.createElement('span');
-      maxAchievableScore.className = 'h5p-max-score';
-      maxAchievableScore.textContent = maxScore.toString();
-      scoreCircle.appendChild(maxAchievableScore);
-    }
+    const maxAchievableScore = document.createElement('span');
+    maxAchievableScore.className = 'h5p-max-score';
+
+    this.maxScoreValue = document.createTextNode(maxScore.toString());
+    maxAchievableScore.appendChild(this.maxScoreValue);
+    scoreCircle.appendChild(maxAchievableScore);
 
     resultContainer.appendChild(scoreText);
     resultContainer.appendChild(scoreCircle);

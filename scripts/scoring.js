@@ -142,44 +142,12 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number}
      */
     const calculateDynamicMaxScore = function () {
-      const startNode = params.content[0];
-      const visitedNodes = [{
-        type: 'content',
-        index: 0,
-        alternativeParent: null,
-      }];
-
-      // DFS from start node to find all possible paths
-      const foundPaths = findBranchingPaths(startNode, visitedNodes);
-
-      // Find summarized score for all paths and grab max
-      return foundPaths.map(function (path) {
-        return path.map(function (p) {
-          // Grab score for each path list
-          let content = null;
-          if (p.type === 'alternative') {
-            const branchingQuestion = params.content[p.alternativeParent];
-            const alternatives = branchingQuestion.type.params
-              .branchingQuestion.alternatives;
-
-            content = alternatives[p.index];
-          }
-          else {
-            content = params.content[p.index];
-          }
-
-          if (hasEndScreenScore(content) && content.nextContentId && content.nextContentId > -1) {
-            return content.feedback.endScreenScore;
-          }
-
-          // No score found
-          return 0;
-        }).reduce(function (sum, score) {
-          return sum + score;
-        }, 0);
-      }).reduce(function (prev, score) {
-        return prev >= score ? prev : score;
-      }, 0);
+      let maxScore = 0;
+      scores.forEach(function (score) {
+        maxScore += score.maxScore;
+      });
+      console.log(maxScore);
+      return maxScore;
     };
 
     /**
@@ -214,6 +182,40 @@ H5P.BranchingScenario.Scoring = (function () {
     };
 
     /**
+     * Get score for a Branching Question alternative
+     *
+     * @param libraryParams
+     * @param chosenAlternative
+     * @returns {*}
+     */
+    const getAlternativeMaxScore = function (libraryParams, chosenAlternative) {
+      if (!(chosenAlternative >= 0)) {
+        return 0;
+      }
+
+      const hasAlternative = libraryParams
+        && libraryParams.type
+        && libraryParams.type.params
+        && libraryParams.type.params.branchingQuestion
+        && libraryParams.type.params.branchingQuestion.alternatives
+        && libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
+
+      if (!hasAlternative) {
+        return 0;
+      }
+
+      const alt = libraryParams.type.params.branchingQuestion.alternatives;
+      let maxScore = 0;
+      alt.forEach(function (score, index) {
+        if (alt[index].feedback.endScreenScore > maxScore) {
+          maxScore = alt[index].feedback.endScreenScore;
+        }
+      });
+
+      return maxScore;
+    };
+
+    /**
      * Get current score. Uses screen score if configured to use static score.
      *
      * @param {number} screenScore Used when static score is configured
@@ -239,11 +241,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Max score for branching scenario
      */
     this.getMaxScore = function () {
-      if (!maxScore) {
-        maxScore = calculateMaxScore();
-      }
-
-      return maxScore;
+      return calculateMaxScore();
     };
 
     /**
@@ -266,6 +264,7 @@ H5P.BranchingScenario.Scoring = (function () {
       visitedIndex = visitedIndex + 1;
       const libraryParams = params.content[currentId];
       let currentLibraryScore = 0;
+      let currentLibraryMaxScore = 0; 
 
       // BQ if library id differs or if it is the first content
       const isBranchingQuestion = currentId !== libraryId
@@ -273,8 +272,8 @@ H5P.BranchingScenario.Scoring = (function () {
 
       // For Branching Questions find score for chosen alternative
       if (isBranchingQuestion) {
-        currentLibraryScore =
-          getAlternativeScore(libraryParams, chosenAlternative);
+        currentLibraryScore = getAlternativeScore(libraryParams, chosenAlternative);
+        currentLibraryMaxScore = getAlternativeMaxScore(libraryParams, chosenAlternative);
       }
       else {
         if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
@@ -326,6 +325,7 @@ H5P.BranchingScenario.Scoring = (function () {
           visitedIndex: visitedIndex,
           id: currentId,
           score: currentLibraryScore,
+          maxScore: currentLibraryMaxScore
         });
       }
     };
