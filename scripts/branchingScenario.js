@@ -227,10 +227,21 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     if (self.currentId !== -1) {
       self.triggerXAPI('progressed');
+
+      let contentScores = {};
+
+      if (self.libraryScreen.currentLibraryInstance.libraryInfo.machineName === "H5P.InteractiveVideo") {
+        contentScores = {
+          "score": self.libraryScreen.currentLibraryInstance.getScore(),
+          "maxScore": self.libraryScreen.currentLibraryInstance.getMaxScore()
+        };
+      }
+
       self.scoring.addLibraryScore(
         this.currentId,
         this.libraryScreen.currentLibraryId,
-        e.data.chosenAlternative
+        e.data.chosenAlternative,
+        contentScores
       );
     }
 
@@ -368,7 +379,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Get accumulative score for all attempted scenarios
    *
-   * @returns {number} Current score for Brnaching Scenario
+   * @returns {number} Current score for Branching Scenario
    */
   self.getScore = function () {
     return self.scoring.getScore();
@@ -444,7 +455,7 @@ H5P.BranchingScenario = function (params, contentId) {
    */
   self.getXAPIData = function () {
     if (!self.currentEndScreen) {
-      console.error('Called getXAPIData before finished.')
+      console.error('Called getXAPIData before finished.');
       return;
     }
 
