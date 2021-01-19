@@ -114,7 +114,8 @@
 
 .h5p-branching-scenario .h5p-branching-scenario-content.h5p-advanced-text {
   padding: 1em 1.4em 1em 1.4em;
-  height: 33em;
+  min-height: 9em;
+  max-height: 33em;
   overflow-y: auto;
 }
 

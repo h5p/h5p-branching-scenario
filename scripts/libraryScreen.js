@@ -571,7 +571,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     for (let i = 0; i < nextLibraryElements.length; i++) {
       nextLibraryElements[i].parentNode.removeChild(nextLibraryElements[i]);
     }
-  }
+  };
 
   /**
    * Remove custom fullscreen buttons from sub content.
