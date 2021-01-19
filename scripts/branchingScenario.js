@@ -230,7 +230,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
       let contentScores = {};
 
-      if (self.libraryScreen.currentLibraryInstance.libraryInfo.machineName === "H5P.InteractiveVideo") {
+      if (self.libraryScreen.currentLibraryInstance.getScore) {
         contentScores = {
           "score": self.libraryScreen.currentLibraryInstance.getScore(),
           "maxScore": self.libraryScreen.currentLibraryInstance.getMaxScore()
