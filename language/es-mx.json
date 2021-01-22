@@ -57,6 +57,10 @@
                 "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Siguiente identificador de contenido (las pantallas finales se definen con números negativos)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Puntuación de este escenario",
                     "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen este escenario"
-                  }
-                ]
-              },
-              {
-                "label": "Behavioural settings",
-                "fields": [
-                  {
-                    "label": "Require content to be finished to proceed",
-                    "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
                   }
                 ]
               }

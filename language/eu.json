@@ -57,6 +57,10 @@
                 "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Hurrengo Edukiaren IDa (amaierako pantailek zenbaki negatiboen bitartez identifikatzen dira)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Eskenatoki honen kalifikazioa",
                     "description": "Eskenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
-                  }
-                ]
-              },
-              {
-                "label": "Portaera-ezarpenak",
-                "fields": [
-                  {
-                    "label": "Require content to be finished to proceed",
-                    "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
                   }
                 ]
               }

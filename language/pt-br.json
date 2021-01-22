@@ -57,6 +57,10 @@
                 "description": "Se selecionado, o usuário verá o titulo do conteúdo na barra superior desde componente"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Próximo Id de conteúdo (as telas finais são definidas por números negativos)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Placar para este cenário",
                     "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram neste cenário de fim"
-                  }
-                ]
-              },
-              {
-                "label": "Behavioural settings",
-                "fields": [
-                  {
-                    "label": "Require content to be finished to proceed",
-                    "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
                   }
                 ]
               }

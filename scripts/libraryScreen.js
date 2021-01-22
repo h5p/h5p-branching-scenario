@@ -364,11 +364,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     );
 
-    // Using "contentBehaviour" instead of just "behaviour" because H5PEditor.findSemanticsField returns first value found for TabViewSettings
     if (
       this.parent.params.behaviour === 'requireFinished' ||
       this.parent.params.behaviour === 'individual' &&
-      this.parent.params.content[id].contentBehaviour === true
+      this.parent.params.content[id].requiresFinishing === true
     ) {
       this.libraryFinishingRequirements[id] = this.requiresFinishing(instance, content.library.split(' ')[0]);
       this.addFinishedListeners(instance, content.library.split(' ')[0]);
@@ -1003,7 +1002,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.currentLibraryWrapper.style.height === "") {
         const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
         wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
-      } 
+      }
       else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
       }
