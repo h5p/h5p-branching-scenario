@@ -57,6 +57,11 @@
   margin-bottom: 0;
 }
 
+.h5p-branching-scenario .h5p-nav-button.h5p-disabled {
+    opacity: 0.2;
+    cursor: unset;
+}
+
 .h5p-branching-scenario .h5p-library-wrapper {
   position: relative;
 }

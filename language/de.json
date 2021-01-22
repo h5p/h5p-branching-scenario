@@ -76,6 +76,15 @@
                     "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
                   }
                 ]
+              },
+              {
+                "label": "Interaktionseinstellungen",
+                "fields": [
+                  {
+                    "label": "Inhalt muss abgeschlossen sein, um fortfahren zu können",
+                    "description": "Hat keinen Effekt, wenn der Inhalt keinen Anhaltspunkt liefert, ob er abgeschlossen wurde, z. B. Bilder oder Präsentationen mit nur einem Schaubild."
+                  }
+                ]
               }
             ]
           }
@@ -95,6 +104,26 @@
                 },
                 {
                   "label": "Keine Bepunktung"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Interaktionseinstellungen",
+          "fields": [
+            {
+              "label": "Überschreiben der Optionen zum Fortfahren nach Abschluss",
+              "description": "Überschreibt die individuellen Einstellungen zum Steuern der Freigabe des \"Weiter\"-Buttons. Hat keinen Effekt, wenn der Inhalt keinen Anhaltspunkt liefert, ob er abgeschlossen wurde, z. B. Bilder oder Präsentationen mit nur einem Schaubild.",
+              "options": [
+                {
+                  "label": "Nutze die individuellen Einstellungen des Inhalts"
+                },
+                {
+                  "label": "Alle Inhalte müssen erst abgeschlossen werden"
+                },
+                {
+                  "label": "Kein Inhalt muss erst abgeschlossen werden"
                 }
               ]
             }

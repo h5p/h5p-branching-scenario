@@ -151,7 +151,7 @@
 
 .h5p-branching-scenario .h5p-start-button:hover,
 .h5p-end-button:hover,
-.h5p-nav-button:hover {
+.h5p-nav-button:not(.h5p-disabled):hover {
   border-color: #b0f88f;
   color: #4b4c60;
   background: #b0f88f;
