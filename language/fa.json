@@ -1,0 +1,156 @@
+{
+    "semantics": [
+        {
+            "label": "",
+            "fields": [
+                {
+                    "label": ""
+                },
+                {
+                    "label": "",
+                    "fields": [
+                        {
+                            "label": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "label": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "label": ""
+                        }
+                    ]
+                },
+                {
+                    "label": "",
+                    "field": {
+                        "label": "",
+                        "fields": [
+                            {
+                                "label": ""
+                            },
+                            {
+                                "label": ""
+                            },
+                            {
+                                "label": ""
+                            },
+                            {
+                                "label": "",
+                                "description": ""
+                            },
+                            {
+                                "label": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "label": "",
+                    "entity": "",
+                    "field": {
+                        "fields": [
+                            {},
+                            {
+                                "label": "",
+                                "description": ""
+                            },
+                            {
+                                "label": ""
+                            },
+                            {
+                                "label": "",
+                                "fields": [
+                                    {
+                                        "label": ""
+                                    },
+                                    {
+                                        "label": ""
+                                    },
+                                    {
+                                        "label": ""
+                                    },
+                                    {
+                                        "label": "",
+                                        "description": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "label": "",
+                                "fields": [
+                                    {
+                                        "label": "",
+                                        "description": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "label": "",
+                    "fields": [
+                        {
+                            "label": "",
+                            "description": "",
+                            "options": [
+                                {
+                                    "label": ""
+                                },
+                                {
+                                    "label": ""
+                                },
+                                {
+                                    "label": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "",
+                    "fields": [
+                        {
+                            "label": "",
+                            "description": "",
+                            "options": [
+                                {
+                                    "label": ""
+                                },
+                                {
+                                    "label": ""
+                                },
+                                {
+                                    "label": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "",
+                    "fields": [
+                        {
+                            "label": "",
+                            "default": ""
+                        },
+                        {
+                            "label": "",
+                            "default": ""
+                        },
+                        {
+                            "label": "",
+                            "default": ""
+                        },
+                        {
+                            "label": "",
+                            "default": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
