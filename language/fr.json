@@ -140,6 +140,10 @@
               "default": "Continuer"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Libellé pour le score affiché sur l'écran de fin",
               "default": "Votre score:"
             }

@@ -140,6 +140,10 @@
               "default": "Продължи"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Етикет за резултата на крайния прозорец",
               "default": "Вашият резултат:"
             }

@@ -140,6 +140,10 @@
               "default": "Fortsätt"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Etikett för poäng på slutskärmen",
               "default": "Din poäng:"
             }

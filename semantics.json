@@ -316,6 +316,13 @@
             "default": "Proceed"
           },
           {
+            "name": "replayButtonText",
+            "label": "Text for the button used to replay a video",
+            "type": "text",
+            "importance": "low",
+            "default": "Replay the video"
+          },
+          {
             "name": "scoreText",
             "label": "Label for score on the end screen",
             "type": "text",

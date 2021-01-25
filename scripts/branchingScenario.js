@@ -58,6 +58,7 @@ H5P.BranchingScenario = function (params, contentId) {
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
+    replayButtonText: "Replay the video",
     scoreText: "Your score:"
   }, params.l10n);
 

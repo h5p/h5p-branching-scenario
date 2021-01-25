@@ -140,6 +140,10 @@
               "default": "Nadaljuj"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Besedilo za prikaz rezultatov na končnem zaslonu",
               "default": "Rezultat:"
             }

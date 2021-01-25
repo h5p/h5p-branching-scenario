@@ -140,6 +140,10 @@
               "default": "Procedi"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Etichetta per il punteggio sulla schermata finale",
               "default": "Il tuo punteggio:"
             }

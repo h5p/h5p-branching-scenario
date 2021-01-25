@@ -28,6 +28,9 @@
     },
     {
       "path": "styles/libraryScreen.css"
+    },
+    {
+      "path": "styles/libraryScreenOverlay.css"
     }
   ],
   "preloadedDependencies": [

@@ -29,6 +29,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.header;
     this.shouldAutoplay = [];
     this.isShowing = false;
+    this.contentOverlays = [];
 
     const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
     this.wrapper = this.createWrapper(courseTitle, (contentTitle ? contentTitle : 'Untitled Content'), library.showContentTitle && contentTitle);
@@ -116,75 +117,23 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
-    const navButton = document.createElement('button');
-    navButton.classList.add('transition');
-    navButton.addEventListener('animationend', () => {
+
+    this.navButton = document.createElement('button');
+    this.navButton.classList.add('transition');
+    this.navButton.addEventListener('animationend', () => {
       this.parent.unanimateNavButton();
     })
 
     const self = this;
     const parent = this.parent;
-    navButton.onclick = function () {
-      // Stop impatient users from breaking the view
-      if (parent.navigating === false) {
-        const hasFeedbackTitle = self.libraryFeedback.title
-          && self.libraryFeedback.title.trim();
-        const hasFeedbackSubtitle = self.libraryFeedback.subtitle
-          && self.libraryFeedback.subtitle.trim();
 
-        const hasFeedback = !!(hasFeedbackTitle
-          || hasFeedbackSubtitle
-          || self.libraryFeedback.image
-        );
+    this.navButton.addEventListener('click', () => {
+      this.handleProceed();
+    });
+    this.navButton.classList.add('h5p-nav-button');
 
-        if (hasFeedback && self.nextLibraryId !== -1) {
-          // Add an overlay if it doesn't exist yet
-          if (self.overlay === undefined) {
-            self.overlay = document.createElement('div');
-            self.overlay.className = 'h5p-branching-scenario-overlay';
-            self.wrapper.appendChild(self.overlay);
-            self.hideBackgroundFromReadspeaker();
-          }
-
-          const branchingQuestion = document.createElement('div');
-          branchingQuestion.classList.add('h5p-branching-question-wrapper');
-          branchingQuestion.classList.add('h5p-branching-scenario-feedback-dialog');
-
-
-          var questionContainer = document.createElement('div');
-          questionContainer.classList.add('h5p-branching-question-container');
-
-          branchingQuestion.appendChild(questionContainer);
-
-          const feedbackScreen = self.createFeedbackScreen(self.libraryFeedback, self.nextLibraryId);
-          questionContainer.appendChild(feedbackScreen);
-
-          questionContainer.classList.add('h5p-start-outside');
-          questionContainer.classList.add('h5p-fly-in');
-          self.currentLibraryWrapper.style.zIndex = 0;
-          self.wrapper.appendChild(branchingQuestion);
-          feedbackScreen.focus();
-        }
-        else {
-          const nextScreen = {
-            nextContentId: self.nextLibraryId
-          };
-
-          if (!!(hasFeedback || (self.libraryFeedback.endScreenScore !== undefined))) {
-            nextScreen.feedback = self.libraryFeedback;
-          }
-          parent.trigger('navigated', nextScreen);
-        }
-
-        parent.navigating = true;
-      }
-    };
-    navButton.classList.add('h5p-nav-button');
-
-    this.navButton = navButton;
-
-    navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
-    buttonWrapper.appendChild(navButton);
+    this.navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
+    buttonWrapper.appendChild(this.navButton);
 
     const header = document.createElement('div');
     header.classList.add('h5p-screen-header');
@@ -196,8 +145,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     wrapper.appendChild(header);
 
     const handleWrapperResize = () => {
-      if (self.wrapper.clientHeight > 500) {
-        self.wrapper.style.minHeight = self.wrapper.clientHeight + 'px';
+      if (this.wrapper.clientHeight > 500) {
+        this.wrapper.style.minHeight = this.wrapper.clientHeight + 'px';
       }
     };
 
@@ -232,6 +181,64 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     return wrapper;
   };
+
+  /**
+   * Hande proceed to next slide.
+   */
+  LibraryScreen.prototype.handleProceed = function () {
+    // Stop impatient users from breaking the view
+    if (this.parent.navigating === false) {
+      const hasFeedbackTitle = this.libraryFeedback.title &&
+        this.libraryFeedback.title.trim();
+      const hasFeedbackSubtitle = this.libraryFeedback.subtitle &&
+        this.libraryFeedback.subtitle.trim();
+
+      const hasFeedback = !!(hasFeedbackTitle ||
+        hasFeedbackSubtitle ||
+        this.libraryFeedback.image
+      );
+
+      if (hasFeedback && this.nextLibraryId !== -1) {
+        // Add an overlay if it doesn't exist yet
+        if (this.overlay === undefined) {
+          this.overlay = document.createElement('div');
+          this.overlay.className = 'h5p-branching-scenario-overlay';
+          this.wrapper.appendChild(self.overlay);
+          this.hideBackgroundFromReadspeaker();
+        }
+
+        const branchingQuestion = document.createElement('div');
+        branchingQuestion.classList.add('h5p-branching-question-wrapper');
+        branchingQuestion.classList.add('h5p-branching-scenario-feedback-dialog');
+
+        const questionContainer = document.createElement('div');
+        questionContainer.classList.add('h5p-branching-question-container');
+
+        branchingQuestion.appendChild(questionContainer);
+
+        const feedbackScreen = this.createFeedbackScreen(self.libraryFeedback, this.nextLibraryId);
+        questionContainer.appendChild(feedbackScreen);
+
+        questionContainer.classList.add('h5p-start-outside');
+        questionContainer.classList.add('h5p-fly-in');
+        this.currentLibraryWrapper.style.zIndex = 0;
+        this.wrapper.appendChild(branchingQuestion);
+        feedbackScreen.focus();
+      }
+      else {
+        const nextScreen = {
+          nextContentId: this.nextLibraryId
+        };
+
+        if (!!(hasFeedback || (this.libraryFeedback.endScreenScore !== undefined))) {
+          nextScreen.feedback = this.libraryFeedback;
+        }
+        this.parent.trigger('navigated', nextScreen);
+      }
+
+      this.parent.navigating = true;
+    }
+  }
 
   LibraryScreen.prototype.createFeedbackScreen = function (feedback, nextContentId) {
     const self = this;
@@ -313,6 +320,28 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     libraryElement.classList.add('h5p-branching-scenario-content');
     this.appendRunnable(libraryElement, library.type, library.contentId);
 
+    const libraryMachineName = library.type && library.type.library.split(' ')[0];
+
+    // Content overlay required for some instances
+    this.contentOverlays[library.contentId] = new H5P.BranchingScenario.LibraryScreenOverlay();
+    wrapper.appendChild(this.contentOverlays[library.contentId].getDOM());
+    if (libraryMachineName === 'H5P.InteractiveVideo' || libraryMachineName === 'H5P.Video') {
+      this.contentOverlays[library.contentId].addButton(
+        'replay',
+        this.parent.params.l10n.replayButtonText,
+        () => {
+          this.handleReplayVideo();
+        }
+      );
+      this.contentOverlays[library.contentId].addButton(
+        'proceed',
+        this.parent.params.l10n.proceedButtonText,
+        () => {
+          this.handleProceedAfterVideo();
+        }
+      );
+    }
+
     wrapper.appendChild(libraryElement);
 
     if (isNextLibrary) {
@@ -321,11 +350,22 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     // Special case when first node is BQ and library screen tries to display it
-    if (library.type && library.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+    if (libraryMachineName === 'H5P.BranchingQuestion') {
       libraryElement.classList.add('h5p-branching-hidden');
     }
 
     return wrapper;
+  };
+
+  LibraryScreen.prototype.handleReplayVideo = function () {
+    this.contentOverlays[this.currentLibraryId].hide();
+    this.currentLibraryInstance.seek(0);
+    this.currentLibraryInstance.play();
+  };
+
+  LibraryScreen.prototype.handleProceedAfterVideo = function () {
+    this.contentOverlays[this.currentLibraryId].hide();
+    this.handleProceed();
   };
 
   /**
@@ -383,7 +423,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (content.library.indexOf('H5P.Video ') === 0 && this.nextIsBranching(id)) {
       instance.on('stateChange', function (event) {
         if (event.data === H5P.Video.ENDED && self.navButton) {
-          self.navButton.click();
+          self.handleProceed();
         }
       });
     }
@@ -507,14 +547,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           // Permit progression when results have been submitted or video ended if no tasks
           instance.on('xAPI', (event) => {
             if (event.data.statement.verb.display['en-US'] === 'completed') {
-              that.parent.showNavButton();
+              that.handleVideoOver();
             }
           });
         }
         else {
           instance.video.on('stateChange', function (event) {
             if (event.data === H5P.Video.ENDED) {
-              that.parent.showNavButton();
+              that.handleVideoOver();
             }
           });
         }
@@ -524,7 +564,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       case 'H5P.Video':
         instance.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED) {
-            that.parent.showNavButton();
+            if (!that.nextIsBranching(that.currentLibraryId)) {
+              that.showContentOverlay();
+            }
+            // else already handled by general video listener
           }
         });
         break;
@@ -550,6 +593,33 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
     }
   };
+
+  /**
+   * Handle video completed.
+   * Will proceed right away if next node is BQ, otherwise show intermediary overlay.
+   */
+  LibraryScreen.prototype.handleVideoOver = function () {
+    if (this.nextIsBranching(this.currentLibraryId)) {
+      this.handleProceed();
+    }
+    else {
+      this.showContentOverlay();
+    }
+  }
+
+  /**
+   * Show content overlay.
+   */
+  LibraryScreen.prototype.showContentOverlay = function () {
+    this.contentOverlays[this.currentLibraryId].show();
+  }
+
+  /**
+   * Hide content overlay.
+   */
+  LibraryScreen.prototype.hideContentOverlay = function () {
+    this.contentOverlays[this.currentLibraryId].hide();
+  }
 
   /**
    * Used to get XAPI data for "previous" library.
@@ -750,6 +820,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const self = this;
 
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true) {
+      self.contentOverlays[self.currentLibraryId].hide();
       self.parent.hideNavButton();
     }
 
@@ -934,6 +1005,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
 
       if (this.libraryFinishingRequirements[library.contentId] === true) {
+        this.contentOverlays[this.currentLibraryId].hide();
         this.parent.hideNavButton();
       }
       else {

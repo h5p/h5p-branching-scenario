@@ -140,6 +140,10 @@
               "default": "ទៅ"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Label for score on the end screen",
               "default": "ពិន្ទុរបស់អ្នក:"
             }

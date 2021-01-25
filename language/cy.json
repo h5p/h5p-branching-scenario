@@ -140,6 +140,10 @@
               "default": "Bwrw ymlaen"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
               "default": "Eich sgôr:"
             }

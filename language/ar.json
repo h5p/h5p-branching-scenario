@@ -58,7 +58,7 @@
               },
               {
                 "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"                
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
               },
               {
                 "label": "Next Content ID (end screens are defined by negative numbers)"
@@ -138,6 +138,10 @@
             {
               "label": "Text for the button on each of the library screens",
               "default": "Proceed"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Label for score on the end screen",

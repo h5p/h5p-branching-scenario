@@ -140,6 +140,10 @@
               "default": "Weiter"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Beschriftung der Punkte auf dem Endbildschirm",
               "default": "Deine Punktzahl:"
             }

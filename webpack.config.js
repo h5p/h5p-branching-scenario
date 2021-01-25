@@ -6,6 +6,7 @@ module.exports = {
       './scripts/branchingScenario.js',
       './scripts/genericScreen.js',
       './scripts/libraryScreen.js',
+      './scripts/libraryScreenOverlay.js',
       './scripts/scoring.js'
     ]
   },

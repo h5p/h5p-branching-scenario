@@ -140,6 +140,10 @@
               "default": "진행"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "끝 화면에 점수 표시 라벨",
               "default": "점수:"
             }
