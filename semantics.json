@@ -224,21 +224,6 @@
                   "optional": true
                 }
               ]
-            },
-            {
-              "name": "contentBehaviour",
-              "type": "group",
-              "label": "Behavioural settings",
-              "fields": [
-                {
-                  "name": "requiresFinishing",
-                  "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
-                  "type": "boolean",
-                  "label": "Require content to be finished to proceed",
-                  "optional": true,
-                  "default": false
-                }
-              ]
             }
           ]
         }
