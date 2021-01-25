@@ -55,9 +55,14 @@
   font-weight: normal;
 }
 
-.h5p-branching-scenario p:not(.h5p-course-presentation p){
+.h5p-branching-scenario p{
   margin: 0;
   padding: 0;
+}
+
+.h5p-branching-scenario .h5p-course-presentation p{
+  margin: revert;
+  padding: revert;
 }
 
 .h5p-branching-scenario .h5p-current-screen {
