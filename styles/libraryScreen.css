@@ -63,7 +63,7 @@
 }
 
 .h5p-branching-scenario .h5p-nav-button.h5p-hidden {
-    visibility: hidden;
+    display: none;
 }
 
 .h5p-branching-scenario .h5p-nav-button.h5p-animate {
@@ -73,30 +73,31 @@
 
 @keyframes nav-flash {
   from {}
-  55% {
+  25% {
     border-color: #b0f88f;
     box-shadow: none;
     background: #b0f88f;
     color: #4b4c60;
+  }
+  30% {
+    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
+  }
+  40% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
   }
   60% {
-    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
+    box-shadow: none;
   }
   70% {
-    box-shadow: none;
-  }
-  80% {
-    box-shadow: 0 0 0.125rem 0.75rem rgba(172, 248, 143, 0.2);
-  }
-  90% {
-    box-shadow: none;
-  }
-  to {
     border-color: #b0f88f;
     box-shadow: none;
     background: #b0f88f;
     color: #4b4c60;
   }
+  to {}
 }
 
 .h5p-branching-scenario .h5p-library-wrapper {

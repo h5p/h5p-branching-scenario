@@ -494,8 +494,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if (event.data.statement.verb.display['en-US'] === 'progressed') {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
             if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
-              that.parent.showNavButton();
-              that.parent.animateNavButton();
+              if (this.navButton.classList.contains('h5p-hidden')) {
+                that.parent.showNavButton(true);
+              }
             }
           }
         });

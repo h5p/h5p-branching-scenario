@@ -411,19 +411,32 @@ H5P.BranchingScenario = function (params, contentId) {
 
   /**
    * Show proceed button.
+   * @param {boolean} [animated=false] If true, will be animated.
    */
-  self.showNavButton = function () {
+  self.showNavButton = function (animated = false) {
     if (!self.libraryScreen.navButton) {
       return;
     }
 
     self.libraryScreen.navButton.classList.remove('h5p-hidden');
+    if (animated) {
+      self.animateNavButton();
+    }
   };
 
+  /**
+   * Animate proceed button.
+   */
   self.animateNavButton = function () {
-    self.libraryScreen.navButton.classList.add('h5p-animate');
+    // Prevent multiple animation calls
+    if (!self.libraryScreen.navButton.classList.contains('h5p-animate')) {
+      self.libraryScreen.navButton.classList.add('h5p-animate');
+    }
   }
 
+  /**
+   * Stop animation of proceed button.
+   */
   self.unanimateNavButton = function () {
     self.libraryScreen.navButton.classList.remove('h5p-animate');
   }
