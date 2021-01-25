@@ -55,7 +55,7 @@
   font-weight: normal;
 }
 
-.h5p-branching-scenario > * > *:not(.h5p-course-presentation) > p{
+.h5p-branching-scenario p:not(.h5p-course-presentation p){
   margin: 0;
   padding: 0;
 }
