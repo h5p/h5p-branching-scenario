@@ -400,6 +400,35 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
+   * Hide proceed button.
+   */
+  self.hideNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.add('h5p-hidden');
+  };
+
+  /**
+   * Show proceed button.
+   */
+  self.showNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+
+    self.libraryScreen.navButton.classList.remove('h5p-hidden');
+  };
+
+  self.animateNavButton = function () {
+    self.libraryScreen.navButton.classList.add('h5p-animate');
+  }
+
+  self.unanimateNavButton = function () {
+    self.libraryScreen.navButton.classList.remove('h5p-animate');
+  }
+
+  /**
    * Get accumulative score for all attempted scenarios
    *
    * @returns {number} Current score for Branching Scenario

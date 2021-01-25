@@ -118,6 +118,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
     const navButton = document.createElement('button');
     navButton.classList.add('transition');
+    navButton.addEventListener('animationend', () => {
+      this.parent.unanimateNavButton();
+    })
 
     const self = this;
     const parent = this.parent;
@@ -351,6 +354,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (hasAutoplay(contentClone.params)) {
       this.shouldAutoplay[id] = true;
     }
+    this.currentMachineName = contentClone.library.split(' ', 2)[0];
 
     // Create content instance
     // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
@@ -490,7 +494,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if (event.data.statement.verb.display['en-US'] === 'progressed') {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
             if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
-              that.parent.enableNavButton();
+              that.parent.showNavButton();
+              that.parent.animateNavButton();
             }
           }
         });
@@ -501,14 +506,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           // Permit progression when results have been submitted or video ended if no tasks
           instance.on('xAPI', (event) => {
             if (event.data.statement.verb.display['en-US'] === 'completed') {
-              that.parent.enableNavButton();
+              that.parent.showNavButton();
             }
           });
         }
         else {
           instance.video.on('stateChange', function (event) {
             if (event.data === H5P.Video.ENDED) {
-              that.parent.enableNavButton();
+              that.parent.showNavButton();
             }
           });
         }
@@ -518,7 +523,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       case 'H5P.Video':
         instance.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED) {
-            that.parent.enableNavButton();
+            that.parent.showNavButton();
           }
         });
         break;
@@ -526,7 +531,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Permit progression when audio ended
       case 'H5P.Audio':
         instance.audio.on('ended', function () {
-          that.parent.enableNavButton();
+          that.parent.showNavButton();
         });
         break;
 
@@ -538,7 +543,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
               event.data.statement.verb.display['en-US'] === 'answered' ||
               event.data.statement.verb.display['en-US'] === 'completed'
             ) {
-              that.parent.enableNavButton();
+              that.parent.showNavButton();
             }
           });
         }
@@ -744,7 +749,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const self = this;
 
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true) {
-      self.parent.disableNavButton();
+      self.parent.hideNavButton();
     }
 
     self.isShowing = true;
@@ -928,10 +933,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
 
       if (this.libraryFinishingRequirements[library.contentId] === true) {
-        this.parent.disableNavButton();
+        this.parent.hideNavButton();
       }
       else {
-        this.parent.enableNavButton();
+        this.parent.showNavButton();
       }
 
       if (this.currentLibraryInstance.resize) {
@@ -957,7 +962,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
     else { // Show a branching question
       if (this.parent.params.behaviour === true) {
-        this.parent.disableNavButton();
+        this.parent.hideNavButton();
       }
 
       // Remove existing branching questions
