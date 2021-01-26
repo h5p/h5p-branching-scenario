@@ -203,7 +203,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         if (this.overlay === undefined) {
           this.overlay = document.createElement('div');
           this.overlay.className = 'h5p-branching-scenario-overlay';
-          this.wrapper.appendChild(self.overlay);
+          this.wrapper.appendChild(this.overlay);
           this.hideBackgroundFromReadspeaker();
         }
 
@@ -216,7 +216,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
         branchingQuestion.appendChild(questionContainer);
 
-        const feedbackScreen = this.createFeedbackScreen(self.libraryFeedback, this.nextLibraryId);
+        const feedbackScreen = this.createFeedbackScreen(this.libraryFeedback, this.nextLibraryId);
         questionContainer.appendChild(feedbackScreen);
 
         questionContainer.classList.add('h5p-start-outside');
