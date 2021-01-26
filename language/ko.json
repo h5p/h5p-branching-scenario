@@ -57,6 +57,10 @@
                 "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "다음 콘텐츠 ID (끝 화면은 음수로 정의됨)"
               },
               {
@@ -101,6 +105,26 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Require all contents to be finished"
+                },
+                {
+                  "label": "Require no content to be finished"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "맞춤 설정",
           "fields": [
             {
@@ -114,6 +138,10 @@
             {
               "label": "각 라이브러리 화면의 버튼에 대한 텍스트",
               "default": "진행"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "끝 화면에 점수 표시 라벨",

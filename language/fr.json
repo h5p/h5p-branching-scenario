@@ -57,6 +57,10 @@
                 "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Score pour ce scénario",
                     "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
-                  }
-                ]
-              },
-              {
-                "label": "Options générales",
-                "fields": [
-                  {
-                    "label": "Require content to be finished to proceed",
-                    "description": "Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
                   }
                 ]
               }
@@ -143,6 +138,10 @@
             {
               "label": "Texte pour le bouton de chaque écran de la bibliothèque",
               "default": "Continuer"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Libellé pour le score affiché sur l'écran de fin",
