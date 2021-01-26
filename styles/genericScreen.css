@@ -123,6 +123,14 @@
   font-size: 1.083em;
   font-family: H5PRobotoRegular;
   margin: 0.83em 0;
+  padding: 0 2em;
+}
+
+/* Reduce padding in smaller device */
+@media screen and (max-device-width: 400px) {
+  .h5p-content .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-scenario-subtitle-text {
+    padding: 0 .5em;
+  }
 }
 
 .h5p-branching-scenario .h5p-start-button,
