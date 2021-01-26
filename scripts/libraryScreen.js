@@ -330,7 +330,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         'replay',
         this.parent.params.l10n.replayButtonText,
         () => {
-          this.handleReplayVideo();
+          this.handleReplayVideo(libraryMachineName);
         }
       );
       this.contentOverlays[library.contentId].addButton(
@@ -357,10 +357,36 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     return wrapper;
   };
 
-  LibraryScreen.prototype.handleReplayVideo = function () {
+  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName) {
     this.contentOverlays[this.currentLibraryId].hide();
     this.currentLibraryInstance.seek(0);
     this.currentLibraryInstance.play();
+
+    if (libraryMachineName === 'H5P.InteractiveVideo') {
+      this.resetIVProgress();
+    }
+  };
+
+  
+  /**
+   *  Used to reset an IV after you replay it.
+   */
+  LibraryScreen.prototype.resetIVProgress = function () {
+    let interactions = this.currentLibraryInstance.interactions;
+    interactions.forEach(function(interaction){
+      interaction.resetTask();
+    });
+
+    let interactiveVideo = this.currentLibraryInstance;
+    interactiveVideo.addSliderInteractions();
+    interactiveVideo.endscreen.update();
+
+    let ivSubmitScreenStar = this.wrapper.getElementsByClassName('h5p-star-foreground')[0];
+    ivSubmitScreenStar.classList.remove('h5p-star-active');
+
+    let ivSubmitScreen = this.wrapper.getElementsByClassName('h5p-interactive-video-bubble-endscreen')[0];
+    ivSubmitScreen.classList.add('h5p-interactive-video-bubble-endscreen-inactive');
+    ivSubmitScreen.classList.remove('h5p-interactive-video-bubble-endscreen-active');
   };
 
   LibraryScreen.prototype.handleProceedAfterVideo = function () {
