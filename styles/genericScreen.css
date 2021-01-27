@@ -127,7 +127,7 @@
 }
 
 /* Reduce padding in smaller device */
-@media screen and (max-device-width: 400px) {
+@media screen and (max-width: 400px) {
   .h5p-content .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-scenario-subtitle-text {
     padding: 0 .5em;
   }
