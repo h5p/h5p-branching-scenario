@@ -57,6 +57,10 @@
                 "description": "Αν επιλεγεί, ο χρήστης θα βλέπει τον τίτλο του αντικειμένου στην μπάρα πάνω από το αντικείμενο"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "ID επόμενου αντικειμένου (χρησιμοποιήστε αρνητικό αριθμό για την οθόνη λήξης)"
               },
               {
@@ -101,6 +105,26 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Require all contents to be finished"
+                },
+                {
+                  "label": "Require no content to be finished"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "Προσαρμογή",
           "fields": [
             {
@@ -114,6 +138,10 @@
             {
               "label": "Κείμενο για το κουμπί των ενδιάμεσων οθονών",
               "default": "Συνέχισε"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Ετικέτα βαθμολογίας στην οθόνη λήξης",

@@ -57,6 +57,10 @@
                 "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
               },
               {
@@ -101,6 +105,26 @@
           ]
         },
         {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+              "options": [
+                {
+                  "label": "Use individual content settings"
+                },
+                {
+                  "label": "Require all contents to be finished"
+                },
+                {
+                  "label": "Require no content to be finished"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "Lokalisering",
           "fields": [
             {
@@ -114,6 +138,10 @@
             {
               "label": "Text för knappen på varje skärm i biblioteket",
               "default": "Fortsätt"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Etikett för poäng på slutskärmen",

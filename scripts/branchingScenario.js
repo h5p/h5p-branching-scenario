@@ -58,6 +58,7 @@ H5P.BranchingScenario = function (params, contentId) {
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
+    replayButtonText: "Replay the video",
     scoreText: "Your score:"
   }, params.l10n);
 
@@ -231,7 +232,7 @@ H5P.BranchingScenario = function (params, contentId) {
 
       let contentScores = {};
 
-      if (self.libraryScreen.currentLibraryInstance.getScore) {
+      if (self.libraryScreen.currentLibraryInstance && self.libraryScreen.currentLibraryInstance.getScore) {
         contentScores = {
           "score": self.libraryScreen.currentLibraryInstance.getScore(),
           "maxScore": self.libraryScreen.currentLibraryInstance.getMaxScore()
@@ -398,6 +399,48 @@ H5P.BranchingScenario = function (params, contentId) {
     self.libraryScreen.navButton.classList.remove('h5p-disabled');
     self.libraryScreen.navButton.removeAttribute('disabled');
   };
+
+  /**
+   * Hide proceed button.
+   */
+  self.hideNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.add('h5p-hidden');
+  };
+
+  /**
+   * Show proceed button.
+   * @param {boolean} [animated=false] If true, will be animated.
+   */
+  self.showNavButton = function (animated = false) {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+
+    self.libraryScreen.navButton.classList.remove('h5p-hidden');
+    if (animated) {
+      self.animateNavButton();
+    }
+  };
+
+  /**
+   * Animate proceed button.
+   */
+  self.animateNavButton = function () {
+    // Prevent multiple animation calls
+    if (!self.libraryScreen.navButton.classList.contains('h5p-animate')) {
+      self.libraryScreen.navButton.classList.add('h5p-animate');
+    }
+  }
+
+  /**
+   * Stop animation of proceed button.
+   */
+  self.unanimateNavButton = function () {
+    self.libraryScreen.navButton.classList.remove('h5p-animate');
+  }
 
   /**
    * Get accumulative score for all attempted scenarios
