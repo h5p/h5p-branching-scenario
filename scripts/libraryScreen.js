@@ -534,8 +534,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     );
 
     if (
-      this.parent.params.behaviour === 'requireFinished' ||
-      this.parent.params.behaviour === 'individual' &&
+      this.parent.params.behaviour.overrideFinishing === 'requireFinished' ||
+      this.parent.params.behaviour.overrideFinishing === 'individual' &&
       this.parent.params.content[id].requiresFinishing === true
     ) {
       this.libraryFinishingRequirements[id] = this.requiresFinishing(instance, content.library.split(' ')[0]);

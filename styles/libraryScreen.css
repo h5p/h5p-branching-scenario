@@ -70,7 +70,7 @@
 }
 
 .h5p-branching-scenario .h5p-nav-button.h5p-hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .h5p-branching-scenario .h5p-nav-button.h5p-animate {
