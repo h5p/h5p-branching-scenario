@@ -1,83 +1,83 @@
 {
   "semantics": [
     {
-      "label": "Editor vetveného scenára",
+      "label": "Redigerare för Branching Scenario",
       "fields": [
         {
-          "label": "Názov"
+          "label": "Titel"
         },
         {
-          "label": "Úvodná obrazovka",
+          "label": "Startskärm",
           "fields": [
             {
-              "label": "Nadpis na úvodnej obrazovke",
-              "placeholder": "Nadpis scenára"
+              "label": "Redigera skärmtitel",
+              "placeholder": "Titel för din kurs"
             },
             {
-              "label": "Podnadpis scenára",
-              "placeholder": "Detaily o scenári"
+              "label": "Undertext för startskärm",
+              "placeholder": "Information om kursen"
             },
             {
-              "label": "Obrázok úvodnej obrazovky"
+              "label": "Bild på startskärm"
             }
           ]
         },
         {
-          "label": "Zoznam záverečných obrazoviek",
+          "label": "Lista med slutskärmar",
           "field": {
-            "label": "Záverečná obrazovka",
+            "label": "Slutskärm",
             "fields": [
               {
-                "label": "Názov"
+                "label": "Titel"
               },
               {
                 "label": "Text"
               },
               {
-                "label": "Obrázok"
+                "label": "Bild"
               },
               {
-                "label": "Hodnotenie",
-                "description": "Hodnotenie sa odošle každému LMS, LRS alebo akejkoľvek inej pripojenej službe, ktorá prijíma hodnotenie od H5P pre používateľov, ktorí ukončia scenár."
+                "label": "Poäng",
+                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot"
               },
               {
-                "label": "Obsahové ID"
+                "label": "Innehålls-ID"
               }
             ]
           }
         },
         {
-          "label": "Zoznam obsahov vetveného scenára",
-          "entity": "obsah",
+          "label": "Lista över innehåll i branching scenario",
+          "entity": "innehåll",
           "field": {
             "fields": [
               {},
               {
-                "label": "Zobraziť nadpis obsahu v scenári",
-                "description": "Ak je vybrané, používateľ uvidí názov obsahu v hornom paneli nad obsahom scenára"
+                "label": "Visa innehållstitel i vy",
+                "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
                 "label": "Required to be completed",
                 "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
               },
               {
-                "label": "Nasledujúce ID obsahu (koncové obrazovky sú definované zápornými číslami)"
+                "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
               },
               {
-                "label": "Spätná väzba",
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Nadpis spätnej väzby"
+                    "label": "Feedback-titel"
                   },
                   {
-                    "label": "Text spätnej väzby"
+                    "label": "Feedback-text"
                   },
                   {
-                    "label": "Obrázok spätnej väzby"
+                    "label": "Feedback-bild"
                   },
                   {
-                    "label": "Hodnotenie vetveného scenára",
-                    "description": "Hodnotenie sa odošle každému LMS, LRS alebo akejkoľvek inej pripojenej službe, ktorá prijíma hodnotenie od H5P pre používateľov, ktorí ukončia scenár."
+                    "label": "Poäng för detta scenario",
+                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som slutför detta scenario"
                   }
                 ]
               }
@@ -85,20 +85,20 @@
           }
         },
         {
-          "label": "Možnosti hodnotenia",
+          "label": "Inställningar för poängsättning",
           "fields": [
             {
-              "label": "Možnosti hodnotenia",
-              "description": "Vyber typ hodnotenia",
+              "label": "Inställningar för poängsättning",
+              "description": "Välj typ av poängsättning",
               "options": [
                 {
-                  "label": "Staticky stanovené skóre pre každý konečný scenár"
+                  "label": "Använd statistik för att ange poäng för varje slutscenario"
                 },
                 {
-                  "label": "Dynamicky vypočítané skóre z odpovedí používateľov"
+                  "label": "Kalkylera poäng från användares svar dynamiskt"
                 },
                 {
-                  "label": "Bez hodnotenia"
+                  "label": "Ingen poängsättning"
                 }
               ]
             }
@@ -125,27 +125,27 @@
           ]
         },
         {
-          "label": "Lokalizácia",
+          "label": "Lokalisering",
           "fields": [
             {
-              "label": "Text pre tlačidlo na úvodnej obrazovke",
-              "default": "Začať kurz"
+              "label": "Text för knappen på startskärmen",
+              "default": "Starta kursen"
             },
             {
-              "label": "Text pre tlačidlo na záverečnej obrazovke",
-              "default": "Reštartovať kurz"
+              "label": "Text för knappen på slutskärmen",
+              "default": "Starta om kursen"
             },
             {
-              "label": "Text pre tlačidlo na každej obrazovke scenára",
-              "default": "Pokračovať"
+              "label": "Text för knappen på varje skärm i biblioteket",
+              "default": "Fortsätt"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Nadpis pre hodnotenie na záverečnej obrazovke",
-              "default": "Vaše hodnotenie:"
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
             }
           ]
         }

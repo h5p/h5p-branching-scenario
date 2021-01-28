@@ -18,6 +18,11 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
 
         // Individual require finished override value
         parameters.branchingScenario.content.forEach( function (contentNode) {
+          // No setting required for Branching Question
+          if (!contentNode.type || !contentNode.type.library || contentNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+            return;
+          }
+
           // Mind the one-item behavior of semantics groups
           if (typeof contentNode.contentBehaviour === 'undefined') {
             contentNode.contentBehaviour = false;
@@ -25,6 +30,7 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
         });
 
         // Global backwards navigation default value, mind the one-item behavior of semantics groups
+        // Global require finished override select default value, mind the one-item behavior of semantics groups
         if (typeof parameters.branchingScenario.behaviour === 'undefined') {
           parameters.branchingScenario.behaviour = 'individual';
         }

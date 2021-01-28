@@ -57,6 +57,10 @@
                 "description": "Если выбрано, пользователь увидит заголовок контента в верхней панели над этим контентом."
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "ID следующего контента (конечные экраны определяются отрицательными числами)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Оценка по этому сценарию",
                     "description": "Оценка будет отправлена в любую LMS, LRS или любую другую подключенную службу, которая получает оценки от H5P для пользователей, которые достигли этого сценария."
-                  }
-                ]
-              },
-              {
-                "label": "Настройки поведения",
-                "fields": [
-                  {
-                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
-                    "label": "Enable backwards navigation"
                   }
                 ]
               }
@@ -113,17 +108,17 @@
           "label": "Настройки поведения",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation",
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
               "options": [
                 {
                   "label": "Use individual content settings"
                 },
                 {
-                  "label": "Enable backwards navigation for all contents"
+                  "label": "Require all contents to be finished"
                 },
                 {
-                  "label": "Disable backwards navigation for all contents"
+                  "label": "Require no content to be finished"
                 }
               ]
             }
@@ -141,12 +136,12 @@
               "default": "Перезапустить курс"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
-            },
-            {
               "label": "Текст для кнопки на каждом из экранов библиотеки",
               "default": "Продолжить"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Надпись для оценки на конечном экране",

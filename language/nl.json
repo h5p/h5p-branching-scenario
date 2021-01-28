@@ -57,6 +57,10 @@
                 "description": "Indien geselecteerd, ziet de gebruiker de inhoudsopgave in de bovenste balk boven deze inhoud."
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Volgende ID van de inhoud (eindschermen worden gedefinieerd door negatieve getallen)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Score voor dit scenario",
                     "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die dit scenario bereiken."
-                  }
-                ]
-              },
-              {
-                "label": "Gedragsinstellingen",
-                "fields": [
-                  {
-                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
-                    "label": "Enable backwards navigation"
                   }
                 ]
               }
@@ -113,17 +108,17 @@
           "label": "Gedragsinstellingen",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation",
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
               "options": [
                 {
                   "label": "Use individual content settings"
                 },
                 {
-                  "label": "Enable backwards navigation for all contents"
+                  "label": "Require all contents to be finished"
                 },
                 {
-                  "label": "Disable backwards navigation for all contents"
+                  "label": "Require no content to be finished"
                 }
               ]
             }
@@ -141,12 +136,12 @@
               "default": "Herstart de cursus"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
-            },
-            {
               "label": "Tekst voor de knop op elk bibliotheekscherm",
               "default": "Ga verder"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Label voor score op het eindscherm",

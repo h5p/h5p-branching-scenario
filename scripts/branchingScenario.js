@@ -51,8 +51,8 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     ],
     scoringOption: 'no-score',
-    behaviour: 'individual',
-    l10n: {}
+    l10n: {},
+    behaviour: 'individual'
   }, params.branchingScenario); // Account for the wrapper!
 
   // Set default localization
@@ -61,7 +61,8 @@ H5P.BranchingScenario = function (params, contentId) {
     endScreenButtonText: "Restart the course",
     proceedButtonText: "Proceed",
     scoreText: "Your score:",
-    backButtonText: "Back"
+    backButtonText: "Back",
+    replayButtonText: "Replay the video"
   }, params.l10n);
 
   // Sanitize the (next)ContentIds that the editor didn't set
@@ -215,6 +216,9 @@ H5P.BranchingScenario = function (params, contentId) {
       self.currentId = id;
     }
     else {
+      // Try to stop any playback
+      self.libraryScreen.stopPlayback(self.currentId);
+
       // Try to collect xAPIData for last screen
       const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
       if (xAPIData) {
@@ -256,10 +260,21 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     if (self.currentId !== -1) {
       self.triggerXAPI('progressed');
+
+      let contentScores = {};
+
+      if (self.libraryScreen.currentLibraryInstance && self.libraryScreen.currentLibraryInstance.getScore) {
+        contentScores = {
+          "score": self.libraryScreen.currentLibraryInstance.getScore(),
+          "maxScore": self.libraryScreen.currentLibraryInstance.getMaxScore()
+        };
+      }
+
       self.scoring.addLibraryScore(
         this.currentId,
         this.libraryScreen.currentLibraryId,
-        e.data.chosenAlternative
+        e.data.chosenAlternative,
+        contentScores
       );
     }
 
@@ -279,6 +294,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
       else if (self.scoring.isDynamicScoring()) {
         self.currentEndScreen.setScore(self.getScore());
+        self.currentEndScreen.setMaxScore(self.getMaxScore());
       }
 
       self.startScreen.hide();
@@ -395,9 +411,73 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
+   * Disable proceed button.
+   */
+  self.disableNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.add('h5p-disabled');
+    self.libraryScreen.navButton.setAttribute('disabled', true);
+  };
+
+  /**
+   * Enable proceed button.
+   */
+  self.enableNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.remove('h5p-disabled');
+    self.libraryScreen.navButton.removeAttribute('disabled');
+  };
+
+  /**
+   * Hide proceed button.
+   */
+  self.hideNavButton = function () {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+    self.libraryScreen.navButton.classList.add('h5p-hidden');
+  };
+
+  /**
+   * Show proceed button.
+   * @param {boolean} [animated=false] If true, will be animated.
+   */
+  self.showNavButton = function (animated = false) {
+    if (!self.libraryScreen.navButton) {
+      return;
+    }
+
+    self.libraryScreen.navButton.classList.remove('h5p-hidden');
+    if (animated) {
+      self.animateNavButton();
+    }
+  };
+
+  /**
+   * Animate proceed button.
+   */
+  self.animateNavButton = function () {
+    // Prevent multiple animation calls
+    if (!self.libraryScreen.navButton.classList.contains('h5p-animate')) {
+      self.libraryScreen.navButton.classList.add('h5p-animate');
+    }
+  }
+
+  /**
+   * Stop animation of proceed button.
+   */
+  self.unanimateNavButton = function () {
+    self.libraryScreen.navButton.classList.remove('h5p-animate');
+  }
+
+  /**
    * Get accumulative score for all attempted scenarios
    *
-   * @returns {number} Current score for Brnaching Scenario
+   * @returns {number} Current score for Branching Scenario
    */
   self.getScore = function () {
     return self.scoring.getScore();

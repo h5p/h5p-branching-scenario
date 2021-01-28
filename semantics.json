@@ -24,7 +24,16 @@
             "placeholder": "Title for your course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code",
+              "a"
+            ]
           },
           {
             "name": "startScreenSubtitle",
@@ -32,7 +41,16 @@
             "placeholder": "Details about the course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code",
+              "a"
+            ]
           },
           {
             "name": "startScreenImage",
@@ -59,14 +77,32 @@
               "label": "Title",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code",
+                "a"
+              ]
             },
             {
               "name": "endScreenSubtitle",
               "label": "Text",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code",
+                "a"
+              ]
             },
             {
               "name": "endScreenImage",
@@ -126,6 +162,15 @@
               "importance": "high"
             },
             {
+              "name": "requiresFinishing",
+              "label": "Required to be completed",
+              "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+              "type": "boolean",
+              "importance": "high",
+              "optional": true,
+              "default": false
+            },
+            {
               "name": "nextContentId",
               "label": "Next Content ID (end screens are defined by negative numbers)",
               "type": "number",
@@ -136,12 +181,20 @@
               "name": "feedback",
               "type": "group",
               "label": "Feedback",
+              "expanded": true,
               "fields": [
                 {
                   "name": "title",
                   "type": "text",
                   "label": "Feedback title",
-                  "optional": true
+                  "widget": "html",
+                  "enterMode": "p",
+                  "tags": [
+                    "strong",
+                    "em",
+                    "del",
+                    "code"
+                  ]
                 },
                 {
                   "name": "subtitle",
@@ -246,6 +299,28 @@
               }
             ],
             "default": "individual"
+          },
+          {
+            "name": "overrideFinishing",
+            "type": "select",
+            "label": "Override require content finished",
+            "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+            "optional": "true",
+            "options": [
+              {
+                "value": "individual",
+                "label": "Use individual content settings"
+              },
+              {
+                "value": "requireFinished",
+                "label": "Require all contents to be finished"
+              },
+              {
+                "value": "ignoreFinished",
+                "label": "Require no content to be finished"
+              }
+            ],
+            "default": "individual"
           }
         ]
       },
@@ -283,6 +358,13 @@
             "type": "text",
             "importance": "low",
             "default": "Proceed"
+          },
+          {
+            "name": "replayButtonText",
+            "label": "Text for the button used to replay a video",
+            "type": "text",
+            "importance": "low",
+            "default": "Replay the video"
           },
           {
             "name": "scoreText",

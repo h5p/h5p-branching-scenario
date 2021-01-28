@@ -1,83 +1,83 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "학습 가지 시나리오 편집기",
       "fields": [
         {
-          "label": "Title"
+          "label": "제모"
         },
         {
-          "label": "Start screen",
+          "label": "화면 시작",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "화면 제목 시작",
+              "placeholder": "코스 제목"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "화면 부제목 시작",
+              "placeholder": "코스 세부 내용"
             },
             {
-              "label": "Start screen image"
+              "label": "스크린 이미지 시작"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "마지막 화면 리스트",
           "field": {
-            "label": "End screen",
+            "label": "화면 끝내기",
             "fields": [
               {
-                "label": "Title"
+                "label": "제목"
               },
               {
-                "label": "Text"
+                "label": "텍스트"
               },
               {
-                "label": "Image"
+                "label": "이미지"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "점수",
+                "description": "기본 종료 시나리오에 도달한 사용자를 위해 H5P로부터 점수를 받는 모든 LMS, LRS 또는 기타 연결된 서비스에 점수를 전송함."
               },
               {
-                "label": "Content ID"
+                "label": "콘텐츠 ID"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "학습 가지 시나리오 콘텐츠 리스트",
+          "entity": "콘텐츠",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "보기에 콘텐츠 제목 표시",
+                "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
               },
               {
                 "label": "Required to be completed",
                 "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "다음 콘텐츠 ID (끝 화면은 음수로 정의됨)"
               },
               {
-                "label": "Feedback",
+                "label": "피드백",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "피드백 제목"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "피드백 텍스트"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "피드백 이미지"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "이 시나리오에 대한 점수",
+                    "description": "이 시나리오를 완성하는 모든 사용자에 대해 H5P로부터 점수를 받는 모든 LMS, LRS 또는 기타 연결된 서비스에 점수를 전송함."
                   }
                 ]
               }
@@ -85,20 +85,20 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "채점 기준",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "채점 기준",
+              "description": "채점 유형 선택",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "각 엔드 시나리오에 대해 정적으로 점수를 설정"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "사용자 답변에서 동적으로 점수 계산"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "점수 없음"
                 }
               ]
             }
@@ -125,27 +125,27 @@
           ]
         },
         {
-          "label": "Localization",
+          "label": "맞춤 설정",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "ចាប់ផ្តើមវគ្គសិក្សា"
+              "label": "시작 화면의 버튼에 대한 텍스트",
+              "default": "코스 시작"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "ផ្តើមវគ្គសិក្សាជាថ្មី"
+              "label": "끝 화면의 버튼에 대한 텍스트",
+              "default": "코스 재시작"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "ទៅ"
+              "label": "각 라이브러리 화면의 버튼에 대한 텍스트",
+              "default": "진행"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "ពិន្ទុរបស់អ្នក:"
+              "label": "끝 화면에 점수 표시 라벨",
+              "default": "점수:"
             }
           ]
         }

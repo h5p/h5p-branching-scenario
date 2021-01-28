@@ -57,6 +57,10 @@
                 "description": "Jos valittuna käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella."
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+              },
+              {
                 "label": "Seuraava sisältö-ID (haaranpäätteet määritetään negatiivisilla numeroilla)"
               },
               {
@@ -74,15 +78,6 @@
                   {
                     "label": "Tämän skenaarion pisteet",
                     "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille jotka saavuttavat tämän haarakohdan"
-                  }
-                ]
-              },
-              {
-                "label": "Yleisasetukset",
-                "fields": [
-                  {
-                    "description": "This option determines if the \"Back\" button will be enabled for this content.",
-                    "label": "Enable backwards navigation"
                   }
                 ]
               }
@@ -110,20 +105,20 @@
           ]
         },
         {
-          "label": "Yleisasetukset",
+          "label": "Behavioural settings",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation",
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
               "options": [
                 {
                   "label": "Use individual content settings"
                 },
                 {
-                  "label": "Enable backwards navigation for all contents"
+                  "label": "Require all contents to be finished"
                 },
                 {
-                  "label": "Disable backwards navigation for all contents"
+                  "label": "Require no content to be finished"
                 }
               ]
             }
@@ -141,12 +136,12 @@
               "default": "Aloita uudelleen alusta."
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
-            },
-            {
               "label": "Painikeen, jolla jatketaan aineistotyypistä toiseen, teksti",
               "default": "Jatka"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Haaranpäätteen teksti pisteytykselle",

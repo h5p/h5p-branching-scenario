@@ -1,83 +1,83 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Golygydd Senario Ganghennog",
       "fields": [
         {
-          "label": "Title"
+          "label": "Teitl"
         },
         {
-          "label": "Start screen",
+          "label": "Sgrin gychwyn",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Teitl y sgrin gychwyn",
+              "placeholder": "Teitl ar gyfer eich cwrs"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Is-deitl y sgrin gychwyn",
+              "placeholder": "Manylion y cwrs"
             },
             {
-              "label": "Start screen image"
+              "label": "Delwedd y sgrin gychwyn"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Rhestr sgriniau diweddu",
           "field": {
-            "label": "End screen",
+            "label": "Sgrin ddiweddu",
             "fields": [
               {
-                "label": "Title"
+                "label": "Teitl"
               },
               {
-                "label": "Text"
+                "label": "Testun"
               },
               {
-                "label": "Image"
+                "label": "Delwedd"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Sgôr",
+                "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario ddiweddu diofyn"
               },
               {
-                "label": "Content ID"
+                "label": "ID Cynnwys"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "Rhestr cynnwys senario ganghennog",
+          "entity": "cynnwys",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Dangos teitl y cynnwys yn yr olygfa",
+                "description": "Os wedi'i ddewis, bydd y defnyddiwr yn gweld teitl y cynnwys yn y bar ar y brig uwchben y cynnwys hwn"
               },
               {
                 "label": "Required to be completed",
                 "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "ID Cynnwys Nesaf (caiff sgriniau diweddu eu hadnabod gan rifau negatif)"
               },
               {
-                "label": "Feedback",
+                "label": "Adborth",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Teitl adborth"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Testun adborth"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Delwedd adborth"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Sgôr am y senario hon",
+                    "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario hon"
                   }
                 ]
               }
@@ -85,20 +85,20 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Opsiynau Sgorio",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Opsiynau sgorio",
+              "description": "Dewiswch math y sgorio",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Gosodwch (yn statig) y sgôr ar gyfer pob senario diweddu"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Cyfrifwch y sgôr (yn ddeinamig) o atebion defnyddwyr"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Dim sgorio"
                 }
               ]
             }
@@ -125,27 +125,27 @@
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lleoleiddio",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "ចាប់ផ្តើមវគ្គសិក្សា"
+              "label": "testun ar gyfer y botwm ar y sgrin gychwyn",
+              "default": "Dechreuwch y cwrs"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "ផ្តើមវគ្គសិក្សាជាថ្មី"
+              "label": "Testun ar gyfer y botwm ar y sgrin ddiweddu",
+              "default": "Ailddechreuwch y cwrs"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "ទៅ"
+              "label": "Testun ar gyfer y botwm ar bob un o'r sgriniau llyfrgell",
+              "default": "Bwrw ymlaen"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "ពិន្ទុរបស់អ្នក:"
+              "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
+              "default": "Eich sgôr:"
             }
           ]
         }
