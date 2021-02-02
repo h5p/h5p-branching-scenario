@@ -57,23 +57,53 @@
                 "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
               },
               {
-                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)"
+                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
-                "label": "Retroalimentación",
+                "label": "Retroalimentación"
+              },
+              {
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Título da retroalimentación"
+                    "label": "Feedback title"
                   },
                   {
-                    "label": "Texto de retroalimentación"
+                    "label": "Feedback text"
                   },
                   {
-                    "label": "Imaxe de retroalimentación"
+                    "label": "Feedback image"
                   },
                   {
-                    "label": "Puntuación para este dilema",
-                    "description": "A puntuación enviarase a calquera LMS, LRS ou a calquera outro servizo que reciba puntuación do H5P para os usuarios que cheguen á pantalla final por defecto"
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               }
@@ -105,11 +135,11 @@
           "fields": [
             {
               "label": "Texto para o botón na pantalla inicial",
-              "default": "Empezar o curso"
+              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
             },
             {
               "label": "Texto para o botón na pantalla final",
-              "default": "Reiniciar o curso"
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             },
             {
               "label": "Texto para o botón en cada pantalla da biblioteca",
@@ -118,6 +148,35 @@
             {
               "label": "Etiqueta para a puntuación na pantalla final",
               "default": "A túa puntuación:"
+            }
+          ]
+        },
+        {
+          "label": "Localization",
+          "fields": [
+            {
+              "label": "Text for the button on the start screen",
+              "default": "Start the course"
+            },
+            {
+              "label": "Text for the button on the end screen",
+              "default": "Restart the course"
+            },
+            {
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
+            },
+            {
+              "label": "Text for the button on each of the library screens",
+              "default": "Proceed"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
             }
           ]
         }

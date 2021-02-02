@@ -58,7 +58,18 @@
               },
               {
                 "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
                 "label": "Nächste Inhalts-ID (Endbildschirme werden durch negative Zahlen definiert)"
@@ -83,10 +94,16 @@
               },
               {
                 "label": "Interaktionseinstellungen",
-                "fields": [
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
                   {
-                    "description": "Diese Option legt fest, ob der \"Zurück\"-Button für diesen Inhalt aktiviert wird.",
-                    "label": "Erlaube Rückwärtsnavigation"
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               }
@@ -118,18 +135,11 @@
           "fields": [
             {
               "label": "Überschreiben der Optionen zum Fortfahren nach Abschluss",
-              "description": "Überschreibt die individuellen Einstellungen zum Steuern der Freigabe des \"Weiter\"-Buttons. Hat keinen Effekt, wenn der Inhalt keinen Anhaltspunkt liefert, ob er abgeschlossen wurde, z. B. Bilder oder Präsentationen mit nur einem Schaubild.",
-              "options": [
-                {
-                  "label": "Nutze die individuellen Einstellungen des Inhalts"
-                },
-                {
-                  "label": "Alle Inhalte müssen erst abgeschlossen werden"
-                },
-                {
-                  "label": "Kein Inhalt muss erst abgeschlossen werden"
-                }
-              ]
+              "description": "Überschreibt die individuellen Einstellungen zum Steuern der Freigabe des \"Weiter\"-Buttons. Hat keinen Effekt, wenn der Inhalt keinen Anhaltspunkt liefert, ob er abgeschlossen wurde, z. B. Bilder oder Präsentationen mit nur einem Schaubild."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             }
           ]
         },

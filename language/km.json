@@ -58,7 +58,18 @@
               },
               {
                 "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
                 "label": "Next Content ID (end screens are defined by negative numbers)"
@@ -78,6 +89,21 @@
                   {
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               }
@@ -109,18 +135,11 @@
           "fields": [
             {
               "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
-              "options": [
-                {
-                  "label": "Use individual content settings"
-                },
-                {
-                  "label": "Require all contents to be finished"
-                },
-                {
-                  "label": "Require no content to be finished"
-                }
-              ]
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             }
           ]
         },
@@ -146,6 +165,10 @@
             {
               "label": "Label for score on the end screen",
               "default": "ពិន្ទុរបស់អ្នក:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
             }
           ]
         }
