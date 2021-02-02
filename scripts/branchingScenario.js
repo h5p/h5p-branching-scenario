@@ -158,6 +158,15 @@ H5P.BranchingScenario = function (params, contentId) {
    */
   self.on('started', function () {
     const startNode = this.params.content[0];
+
+    // Disable back button if not allowed
+    if (self.canEnableBackButton(0) === false) {
+      self.disableBackButton();
+    }
+    else {
+      self.enableBackButton();
+    }
+
     if (startNode && startNode.type && startNode.type.library && startNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
       // First node is Branching Question, no sliding, just trigger BQ overlay
       self.trigger('navigated', {
@@ -189,8 +198,8 @@ H5P.BranchingScenario = function (params, contentId) {
     // Keep track of user steps
     self.userPath.push(id);
 
-    // Disable back button if no node to go back to or not allowed
-    if (self.canEnableBackButton(id) === false || self.userPath.length === 1) {
+    // Disable back button if not allowed
+    if (self.canEnableBackButton(id) === false) {
       self.disableBackButton();
     }
     else {
@@ -322,7 +331,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Handle restarting
    */
-  self.on('restarted', function () {
+  self.on('restarted', function (e) {
     if (self.currentEndScreen) {
       self.currentEndScreen.hide();
       self.currentEndScreen = null;
@@ -330,6 +339,13 @@ H5P.BranchingScenario = function (params, contentId) {
     self.scoring.restart();
     self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
+
+    // Used when restarting from the first scene with the back button to prevent
+    // nothing from appearing due to the container height being at 0px.
+    if(e && e.data && e.data.firstNode) {
+      self.startScreen.screenWrapper.style.position = 'relative';
+    }
+
     self.startScreen.show();
     self.currentId = -1;
     self.userPath = [];
