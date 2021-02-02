@@ -534,11 +534,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     );
 
     if (
-      this.parent.params.behaviour.overrideFinishing === 'requireFinished' ||
-      this.parent.params.behaviour.overrideFinishing === 'individual' &&
-      this.parent.params.content[id].requiresFinishing === true
+      this.parent.params.content[id].forceContentFinished === 'enabled' ||
+      this.parent.params.content[id].forceContentFinished === 'useBehavioural' &&
+      this.parent.params.behaviour.forceContentFinished === true
     ) {
-      this.libraryFinishingRequirements[id] = this.requiresFinishing(instance, content.library.split(' ')[0]);
+      this.libraryFinishingRequirements[id] = this.forceContentFinished(instance, content.library.split(' ')[0]);
       this.addFinishedListeners(instance, content.library.split(' ')[0]);
     }
 
@@ -611,11 +611,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * @param {object} instance Instance of the content type.
    * @param {string} library Library that's active on screen (H5P.Foo).
    */
-  LibraryScreen.prototype.requiresFinishing = function (instance, library) {
-    let requiresFinishing = false;
+  LibraryScreen.prototype.forceContentFinished = function (instance, library) {
+    let forceContentFinished = false;
 
     if (instance) {
-      requiresFinishing = requiresFinishing || (instance.getScore && typeof instance.getScore === 'function');
+      forceContentFinished = forceContentFinished || (instance.getScore && typeof instance.getScore === 'function');
     }
 
     /*
@@ -623,7 +623,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
      * detect whether they are a "finishable" content type
      */
     if (library) {
-      requiresFinishing = requiresFinishing || (library === 'H5P.Audio' || library === 'H5P.Video');
+      forceContentFinished = forceContentFinished || (library === 'H5P.Audio' || library === 'H5P.Video');
     }
 
     // Exceptions
@@ -633,10 +633,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       (instance.children.length + (instance.isTask ? 1 : 0) === 1) ||
       instance.activeSurface === true
     ) {
-      requiresFinishing = false;
+      forceContentFinished = false;
     }
 
-    return requiresFinishing;
+    return forceContentFinished;
   };
 
   /**
