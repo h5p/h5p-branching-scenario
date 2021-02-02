@@ -170,7 +170,7 @@
               "options": [
                 {
                   "value": "useBehavioural",
-                  "label": "Use behavioral setting"
+                  "label": "Use behavioural setting"
                 },
                 {
                   "value": "enabled",
@@ -246,7 +246,7 @@
               "options": [
                 {
                   "value": "useBehavioural",
-                  "label": "Use behavioral setting"
+                  "label": "Use behavioural setting"
                 },
                 {
                   "value": "enabled",
