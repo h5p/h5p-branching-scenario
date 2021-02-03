@@ -57,7 +57,7 @@
                 "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
               },
               {
-                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)",
+                "label": "Required to be completed",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
@@ -72,10 +72,10 @@
                 ]
               },
               {
-                "label": "Retroalimentación"
+                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)"
               },
               {
-                "label": "Feedback",
+                "label": "Retroalimentación",
                 "fields": [
                   {
                     "label": "Feedback title"
