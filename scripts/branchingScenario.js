@@ -461,9 +461,17 @@ H5P.BranchingScenario = function (params, contentId) {
     }
 
     self.libraryScreen.navButton.classList.remove('h5p-hidden');
+    let focusTime = 0;
+
     if (animated) {
       self.animateNavButton();
+      focusTime = 50;
     }
+
+    // Sets the focus to the appearing Proceed button
+    setTimeout(function() {
+      self.libraryScreen.navButton.focus();
+    }, focusTime);
   };
 
   /**
