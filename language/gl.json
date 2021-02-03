@@ -93,7 +93,7 @@
                 ]
               },
               {
-                "label": "Navigate back",
+                "label": "Behavioural settings",
                 "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
@@ -131,35 +131,27 @@
           ]
         },
         {
-          "label": "Localización",
+          "label": "Behavioural settings",
           "fields": [
             {
-              "label": "Texto para o botón na pantalla inicial",
-              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation"
             },
             {
-              "label": "Texto para o botón na pantalla final",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
-            },
-            {
-              "label": "Texto para o botón en cada pantalla da biblioteca",
-              "default": "Adiante"
-            },
-            {
-              "label": "Etiqueta para a puntuación na pantalla final",
-              "default": "A túa puntuación:"
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Localización",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
+              "label": "Texto para o botón na pantalla inicial",
               "default": "Start the course"
             },
             {
-              "label": "Text for the button on the end screen",
+              "label": "Texto para o botón na pantalla final",
               "default": "Restart the course"
             },
             {
@@ -167,16 +159,16 @@
               "default": "Back"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
+              "label": "Texto para o botón en cada pantalla da biblioteca",
+              "default": "Adiante"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiqueta para a puntuación na pantalla final",
+              "default": "A túa puntuación:"
             }
           ]
         }
