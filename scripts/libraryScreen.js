@@ -273,7 +273,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
 
       if(self.currentLibraryId === 0) {
-        self.parent.trigger('restarted', {firstNode: true});
+        self.parent.trigger('restarted');
         return backButton;
       }
 
