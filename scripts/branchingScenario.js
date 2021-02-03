@@ -316,6 +316,11 @@ H5P.BranchingScenario = function (params, contentId) {
       self.currentId = id;
     }
 
+    // For Video and Interactive Video content type - check the source is available and if show proceed navigation button
+    if ((nextLibrary.type.metadata.contentType === "Video" || nextLibrary.type.metadata.contentType === "Interactive Video") && nextLibrary.type.params.sources === undefined) {
+      self.showNavButton();
+    }
+
     // First node was BQ, so sliding from start screen to library screen is needed now
     if (e.data.nextContentId !== 0 && document.querySelector('.h5p-start-screen').classList.contains('h5p-current-screen')) {
       // Remove translation of info content which would tamper with timing of sliding
