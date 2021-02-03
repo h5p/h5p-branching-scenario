@@ -331,7 +331,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Handle restarting
    */
-  self.on('restarted', function (e) {
+  self.on('restarted', function () {
     if (self.currentEndScreen) {
       self.currentEndScreen.hide();
       self.currentEndScreen = null;
@@ -339,12 +339,6 @@ H5P.BranchingScenario = function (params, contentId) {
     self.scoring.restart();
     self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
-
-    // Used when restarting from the first scene with the back button to prevent
-    // nothing from appearing due to the container height being at 0px.
-    if(e && e.data && e.data.firstNode) {
-      self.startScreen.screenWrapper.style.position = 'relative';
-    }
 
     self.startScreen.show();
     self.currentId = -1;
