@@ -14,6 +14,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
     this.buttonsContainer = document.createElement('div');
     this.buttonsContainer.classList.add('h5p-content-overlay-buttons-container');
     this.overlay.appendChild(this.buttonsContainer);
+    this.buttons = {};
   }
 
   /**
