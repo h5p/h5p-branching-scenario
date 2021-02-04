@@ -1,12 +1,12 @@
-H5P.BranchingScenario.LibraryScreenOverlay = (function () {
+H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
 
   /**
    * LibraryScreenOverlay
    * @constructor
    */
-  function LibraryScreenOverlay() {
+  function LibraryScreenOverlay(parent) {
     this.hidden = true;
-
+    this.parent = parent;
     this.overlay = document.createElement('div');
     this.overlay.classList.add('h5p-content-overlay');
     this.overlay.classList.add('h5p-hidden');
@@ -14,17 +14,6 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     this.buttonsContainer = document.createElement('div');
     this.buttonsContainer.classList.add('h5p-content-overlay-buttons-container');
     this.overlay.appendChild(this.buttonsContainer);
-
-    this.buttons = {};
-
-    // Trap focus if overlay is visible
-    document.addEventListener('focus', event => {
-      if (!this.isVisible() || Object.keys(this.buttons).length === 0) {
-        return; // Nothing to trap
-      }
-
-      this.trapFocus(event);
-    }, true);
   }
 
   /**
@@ -43,6 +32,11 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     window.requestAnimationFrame(() => {
       this.buttonsContainer.classList.remove('h5p-hidden');
       this.hidden = false;
+
+      const $currentLibraryWrapper = this.parent.currentLibraryWrapper;
+      if ($currentLibraryWrapper && $currentLibraryWrapper.querySelector('iframe')) {
+        $currentLibraryWrapper.querySelector('iframe').setAttribute("tabindex", "-1");
+      }
 
       // Focus last button (assuming proceed)
       Object.values(this.buttons)[Object.keys(this.buttons).length - 1].focus();
@@ -64,27 +58,6 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
    */
   LibraryScreenOverlay.prototype.isVisible = function () {
     return !this.hidden;
-  }
-
-  /**
-   * Trap keyboard focus in overlay.
-   * @param {Event} event Focus event.
-   */
-  LibraryScreenOverlay.prototype.trapFocus = function (event) {
-    if (event.path.indexOf(this.overlay) !== -1) {
-      this.currentFocusElement = event.target;
-      return; // Focus/event.target is inside overlay
-    }
-
-    // Focus was either on first or last overlay element
-    if (this.currentFocusElement === Object.values(this.buttons)[0]) {
-
-      this.currentFocusElement = Object.values(this.buttons)[Object.keys(this.buttons).length - 1];
-    }
-    else {
-      this.currentFocusElement = Object.values(this.buttons)[0];
-    }
-    this.currentFocusElement.focus();
   }
 
   /**

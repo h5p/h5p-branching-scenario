@@ -427,7 +427,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const libraryMachineName = library.type && library.type.library.split(' ')[0];
 
     // Content overlay required for some instances
-    this.contentOverlays[library.contentId] = new H5P.BranchingScenario.LibraryScreenOverlay();
+    this.contentOverlays[library.contentId] = new H5P.BranchingScenario.LibraryScreenOverlay(this);
     wrapper.appendChild(this.contentOverlays[library.contentId].getDOM());
     if (libraryMachineName === 'H5P.InteractiveVideo' || libraryMachineName === 'H5P.Video') {
       this.contentOverlays[library.contentId].addButton(
