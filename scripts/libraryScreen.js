@@ -943,13 +943,37 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
+   * Checks to see if the library has an invalid video (no source file or external link).
+   * TODO: add check for incorrect link by checking mime
+   */
+  LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
+    const type = currentLibraryParams.type;
+    console.log(type)
+    if (type &&
+      type.metadata.contentType === "Interactive Video")
+    {
+      if (!type.params.interactiveVideo.video.files) {
+        return true;
+      }
+    } else if (
+      type &&
+      type.metadata.contentType === 'Video'
+    ) {
+      if (!type.params.sources) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  /**
    * Slides the screen in and styles it as the current screen
    * @return {undefined}
    */
   LibraryScreen.prototype.show = function () {
     const self = this;
-
-    if (self.libraryFinishingRequirements[self.currentLibraryId] === true) {
+    if (self.libraryFinishingRequirements[self.currentLibraryId] === true
+      && !self.hasInvalidVideo(self.parent.params.content[self.currentLibraryId])) {
       self.contentOverlays[self.currentLibraryId].hide();
       self.parent.hideNavButton();
     }
@@ -1152,7 +1176,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.currentLibraryId = library.contentId;
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
 
-      if (this.libraryFinishingRequirements[library.contentId] === true) {
+      if (this.libraryFinishingRequirements[library.contentId] === true
+        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
         this.contentOverlays[this.currentLibraryId].hide();
         this.parent.hideNavButton();
       }
