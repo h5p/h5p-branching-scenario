@@ -1,4 +1,4 @@
-H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
+H5P.BranchingScenario.LibraryScreenOverlay = (function () {
 
   /**
    * LibraryScreenOverlay
@@ -23,7 +23,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
    */
   LibraryScreenOverlay.prototype.getDOM = function () {
     return this.overlay;
-  }
+  };
 
   /**
    * Show overlay.
@@ -34,15 +34,34 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
       this.buttonsContainer.classList.remove('h5p-hidden');
       this.hidden = false;
 
-      const $currentLibraryWrapper = this.parent.currentLibraryWrapper;
-      if ($currentLibraryWrapper && $currentLibraryWrapper.querySelector('iframe')) {
-        $currentLibraryWrapper.querySelector('iframe').setAttribute("tabindex", "-1");
-      }
+      this.setLibraryTabIndex("-1");
 
       // Focus last button (assuming proceed)
       Object.values(this.buttons)[Object.keys(this.buttons).length - 1].focus();
     });
-  }
+  };
+
+  /**
+   * Sets the tab index of the library behind the overlay, so that these elements can not
+   * visited when the overlay is present and visited when the overlay goes away.
+   */
+  LibraryScreenOverlay.prototype.setLibraryTabIndex = function (index) {
+    const $currentLibraryWrapper = this.parent.currentLibraryWrapper;
+    // Used in Video and IVs.
+    if ($currentLibraryWrapper && $currentLibraryWrapper.querySelector('iframe')) {
+      $currentLibraryWrapper.querySelector('iframe').setAttribute("tabindex", index);
+      const $tabbablesIV = this.parent.currentLibraryInstance.$tabbables;
+      //  Used in just IVs
+      if ($tabbablesIV) {
+        if (index === "-1") {
+          this.parent.currentLibraryInstance.disableTabIndexes('.h5p-controls');
+        }
+        else {
+          this.parent.currentLibraryInstance.restoreTabIndexes();
+        }
+      }
+    }
+  };
 
   /**
    * Hide overlay.
@@ -51,7 +70,8 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
     this.hidden = true;
     this.overlay.classList.add('h5p-hidden');
     this.buttonsContainer.classList.add('h5p-hidden');
-  }
+    this.setLibraryTabIndex('0');
+  };
 
   /**
    * Determine whether overlay is visible.
@@ -59,7 +79,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
    */
   LibraryScreenOverlay.prototype.isVisible = function () {
     return !this.hidden;
-  }
+  };
 
   /**
    * Add button to overlay.
@@ -92,7 +112,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
     this.buttonsContainer.appendChild(button);
 
     return button;
-  }
+  };
 
   /**
    * Remove button.
@@ -103,9 +123,9 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function (parent) {
       return;
     }
 
-    this.buttonsContainer.removeChild(this.buttons[id])
+    this.buttonsContainer.removeChild(this.buttons[id]);
     delete this.buttons[id];
-  }
+  };
 
   return LibraryScreenOverlay;
 })();
