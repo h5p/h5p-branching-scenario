@@ -177,7 +177,9 @@ H5P.BranchingScenario = function (params, contentId) {
       // First node is info content
       self.startScreen.hide();
       self.libraryScreen.show();
-      self.triggerXAPI('progressed');
+      if (!this.params.preventXAPI) {
+        self.triggerXAPI('progressed');
+      }
       self.userPath.push(0);
     }
     self.currentId = 0;
@@ -227,10 +229,12 @@ H5P.BranchingScenario = function (params, contentId) {
       // Try to stop any playback
       self.libraryScreen.stopPlayback(self.currentId);
 
-      // Try to collect xAPIData for last screen
-      const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
-      if (xAPIData) {
-        self.xAPIDataCollector.push(xAPIData);
+      if (!this.params.preventXAPI) {
+        // Try to collect xAPIData for last screen
+        const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
+        if (xAPIData) {
+          self.xAPIDataCollector.push(xAPIData);
+        }
       }
     }
 
@@ -267,7 +271,9 @@ H5P.BranchingScenario = function (params, contentId) {
       self.trigger('resize');
     }
     if (self.currentId !== -1) {
-      self.triggerXAPI('progressed');
+      if (!this.params.preventXAPI) {
+        self.triggerXAPI('progressed');
+      }
 
       let contentScores = {};
 
@@ -469,7 +475,7 @@ H5P.BranchingScenario = function (params, contentId) {
     }
 
     // Sets the focus to the appearing Proceed button
-    setTimeout(function() {
+    setTimeout(function () {
       self.libraryScreen.navButton.focus();
     }, focusTime);
   };
@@ -482,14 +488,14 @@ H5P.BranchingScenario = function (params, contentId) {
     if (!self.libraryScreen.navButton.classList.contains('h5p-animate')) {
       self.libraryScreen.navButton.classList.add('h5p-animate');
     }
-  }
+  };
 
   /**
    * Stop animation of proceed button.
    */
   self.unanimateNavButton = function () {
     self.libraryScreen.navButton.classList.remove('h5p-animate');
-  }
+  };
 
   /**
    * Get accumulative score for all attempted scenarios
