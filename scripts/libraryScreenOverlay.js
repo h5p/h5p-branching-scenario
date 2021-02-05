@@ -50,11 +50,10 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     // Used in Video and IVs.
     if ($currentLibraryWrapper && $currentLibraryWrapper.querySelector('iframe')) {
       $currentLibraryWrapper.querySelector('iframe').setAttribute("tabindex", index);
-      const $tabbablesIV = this.parent.currentLibraryInstance.$tabbables;
       //  Used in just IVs
-      if ($tabbablesIV) {
-        if (index === "-1") {
-          this.parent.currentLibraryInstance.disableTabIndexes('.h5p-controls');
+      if (this.parent.currentLibraryInstance.libraryInfo.machineName === 'H5P.InteractiveVideo') {
+        if (index === "-1") { 
+          this.parent.currentLibraryInstance.disableTabIndexes();
         }
         else {
           this.parent.currentLibraryInstance.restoreTabIndexes();

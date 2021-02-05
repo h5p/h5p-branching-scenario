@@ -656,7 +656,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (typeof library !== 'string' || !instance) {
       return;
     }
-
     switch (library) {
       case 'H5P.CoursePresentation':
         // Permit progression when final slide has been reached
