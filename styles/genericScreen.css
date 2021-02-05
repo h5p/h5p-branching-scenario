@@ -4,9 +4,12 @@
   background: radial-gradient(at top,#5f6883,#494a5c);
   text-align: center;
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: center;
+}
+
+.h5p-branching-scenario .h5p-start-screen {
+  position: relative;
 }
 
 .h5p-branching-scenario .h5p-start-screen.h5p-branching-hidden,
