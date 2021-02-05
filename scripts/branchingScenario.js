@@ -177,9 +177,7 @@ H5P.BranchingScenario = function (params, contentId) {
       // First node is info content
       self.startScreen.hide();
       self.libraryScreen.show();
-      if (!this.params.preventXAPI) {
-        self.triggerXAPI('progressed');
-      }
+      self.triggerXAPI('progressed');
       self.userPath.push(0);
     }
     self.currentId = 0;
@@ -228,13 +226,11 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       // Try to stop any playback
       self.libraryScreen.stopPlayback(self.currentId);
-
-      if (!this.params.preventXAPI) {
-        // Try to collect xAPIData for last screen
-        const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
-        if (xAPIData) {
-          self.xAPIDataCollector.push(xAPIData);
-        }
+      
+      // Try to collect xAPIData for last screen
+      const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
+      if (xAPIData) {
+        self.xAPIDataCollector.push(xAPIData);
       }
     }
 
@@ -271,9 +267,7 @@ H5P.BranchingScenario = function (params, contentId) {
       self.trigger('resize');
     }
     if (self.currentId !== -1) {
-      if (!this.params.preventXAPI) {
-        self.triggerXAPI('progressed');
-      }
+      self.triggerXAPI('progressed');
 
       let contentScores = {};
 
@@ -314,7 +308,6 @@ H5P.BranchingScenario = function (params, contentId) {
       self.startScreen.hide();
       self.libraryScreen.hide(true);
       self.currentEndScreen.show();
-
       self.triggerXAPICompleted(self.scoring.getScore(self.currentEndScreen.getScore()), self.scoring.getMaxScore());
     }
     else {
