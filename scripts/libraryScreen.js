@@ -948,16 +948,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
     if (type &&
-      type.metadata.contentType === "Interactive Video")
-    {
-      if (!type.params.interactiveVideo.video.files) {
+      type.metadata.contentType === "Interactive Video") {
+      if (!type.params.interactiveVideo.video.files || 
+        type.params.interactiveVideo.video.files[0].mime === "video/unknown") {
         return true;
       }
-    } else if (
+    }
+    else if (
       type &&
       type.metadata.contentType === 'Video'
     ) {
-      if (!type.params.sources) {
+      if (!type.params.sources || 
+        type.params.sources[0].mime === "video/unknown") {
         return true;
       }
     }
