@@ -45,6 +45,20 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     this.wrapper.appendChild(libraryWrapper);
 
+    /**
+     * Only targets the endscreen as the IV deals with the other elements
+     */
+    self.toggleIVTabIndexes = function (index) {
+      var self = this.currentLibraryInstance;
+      const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+      const endScreen = self.$container[0].querySelector('.h5p-interactive-video-bubble-endscreen');
+      let $tabbables = endScreen.querySelectorAll(selector);
+      
+      for (var i = 0; i < $tabbables.length; i++) {
+        $tabbables[i].setAttribute('tabindex', index);
+      }
+    };
+
     self.triggerAutoplay = function (e) {
       const id = (e.data !== undefined && e.data.nextContentId !== undefined ? e.data.nextContentId : 0);
       if (id < 0 || id !== self.currentLibraryId) {
@@ -477,20 +491,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    */
   LibraryScreen.prototype.resetIVProgress = function () {
     let interactions = this.currentLibraryInstance.interactions;
-    interactions.forEach(function(interaction){
+    interactions.forEach(function (interaction) {
       interaction.resetTask();
     });
 
     let interactiveVideo = this.currentLibraryInstance;
     interactiveVideo.addSliderInteractions();
     interactiveVideo.endscreen.update();
+    interactiveVideo.endscreen.$closeButton[0].click();
 
     let ivSubmitScreenStar = this.wrapper.getElementsByClassName('h5p-star-foreground')[0];
     ivSubmitScreenStar.classList.remove('h5p-star-active');
-
-    let ivSubmitScreen = this.wrapper.getElementsByClassName('h5p-interactive-video-bubble-endscreen')[0];
-    ivSubmitScreen.classList.add('h5p-interactive-video-bubble-endscreen-inactive');
-    ivSubmitScreen.classList.remove('h5p-interactive-video-bubble-endscreen-active');
   };
 
   LibraryScreen.prototype.handleProceedAfterVideo = function () {
