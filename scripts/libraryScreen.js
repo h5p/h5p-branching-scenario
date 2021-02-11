@@ -693,8 +693,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
         else {
           instance.video.on('stateChange', function (event) {
-            if (event.data === H5P.Video.ENDED) {
+            if (event.data === H5P.Video.ENDED || that.contentOverlays[that.currentLibraryId].hidden === false) {
               that.handleVideoOver();
+              instance.video.pause();
             }
           });
         }
