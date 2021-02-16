@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-.h5p-branching-scenario .h5p-start-screen {
+.h5p-branching-scenario .h5p-start-screen:not(.h5p-reset-start) {
   position: relative;
 }
 
