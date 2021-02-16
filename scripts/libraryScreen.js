@@ -52,7 +52,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       var self = this.currentLibraryInstance;
       const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
       const endScreen = self.$container[0].querySelector('.h5p-interactive-video-bubble-endscreen');
+
+      if (!endScreen) {
+        return;
+      }
+
       let $tabbables = endScreen.querySelectorAll(selector);
+
+      if (!$tabbables) {
+        return;
+      }
       
       for (var i = 0; i < $tabbables.length; i++) {
         $tabbables[i].setAttribute('tabindex', index);
