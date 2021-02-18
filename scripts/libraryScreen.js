@@ -46,7 +46,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.wrapper.appendChild(libraryWrapper);
 
     /**
-     * Only targets the endscreen as the IV deals with the other elements
+     * Disable or enable tab indexes hidden behind overlay.
+     * Currently only targets the endscreen as the IV deals with the other elements.
+     * TODO: Since endscreen isn't always shown it should also target all the elements.
      */
     self.toggleIVTabIndexes = function (index) {
       var self = this.currentLibraryInstance;
@@ -964,25 +966,20 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   /**
    * Checks to see if the library has an invalid video (no source file or external link).
-   * TODO: add check for incorrect link by checking mime
+   * video/unknown check is to verify that external Youtube links work correctly.
    */
   LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
-    if (type &&
-      type.metadata.contentType === "Interactive Video") {
-      if (!type.params.interactiveVideo.video.files || 
-        type.params.interactiveVideo.video.files[0].mime === "video/unknown") {
-        return true;
-      }
+    if (type && type.metadata.contentType === "Interactive Video" &&
+    (!type.params.interactiveVideo.video.files || type.params.interactiveVideo.video.files[0].mime === "video/unknown")
+    ) {
+      return true;
     }
     else if (
-      type &&
-      type.metadata.contentType === 'Video'
+      type && type.metadata.contentType === 'Video' &&
+      (!type.params.sources || type.params.sources[0].mime === "video/unknown")
     ) {
-      if (!type.params.sources || 
-        type.params.sources[0].mime === "video/unknown") {
-        return true;
-      }
+      return true;
     }
     return false;
   };
