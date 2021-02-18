@@ -506,11 +506,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     let interactiveVideo = this.currentLibraryInstance;
     interactiveVideo.addSliderInteractions();
-    interactiveVideo.endscreen.update();
-    interactiveVideo.endscreen.$closeButton[0].click();
+    if (interactiveVideo.endscreen !== undefined) {
+      interactiveVideo.endscreen.update();
+      interactiveVideo.endscreen.$closeButton[0].click();
+    }
 
     let ivSubmitScreenStar = this.wrapper.getElementsByClassName('h5p-star-foreground')[0];
-    ivSubmitScreenStar.classList.remove('h5p-star-active');
+    if (ivSubmitScreenStar !== undefined) {
+      ivSubmitScreenStar.classList.remove('h5p-star-active');
+    }
   };
 
   LibraryScreen.prototype.handleProceedAfterVideo = function () {
@@ -702,9 +706,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
         else {
           instance.video.on('stateChange', function (event) {
-            if (event.data === H5P.Video.ENDED || that.contentOverlays[that.currentLibraryId].hidden === false) {
+            if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
               that.handleVideoOver();
-              instance.video.pause();
+              this.pause();
             }
           });
         }
