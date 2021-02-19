@@ -51,20 +51,34 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     self.toggleIVTabIndexes = function (index) {
       var self = this.currentLibraryInstance;
       const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
-      const endScreen = self.$container[0].querySelector('.h5p-interactive-video-bubble-endscreen');
 
-      if (!endScreen) {
-        return;
-      }
-
-      let $tabbables = endScreen.querySelectorAll(selector);
+      let $tabbables = self.$container[0].querySelectorAll(selector);
 
       if (!$tabbables) {
         return;
       }
       
-      for (var i = 0; i < $tabbables.length; i++) {
-        $tabbables[i].setAttribute('tabindex', index);
+      for (let i = 0; i < $tabbables.length; i++) {
+        if (index === "-1") {
+          let elementTabIndex = $tabbables[i].getAttribute('tabindex');
+          $tabbables[i].dataset.tabindex = elementTabIndex;
+          $tabbables[i].setAttribute('tabindex', index);
+        }
+        else {
+          let tabindex = $tabbables[i].dataset.tabindex;
+          if ($tabbables[i].classList.contains("ui-slider-handle")) {
+            $tabbables[i].setAttribute('tabindex', 0);
+            $tabbables[i].dataset.tabindex = '';
+          } 
+          else if (tabindex !== undefined) {
+            $tabbables[i].setAttribute('tabindex', index);
+            $tabbables[i].dataset.tabindex = '';
+          } 
+          else {
+            $tabbables[i].setAttribute('tabindex', index);
+          }
+        }
+
       }
     };
 
