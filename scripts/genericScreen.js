@@ -55,6 +55,11 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     navButton.onclick = function () {
       screenData.isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
+      let startScreen = document.getElementsByClassName('h5p-start-screen')[0];
+      // Resize start screen when user restart the course
+      if (!screenData.isStartScreen) {
+        startScreen.style.height = '';
+      }
       self.parent.navigating = true;
     };
 
