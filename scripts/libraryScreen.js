@@ -520,6 +520,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     let interactiveVideo = this.currentLibraryInstance;
     interactiveVideo.addSliderInteractions();
+
+    if(!interactiveVideo.endscreen) {
+      return;
+    }
+
     interactiveVideo.endscreen.update();
     interactiveVideo.endscreen.$closeButton[0].click();
 
