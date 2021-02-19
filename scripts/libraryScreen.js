@@ -500,6 +500,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName) {
     this.contentOverlays[this.currentLibraryId].hide();
+
+    // sets buffering state for video
+    this.currentLibraryInstance.currentState = 3;
+
     this.currentLibraryInstance.seek(0);
     this.currentLibraryInstance.play();
 
