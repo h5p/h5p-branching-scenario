@@ -232,15 +232,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.parent.unanimateNavButton();
     })
 
-    this.navButton.addEventListener('click', (event) => {
+    this.navButton.addEventListener('click', () => {
       clearTimeout(timer);
       // Prevent user to make multiple clicks on proceed button
-      if (event.detail === 1 || event.detail === 2) {
-        timer = setTimeout(() => {
-          this.handleProceed();
-        }, 200);
-      }
-    });
+      timer = setTimeout(() => {
+        this.handleProceed();
+      }, 200);
+      });
     this.navButton.classList.add('h5p-nav-button');
 
     this.navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
