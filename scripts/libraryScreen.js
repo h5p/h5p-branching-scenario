@@ -111,6 +111,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const self = this;
     const parent = this.parent;
     const wrapper = document.createElement('div');
+    let timer;
 
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
@@ -217,8 +218,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.parent.unanimateNavButton();
     })
 
-    this.navButton.addEventListener('click', () => {
-      this.handleProceed();
+    this.navButton.addEventListener('click', (event) => {
+      clearTimeout(timer);
+      // Prevent user to make multiple clicks on proceed button
+      if (event.detail === 1 || event.detail === 2) {
+        timer = setTimeout(() => {
+          this.handleProceed();
+        }, 200);
+      }
     });
     this.navButton.classList.add('h5p-nav-button');
 
