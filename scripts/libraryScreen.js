@@ -125,7 +125,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const self = this;
     const parent = this.parent;
     const wrapper = document.createElement('div');
-    let timer;
 
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
@@ -232,13 +231,26 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.parent.unanimateNavButton();
     })
 
-    this.navButton.addEventListener('click', () => {
-      clearTimeout(timer);
-      // Prevent user to make multiple clicks on proceed button
-      timer = setTimeout(() => {
-        this.handleProceed();
-      }, 200);
+    this.navButton.addEventListener('click', (event) => {
+      if (this.parent.proceedButtonInProgress) {
+        return;
+      }
+
+      this.parent.proceedButtonInProgress = true;
+      const that = this;
+      var promise = new Promise(resolve => {
+        const response = that.handleProceed();
+
+        // Wait until receive positive response
+        if (response) {
+          resolve(true);
+        }
+      })
+      promise.then(bool => {
+        that.parent.proceedButtonInProgress = false;
       });
+    });
+
     this.navButton.classList.add('h5p-nav-button');
 
     this.navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
@@ -334,6 +346,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   
   //  Hande proceed to next slide.
   LibraryScreen.prototype.handleProceed = function () {
+    let returnValue = true;
     // Stop impatient users from breaking the view
     if (this.parent.navigating === false) {
       const hasFeedbackTitle = this.libraryFeedback.title &&
@@ -372,6 +385,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.currentLibraryWrapper.style.zIndex = 0;
         this.wrapper.appendChild(branchingQuestion);
         feedbackScreen.focus();
+        this.parent.navigating = true;
       }
       else {
         const nextScreen = {
@@ -381,10 +395,24 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         if (!!(hasFeedback || (this.libraryFeedback.endScreenScore !== undefined))) {
           nextScreen.feedback = this.libraryFeedback;
         }
-        this.parent.trigger('navigated', nextScreen);
-      }
 
-      this.parent.navigating = true;
+        // Allow user to naviate to next slide/library if the execution completes
+        const self = this;
+        returnValue = false;
+        var promise = new Promise(resolve => {
+          resolve(self.parent.trigger('navigated', nextScreen));
+        })
+        promise.then(bool => {
+          this.parent.proceedButtonInProgress = false;
+          this.parent.navigating = true;
+          return true;
+        });
+      }
+    }
+
+    // Return to Proceed button listener with response
+    if (returnValue) {
+      return returnValue;
     }
   }
 
@@ -1165,6 +1193,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Show normal h5p library
     if (!LibraryScreen.isBranching(library)) {
+      let showProceedButtonflag = true;
+      // First priority - Hide navigation button first to prevent user to make unecessary clicks
+      if (this.libraryFinishingRequirements[library.contentId] === true
+        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
+        this.contentOverlays[this.currentLibraryId].hide();
+        this.parent.hideNavButton();
+        showProceedButtonflag = false;
+      }
+
       // Update the title
       const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
       this.libraryTitle.setAttribute('aria-label', contentTitle ? contentTitle : 'Untitled Content');
@@ -1222,15 +1259,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.currentLibraryId = library.contentId;
       this.currentLibraryInstance = this.libraryInstances[library.contentId];
 
-      if (this.libraryFinishingRequirements[library.contentId] === true
-        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
-        this.contentOverlays[this.currentLibraryId].hide();
-        this.parent.hideNavButton();
-      }
-      else {
-        this.parent.showNavButton();
-      }
-
       if (this.currentLibraryInstance.resize) {
         this.currentLibraryInstance.resize();
       }
@@ -1248,10 +1276,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         self.createNextLibraries(library);
         self.parent.navigating = false;
         self.libraryTitle.focus();
+        
+        // New position to show Proceed button because sometimes user can play with the button while animation is in progress
+        if (showProceedButtonflag) {
+          self.parent.showNavButton();
+        }
+
+        // Require to call resize the frame after animation completes
+        self.resize(new H5P.Event('resize', {
+          element: libraryElement
+        }));
       });
-      this.resize(new H5P.Event('resize', {
-        element: libraryElement
-      }));
     }
     else { // Show a branching question
       if (this.parent.params.behaviour === true) {

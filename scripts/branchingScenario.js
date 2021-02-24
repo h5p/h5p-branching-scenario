@@ -14,6 +14,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.xAPIDataCollector = [];
   self.userPath = [];
   self.backwardsAllowedFlags = [];
+  self.proceedButtonInProgress = false;
 
   /**
    * Extend an array just like JQuery's extend.
@@ -313,7 +314,10 @@ H5P.BranchingScenario = function (params, contentId) {
       self.triggerXAPICompleted(self.scoring.getScore(self.currentEndScreen.getScore()), self.scoring.getMaxScore());
     }
     else {
-      self.libraryScreen.showNextLibrary(nextLibrary, e.data.reverse);
+      setTimeout(() => {
+        // Animation took some time to display the next library screen
+        self.libraryScreen.showNextLibrary(nextLibrary, e.data.reverse);
+      }, 200);
       self.currentId = id;
     }
 
