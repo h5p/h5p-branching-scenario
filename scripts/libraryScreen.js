@@ -238,7 +238,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       this.parent.proceedButtonInProgress = true;
       const that = this;
-      var promise = new Promise(resolve => {
+      let promise = new Promise(resolve => {
         const response = that.handleProceed();
 
         // Wait until receive positive response
