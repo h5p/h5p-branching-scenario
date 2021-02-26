@@ -90,6 +90,7 @@
   flex-direction: column;
   height: 100%;
   background:#52576C;
+  position: relative;
 }
 
 .h5p-branching-scenario .h5p-current-screen.h5p-slide-out {

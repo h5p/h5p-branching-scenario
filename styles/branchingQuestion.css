@@ -145,6 +145,26 @@
   display: flex;
   margin: auto;
   position: relative;
+  flex-direction: column-reverse;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper{
+  justify-content: flex-end;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button {
+  margin: 0;
+  color: #4b495e;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f100";
+  padding-right: 10px;
+}
+
+.h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button:after {
+  content: "";
 }
 
 .h5p-branching-question .h5p-branching-question.h5p-feedback-image {

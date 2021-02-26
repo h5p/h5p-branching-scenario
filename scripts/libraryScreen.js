@@ -316,13 +316,35 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     backButton.classList.add('h5p-back-button');
 
     // No need to enable if first node is Branching Question
-    if (this.parent.params.content.length > 0 && this.parent.params.content[0].type.library !== 'H5P.BranchingQuestion') {
+    if (this.parent.params.content.length > 0 && this.parent.params.content[0].type.library === 'H5P.BranchingQuestion') {
       backButton.classList.add('h5p-disabled');
       backButton.setAttribute('disabled', true);
     }
 
     // Navigation
-    backButton.addEventListener('click', () => {
+    backButton.addEventListener('click', (event) => {
+      // Hide overlay popup when user is at Branching Question
+      if (event.currentTarget.hasAttribute("isBQ")) {
+        if (this.overlay) {
+          // TODO: When does this code every run?!
+          if (this.overlay.parentNode !== null) {
+            this.overlay.parentNode.removeChild(this.overlay);
+          }
+          this.overlay = undefined;
+          this.branchingQuestions.forEach(bq => {
+            if (bq.parentNode !== null) {
+              bq.parentNode.removeChild(bq);
+            }
+          });
+          this.showBackgroundToReadspeaker();
+        }
+        // If the BQ is at first position, we need to restart the screen when user want to go back from the 2nd screen (next screen after BQ)
+        if (self.parent.params.content[0].type.library.split(' ')[0] === 'H5P.BranchingQuestion' && self.parent.currentId === 0) {
+          self.parent.trigger('restarted');
+          return backButton;
+        }
+      }
+
       // Stop impatient users from breaking the view
       if (self.parent.navigating === true) {
         return;
@@ -1311,6 +1333,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.hideBackgroundFromReadspeaker();
       }
 
+      const buttonWrapper = document.createElement('div');
+      buttonWrapper.classList.add('h5p-nav-button-wrapper');
+
+      // Append back button if at least one node has it enabled
+      if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
+        this.backButton = this.createBackButton(this.parent.params.l10n.backButtonText);
+        this.backButton.setAttribute('isBQ', true);
+        buttonWrapper.appendChild(this.backButton);
+      }
+
       const branchingQuestion = document.createElement('div');
       branchingQuestion.className = 'h5p-branching-question-wrapper';
 
@@ -1327,12 +1359,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       questionContainer.classList.add('h5p-fly-in');
       branchingQuestion.querySelector('.h5p-branching-question-title').id = labelId;
 
+      document.querySelector('.h5p-branching-question').appendChild(buttonWrapper);
       this.currentLibraryWrapper.style.zIndex = 0;
 
       /**
        * Resizes the wrapper to the height of the container. If the current BQ is at the very start of the content type then resize parent wrapper
+       * Make exception for starting screen, so it does not cut from the top
        */
-      if (this.currentLibraryWrapper.style.height === "") {
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing) {
         const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
         wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
       }
