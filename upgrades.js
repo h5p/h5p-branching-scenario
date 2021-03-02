@@ -40,7 +40,32 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
         }
 
         finished(null, parameters, extras);
+      },
+      3: function (parameters, finished, extras) {
+        // Sanitization
+        parameters.branchingScenario = parameters.branchingScenario || {};
+        parameters.branchingScenario.content = parameters.branchingScenario.content || [];
+
+        // Individual require finished override value
+        parameters.branchingScenario.content.forEach( function (contentNode) {
+          // No setting required for Branching Question
+          if (!contentNode.type || !contentNode.type.library) {
+            return;
+          }
+          
+          // Mind the one-item behavior of semantics groups
+          if (typeof contentNode.contentBehaviour === 'undefined') {
+            contentNode.contentBehaviour = false;
+            // Allow BQ to have content behaviour
+            if (contentNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
+              contentNode.contentBehaviour = true;
+            }
+          }
+        });
+
+        finished(null, parameters, extras);
       }
-    }
+      
+  }
   };
 })();
