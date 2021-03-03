@@ -56,12 +56,12 @@
   justify-content: center;
 }
 
-.h5p-branching-scenario .h5p-back-button,
 .h5p-branching-scenario .h5p-nav-button {
-  margin-right: 20px;
-  margin-left: 0;
-  margin-top: 0.67em;
-  margin-bottom: 0;
+  margin: 0.67em 20px 0 0;
+}
+
+.h5p-branching-scenario .h5p-back-button {
+  margin: 0.67em 10px 0 0;
 }
 
 .h5p-branching-scenario .h5p-nav-button.h5p-disabled {
