@@ -1338,9 +1338,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Append back button if at least one node has it enabled
       if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
-        this.backButton = this.createBackButton(this.parent.params.l10n.backButtonText);
-        this.backButton.setAttribute('isBQ', true);
-        buttonWrapper.appendChild(this.backButton);
+        this.bqBackButton = this.createBackButton(this.parent.params.l10n.backButtonText);
+        this.bqBackButton.setAttribute('isBQ', true);
+        
+        // Check the back button is enable or not
+        if (this.parent.canEnableBackButton(library.contentId) === false) {
+          this.bqBackButton.classList.add('h5p-disabled');
+          this.bqBackButton.setAttribute('disabled', true);
+        }
+        buttonWrapper.appendChild(this.bqBackButton);
       }
 
       const branchingQuestion = document.createElement('div');

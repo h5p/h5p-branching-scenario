@@ -167,7 +167,7 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.enableBackButton();
     }
-
+    
     if (startNode && startNode.type && startNode.type.library && startNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
       // First node is Branching Question, no sliding, just trigger BQ overlay
       self.trigger('navigated', {
@@ -199,12 +199,9 @@ H5P.BranchingScenario = function (params, contentId) {
     // Keep track of user steps
     self.userPath.push(id);
 
-    // Disable back button if not allowed
-    if (self.canEnableBackButton(id) === false) {
-      self.disableBackButton();
-    }
-    else {
-      self.enableBackButton();
+    // Remove Back button from BQ overlay
+    if (H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId)) && self.$container.find('.h5p-back-button[isBQ="true"]').length) {
+      self.$container.find('.h5p-back-button[isBQ="true"]').remove();
     }
 
     const nextLibrary = self.getLibrary(id);
@@ -237,7 +234,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     }
 
-
+    
     // Re-display library screen if it has been hidden by an ending screen
     if (self.currentEndScreen && self.currentEndScreen.isShowing) {
       if (nextLibrary) {
@@ -318,6 +315,14 @@ H5P.BranchingScenario = function (params, contentId) {
       setTimeout(() => {
         // Animation took some time to display the next library screen
         self.libraryScreen.showNextLibrary(nextLibrary, e.data.reverse);
+
+        // Disable back button if not allowed in new library screen
+        if (self.canEnableBackButton(id) === false) {
+          self.disableBackButton();
+        }
+        else {
+          self.enableBackButton();
+        }
       }, 200);
       self.currentId = id;
     }
