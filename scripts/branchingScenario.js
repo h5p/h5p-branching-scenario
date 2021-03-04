@@ -200,7 +200,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.userPath.push(id);
 
     // Remove Back button from BQ overlay
-    if (H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId)) && self.$container.find('.h5p-back-button[isBQ="true"]').length) {
+    if (self.currentId > -1 && H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId)) && self.$container.find('.h5p-back-button[isBQ="true"]').length) {
       self.$container.find('.h5p-back-button[isBQ="true"]').remove();
     }
 
