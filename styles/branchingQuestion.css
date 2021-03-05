@@ -145,11 +145,11 @@
   display: flex;
   margin: auto;
   position: relative;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
 .h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper{
-  justify-content: flex-end;
+  margin-top: 1em;
 }
 
 .h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper button {
