@@ -350,7 +350,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         return;
       }
 
-      if(self.currentLibraryId === 0) {
+      if(self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         self.parent.trigger('restarted');
         return backButton;
       }
