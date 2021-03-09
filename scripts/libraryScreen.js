@@ -1422,6 +1422,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const isCP = (instance && instance.libraryInfo.machineName === 'H5P.CoursePresentation');
     const isHotspots = (instance && instance.libraryInfo.machineName === 'H5P.ImageHotspots');
     const isVideo = (instance && instance.libraryInfo.machineName === 'H5P.Video');
+    const isIV = (instance && instance.libraryInfo.machineName === 'H5P.InteractiveVideo');
     const hasSize = (instance && instance.width && instance.height);
 
     const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots || isVideo);
@@ -1439,30 +1440,39 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.parent.isFullScreen()) {
       element.classList.add('h5p-fullscreen');
 
+      if (isIV) {
+        instance.videoHeight = instance.$videoWrapper[0].firstChild.style.height;
+      }
+
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo ? element.firstChild.getBoundingClientRect() : null);
         const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
         const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
         const aspectRatio = (height / width);
-
-        const availableSpace = element.getBoundingClientRect();
+        const targetElement = (isIV || isVideo) ? element.firstChild : element;
+        const availableSpace = targetElement.getBoundingClientRect();
+        
         const availableAspectRatio = (availableSpace.height / availableSpace.width);
-
+        
         if (aspectRatio > availableAspectRatio) {
           if (isHotspots) {
-            element.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
+            targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
           }
           else {
-            element.style.width = (availableSpace.height * (width / height)) + 'px';
+            targetElement.style.width = (availableSpace.height * (width / height)) + 'px';
           }
         }
         else {
-          element.style.height = (availableSpace.width * aspectRatio) + 'px';
+          targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
         }
       }
     }
     else {
+      if (isIV) {
+        let videoWrapper = element.getElementsByClassName('h5p-video-wrapper')[0].firstChild;
+        videoWrapper.style.height = instance.videoHeight;
+      }
       element.classList.remove('h5p-fullscreen');
     }
 
