@@ -763,8 +763,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if (event.data.statement.verb.display['en-US'] === 'progressed') {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
             if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
-              if (this.navButton.classList.contains('h5p-hidden')) {
-                that.parent.showNavButton(true);
+              if (this.navButton.classList.contains('h5p-disabled')) {
+                that.parent.enableNavButton(true);
               }
             }
           }
@@ -805,7 +805,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Permit progression when audio ended
       case 'H5P.Audio':
         instance.audio.on('ended', function () {
-          that.parent.showNavButton();
+          that.parent.enableNavButton();
         });
         break;
 
@@ -817,7 +817,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
               event.data.statement.verb.display['en-US'] === 'answered' ||
               event.data.statement.verb.display['en-US'] === 'completed'
             ) {
-              that.parent.showNavButton();
+              that.parent.enableNavButton();
             }
           });
         }
@@ -1071,7 +1071,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
       && !self.hasInvalidVideo(self.parent.params.content[self.currentLibraryId])) {
       self.contentOverlays[self.currentLibraryId].hide();
-      self.parent.hideNavButton();
+      self.parent.disableNavButton();
     }
 
     self.isShowing = true;
@@ -1220,7 +1220,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.libraryFinishingRequirements[library.contentId] === true
         && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
         this.contentOverlays[this.currentLibraryId].hide();
-        this.parent.hideNavButton();
+        this.parent.disableNavButton();
         showProceedButtonflag = false;
       }
 
@@ -1301,7 +1301,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
-          self.parent.showNavButton();
+          self.parent.enableNavButton();
         }
 
         // Require to call resize the frame after animation completes
@@ -1312,7 +1312,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
     else { // Show a branching question
       if (this.parent.params.behaviour === true) {
-        this.parent.hideNavButton();
+        this.parent.disableNavButton();
       }
 
       // Remove existing branching questions

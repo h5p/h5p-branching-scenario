@@ -351,6 +351,13 @@
             "default": "Proceed"
           },
           {
+            "name": "disableProceedButtonText",
+            "label": "Text for the disbled button on the library screens",
+            "type": "text",
+            "importance": "low",
+            "default": "Require to complete the current module"
+          },
+          {
             "name": "replayButtonText",
             "label": "Text for the button used to replay a video",
             "type": "text",

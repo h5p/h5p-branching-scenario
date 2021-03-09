@@ -63,7 +63,8 @@ H5P.BranchingScenario = function (params, contentId) {
     proceedButtonText: "Proceed",
     scoreText: "Your score:",
     backButtonText: "Back",
-    replayButtonText: "Replay the video"
+    replayButtonText: "Replay the video",
+    disableProceedButtonText: "Require to complete the current module"
   }, params.l10n);
 
   // Sanitize the (next)ContentIds that the editor didn't set
@@ -439,17 +440,24 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.libraryScreen.navButton.classList.add('h5p-disabled');
     self.libraryScreen.navButton.setAttribute('disabled', true);
+    self.libraryScreen.navButton.setAttribute('title', params.l10n.disableProceedButtonText);
   };
 
   /**
    * Enable proceed button.
    */
-  self.enableNavButton = function () {
+  self.enableNavButton = function (animated = false) {
     if (!self.libraryScreen.navButton) {
       return;
     }
     self.libraryScreen.navButton.classList.remove('h5p-disabled');
     self.libraryScreen.navButton.removeAttribute('disabled');
+    self.libraryScreen.navButton.removeAttribute('title');
+
+    //Animate button if require
+    if (animated) {
+      self.animateNavButton();
+    }
   };
 
   /**
