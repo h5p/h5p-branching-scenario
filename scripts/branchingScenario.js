@@ -63,6 +63,7 @@ H5P.BranchingScenario = function (params, contentId) {
     proceedButtonText: "Proceed",
     scoreText: "Your score:",
     backButtonText: "Back",
+    fullscreenAria: "Fullscreen",
     replayButtonText: "Replay the video",
     disableProceedButtonText: "Require to complete the current module"
   }, params.l10n);
@@ -102,6 +103,7 @@ H5P.BranchingScenario = function (params, contentId) {
       titleText: startScreenTitle,
       subtitleText: startScreenSubtitle,
       image: startScreenImage,
+      fullscreenAria: params.l10n.fullscreenAria,
       buttonText: params.l10n.startScreenButtonText,
       isCurrentScreen
     });
@@ -131,6 +133,7 @@ H5P.BranchingScenario = function (params, contentId) {
       subtitleText: endScreenData.endScreenSubtitle,
       image: endScreenData.endScreenImage,
       buttonText: params.l10n.endScreenButtonText,
+      fullscreenAria: params.l10n.fullscreenAria,
       isCurrentScreen: false,
       scoreText: params.l10n.scoreText,
       score: self.scoring.getScore(endScreenData.endScreenScore),

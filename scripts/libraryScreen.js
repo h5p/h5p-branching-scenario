@@ -132,6 +132,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (H5P.canHasFullScreen) {
       const fullScreenButton = document.createElement('button');
       fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.setAttribute('aria-label', this.parent.params.l10n.fullscreenAria);
       fullScreenButton.addEventListener('click', () => {
         this.trigger('toggleFullScreen');
       });
