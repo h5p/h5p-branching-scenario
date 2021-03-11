@@ -169,6 +169,14 @@
             {
               "label": "Label for score on the end screen",
               "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
             }
           ]
         }
