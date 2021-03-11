@@ -315,12 +315,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     backButton.classList.add('transition');
     backButton.classList.add('h5p-back-button');
 
-    // No need to enable if first node is Branching Question
-    if (this.parent.params.content.length > 0 && this.parent.params.content[0].type.library === 'H5P.BranchingQuestion') {
-      backButton.classList.add('h5p-disabled');
-      backButton.setAttribute('disabled', true);
-    }
-
     // Navigation
     backButton.addEventListener('click', (event) => {
       // Hide overlay popup when user is at Branching Question
