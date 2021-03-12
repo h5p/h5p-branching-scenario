@@ -370,6 +370,13 @@
             "type": "text",
             "importance": "low",
             "default": "Your score:"
+          },
+          {
+            "name": "fullscreenAria",
+            "label": "Aria label for fullscreen button",
+            "type": "text",
+            "importance": "low",
+            "default": "Fullscreen"
           }
         ]
       }

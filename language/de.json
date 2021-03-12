@@ -169,6 +169,14 @@
             {
               "label": "Beschriftung der Punkte auf dem Endbildschirm",
               "default": "Deine Punktzahl:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
             }
           ]
         }

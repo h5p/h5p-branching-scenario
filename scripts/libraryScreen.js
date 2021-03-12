@@ -132,6 +132,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (H5P.canHasFullScreen) {
       const fullScreenButton = document.createElement('button');
       fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.setAttribute('aria-label', this.parent.params.l10n.fullscreenAria);
       fullScreenButton.addEventListener('click', () => {
         this.trigger('toggleFullScreen');
       });
@@ -1364,9 +1365,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       /**
        * Resizes the wrapper to the height of the container. If the current BQ is at the very start of the content type then resize parent wrapper
-       * Make exception for starting screen, so it does not cut from the top
+       * Make exception for starting screen, so it does not cut from the top, as well as fullscreen.
        */
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing) {
+      const isFullscreen = document.body.classList.contains('h5p-fullscreen');
+
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
         const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
         wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
       }
@@ -1418,6 +1421,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     const isVideo = (instance && instance.libraryInfo.machineName === 'H5P.Video');
     const isIV = (instance && instance.libraryInfo.machineName === 'H5P.InteractiveVideo');
     const hasSize = (instance && instance.width && instance.height);
+    const isYoutube = element.classList.contains('h5p-youtube');
 
     const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots || isVideo);
     if (canScaleImage) {
@@ -1444,7 +1448,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
         const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
         const aspectRatio = (height / width);
-        const targetElement = (isIV || isVideo) ? element.lastChild : element;
+        const targetElement = isIV ? element.lastChild : element;
         const availableSpace = targetElement.getBoundingClientRect();
         
         const availableAspectRatio = (availableSpace.height / availableSpace.width);
@@ -1459,6 +1463,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
         else {
           targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+          if (isYoutube && element.querySelector('iframe') !== null) {
+            element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
+          } 
         }
       }
     }
@@ -1466,6 +1473,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (isIV) {
         let videoWrapper = element.getElementsByClassName('h5p-video-wrapper')[0].firstChild;
         videoWrapper.style.height = instance.videoHeight;
+      }
+      else if (isYoutube && element.querySelector('iframe') !== null) {
+        element.querySelector('iframe').style.height = '';
       }
       element.classList.remove('h5p-fullscreen');
     }
