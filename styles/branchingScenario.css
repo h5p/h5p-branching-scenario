@@ -123,7 +123,8 @@
 }
 
 .h5p-branchingscenario-editor .h5p-coursepresentation-editor .h5p-shape-editor .sp-container{
-  left: 76% !important;
+  left: auto !important;
+  right: 0;
 }
 
 .h5p-branching-scenario .transition {
