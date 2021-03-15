@@ -1470,8 +1470,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     }
     else {
-      if (isIV) {
-        let videoWrapper = element.getElementsByClassName('h5p-video-wrapper')[0].firstChild;
+      const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
+      if (isIV && videoWrapperInstance.length > 0) {
+        let videoWrapper = videoWrapperInstance[0].firstChild;
         videoWrapper.style.height = instance.videoHeight;
       }
       else if (isYoutube && element.querySelector('iframe') !== null) {
