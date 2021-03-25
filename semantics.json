@@ -14,7 +14,7 @@
       },
       {
         "name": "startScreen",
-        "label": "Start screen",
+        "label": "Start screen test",
         "type": "group",
         "importance": "low",
         "fields": [
@@ -146,6 +146,7 @@
               "importance": "high",
               "options": [
                 "H5P.BranchingQuestion 1.0",
+                "H5P.BranchingQuestion2 1.0",
                 "H5P.CoursePresentation 1.22",
                 "H5P.AdvancedText 1.1",
                 "H5P.Image 1.1",
