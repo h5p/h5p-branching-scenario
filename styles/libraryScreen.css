@@ -190,13 +190,13 @@
   overflow-y: auto;
 }
 
-::-webkit-scrollbar {
+.h5p-branching-scenario .h5p-branching-scenario-content::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 12px;
   background-color: #C7C8CC;
 }
 
-::-webkit-scrollbar-thumb {
+.h5p-branching-scenario .h5p-branching-scenario-content::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: rgba(0,0,0,.5);
   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
