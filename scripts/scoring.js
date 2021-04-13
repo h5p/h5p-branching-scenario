@@ -185,10 +185,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @param libraryParams
      * @returns {*}
      */
-    const getQuestionMaxScore = function (libraryParams, chosenAlternative) {
-      if (!(chosenAlternative >= 0)) {
-        return 0;
-      }
+    const getQuestionMaxScore = function (libraryParams) {
       const alt = libraryParams.type.params.branchingQuestion.alternatives;
       let maxScore = 0;
       alt.forEach(function (score, index) {
