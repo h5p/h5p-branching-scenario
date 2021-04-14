@@ -11,61 +11,33 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {Object} parameters
        * @param {function} finished
        */
-      2: function (parameters, finished, extras) {
-        // Sanitization
-        parameters.branchingScenario = parameters.branchingScenario || {};
-        parameters.branchingScenario.content = parameters.branchingScenario.content || [];
-
-        // Individual require finished override value
-        parameters.branchingScenario.content.forEach( function (contentNode) {
-          // No setting required for Branching Question
-          if (!contentNode.type || !contentNode.type.library || contentNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
-            return;
-          }
-
-          // Mind the one-item behavior of semantics groups
-          if (typeof contentNode.contentBehaviour === 'undefined') {
-            contentNode.contentBehaviour = false;
-          }
-        });
-
-        // Global backwards navigation default value, mind the one-item behavior of semantics groups
-        // Global require finished override select default value, mind the one-item behavior of semantics groups
-        if (typeof parameters.branchingScenario.behaviour === 'undefined') {
-          parameters.branchingScenario.behaviour = 'individual';
-        }
-
-        if (parameters.branchingScenario.l10n) {
-          parameters.branchingScenario.l10n.backButtonText = 'Back';
-        }
-
-        finished(null, parameters, extras);
-      },
       3: function (parameters, finished, extras) {
         // Sanitization
         parameters.branchingScenario = parameters.branchingScenario || {};
         parameters.branchingScenario.content = parameters.branchingScenario.content || [];
+        parameters.branchingScenario.behaviour = parameters.branchingScenario.behaviour || {};
 
-        // Individual require finished override value
+        // Set behvaior paramter for each content
         parameters.branchingScenario.content.forEach( function (contentNode) {
-          // No setting required for Branching Question
-          if (!contentNode.type || !contentNode.type.library) {
-            return;
+          if (!contentNode.contentBehaviour) {
+            contentNode.contentBehaviour = "useBehavioural";
           }
-          
-          // Mind the one-item behavior of semantics groups
-          if (typeof contentNode.contentBehaviour === 'undefined') {
-            contentNode.contentBehaviour = false;
-            // Allow BQ to have content behaviour
-            if (contentNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
-              contentNode.contentBehaviour = true;
-            }
+          if (!contentNode.forceContentFinished) {
+            contentNode.forceContentFinished = "useBehavioural";
           }
         });
 
+        // Global backwards navigation default value
+        if (!parameters.branchingScenario.behaviour.enableBackwardsNavigation) {
+          parameters.branchingScenario.behaviour = false;
+        }
+
+        if (!parameters.branchingScenario.behaviour.forceContentFinished) {
+          parameters.branchingScenario.behaviour = false;
+        }
+
         finished(null, parameters, extras);
-      }
-      
+      },
   }
   };
 })();
