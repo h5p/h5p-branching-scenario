@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Editor Branching Scenario",
+      "label": "Editor Branching Scenario (Escenario Ramificado)",
       "fields": [
         {
           "label": "Título"
@@ -37,8 +37,8 @@
                 "label": "Imagen"
               },
               {
-                "label": "Puntuación",
-                "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen el escenario final por defecto"
+                "label": "Puntaje",
+                "description": "El puntaje será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntajes de H5P sobre usuarios que alcancen el escenario final por defecto"
               },
               {
                 "label": "Identificador de contenido"
@@ -47,27 +47,27 @@
           }
         },
         {
-          "label": "Lista del contenido branching scenario",
+          "label": "Lista del contenido escenario ramificado",
           "entity": "contenido",
           "field": {
             "fields": [
               {},
               {
-                "label": "Mostrar el título del contenido",
-                "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior"
+                "label": "Mostrar título del contenido en vista",
+                "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior arriba de este contenido"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Obligatorio que sea completado",
+                "description": "Urge a los espectadores a que completen la interacción antes de proceder con el escenario. Esta configuración solamente funcionará para interacciones que puedan ser completadas",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar configuraciones del comportamiento"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Habilitado"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deshabilitado"
                   }
                 ]
               },
@@ -88,22 +88,22 @@
                   },
                   {
                     "label": "Puntuación de este escenario",
-                    "description": "La puntuación será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntuaciones de H5P sobre usuarios que alcancen este escenario"
+                    "description": "El puntaje será enviada a cualquier LMS, LRS o cualquier otro servicio que reciba puntajes de H5P sobre usuarios que alcancen este escenario"
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Configuraciones del comportamiento",
+                "description": "Esto le permitirá al usuario regresar y ver la pregunta / el contenido anterior en el escenario",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar configuraciones del comportamiento"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Habilitado"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deshabilitado"
                   }
                 ]
               }
@@ -111,35 +111,35 @@
           }
         },
         {
-          "label": "Opciones de puntuación",
+          "label": "Opciones de puntaje",
           "fields": [
             {
-              "label": "Opciones de puntuación",
-              "description": "Selecciona el tipo de puntuación",
+              "label": "Opciones de puntaje",
+              "description": "Seleccionar tipo de puntaje",
               "options": [
                 {
-                  "label": "Establecer la puntuación estáticamente para cada escenario final"
+                  "label": "Establecer el puntaje estáticamente para cada escenario final"
                 },
                 {
-                  "label": "Calcular la puntación dinámicamente según las respuestas de los usuarios"
+                  "label": "Calcular el puntaje dinámicamente desde las respuestas de los usuarios"
                 },
                 {
-                  "label": "Sin puntuación"
+                  "label": "Sin puntaje"
                 }
               ]
             }
           ]
         },
         {
-          "label": "Ajustes de comportamiento",
+          "label": "Configuraciones del comportamiento",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Anular navegación en reversa",
+              "description": "Anular las configuraciones individuales para habilitar navegación en reversa"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Anular requerir contenido terminado",
+              "description": "Anular las configuraciones individuales para requerir que el contenido esté terminado antes de activar el botón para \"Proceder\". No tendrá efecto si el contenido no indica si fue \"terminada\"; por ejemplo imágenes o presentaciones d curso con una sola página."
             }
           ]
         },
@@ -155,28 +155,28 @@
               "default": "Reinicia el curso"
             },
             {
-              "label": "Texto para el botón en cada pantalla de la biblioteca",
-              "default": "Continuar"
+              "label": "Texto para el botón Retroceder en cada una de las pantallas de la biblioteca y preguntas ramificadas",
+              "default": "Regresar"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Texto para el botón en cada pantalla de biblioteca",
+              "default": "Proceder"
             },
             {
-              "label": "Etiqueta para la puntuación en la pantalla final",
-              "default": "Tu puntuación:"
+              "label": "Texto para el botón usado para reproducir un video",
+              "default": "Reproducir el video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiqueta para puntaje en la pantalla final",
+              "default": "Su puntaje:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiqueta para puntaje en la pantalla final",
+              "default": "Su puntaje:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Etiqueta Aria para botón de pantalla completa",
+              "default": "Pantalla Completa"
             }
           ]
         }

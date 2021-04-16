@@ -10,11 +10,11 @@
           "label": "Startbildschirm",
           "fields": [
             {
-              "label": "Startbildschirm",
+              "label": "Titel des Startbildschirms",
               "placeholder": "Titel für den Kurs"
             },
             {
-              "label": "Kursdetails",
+              "label": "Untertitel des Startbildschirms",
               "placeholder": "Details zum Kurs"
             },
             {
@@ -57,17 +57,17 @@
                 "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Muss abgeschlossen werden",
+                "description": "Zwingt Lernende, die Interaktion zu beenden, bevor mit dem Szenario fortgefahren werden kann. Diese Einstellung funktioniert nur, wenn Interaktionen abgeschlossen werden können.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Verhaltenseinstellung verwenden"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiviert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktiviert"
                   }
                 ]
               },
@@ -94,16 +94,16 @@
               },
               {
                 "label": "Interaktionseinstellungen",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "description": "Erlaubt es Nutzern, zurückzugehen und den vorherigen Inhalt / Frage im Szenario anzuschauen",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Verhaltenseinstellung verwenden"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiviert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktiviert"
                   }
                 ]
               }
@@ -135,11 +135,11 @@
           "fields": [
             {
               "label": "Überschreiben der Optionen zum Fortfahren nach Abschluss",
-              "description": "Überschreibt die individuellen Einstellungen zum Steuern der Freigabe des \"Weiter\"-Buttons. Hat keinen Effekt, wenn der Inhalt keinen Anhaltspunkt liefert, ob er abgeschlossen wurde, z. B. Bilder oder Präsentationen mit nur einem Schaubild."
+              "description": "Überschreibt die individuellen Einstellungen der Rückwerts-Navigation"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Inhaltsabschluss überschreiben",
+              "description": "Überschreibt die individuellen Einstellungen, die vorgeben, dass der Inhalt abgeschlossen sein muss bevor der „Weiter“-Button klickbar wird. Hat keinen Effekt, wenn der Inhalt nicht mitteilt, dass er „abgeschlossen“ wurde, wie z.B. bei Bildern oder Kurspräsentationen mit nur einer Folie."
             }
           ]
         },
@@ -163,8 +163,8 @@
               "default": "Weiter"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Text für den Button, der das Video erneut abspielen lässt",
+              "default": "Video wiederholen"
             },
             {
               "label": "Beschriftung der Punkte auf dem Endbildschirm",
@@ -172,11 +172,11 @@
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "Deine Punkte:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria-Beschriftung des Vollbild-Buttons",
+              "default": "Vollbild"
             }
           ]
         }

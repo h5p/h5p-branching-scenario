@@ -164,7 +164,7 @@
             },
             {
               "label": "Надпись для оценки на конечном экране",
-              "default": "Ваша оценка:"
+              "default": "Повторить видео"
             },
             {
               "label": "Label for score on the end screen",
