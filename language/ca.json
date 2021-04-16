@@ -64,10 +64,10 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activat"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivat"
                   }
                 ]
               },
@@ -100,10 +100,10 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activat"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivat"
                   }
                 ]
               }
@@ -131,7 +131,7 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Opcions de comportament",
           "fields": [
             {
               "label": "Override require content finished",
@@ -164,7 +164,7 @@
             },
             {
               "label": "Etiqueta per a la puntuació a la pantalla final",
-              "default": "La seva puntuació:"
+              "default": "Torna a reproduir el vídeo"
             },
             {
               "label": "Label for score on the end screen",
