@@ -159,6 +159,15 @@ H5P.BranchingScenario = function (params, contentId) {
   };
 
   /**
+   * Handle exitfullscreen event and resize the BS screen
+   */
+  self.on('exitFullScreen', function () {
+    setTimeout(() => {
+      self.trigger('resize');
+    }, 100);
+  });
+
+  /**
    * Handle the start of the branching scenario
    */
   self.on('started', function () {

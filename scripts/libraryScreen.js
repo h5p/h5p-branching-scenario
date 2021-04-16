@@ -287,7 +287,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             parent.trigger('resize');
             return;
           }
-
+          
           self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
           // NOTE: This is a brittle hardcoding of the header height
           self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
@@ -1487,6 +1487,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     if (instance) {
+      instance.trigger('resize', e);
+      // Execute code after exitingfullscreen event
+      if (H5P.exitFullScreen === undefined && H5P.isFullscreen === false){
+        this.currentLibraryWrapper.style.height = '';
+        this.wrapper.style.minHeight = '';
+        if (this.currentLibraryWrapper !== undefined){
+          this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 70 + 'px';
+        }
+      }else{
+        this.currentLibraryWrapper.style.height = '';
+      }
       instance.trigger('resize', e);
     }
   };
