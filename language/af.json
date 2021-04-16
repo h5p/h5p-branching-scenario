@@ -171,12 +171,12 @@
               "default": "Jou telling:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiket vir telling by eindskerm",
+              "default": "Jou telling:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria-etiket vir die volskermknoppie",
+              "default": "Volskerm"
             }
           ]
         }
