@@ -312,19 +312,15 @@ H5P.BranchingScenario = function (params, contentId) {
       self.triggerXAPICompleted(self.scoring.getScore(self.currentEndScreen.getScore()), self.scoring.getMaxScore());
     }
     else {
-      // Prevent height issue when next frame is loading. So it is best to wait till it load properly
-      setTimeout(() => {
-        // Animation took some time to display the next library screen
-        self.libraryScreen.showNextLibrary(nextLibrary, e.data.reverse);
+      self.libraryScreen.showNextLibrary(nextLibrary, e.data.reverse);
 
-        // Disable back button if not allowed in new library screen
-        if (self.canEnableBackButton(id) === false) {
-          self.disableBackButton();
-        }
-        else {
-          self.enableBackButton();
-        }
-      }, 200);
+      // Disable back button if not allowed in new library screen
+      if (self.canEnableBackButton(id) === false) {
+        self.disableBackButton();
+      }
+      else {
+        self.enableBackButton();
+      }
       self.currentId = id;
     }
 
