@@ -1445,30 +1445,29 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo ? element.lastChild.getBoundingClientRect() : null);
-        if (videoRect === null) {
-          return;
-        }
-        const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
-        const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
-        const aspectRatio = (height / width);
-        const targetElement = isIV ? element.lastChild : element;
-        const availableSpace = targetElement.getBoundingClientRect();
-        
-        const availableAspectRatio = (availableSpace.height / availableSpace.width);
-        
-        if (aspectRatio > availableAspectRatio) {
-          if (isHotspots) {
-            targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
+        if (videoRect) {
+          const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
+          const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
+          const aspectRatio = (height / width);
+          const targetElement = isIV ? element.lastChild : element;
+          const availableSpace = targetElement.getBoundingClientRect();
+          
+          const availableAspectRatio = (availableSpace.height / availableSpace.width);
+          
+          if (aspectRatio > availableAspectRatio) {
+            if (isHotspots) {
+              targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
+            }
+            else {
+              targetElement.style.width = (availableSpace.height * (width / height)) + 'px';
+            }
           }
           else {
-            targetElement.style.width = (availableSpace.height * (width / height)) + 'px';
+            targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+            if (isYoutube && element.querySelector('iframe') !== null) {
+              element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
+            } 
           }
-        }
-        else {
-          targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
-          if (isYoutube && element.querySelector('iframe') !== null) {
-            element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
-          } 
         }
       }
     }
