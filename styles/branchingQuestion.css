@@ -148,6 +148,10 @@
   flex-direction: column;
 }
 
+.h5p-branching-question.h5p-feedback-has-image{
+  flex-direction: row;
+}
+
 .h5p-branching-scenario .h5p-branching-question .h5p-nav-button-wrapper{
   margin-top: 1em;
 }
