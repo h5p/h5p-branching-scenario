@@ -223,17 +223,25 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
   /**
    * Slides the screen in and styles it as the current screen
+   *
+   * @param {boolean} slideBack True if sliding back to screen
    * @return {undefined}
    */
-  GenericScreen.prototype.show = function () {
+  GenericScreen.prototype.show = function (slideBack = false) {
     const self = this;
     self.isShowing = true;
+    if (slideBack) {
+      self.screenWrapper.classList.add('h5p-previous');
+    }
     self.screenWrapper.classList.add('h5p-slide-in');
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
     self.screenWrapper.addEventListener('animationend', function (event) {
       if (event.animationName === 'slide-in') {
+        if (slideBack) {
+          self.screenWrapper.classList.remove('h5p-previous');
+        }
         self.screenWrapper.classList.remove('h5p-next-screen');
         self.screenWrapper.classList.remove('h5p-slide-in');
         self.screenWrapper.classList.add('h5p-current-screen');

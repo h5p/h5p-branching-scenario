@@ -348,7 +348,7 @@ H5P.BranchingScenario = function (params, contentId) {
     self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
 
-    self.startScreen.show();
+    self.startScreen.show(true);
     self.currentId = -1;
     self.userPath = [];
 
