@@ -341,6 +341,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           self.parent.trigger('restarted');
           return backButton;
         }
+        self.parent.trigger('navigated', {
+          reverse: true
+        });
+        return;
       }
 
       // Stop impatient users from breaking the view
