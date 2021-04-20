@@ -115,6 +115,22 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   }
 
   /**
+   * Resize wrapper to fit library
+   */
+  LibraryScreen.prototype.handleLibraryResize = function () {
+    // Fullscreen always use the full height available to it
+    if (this.parent.isFullScreen()) {
+      this.currentLibraryWrapper.style.height = '';
+      this.wrapper.style.minHeight = '';
+      return;
+    }
+
+    this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 40 + 'px';
+    // NOTE: This is a brittle hardcoding of the header height
+    this.wrapper.style.minHeight = this.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
+  }
+
+  /**
    * Creates a wrapping div for the library screen
    *
    * @param  {string} courseTitle Main title
@@ -278,25 +294,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     wrapper.addEventListener("animationend", function (event) {
       if (event.animationName === 'slide-in' && self.currentLibraryElement) {
         parent.trigger('resize');
-
-        const handleLibraryResize = () => {
-          // Fullscreen always use the full height available to it
-          if (parent.isFullScreen()) {
-            self.currentLibraryWrapper.style.height = '';
-            self.wrapper.style.minHeight = '';
-            parent.trigger('resize');
-            return;
-          }
-          
-          self.currentLibraryWrapper.style.height = self.currentLibraryElement.clientHeight + 40 + 'px';
-          // NOTE: This is a brittle hardcoding of the header height
-          self.wrapper.style.minHeight = self.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
-          parent.trigger('resize');
-        };
-
         setTimeout(() => {
           // Make the library resize then make the wrapper resize to the new library height
-          addResizeListener(self.currentLibraryElement, handleLibraryResize);
+          addResizeListener(self.currentLibraryElement, () => {
+            self.handleLibraryResize();
+            parent.trigger('resize');
+          });
         }, 100);
       }
     });
@@ -650,6 +653,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         if (event.data === H5P.Video.ENDED && self.navButton) {
           self.handleProceed();
         }
+      });
+    }
+
+    if (content.library.indexOf('H5P.InteractiveVideo') === 0) {
+      // Resize library wrappers when video is (re-)loaded
+      instance.video.on('loaded', () => {
+        self.handleLibraryResize();
       });
     }
 
@@ -1487,17 +1497,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     if (instance) {
       instance.trigger('resize', e);
-      // Execute code after exitingfullscreen event
-      if (H5P.exitFullScreen === undefined && H5P.isFullscreen === false){
-        this.currentLibraryWrapper.style.height = '';
-        this.wrapper.style.minHeight = '';
-        if (this.currentLibraryWrapper !== undefined){
-          this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 70 + 'px';
-        }
-      }else{
-        this.currentLibraryWrapper.style.height = '';
-      }
-      instance.trigger('resize', e);
+      this.handleLibraryResize();
     }
   };
 
