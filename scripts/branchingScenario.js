@@ -15,6 +15,7 @@ H5P.BranchingScenario = function (params, contentId) {
   self.userPath = [];
   self.backwardsAllowedFlags = [];
   self.proceedButtonInProgress = false;
+  self.isReverseTransition = false;
 
   /**
    * Extend an array just like JQuery's extend.
@@ -348,7 +349,8 @@ H5P.BranchingScenario = function (params, contentId) {
     self.xAPIDataCollector = [];
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
 
-    self.startScreen.show(true);
+    self.startScreen.show(self.isReverseTransition);
+    self.isReverseTransition = false;
     self.currentId = -1;
     self.userPath = [];
 

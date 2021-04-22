@@ -353,6 +353,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
 
       if(self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+        self.parent.isReverseTransition = true;
         self.parent.trigger('restarted');
         return backButton;
       }
