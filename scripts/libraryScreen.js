@@ -668,6 +668,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     }
 
+    if (content.library.indexOf('H5P.Video') === 0) {
+      instance.on('loaded', () => {
+        self.handleLibraryResize();
+      })
+    }
+
     instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
     });
