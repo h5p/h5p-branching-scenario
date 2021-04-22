@@ -190,6 +190,11 @@
   overflow-y: auto;
 }
 
+.h5p-branching-scenario.h5p-fullscreen .h5p-branching-scenario-content.h5p-advanced-text {
+  max-height: 100%;
+  height: auto;
+}
+
 .h5p-branching-scenario .h5p-branching-scenario-content::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 12px;
