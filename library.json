@@ -2,7 +2,7 @@
   "title": "Branching Scenario (beta)",
   "description": "description",
   "majorVersion": 1,
-  "minorVersion": 3,
+  "minorVersion": 4,
   "patchVersion": 1,
   "runnable": 1,
   "embedTypes": [

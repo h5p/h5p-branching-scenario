@@ -11,7 +11,7 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
        * @param {Object} parameters
        * @param {function} finished
        */
-      3: function (parameters, finished, extras) {
+      4: function (parameters, finished, extras) {
         // Sanitization
         parameters.branchingScenario = parameters.branchingScenario || {};
         parameters.branchingScenario.content = parameters.branchingScenario.content || [];
@@ -29,11 +29,11 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
 
         // Global backwards navigation default value
         if (!parameters.branchingScenario.behaviour.enableBackwardsNavigation) {
-          parameters.branchingScenario.behaviour = false;
+          parameters.branchingScenario.behaviour.enableBackwardsNavigation = false;
         }
 
         if (!parameters.branchingScenario.behaviour.forceContentFinished) {
-          parameters.branchingScenario.behaviour = false;
+          parameters.branchingScenario.behaviour.forceContentFinished = false;
         }
 
         finished(null, parameters, extras);
