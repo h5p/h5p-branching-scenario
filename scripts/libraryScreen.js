@@ -661,17 +661,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     }
 
-    if (content.library.indexOf('H5P.InteractiveVideo') === 0) {
-      // Resize library wrappers when video is (re-)loaded
-      instance.video.on('loaded', () => {
+    if (content.library.indexOf('H5P.Video') === 0 || content.library.indexOf('H5P.InteractiveVideo') === 0) {
+      const videoInstance = (content.library.indexOf('H5P.Video') === 0) ? instance : instance.video;
+
+      videoInstance.on('loaded', () => {
         self.handleLibraryResize();
       });
-    }
 
-    if (content.library.indexOf('H5P.Video') === 0) {
-      instance.on('loaded', () => {
-        self.handleLibraryResize();
-      })
+      videoInstance.on('error', () => {
+        self.parent.enableNavButton();
+      });
     }
 
     instance.on('navigated', function (e) {
