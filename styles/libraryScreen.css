@@ -49,6 +49,9 @@
   content: "\f101";
   padding-left: 10px;
 }
+.h5p-branching-scenario .h5p-branching-header p {
+  margin: 0;
+}
 
 .h5p-branching-scenario .h5p-nav-button-wrapper {
   display: block;
