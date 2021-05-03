@@ -408,10 +408,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         questionContainer.classList.add('h5p-start-outside');
         questionContainer.classList.add('h5p-fly-in');
         this.currentLibraryWrapper.style.zIndex = 0;
-        setTimeout(() => {
-          // Small wait for safari browsers
-          this.wrapper.appendChild(branchingQuestion);
-        }, 100);
+        this.wrapper.appendChild(branchingQuestion);
         feedbackScreen.focus();
         this.parent.navigating = true;
       }
@@ -789,32 +786,34 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         });
         break;
 
-      case 'H5P.InteractiveVideo':
-        if (instance.isTask) {
-          // Permit progression when results have been submitted or video ended if no tasks
-          instance.on('xAPI', (event) => {
-            if (event.data.statement.verb.display['en-US'] === 'completed') {
-              // Check that video's been watched completely
-              if (instance.currentState === H5P.Video.ENDED) {
-                that.handleVideoOver();
+        case 'H5P.InteractiveVideo':
+          if (instance.isTask) {
+            // Permit progression when results have been submitted or video ended if no tasks
+            instance.on('xAPI', (event) => {
+              if (event.data.statement.verb.display['en-US'] === 'completed') {
+                // Check that video's been watched completely
+                if (instance.currentState === H5P.Video.ENDED) {
+                  that.handleVideoOver();
+                }
               }
-            }
-          });
-          instance.video.on('stateChange', function (event) {
-            if (event.data === H5P.Video.ENDED){
-              that.parent.enableNavButton();
-            }
-          });
-        }
-        else {
-          instance.video.on('stateChange', function (event) {
-            if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
-              that.handleVideoOver();
-              this.pause();
-            }
-          });
-        }
-        break;
+            });
+            // Enable nav button without submiting the answer/submitted already
+            instance.video.on('stateChange', function (event) {
+              // Check that video's been watched completely
+              if (event.data === H5P.Video.ENDED){
+                that.parent.enableNavButton();
+              }
+            });
+          }
+          else {
+            instance.video.on('stateChange', function (event) {
+              if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
+                that.handleVideoOver();
+                this.pause();
+              }
+            });
+          }
+          break;
 
       // Permit progression when video ended
       case 'H5P.Video':
