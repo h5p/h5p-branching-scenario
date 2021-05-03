@@ -1392,7 +1392,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
        */
       const isFullscreen = document.body.classList.contains('h5p-fullscreen');
 
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
+      const isMobile = this.isMobilePhone();
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isMobile) {
         const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
         wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
       }
