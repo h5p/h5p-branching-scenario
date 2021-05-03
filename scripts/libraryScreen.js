@@ -408,7 +408,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         questionContainer.classList.add('h5p-start-outside');
         questionContainer.classList.add('h5p-fly-in');
         this.currentLibraryWrapper.style.zIndex = 0;
-        this.wrapper.appendChild(branchingQuestion);
+        setTimeout(() => {
+          // Small wait for safari browsers
+          this.wrapper.appendChild(branchingQuestion);
+        }, 100);
         feedbackScreen.focus();
         this.parent.navigating = true;
       }
