@@ -174,7 +174,7 @@
 .h5p-branching-scenario .h5p-start-button:active,
 .h5p-end-button:active,
 .h5p-back-button:not(.h5p-disabled):active,
-.h5p-nav-button:active {
+.h5p-nav-button:not(.h5p-disabled):active {
   border-color: #9fe281;
   color: #4b4c60;
   background: #9fe281;
