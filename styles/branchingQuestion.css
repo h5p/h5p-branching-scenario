@@ -192,6 +192,7 @@
   margin-left: 1em;
   display: block;
   overflow-y: auto;
+  width: 100%;
 }
 
 .h5p-branching-question .h5p-feedback-content h2 {
@@ -201,4 +202,11 @@
 .h5p-feedback-content-content {
   max-height: 14em;
   overflow: auto;
+  width: 100%;
+  //Trick so FF doesn't show a horizontal scrollbar when not needed
+  margin-right: 1px;
+}
+
+.h5p-feedback-default {
+  padding-right: 3em;
 }
