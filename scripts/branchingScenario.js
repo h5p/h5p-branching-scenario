@@ -347,6 +347,7 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.scoring.restart();
     self.xAPIDataCollector = [];
+    self.startScreen.screenWrapper.style.height = "";
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
 
     self.startScreen.show(self.isReverseTransition);

@@ -1221,6 +1221,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
+   * Ensure that start screen can contain branching questions
+   */
+  LibraryScreen.prototype.resizeStartScreen = function () {
+    // Ensure start screen expands to encompass large branching questions
+    if (!this.questionContainer) {
+      return;
+    }
+    const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
+    this.parent.startScreen.screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
+  }
+
+  /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
    *
@@ -1376,6 +1388,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       const labelId = 'h5p-branching-question-title-' + LibraryScreen.idCounter++;
       const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');
+      this.questionContainer = questionContainer;
       questionContainer.setAttribute('role', 'dialog');
       questionContainer.setAttribute('tabindex', '-1');
       questionContainer.setAttribute('aria-labelledby', labelId);
@@ -1396,6 +1409,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isMobile) {
         const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
         wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
+      }
+      else if (this.parent.startScreen.isShowing && !isFullscreen) {
+        // Ensure start screen expands to encompass large branching questions
+        this.resizeStartScreen();
       }
       else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
@@ -1496,6 +1513,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     }
     else {
+      // Fullscreen with branching question must set wrapper size
+      if (this.parent.startScreen.isShowing) {
+        this.resizeStartScreen();
+      }
+
       const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
       if (isIV && videoWrapperInstance.length > 0) {
         let videoWrapper = videoWrapperInstance[0].firstChild;
