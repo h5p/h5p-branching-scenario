@@ -13,7 +13,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   function LibraryScreen(parent, courseTitle, library) {
     const self = this;
     H5P.EventDispatcher.call(this);
-
+    
     this.parent = parent;
     this.currentLibraryElement;
     this.currentLibraryInstance;
@@ -548,6 +548,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           this.handleProceedAfterVideo();
         }
       );
+    }
+
+    // In preview mode shifting dialog and controls inside video wrapper
+    const inPreviewMode = document.getElementsByClassName('preview-container').length;
+    if (libraryMachineName === 'H5P.InteractiveVideo' && inPreviewMode > 0){
+      const videoWrapper = libraryElement.getElementsByClassName('h5p-video-wrapper')[0];
+      const dialogOverlay = libraryElement.getElementsByClassName('h5p-dialog-wrapper')[0];
+      const videoControls = libraryElement.getElementsByClassName('h5p-controls')[0];
+
+      videoWrapper.appendChild(videoControls);
+      videoWrapper.appendChild(dialogOverlay);
     }
 
     wrapper.appendChild(libraryElement);
