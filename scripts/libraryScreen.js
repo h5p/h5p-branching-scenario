@@ -1486,7 +1486,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo ? element.lastChild.getBoundingClientRect() : null);
-        if (videoRect || isHotspots || isCP) {
+        if (videoRect || isHotspots || isCP || isImage) {
           const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
           const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
           const aspectRatio = (height / width);
@@ -1494,7 +1494,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           const availableSpace = targetElement.getBoundingClientRect();
           
           const availableAspectRatio = (availableSpace.height / availableSpace.width);
-          
+
           if (aspectRatio > availableAspectRatio) {
             if (isHotspots) {
               targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
@@ -1507,7 +1507,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
             if (isYoutube && element.querySelector('iframe') !== null) {
               element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
-            } 
+            }
           }
         }
       }
