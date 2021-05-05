@@ -1237,14 +1237,19 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   /**
    * Ensure that start screen can contain branching questions
+   * @param {boolean} isStartScreen True if resizing the start screen
    */
-  LibraryScreen.prototype.resizeStartScreen = function () {
+  LibraryScreen.prototype.resizeScreen = function (isStartScreen = false) {
     // Ensure start screen expands to encompass large branching questions
     if (!this.questionContainer) {
       return;
     }
+    let screenWrapper = isStartScreen
+      ? this.parent.startScreen.screenWrapper
+      : this.wrapper;
+
     const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
-    this.parent.startScreen.screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
+    screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
   }
 
   /**
@@ -1421,12 +1426,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       const isFullscreen = document.body.classList.contains('h5p-fullscreen');
 
       if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
-        const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
-        wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
+        this.resizeScreen();
       }
       else if (this.parent.startScreen.isShowing && !isFullscreen) {
         // Ensure start screen expands to encompass large branching questions
-        this.resizeStartScreen();
+        this.resizeScreen(true);
       }
       else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
@@ -1529,7 +1533,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     else {
       // Fullscreen with branching question must set wrapper size
       if (this.parent.startScreen.isShowing) {
-        this.resizeStartScreen();
+        this.resizeScreen(true);
+      }
+      else if (this.overlay) {
+        this.resizeScreen()
       }
 
       const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');

@@ -204,6 +204,11 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function (e) {
     // Trace back user steps
     if (e.data.reverse) {
+      // Reset library screen wrapper if it was set to fit large BQ
+      if (self.libraryScreen && self.libraryScreen.wrapper) {
+        self.libraryScreen.wrapper.style.height = '';
+      }
+
       self.userPath.pop();
       e.data.nextContentId = self.userPath.pop() || 0;
     }
