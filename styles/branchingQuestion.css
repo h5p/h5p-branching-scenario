@@ -211,3 +211,8 @@
   padding-right: 3em;
   overflow: hidden;
 }
+
+.h5p-branching-scenario.h5p-semi-fullscreen .h5p-branching-question-container,
+.h5p-branching-scenario.h5p-fullscreen .h5p-branching-question-container {
+  max-height: calc(100% - 4em);
+}
