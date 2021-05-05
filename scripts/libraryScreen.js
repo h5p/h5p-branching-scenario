@@ -59,7 +59,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (!$tabbables) {
         return;
       }
-      
+
       for (let i = 0; i < $tabbables.length; i++) {
         if (index === "-1") {
           let elementTabIndex = $tabbables[i].getAttribute('tabindex');
@@ -71,11 +71,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if ($tabbables[i].classList.contains("ui-slider-handle")) {
             $tabbables[i].setAttribute('tabindex', 0);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else if (tabindex !== undefined) {
             $tabbables[i].setAttribute('tabindex', index);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else {
             $tabbables[i].setAttribute('tabindex', index);
           }
@@ -122,10 +122,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.parent.isFullScreen()) {
       this.currentLibraryWrapper.style.height = '';
       this.wrapper.style.minHeight = '';
-      const isMobile = this.isMobilePhone();
-      if (isMobile){
-        this.currentLibraryElement.style.height = 'unset';
-      }
       return;
     }
 
@@ -372,7 +368,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     return backButton;
   };
-  
+
   //  Hande proceed to next slide.
   LibraryScreen.prototype.handleProceed = function () {
     let returnValue = true;
@@ -596,7 +592,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-  
+
   /**
    *  Used to reset an IV after you replay it.
    */
@@ -682,6 +678,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         if (event.data === H5P.Video.ENDED && self.navButton) {
           self.handleProceed();
         }
+      });
+    }
+
+    // Ensure that iframe is resized when image is loaded.
+    if (content.library.indexOf('H5P.Image') === 0) {
+      instance.on('loaded', function () {
+        self.handleLibraryResize();
+        self.parent.trigger('resize');
       });
     }
 
@@ -1078,19 +1082,19 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
-   * Checks to see if the library has an invalid video (no source file or external link).
+   * Checks to see if the library has a valid video (source file or external link).
    * video/unknown check is to verify that external Youtube links work correctly.
    */
-  LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
+  LibraryScreen.prototype.hasValidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
     if (type && type.metadata.contentType === "Interactive Video" &&
-    (!type.params.interactiveVideo.video.files || type.params.interactiveVideo.video.files[0].mime === "video/unknown")
+      type.params.interactiveVideo.video.files && type.params.interactiveVideo.video.files[0].mime !== "video/unknown"
     ) {
       return true;
     }
     else if (
       type && type.metadata.contentType === 'Video' &&
-      (!type.params.sources || type.params.sources[0].mime === "video/unknown")
+      type.params.sources && type.params.sources[0].mime !== "video/unknown"
     ) {
       return true;
     }
@@ -1104,7 +1108,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.show = function () {
     const self = this;
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
-      && !self.hasInvalidVideo(self.parent.params.content[self.currentLibraryId])) {
+      && self.hasValidVideo(self.parent.params.content[self.currentLibraryId])) {
       self.contentOverlays[self.currentLibraryId].hide();
       self.parent.disableNavButton();
     }
@@ -1239,14 +1243,19 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
   /**
    * Ensure that start screen can contain branching questions
+   * @param {boolean} isStartScreen True if resizing the start screen
    */
-  LibraryScreen.prototype.resizeStartScreen = function () {
+  LibraryScreen.prototype.resizeScreen = function (isStartScreen = false) {
     // Ensure start screen expands to encompass large branching questions
     if (!this.questionContainer) {
       return;
     }
+    let screenWrapper = isStartScreen
+      ? this.parent.startScreen.screenWrapper
+      : this.wrapper;
+
     const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
-    this.parent.startScreen.screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
+    screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
   }
 
   /**
@@ -1265,7 +1274,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       let showProceedButtonflag = true;
       // First priority - Hide navigation button first to prevent user to make unecessary clicks
       if (this.libraryFinishingRequirements[library.contentId] === true
-        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
+        && this.hasValidVideo(library)) {
         this.contentOverlays[this.currentLibraryId].hide();
         this.parent.disableNavButton();
         showProceedButtonflag = false;
@@ -1345,7 +1354,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         self.createNextLibraries(library);
         self.parent.navigating = false;
         self.libraryTitle.focus();
-        
+
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
           self.parent.enableNavButton();
@@ -1387,7 +1396,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
         this.bqBackButton = this.createBackButton(this.parent.params.l10n.backButtonText);
         this.bqBackButton.setAttribute('isBQ', true);
-        
+
         // Check the back button is enable or not
         if (this.parent.canEnableBackButton(library.contentId) === false) {
           this.bqBackButton.classList.add('h5p-disabled');
@@ -1422,14 +1431,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
        */
       const isFullscreen = document.body.classList.contains('h5p-fullscreen');
 
-      const isMobile = this.isMobilePhone();
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isMobile) {
-        const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
-        wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
+        this.resizeScreen();
       }
       else if (this.parent.startScreen.isShowing && !isFullscreen) {
         // Ensure start screen expands to encompass large branching questions
-        this.resizeStartScreen();
+        this.resizeScreen(true);
       }
       else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
@@ -1503,15 +1510,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo ? element.lastChild.getBoundingClientRect() : null);
-        if (videoRect || isHotspots || isCP) {
+        if (videoRect || isHotspots || isCP || isImage) {
           const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
           const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
           const aspectRatio = (height / width);
           const targetElement = isIV ? element.lastChild : element;
           const availableSpace = targetElement.getBoundingClientRect();
-          
+
           const availableAspectRatio = (availableSpace.height / availableSpace.width);
-          
+
           if (aspectRatio > availableAspectRatio) {
             if (isHotspots) {
               targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
@@ -1524,7 +1531,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
             if (isYoutube && element.querySelector('iframe') !== null) {
               element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
-            } 
+            }
           }
         }
       }
@@ -1532,7 +1539,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     else {
       // Fullscreen with branching question must set wrapper size
       if (this.parent.startScreen.isShowing) {
-        this.resizeStartScreen();
+        this.resizeScreen(true);
+      }
+      else if (this.overlay) {
+        this.resizeScreen()
       }
 
       const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
@@ -1563,13 +1573,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.isBranching = function (library) {
     return library.type.library.indexOf('H5P.BranchingQuestion ') === 0;
   };
-
-  /**
-   * Detect if we are using a mobile phone
-   */
-  LibraryScreen.prototype.isMobilePhone = function () {
-    return /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)|| /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw-(n|u)|c55\/|capi|ccwa|cdm-|cell|chtm|cldc|cmd-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc-s|devi|dica|dmob|do(c|p)o|ds(12|-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(-|_)|g1 u|g560|gene|gf-5|g-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd-(m|p|t)|hei-|hi(pt|ta)|hp( i|ip)|hs-c|ht(c(-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i-(20|go|ma)|i230|iac( |-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|-[a-w])|libw|lynx|m1-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|-([1-8]|c))|phil|pire|pl(ay|uc)|pn-2|po(ck|rt|se)|prox|psio|pt-g|qa-a|qc(07|12|21|32|60|-[2-7]|i-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h-|oo|p-)|sdk\/|se(c(-|0|1)|47|mc|nd|ri)|sgh-|shar|sie(-|m)|sk-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h-|v-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl-|tdg-|tel(i|m)|tim-|t-mo|to(pl|sh)|ts(70|m-|m3|m5)|tx-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas-|your|zeto|zte-/i.test(navigator.userAgent.substr(0,4));
-  }
 
   LibraryScreen.idCounter = 0;
 

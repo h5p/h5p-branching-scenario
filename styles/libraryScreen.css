@@ -220,10 +220,10 @@
   max-height: 100%;
 }
 
-.h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {
   position: absolute;
   left: 50%;
   top: 50%;
