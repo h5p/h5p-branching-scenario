@@ -59,7 +59,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (!$tabbables) {
         return;
       }
-      
+
       for (let i = 0; i < $tabbables.length; i++) {
         if (index === "-1") {
           let elementTabIndex = $tabbables[i].getAttribute('tabindex');
@@ -71,11 +71,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if ($tabbables[i].classList.contains("ui-slider-handle")) {
             $tabbables[i].setAttribute('tabindex', 0);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else if (tabindex !== undefined) {
             $tabbables[i].setAttribute('tabindex', index);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else {
             $tabbables[i].setAttribute('tabindex', index);
           }
@@ -368,7 +368,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     return backButton;
   };
-  
+
   //  Hande proceed to next slide.
   LibraryScreen.prototype.handleProceed = function () {
     let returnValue = true;
@@ -586,7 +586,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-  
+
   /**
    *  Used to reset an IV after you replay it.
    */
@@ -672,6 +672,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         if (event.data === H5P.Video.ENDED && self.navButton) {
           self.handleProceed();
         }
+      });
+    }
+
+    // Ensure that iframe is resized when image is loaded.
+    if (content.library.indexOf('H5P.Image') === 0) {
+      instance.on('loaded', function () {
+        self.handleLibraryResize();
+        self.parent.trigger('resize');
       });
     }
 
@@ -1335,7 +1343,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         self.createNextLibraries(library);
         self.parent.navigating = false;
         self.libraryTitle.focus();
-        
+
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
           self.parent.enableNavButton();
@@ -1377,7 +1385,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
         this.bqBackButton = this.createBackButton(this.parent.params.l10n.backButtonText);
         this.bqBackButton.setAttribute('isBQ', true);
-        
+
         // Check the back button is enable or not
         if (this.parent.canEnableBackButton(library.contentId) === false) {
           this.bqBackButton.classList.add('h5p-disabled');
@@ -1498,7 +1506,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           const aspectRatio = (height / width);
           const targetElement = isIV ? element.lastChild : element;
           const availableSpace = targetElement.getBoundingClientRect();
-          
+
           const availableAspectRatio = (availableSpace.height / availableSpace.width);
 
           if (aspectRatio > availableAspectRatio) {
