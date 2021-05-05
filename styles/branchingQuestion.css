@@ -203,10 +203,11 @@
   max-height: 14em;
   overflow: auto;
   width: 100%;
-  //Trick so FF doesn't show a horizontal scrollbar when not needed
+  /* Trick so FF doesn't show a horizontal scrollbar when not needed */
   margin-right: 1px;
 }
 
 .h5p-feedback-default {
   padding-right: 3em;
+  overflow: hidden;
 }

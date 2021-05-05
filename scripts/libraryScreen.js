@@ -550,6 +550,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       );
     }
 
+    // In preview mode shifting dialog and controls inside video wrapper
+    const inPreviewMode = document.getElementsByClassName('preview-container').length;
+    if (libraryMachineName === 'H5P.InteractiveVideo' && inPreviewMode > 0){
+      const videoWrapper = libraryElement.getElementsByClassName('h5p-video-wrapper')[0];
+      const dialogOverlay = libraryElement.getElementsByClassName('h5p-dialog-wrapper')[0];
+      const videoControls = libraryElement.getElementsByClassName('h5p-controls')[0];
+
+      videoWrapper.appendChild(videoControls);
+      videoWrapper.appendChild(dialogOverlay);
+    }
+
     wrapper.appendChild(libraryElement);
 
     if (isNextLibrary) {
@@ -1061,19 +1072,19 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
-   * Checks to see if the library has an invalid video (no source file or external link).
+   * Checks to see if the library has a valid video (source file or external link).
    * video/unknown check is to verify that external Youtube links work correctly.
    */
-  LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
+  LibraryScreen.prototype.hasValidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
     if (type && type.metadata.contentType === "Interactive Video" &&
-    (!type.params.interactiveVideo.video.files || type.params.interactiveVideo.video.files[0].mime === "video/unknown")
+      type.params.interactiveVideo.video.files && type.params.interactiveVideo.video.files[0].mime !== "video/unknown"
     ) {
       return true;
     }
     else if (
       type && type.metadata.contentType === 'Video' &&
-      (!type.params.sources || type.params.sources[0].mime === "video/unknown")
+      type.params.sources && type.params.sources[0].mime !== "video/unknown"
     ) {
       return true;
     }
@@ -1087,7 +1098,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.show = function () {
     const self = this;
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
-      && !self.hasInvalidVideo(self.parent.params.content[self.currentLibraryId])) {
+      && self.hasValidVideo(self.parent.params.content[self.currentLibraryId])) {
       self.contentOverlays[self.currentLibraryId].hide();
       self.parent.disableNavButton();
     }
@@ -1248,7 +1259,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       let showProceedButtonflag = true;
       // First priority - Hide navigation button first to prevent user to make unecessary clicks
       if (this.libraryFinishingRequirements[library.contentId] === true
-        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
+        && this.hasValidVideo(library)) {
         this.contentOverlays[this.currentLibraryId].hide();
         this.parent.disableNavButton();
         showProceedButtonflag = false;
