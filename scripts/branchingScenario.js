@@ -381,6 +381,7 @@ H5P.BranchingScenario = function (params, contentId) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
+    self.changeLayoutToFitWidth();
     if (
       self.libraryScreen
       && typeof self.libraryScreen === 'object'
@@ -388,7 +389,6 @@ H5P.BranchingScenario = function (params, contentId) {
     ) {
       self.libraryScreen.resize(event);
     }
-    self.changeLayoutToFitWidth();
 
     // Add classname for phone size adjustments
     const rect = self.$container[0].getBoundingClientRect();
