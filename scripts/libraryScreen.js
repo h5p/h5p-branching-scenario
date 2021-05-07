@@ -1418,8 +1418,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
        * Make exception for starting screen, so it does not cut from the top, as well as fullscreen.
        */
       const isFullscreen = document.body.classList.contains('h5p-fullscreen');
+      const isSmallerDevice = this.parent.$container[0].classList.contains('h5p-mobile-screen');
 
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isSmallerDevice) {
         this.resizeScreen();
       }
       else if (this.parent.startScreen.isShowing && !isFullscreen) {
