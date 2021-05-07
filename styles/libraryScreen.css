@@ -236,3 +236,10 @@
   margin: 1em;
   padding: 0;
 }
+
+/* Transform: translateZ(0) to apply "hardware acceleration" causes IV posters
+ * to be hidden behind dialog overlay
+*/
+.h5peditor .preview-wrapper .hardware-accelerated {
+  transform: none;
+}
