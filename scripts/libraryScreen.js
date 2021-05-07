@@ -1087,14 +1087,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    */
   LibraryScreen.prototype.hasValidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
-    if (type && type.metadata.contentType === "Interactive Video" &&
-      type.params.interactiveVideo.video.files && type.params.interactiveVideo.video.files[0].mime !== "video/unknown"
-    ) {
-      return true;
-    }
-    else if (
-      type && type.metadata.contentType === 'Video' &&
-      type.params.sources && type.params.sources[0].mime !== "video/unknown"
+    const videoLibrary = type.metadata.contentType;
+    let videoSource = videoLibrary === "Interactive Video"
+      ? type.params.interactiveVideo.video.files
+      : type.params.sources;
+
+    if (type && (videoLibrary === "Interactive Video" || videoLibrary === 'Video') &&
+    videoSource && videoSource[0].mime !== "video/unknown"
     ) {
       return true;
     }
