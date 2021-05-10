@@ -1533,6 +1533,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       else if (this.overlay) {
         this.resizeScreen()
       }
+      else {
+        // reset wrapper height
+        this.wrapper.style.height = '';
+      }
 
       const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
       if (isIV && videoWrapperInstance.length > 0) {
