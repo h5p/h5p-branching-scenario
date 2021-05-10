@@ -411,6 +411,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         setTimeout(() => {
           // Small wait for safari browsers
           this.wrapper.appendChild(branchingQuestion);
+
+          // After adding feedback, check whether the resize is needed or not
+          if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
+            this.parent.trigger('resize');
+            this.currentLibraryElement.style.height = questionContainer.offsetHeight + 'px';
+          }
         }, 100);
         feedbackScreen.focus();
         this.parent.navigating = true;
