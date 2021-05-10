@@ -1548,10 +1548,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     if (instance) {
+      instance.trigger('resize', e);
+      // Must resize library screen after resizing content
       this.handleLibraryResize();
-      setTimeout(() => {
-        instance.trigger('resize', e);
-      }, 500);
     }
   };
 
