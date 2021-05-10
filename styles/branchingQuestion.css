@@ -189,10 +189,15 @@
 
 .h5p-branching-question .h5p-feedback-content {
   padding-left: 1em;
-  margin-left: 1em;
+  margin-left: 0;
   display: block;
   overflow-y: auto;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.h5p-branching-question.h5p-feedback-has-image .h5p-feedback-content {
+  margin-left: 1em;
 }
 
 .h5p-branching-question .h5p-feedback-content h2 {
@@ -208,8 +213,8 @@
 }
 
 .h5p-feedback-default {
-  padding-right: 3em;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .h5p-branching-scenario.h5p-semi-fullscreen .h5p-branching-question-container,
