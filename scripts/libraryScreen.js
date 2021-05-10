@@ -1548,9 +1548,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     if (instance) {
+      this.handleLibraryResize();
       setTimeout(() => {
         instance.trigger('resize', e);
-        this.handleLibraryResize();
       }, 500);
     }
   };
