@@ -1518,6 +1518,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           }
           else {
             targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+            if (isYoutube && element.querySelector('iframe') !== null) {
+              element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
+            }
           }
         }
       }

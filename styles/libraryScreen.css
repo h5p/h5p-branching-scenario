@@ -238,8 +238,12 @@
   -webkit-box-shadow: none;
 }
 
-.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-yotube.h5p-fullscreen > iframe{
-  height: 100%;
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen > div{
+  max-height: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen iframe{
+  max-height: 100%;
 }
 
 
