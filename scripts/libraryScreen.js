@@ -113,9 +113,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     /**
      * Handle enterfullscreen event and resize the library instance
      */
-    self.on('enterFullScreen', () => {
+    parent.on('enterFullScreen', () => {
       setTimeout(() => {
-        this.currentLibraryInstance.trigger('resize');
+        if (this.currentLibraryInstance) {
+          this.currentLibraryInstance.trigger('resize');
+        }
       }, 500);
     });
 
@@ -1532,10 +1534,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             }
           }
         }
-      }
-      else if (isIV) {
-        // Sometimes video takes time to load, so resize video instance again
-        this.trigger('enterFullScreen');
       }
     }
     else {
