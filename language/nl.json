@@ -57,17 +57,17 @@
                 "description": "Indien geselecteerd, ziet de gebruiker de inhoudsopgave in de bovenste balk boven deze inhoud."
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Vereist voor voltooiing",
+                "description": "Dwingt kijkers de interactie te voltooien alvorens door te gaan met het scenario. Deze instelling werkt alleen bij interacties die kunnen worden voltooid",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Gebruik gedragsinstelling"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ingeschakeld"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Uitgeschakeld"
                   }
                 ]
               },
@@ -93,17 +93,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Terug navigeren",
+                "description": "Dit staat de kijker toe terug te keren en de vorige inhoud/vraag in het scenario te bekijken",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Gebruik gedragsinstelling"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ingeschakeld"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Uitgeschakeld"
                   }
                 ]
               }
@@ -134,12 +134,12 @@
           "label": "Gedragsinstellingen",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Overschrijf inhoud voltooid vereist",
+              "description": "Overschrijf de individuele instellingen, die vereisen dat inhoud is voltooid, voordat de \"Verder gaan\" knop wordt geactiveerd. Heeft geen gevolg als de inhoud niet aangeeft dat er \"voltooiing\" is, b.v. afbeeldingen of cursus presentaties met slechts een dia."
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Vereist om te bekijken",
+              "description": "Dwingt kijkers om de Video, Interactieve Video en Cursus Presentatie te voltooien, alvorens verder te gaan met het scenario. Dit kan worden overschreven op inhoudsniveau"
             }
           ]
         },
@@ -159,24 +159,24 @@
               "default": "Ga verder"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Tekst voor de knop gebruikt voor herspelen van een video",
+              "default": "Herhaal de video"
             },
             {
               "label": "Label voor score op het eindscherm",
               "default": "Jouw score:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Label voor score op het eindscherm",
+              "default": "Jouw score:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria label voor volledig scherm knop",
+              "default": "Volledig scherm"
             }
           ]
         }
