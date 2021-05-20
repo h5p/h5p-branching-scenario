@@ -11,7 +11,7 @@
           "fields": [
             {
               "label": "Název úvodní obrazovky",
-              "placeholder": "Návev kurzu"
+              "placeholder": "Titulek vašeho kurzu"
             },
             {
               "label": "Podtitul úvodní obrazovky",
@@ -37,7 +37,7 @@
                 "label": "Obrázek"
               },
               {
-                "label": "Slóre",
+                "label": "Skóre",
                 "description": "Skóre bude odesláno do jakéhokoli LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou výchozího koncového scénáře"
               },
               {
@@ -57,17 +57,17 @@
                 "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Povinné vyplnění",
+                "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili interakci. Toto nastavení bude fungovat pouze u interakcí, které lze dokončit",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použít nastavení chování"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povoleno"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázáno"
                   }
                 ]
               },
@@ -93,17 +93,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Nastavení chování",
+                "description": "To umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku ve scénáři",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použít nastavení chování"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povoleno"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázáno"
                   }
                 ]
               }
@@ -115,7 +115,7 @@
           "fields": [
             {
               "label": "Možnosti bodování",
-              "description": "Vyberte typ bodování",
+              "description": "Vybrat typ bodování",
               "options": [
                 {
                   "label": "Staticky stanovené skóre pro každý scénář"
@@ -131,15 +131,15 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Nastavení chování",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Přepsat zpětnou navigaci",
+              "description": "Přepsat jednotlivá nastavení pro povolení zpětné navigace"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Přepsat vyžaduje dokončení obsahu",
+              "description": "Před aktivací tlačítka „Pokračovat“ přepsat jednotlivá nastavení vyžadující dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem."
             }
           ]
         },
@@ -155,28 +155,28 @@
               "default": "Restartovat kurz"
             },
             {
+              "label": "Text pro tlačítko Zpět na každé z obrazovek knihovny a větvící otázky",
+              "default": "Pokračovat"
+            },
+            {
               "label": "Text tlačítka na každé obrazovce knihovny",
               "default": "Pokračovat"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Text tlačítka použitého k přehrání videa",
+              "default": "Přehrát video"
             },
             {
-              "label": "Označte skóre na koncové obrazovce",
+              "label": "Popisek pro skóre na závěrečné obrazovce",
               "default": "Vaše skóre:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Popisek pro skóre na závěrečné obrazovce",
+              "default": "Vaše skóre:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria label pro tlačítko na celou obrazovku",
+              "default": "Celá obrazovka"
             }
           ]
         }
