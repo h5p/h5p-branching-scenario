@@ -1112,10 +1112,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    */
   LibraryScreen.prototype.show = function () {
     const self = this;
-    const library = self.parent.params.content[self.currentLibraryId];
-
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
-      && (self.hasValidVideo(library) || library.type.metadata.contentType === 'Course Presentation')) {
+      && self.hasValidVideo(self.parent.params.content[self.currentLibraryId])) {
       self.contentOverlays[self.currentLibraryId].hide();
       self.parent.disableNavButton();
     }
@@ -1281,7 +1279,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       let showProceedButtonflag = true;
       // First priority - Hide navigation button first to prevent user to make unecessary clicks
       if (this.libraryFinishingRequirements[library.contentId] === true
-        && (this.hasValidVideo(library) || library.type.metadata.contentType === 'Course Presentation')) {
+        && this.hasValidVideo(library)) {
         this.contentOverlays[this.currentLibraryId].hide();
         this.parent.disableNavButton();
         showProceedButtonflag = false;
