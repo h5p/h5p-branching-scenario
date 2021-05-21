@@ -823,14 +823,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         });
         instance.video.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
-            // Giving opportunity to submit the answers
-            if (instance.hasStar) {
+            const answered = instance.interactions
+              .filter(interaction => interaction.getProgress() !== undefined)
+              .sort((a, b) => a.getDuration().from - b.getDuration().from);
+
+            // Giving opportunity to submit the answers 
+            if (instance.hasStar && answered.length > 0) {
               that.parent.enableNavButton();
             }
             else {
               that.handleVideoOver();
-              this.pause();
             }
+            this.pause();
           }
         });
         break;
@@ -1113,7 +1117,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.show = function () {
     const self = this;
     const library = self.parent.params.content[self.currentLibraryId];
-    
+
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
       && (self.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
       self.contentOverlays[self.currentLibraryId].hide();
