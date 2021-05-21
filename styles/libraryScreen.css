@@ -231,13 +231,6 @@
   transform: translate(-50%, -50%);
 }
 
-.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen{
-  display: flex;
-  align-items: center;
-  background-color: rgb(0,0,0);
-  -webkit-box-shadow: none;
-}
-
 .h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen > div{
   max-height: 100%;
 }
