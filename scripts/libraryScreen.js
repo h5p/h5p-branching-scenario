@@ -425,8 +425,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
           // After adding feedback, check whether the resize is needed or not
           if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
-            this.parent.trigger('resize');
             this.currentLibraryElement.style.height = questionContainer.offsetHeight + 'px';
+            this.wrapper.style.height = questionContainer.offsetHeight + 'px';
           }
         }, 100);
         feedbackScreen.focus();
