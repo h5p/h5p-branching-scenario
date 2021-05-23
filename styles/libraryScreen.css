@@ -231,6 +231,22 @@
   transform: translate(-50%, -50%);
 }
 
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-interactive-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen {
+  background: transparent;
+  box-shadow: none;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen.h5p-video-no-source {
+  background: #EFEFEF;
+  display: block;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen{
+  display: flex;
+  align-items: center;
+}
+
 .h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen > div{
   max-height: 100%;
 }

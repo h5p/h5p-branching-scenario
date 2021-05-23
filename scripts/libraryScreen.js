@@ -1515,13 +1515,30 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.parent.isFullScreen()) {
       element.classList.add('h5p-fullscreen');
 
-      if (isIV && instance.$videoWrapper[0].firstChild.style) {
-        instance.videoHeight = instance.$videoWrapper[0].firstChild.style.height;
+      if (isIV) {
+        if (instance.$videoWrapper[0].firstChild.style) {
+          instance.videoHeight = instance.$videoWrapper[0].firstChild.style.height;
+        }
+        
+        // Apply dark background in case of potrait video
+        if (instance.$videoWrapper[0].clientWidth < instance.$container[0].children[1].clientWidth) {
+          element.style.background = 'rgb(0,0,0)';
+        }
+
       }
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
+        
+        // Video with no source should appear on top
+        if (isVideo 
+          && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+          element.classList.add('h5p-video-no-source');
+        }else{
+          element.classList.remove('h5p-video-no-source');
+        }
+
         if (videoRect || isHotspots || isCP || isImage) {
           const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
           const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
