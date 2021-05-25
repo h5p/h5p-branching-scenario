@@ -1514,16 +1514,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.parent.isFullScreen()) {
       element.classList.add('h5p-fullscreen');
 
-      if (isIV) {
-        if (instance.$videoWrapper[0].firstChild.style) {
-          instance.videoHeight = instance.$videoWrapper[0].firstChild.style.height;
-        }
-        
-        // Apply dark background in case of potrait video
-        if (instance.$videoWrapper[0].clientWidth < instance.$container[0].children[1].clientWidth) {
-          element.style.background = 'rgb(0,0,0)';
-        }
-
+      if (isIV && instance.$videoWrapper[0].firstChild.style) {
+        instance.videoHeight = instance.$videoWrapper[0].firstChild.style.height;
       }
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
