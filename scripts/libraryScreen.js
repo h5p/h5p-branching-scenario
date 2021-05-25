@@ -824,8 +824,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         instance.video.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
             const answered = instance.interactions
-              .filter(interaction => interaction.getProgress() !== undefined)
-              .sort((a, b) => a.getDuration().from - b.getDuration().from);
+              .filter(interaction => interaction.getProgress() !== undefined);
 
             // Giving opportunity to submit the answers 
             if (instance.hasStar && answered.length > 0) {
