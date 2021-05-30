@@ -105,6 +105,10 @@ H5P.BranchingScenario.GenericScreen = (function () {
       return screenData.score;
     };
 
+    self.getMaxScore = function () {
+      return screenData.maxScore;
+    };
+
     
     /**
      * Used to check if on the final screen to prepare the course to restart
@@ -142,6 +146,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
   };
 
   /**
+   * Set max score for screen
+   *
+   * @param maxScore
+   */
+  GenericScreen.prototype.setMaxScore = function (maxScore) {
+    if (maxScore !== undefined) {
+      this.maxScoreValue.textContent = maxScore.toString();
+    }
+  };
+
+  /**
    * Creates a wrapper containing the score. Not in use!
    *
    * @param  {string} scoreLabel Score label
@@ -170,17 +185,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     scoreCircle.appendChild(achievedScore);
 
-    if (maxScore && maxScore > 0) {
-      const scoreDelimiter = document.createElement('span');
-      scoreDelimiter.className = 'h5p-score-delimiter';
-      scoreDelimiter.textContent = '/';
-      scoreCircle.appendChild(scoreDelimiter);
+    const scoreDelimiter = document.createElement('span');
+    scoreDelimiter.className = 'h5p-score-delimiter';
+    scoreDelimiter.textContent = '/';
+    scoreCircle.appendChild(scoreDelimiter);
 
-      const maxAchievableScore = document.createElement('span');
-      maxAchievableScore.className = 'h5p-max-score';
-      maxAchievableScore.textContent = maxScore.toString();
-      scoreCircle.appendChild(maxAchievableScore);
-    }
+    const maxAchievableScore = document.createElement('span');
+    maxAchievableScore.className = 'h5p-max-score';
+
+    this.maxScoreValue = document.createTextNode(maxScore.toString());
+    maxAchievableScore.appendChild(this.maxScoreValue);
+    scoreCircle.appendChild(maxAchievableScore);
 
     resultContainer.appendChild(scoreText);
     resultContainer.appendChild(scoreCircle);

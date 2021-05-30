@@ -310,6 +310,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
       else if (self.scoring.isDynamicScoring()) {
         self.currentEndScreen.setScore(self.getScore());
+        self.currentEndScreen.setMaxScore(self.getMaxScore());
       }
 
       self.startScreen.hide();
