@@ -883,6 +883,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     else {
       this.showContentOverlay();
     }
+    this.parent.enableNavButton();
   }
 
   /**
