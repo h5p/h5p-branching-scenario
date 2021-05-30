@@ -16,7 +16,6 @@ H5P.BranchingScenario.Scoring = (function () {
     const self = this;
     let scores = [];
     let visitedIndex = 0;
-    let maxScore = null;
 
     /**
      * Check if library has end score
@@ -181,12 +180,12 @@ H5P.BranchingScenario.Scoring = (function () {
     };
 
     /**
-     * Get score for a Branching Question alternative
+     * Get max score for a Branching Question
      *
      * @param libraryParams
      * @returns {*}
      */
-    const getBranchingQuestionMaxScore = function (libraryParams) {
+    const getQuestionMaxScore = function (libraryParams) {
       const alt = libraryParams.type.params.branchingQuestion.alternatives;
       let maxScore = 0;
       alt.forEach(function (score, index) {
@@ -243,7 +242,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @param {number} [chosenAlternative] Chosen alternative for branching
      *  questions
      */
-    this.addLibraryScore = function (currentId, libraryId, chosenAlternative) {
+    this.addLibraryScore = function (currentId, libraryId, chosenAlternative, contentScores) {
       visitedIndex = visitedIndex + 1;
       const libraryParams = params.content[currentId];
       let currentLibraryScore = 0;
@@ -256,11 +255,16 @@ H5P.BranchingScenario.Scoring = (function () {
       // For Branching Questions find score for chosen alternative
       if (isBranchingQuestion) {
         currentLibraryScore = getAlternativeScore(libraryParams, chosenAlternative);
-        currentLibraryMaxScore = getBranchingQuestionMaxScore(libraryParams, chosenAlternative);
+        currentLibraryMaxScore = getQuestionMaxScore(libraryParams, chosenAlternative);
       }
-      else {
-        if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
+      else if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
+        if (Object.entries(contentScores).length === 0) {
           currentLibraryScore = libraryParams.feedback.endScreenScore;
+          currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
+        } 
+        else {
+          currentLibraryScore = contentScores.score;
+          currentLibraryMaxScore = contentScores.maxScore;
         }
       }
 
