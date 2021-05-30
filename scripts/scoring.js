@@ -146,7 +146,6 @@ H5P.BranchingScenario.Scoring = (function () {
       scores.forEach(function (score) {
         maxScore += score.maxScore;
       });
-      console.log(maxScore);
       return maxScore;
     };
 
@@ -185,25 +184,9 @@ H5P.BranchingScenario.Scoring = (function () {
      * Get score for a Branching Question alternative
      *
      * @param libraryParams
-     * @param chosenAlternative
      * @returns {*}
      */
-    const getAlternativeMaxScore = function (libraryParams, chosenAlternative) {
-      if (!(chosenAlternative >= 0)) {
-        return 0;
-      }
-
-      const hasAlternative = libraryParams
-        && libraryParams.type
-        && libraryParams.type.params
-        && libraryParams.type.params.branchingQuestion
-        && libraryParams.type.params.branchingQuestion.alternatives
-        && libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
-
-      if (!hasAlternative) {
-        return 0;
-      }
-
+    const getBranchingQuestionMaxScore = function (libraryParams) {
       const alt = libraryParams.type.params.branchingQuestion.alternatives;
       let maxScore = 0;
       alt.forEach(function (score, index) {
@@ -273,7 +256,7 @@ H5P.BranchingScenario.Scoring = (function () {
       // For Branching Questions find score for chosen alternative
       if (isBranchingQuestion) {
         currentLibraryScore = getAlternativeScore(libraryParams, chosenAlternative);
-        currentLibraryMaxScore = getAlternativeMaxScore(libraryParams, chosenAlternative);
+        currentLibraryMaxScore = getBranchingQuestionMaxScore(libraryParams, chosenAlternative);
       }
       else {
         if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
