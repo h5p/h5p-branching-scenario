@@ -96,10 +96,10 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Max score
      */
     const calculateMaxScore = function () {
-      if (params.scoringOption === SCORE_TYPES.STATIC_SCORE) {
+      if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE) {
         return calculateStaticMaxScore();
       }
-      else if (params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
+      else if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
         return calculateDynamicMaxScore();
       }
       // No scoring
@@ -172,7 +172,7 @@ H5P.BranchingScenario.Scoring = (function () {
       }
       const alt = libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
 
-      if (!hasEndScreenScore(alt) || !alt.nextContentId || alt.nextContentId < 0) {
+      if (!hasEndScreenScore(alt) || alt.nextContentId === undefined || alt.nextContentId < 0) {
         return 0;
       }
 
@@ -207,12 +207,12 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Current score
      */
     this.getScore = function (screenScore) {
-      if (params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
+      if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
         return scores.reduce(function (previousValue, score) {
           return previousValue + score.score;
         }, 0);
       }
-      else if (params.scoringOption === SCORE_TYPES.STATIC_SCORE) {
+      else if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE) {
         return screenScore;
       }
       else {
@@ -261,13 +261,11 @@ H5P.BranchingScenario.Scoring = (function () {
         currentLibraryMaxScore = getQuestionMaxScore(libraryParams, chosenAlternative);
       }
       else if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
-        if (Object.entries(contentScores).length === 0) {
-          currentLibraryScore = libraryParams.feedback.endScreenScore;
-          currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
-        } 
-        else {
-          currentLibraryScore = contentScores.score;
-          currentLibraryMaxScore = contentScores.maxScore;
+        currentLibraryScore = libraryParams.feedback.endScreenScore;
+        currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
+        if (params.scoringOptionGroup.includeInteractionsScores && Object.entries(contentScores).length !== 0) {
+          currentLibraryScore += contentScores.score;
+          currentLibraryMaxScore += contentScores.maxScore;
         }
       }
 
@@ -281,6 +279,7 @@ H5P.BranchingScenario.Scoring = (function () {
       scores.forEach(function (score, index) {
         if (score.id === currentId) {
           score.score = currentLibraryScore;
+          score.visitedIndex = visitedIndex;
           loopBackIndex = score.visitedIndex;
 
           // If our current id params is not pointing to the next item
@@ -341,7 +340,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {boolean} True if dynamic scoring
      */
     this.isDynamicScoring = function () {
-      return params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
+      return params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
     };
 
     /**
@@ -350,7 +349,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {boolean} True if score should show
      */
     this.shouldShowScore = function () {
-      return params.scoringOption === SCORE_TYPES.STATIC_SCORE
+      return params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE
         || this.isDynamicScoring();
     };
   }

@@ -263,7 +263,7 @@
         }
       },
       {
-        "name": "scoringOption",
+        "name": "scoringOptionGroup",
         "type": "group",
         "label": "Scoring options",
         "importance": "low",
@@ -288,6 +288,23 @@
               }
             ],
             "default": "no-score"
+          },
+          {
+            "name": "includeInteractionsScores",
+            "label": "Include scores from interactions within the Branching Scenario",
+            "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count.",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "widget": "showWhen",
+            "showWhen": {
+              "rules": [
+                {
+                  "field": "scoringOption",
+                  "equals": "dynamic-score"
+                }
+              ]
+            }
           }
         ]
       },

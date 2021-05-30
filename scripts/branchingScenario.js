@@ -52,7 +52,9 @@ H5P.BranchingScenario = function (params, contentId) {
         contentId: -1
       }
     ],
-    scoringOption: 'no-score',
+    scoringOptionGroup: {
+      scoringOption: 'no-score'
+    },
     l10n: {},
     behaviour: 'individual'
   }, params.branchingScenario); // Account for the wrapper!

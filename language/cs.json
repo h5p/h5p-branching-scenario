@@ -127,6 +127,10 @@
                   "label": "Žádné hodnocení"
                 }
               ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
             }
           ]
         },
