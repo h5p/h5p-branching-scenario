@@ -192,7 +192,9 @@ H5P.BranchingScenario.Scoring = (function () {
       const alt = libraryParams.type.params.branchingQuestion.alternatives;
       let maxScore = 0;
       alt.forEach(function (score, index) {
-        if (alt[index].feedback.endScreenScore > maxScore) {
+        // If you change from static to dynamic scoring an end screen can have score
+        // This should not be used for dynamic scroing since the field isn't shown 
+        if (alt[index].feedback.endScreenScore > maxScore && alt[index].nextContentId !== -1) {
           maxScore = alt[index].feedback.endScreenScore;
         }
       });
@@ -260,9 +262,13 @@ H5P.BranchingScenario.Scoring = (function () {
         currentLibraryScore = getAlternativeScore(libraryParams, chosenAlternative);
         currentLibraryMaxScore = getQuestionMaxScore(libraryParams, chosenAlternative);
       }
-      else if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
-        currentLibraryScore = libraryParams.feedback.endScreenScore;
-        currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
+      else {
+        // Add score from field
+        if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
+          currentLibraryScore = libraryParams.feedback.endScreenScore;
+          currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
+        }
+        // Add score from content
         if (params.scoringOptionGroup.includeInteractionsScores && Object.entries(contentScores).length !== 0) {
           currentLibraryScore += contentScores.score;
           currentLibraryMaxScore += contentScores.maxScore;
