@@ -38,6 +38,10 @@
   overflow: hidden;
 }
 
+.h5p-branching-scenario .h5p-screen-header .library-subtitle {
+  outline: none;
+}
+
 /* Override link color and set underline so it is shown in preview*/
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper .h5p-branching-header a {
   text-decoration: underline;
