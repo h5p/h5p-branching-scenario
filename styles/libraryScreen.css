@@ -241,9 +241,8 @@
   transform: translate(-50%, -50%);
 }
 
-.h5p-branching-scenario .h5p-branching-scenario-content.h5p-interactive-video.h5p-fullscreen,
 .h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen {
-  background: transparent !important;  /* Adding important because IV library has "!important" in background */
+  background: transparent;
   box-shadow: none;
 }
 
