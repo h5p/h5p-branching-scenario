@@ -1521,14 +1521,19 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
+        let videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
         
-        // Video with no source should appear on top
-        if (isVideo 
-          && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
-          element.classList.add('h5p-video-no-source');
-        }else{
+        if (isVideo) {
+          // Video with no source should appear on top
           element.classList.remove('h5p-video-no-source');
+          if (this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+            element.classList.add('h5p-video-no-source');
+          }
+
+          // Do not set videoReact object when YT video is still loading
+          if (isYoutube && instance.getPlayerState() === undefined) {
+            videoRect = null;
+          }
         }
 
         if (videoRect || isHotspots || isCP || isImage) {
