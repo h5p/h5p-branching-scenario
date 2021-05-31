@@ -206,7 +206,8 @@
                     "strong",
                     "em",
                     "del",
-                    "code"
+                    "code",
+                    "a"
                   ]
                 },
                 {
@@ -220,7 +221,8 @@
                     "strong",
                     "em",
                     "del",
-                    "code"
+                    "code",
+                    "a"
                   ]
                 },
                 {
