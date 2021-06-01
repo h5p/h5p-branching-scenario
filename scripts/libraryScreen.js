@@ -1531,7 +1531,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           }
 
           // Do not set videoReact object when YT video is still loading
-          if (isYoutube && instance.getPlayerState() === undefined) {
+          if (isYoutube &&  instance.getBuffered() === undefined) {
+
             videoRect = null;
           }
         }
