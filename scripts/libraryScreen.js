@@ -350,9 +350,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           self.parent.trigger('restarted');
           return backButton;
         }
-        self.parent.trigger('navigated', {
-          reverse: true
-        });
+        self.parent.trigger('backFromBQ');
         return;
       }
 
@@ -701,6 +699,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     instance.on('navigated', function (e) {
       parent.trigger('navigated', e.data);
+    });
+
+    instance.on('backFromBQ', function (e) {
+      parent.trigger('backFromBQ', e.data);
     });
 
     this.libraryInstances[id] = instance;
