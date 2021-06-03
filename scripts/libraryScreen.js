@@ -552,7 +552,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         'replay',
         this.parent.params.l10n.replayButtonText,
         () => {
-          this.handleReplayVideo(libraryMachineName);
+          this.handleReplayVideo(libraryMachineName, library);
         }
       );
       this.contentOverlays[library.contentId].addButton(
@@ -579,8 +579,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     return wrapper;
   };
 
-  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName) {
+  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName, library) {
     this.contentOverlays[this.currentLibraryId].hide();
+
+    // Hide procced button
+    if (this.libraryFinishingRequirements[library.contentId] === true
+      && (this.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
+      this.contentOverlays[this.currentLibraryId].hide();
+      this.parent.disableNavButton();
+    }
 
     // sets buffering state for video
     this.currentLibraryInstance.currentState = 3;
@@ -844,7 +851,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         instance.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED) {
             if (!that.nextIsBranching(that.currentLibraryId)) {
-              that.showContentOverlay();
+              that.handleVideoOver();
             }
             // else already handled by general video listener
           }
