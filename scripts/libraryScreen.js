@@ -706,10 +706,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       parent.trigger('navigated', e.data);
     });
 
-    // instance.on('backFromBQ', function (e) {
-    //   parent.trigger('backFromBQ', e.data);
-    // });
-
     this.libraryInstances[id] = instance;
 
     // Bubble resize events
@@ -1275,6 +1271,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   }
 
   /**
+   * Reset interactions IV and CP, for video just reset to start
+   * Other libraries do not require reset
+   */
+  LibraryScreen.prototype.resetInstance = function () {
+    if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.InteractiveVideo"
+    && typeof this.currentLibraryInstance.resetTask !== "undefined") { 
+      this.resetIVProgress();
+      this.currentLibraryInstance.resetTask();
+    }
+    if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.CoursePresentation" 
+    && typeof this.currentLibraryInstance.resetTask !== "undefined") {
+      this.currentLibraryInstance.resetTask();
+    }
+    if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.Video" 
+    && typeof this.currentLibraryInstance.seek !== "undefined") {
+      this.currentLibraryInstance.seek(0);
+    }
+  };
+  /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
    *
@@ -1329,66 +1344,71 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.showBackgroundToReadspeaker();
       }
 
+      // Reset instance if BQ's Back button is pressed
       if (this.isBQReverse) {
         var temp = this.nextLibraries[this.currentLibraryId];
         delete this.nextLibraries[this.currentLibraryId];
         this.nextLibraries[library.contentId] = temp;
+        this.parent.navigating = false;
+        this.resetInstance();
       }
 
-      // Initialize library if necessary
+      // Initialize library if necessary, not in case BQ's Back button is pressed
       if (!this.nextLibraries[library.contentId]  && !this.isBQReverse) {
         this.createNextLibrary(library);
       }
 
+      // Avoid unecessary changes if BQ's Back button is press
+      if (!this.isBQReverse) {
+        // Slide in selected library
+        const libraryWrapper = this.nextLibraries[library.contentId];
+        if (!libraryWrapper.offsetParent) {
+          this.wrapper.appendChild(libraryWrapper);
+        }
+
+        // Move next library left of current library if sliding backwards
+        if (reverse) {
+          libraryWrapper.classList.remove('h5p-next');
+          libraryWrapper.classList.add('h5p-previous');
+        }
+
+        libraryWrapper.classList.add('h5p-slide-in');
+        const libraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
+        libraryElement.classList.remove('h5p-branching-hidden');
+
+        this.currentLibraryId = library.contentId;
+        this.currentLibraryInstance = this.libraryInstances[library.contentId];
+
+        if (this.currentLibraryInstance.resize) {
+          this.currentLibraryInstance.resize();
+        }
+
+        const self = this;
+        this.currentLibraryWrapper.addEventListener('animationend', function () {
+          if (self.currentLibraryWrapper.parentNode !== null) {
+            self.currentLibraryWrapper.parentNode.removeChild(self.currentLibraryWrapper);
+          }
+          self.currentLibraryWrapper = libraryWrapper;
+          self.currentLibraryWrapper.classList.remove('h5p-previous');
+          self.currentLibraryWrapper.classList.remove('h5p-next');
+          self.currentLibraryWrapper.classList.remove('h5p-slide-in');
+          self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0]; // TODO: Why no use 'libraryElement' ?
+          self.createNextLibraries(library);
+          self.parent.navigating = false;
+          self.libraryTitle.focus();
+
+          // New position to show Proceed button because sometimes user can play with the button while animation is in progress
+          if (showProceedButtonflag) {
+            self.parent.enableNavButton();
+          }
+
+          // Require to call resize the frame after animation completes
+          self.resize(new H5P.Event('resize', {
+            element: libraryElement
+          }));
+        });
+      }
       this.isBQReverse = false;
-
-      // Slide in selected library
-      const libraryWrapper = this.nextLibraries[library.contentId];
-      if (!libraryWrapper.offsetParent) {
-        this.wrapper.appendChild(libraryWrapper);
-      }
-
-      // Move next library left of current library if sliding backwards
-      if (reverse) {
-        libraryWrapper.classList.remove('h5p-next');
-        libraryWrapper.classList.add('h5p-previous');
-      }
-
-      libraryWrapper.classList.add('h5p-slide-in');
-      const libraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
-      libraryElement.classList.remove('h5p-branching-hidden');
-
-      this.currentLibraryId = library.contentId;
-      this.currentLibraryInstance = this.libraryInstances[library.contentId];
-
-      if (this.currentLibraryInstance.resize) {
-        this.currentLibraryInstance.resize();
-      }
-
-      const self = this;
-      this.currentLibraryWrapper.addEventListener('animationend', function () {
-        if (self.currentLibraryWrapper.parentNode !== null) {
-          self.currentLibraryWrapper.parentNode.removeChild(self.currentLibraryWrapper);
-        }
-        self.currentLibraryWrapper = libraryWrapper;
-        self.currentLibraryWrapper.classList.remove('h5p-previous');
-        self.currentLibraryWrapper.classList.remove('h5p-next');
-        self.currentLibraryWrapper.classList.remove('h5p-slide-in');
-        self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0]; // TODO: Why no use 'libraryElement' ?
-        self.createNextLibraries(library);
-        self.parent.navigating = false;
-        self.libraryTitle.focus();
-
-        // New position to show Proceed button because sometimes user can play with the button while animation is in progress
-        if (showProceedButtonflag) {
-          self.parent.enableNavButton();
-        }
-
-        // Require to call resize the frame after animation completes
-        self.resize(new H5P.Event('resize', {
-          element: libraryElement
-        }));
-      });
     }
     else { // Show a branching question
       if (this.parent.params.behaviour === true) {
