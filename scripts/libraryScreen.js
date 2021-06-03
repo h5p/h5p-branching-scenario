@@ -30,6 +30,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.shouldAutoplay = [];
     this.isShowing = false;
     this.contentOverlays = [];
+    this.isBQReverse = false;
 
     const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
     this.wrapper = this.createWrapper(courseTitle, (contentTitle ? contentTitle : 'Untitled Content'), library.showContentTitle && contentTitle);
@@ -332,6 +333,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     backButton.addEventListener('click', (event) => {
       // Hide overlay popup when user is at Branching Question
       if (event.currentTarget.hasAttribute("isBQ")) {
+        this.isBQReverse = true;
         if (this.overlay) {
           // TODO: When does this code every run?!
           if (this.overlay.parentNode !== null) {
@@ -350,7 +352,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           self.parent.trigger('restarted');
           return backButton;
         }
-        self.parent.trigger('backFromBQ');
+
+        self.parent.trigger('navigated', {
+          reverse: true
+        });
         return;
       }
 
@@ -701,9 +706,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       parent.trigger('navigated', e.data);
     });
 
-    instance.on('backFromBQ', function (e) {
-      parent.trigger('backFromBQ', e.data);
-    });
+    // instance.on('backFromBQ', function (e) {
+    //   parent.trigger('backFromBQ', e.data);
+    // });
 
     this.libraryInstances[id] = instance;
 
@@ -1324,10 +1329,18 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.showBackgroundToReadspeaker();
       }
 
+      if (this.isBQReverse) {
+        var temp = this.nextLibraries[this.currentLibraryId];
+        delete this.nextLibraries[this.currentLibraryId];
+        this.nextLibraries[library.contentId] = temp;
+      }
+
       // Initialize library if necessary
-      if (!this.nextLibraries[library.contentId]) {
+      if (!this.nextLibraries[library.contentId]  && !this.isBQReverse) {
         this.createNextLibrary(library);
       }
+
+      this.isBQReverse = false;
 
       // Slide in selected library
       const libraryWrapper = this.nextLibraries[library.contentId];
