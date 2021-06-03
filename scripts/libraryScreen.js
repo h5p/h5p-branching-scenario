@@ -1275,12 +1275,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * Other libraries do not require reset
    */
   LibraryScreen.prototype.resetInstance = function () {
-
     if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.InteractiveVideo"
     && typeof this.currentLibraryInstance.resetTask !== "undefined") { 
       this.resetIVProgress();
       this.currentLibraryInstance.resetTask();
-      this.currentLibraryInstance.pause();
     }
     if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.CoursePresentation" 
     && typeof this.currentLibraryInstance.resetTask !== "undefined") {
@@ -1289,7 +1287,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.Video" 
     && typeof this.currentLibraryInstance.seek !== "undefined") {
       this.currentLibraryInstance.seek(0);
-      this.currentLibraryInstance.pause();
     }
   };
   /**
@@ -1345,11 +1342,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           }
         });
         this.showBackgroundToReadspeaker();
-      }
-
-      // Even if it is comming from BQ, identify which BQ we are talking about
-      if (this.parent.getLibrary(this.currentLibraryId).contentId !== library.contentId) {
-        this.isBQReverse = false;
       }
 
       // Reset instance if BQ's Back button is pressed
