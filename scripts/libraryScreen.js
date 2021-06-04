@@ -584,8 +584,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     // Hide procced button
     if (this.libraryFinishingRequirements[library.contentId] === true
-      && (this.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
-      this.contentOverlays[this.currentLibraryId].hide();
+      && this.hasValidVideo(library)) {
       this.parent.disableNavButton();
     }
 
