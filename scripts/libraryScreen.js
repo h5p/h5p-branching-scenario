@@ -1499,7 +1499,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
        * Resizes the wrapper to the height of the container. If the current BQ is at the very start of the content type then resize parent wrapper
        * Make exception for starting screen, so it does not cut from the top, as well as fullscreen.
        */
-      const isFullscreen = document.body.classList.contains('h5p-fullscreen');
+      const isFullscreen = this.parent.isFullScreen();
       const isSmallerDevice = this.parent.$container[0].classList.contains('h5p-mobile-screen');
 
       if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isSmallerDevice) {
