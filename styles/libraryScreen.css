@@ -61,6 +61,8 @@
 }
 .h5p-branching-scenario .h5p-branching-header p {
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .h5p-branching-scenario .h5p-nav-button-wrapper {
