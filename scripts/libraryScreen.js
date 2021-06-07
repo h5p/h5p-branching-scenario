@@ -1107,9 +1107,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     let videoSource = videoLibrary === "Interactive Video"
       ? type.params.interactiveVideo.video.files
       : type.params.sources;
-
-    if (type && (videoLibrary === "Interactive Video" || videoLibrary === 'Video') &&
-      videoSource && videoSource[0].mime !== "video/unknown"
+    if (type
+      && (videoLibrary === "Interactive Video" || videoLibrary === 'Video')
+      && videoSource
+      && videoSource[0].mime
+      && videoSource[0].mime !== "video/unknown"
+      && ((videoSource[0].mime !== "video/webm" && videoSource[0].mime !== "video/mp4") || H5P.VideoHtml5.canPlay(videoSource))
     ) {
       return true;
     }
