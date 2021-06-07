@@ -1535,18 +1535,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           element.classList.add('h5p-video-no-source');
         }else{
           element.classList.remove('h5p-video-no-source');
-<<<<<<< HEAD
-          if (this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
-            element.classList.add('h5p-video-no-source');
-          }
-
-          // Do not set videoReact object when YT video is still loading
-          if (isYoutube &&  instance.getBuffered() === undefined) {
-
-            videoRect = null;
-          }
-=======
->>>>>>> parent of e9e6e0e... Fix video resize issue when user traverse back on it
         }
 
         if (videoRect || isHotspots || isCP || isImage) {
