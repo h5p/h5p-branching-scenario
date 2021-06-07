@@ -1529,11 +1529,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        let videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
+        const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
         
-        if (isVideo) {
-          // Video with no source should appear on top
+        // Video with no source should appear on top
+        if (isVideo 
+          && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+          element.classList.add('h5p-video-no-source');
+        }else{
           element.classList.remove('h5p-video-no-source');
+<<<<<<< HEAD
           if (this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
             element.classList.add('h5p-video-no-source');
           }
@@ -1543,6 +1547,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
             videoRect = null;
           }
+=======
+>>>>>>> parent of e9e6e0e... Fix video resize issue when user traverse back on it
         }
 
         if (videoRect || isHotspots || isCP || isImage) {
