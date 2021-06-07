@@ -115,7 +115,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
      */
     parent.on('enterFullScreen', () => {
       setTimeout(() => {
-        self.resize();
+        if (this.currentLibraryInstance) {
+          this.currentLibraryInstance.trigger('resize');
+        }
       }, 500);
     });
 
@@ -1527,7 +1529,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        let videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.getBoundingClientRect() : null);
+        let videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
         
         if (isVideo) {
           // Video with no source should appear on top
@@ -1538,6 +1540,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
           // Do not set videoReact object when YT video is still loading
           if (isYoutube &&  instance.getBuffered() === undefined) {
+
             videoRect = null;
           }
         }
