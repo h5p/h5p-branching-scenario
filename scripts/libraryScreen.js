@@ -621,9 +621,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     let ivSubmitScreenStar = this.wrapper.getElementsByClassName('h5p-star-foreground')[0];
     ivSubmitScreenStar.classList.remove('h5p-star-active');
-
-    let ivSubmitBtnContainer = this.wrapper.getElementsByClassName('h5p-interactive-video-endscreen-submit-button-container')[0];
-    ivSubmitBtnContainer.classList.add('h5p-interactive-video-endscreen-submit-button-hidden');
   };
 
   LibraryScreen.prototype.handleProceedAfterVideo = function () {
@@ -1292,7 +1289,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     && typeof this.currentLibraryInstance.resetTask !== "undefined") { 
       this.resetIVProgress();
       this.currentLibraryInstance.resetTask();
-      this.currentLibraryInstance.video.stop();
+      this.currentLibraryInstance.pause();
       if (autoPlay && this.currentLibraryInstance.play !== undefined) {
         this.currentLibraryInstance.play();
       }
@@ -1304,7 +1301,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (this.currentLibraryInstance.libraryInfo.machineName === "H5P.Video" 
     && typeof this.currentLibraryInstance.seek !== "undefined") {
       this.currentLibraryInstance.seek(0);
-      this.currentLibraryInstance.stop();
+      this.currentLibraryInstance.pause();
       if (autoPlay && this.currentLibraryInstance.play !== undefined) {
         this.currentLibraryInstance.play();
       }
