@@ -200,14 +200,6 @@ H5P.BranchingScenario = function (params, contentId) {
     self.currentId = 0;
   });
 
-  self.on('backFromBQ', function (e) {
-    self.userPath.pop();
-    const id = self.userPath.pop() || 0;
-    self.currentId = id;
-    self.navigating = false;
-  });
-
-
   /**
    * Handle progression
    */
