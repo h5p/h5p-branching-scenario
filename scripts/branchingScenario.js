@@ -27,7 +27,7 @@ H5P.BranchingScenario = function (params, contentId) {
       for (var key in arguments[i]) {
         if (arguments[i].hasOwnProperty(key)) {
           if (typeof arguments[0][key] === 'object' &&
-          typeof arguments[i][key] === 'object') {
+            typeof arguments[i][key] === 'object') {
             extend(arguments[0][key], arguments[i][key]);
           }
           else {
@@ -80,7 +80,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   // Compute pattern for enabling/disabling back button
-  self.backwardsAllowedFlags = params.content.map( content => {
+  self.backwardsAllowedFlags = params.content.map(content => {
     if (content.contentBehaviour === 'useBehavioural') {
       return params.behaviour.enableBackwardsNavigation;
     }
@@ -100,7 +100,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
-  const createStartScreen = function ({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
+  const createStartScreen = function ({ startScreenTitle, startScreenSubtitle, startScreenImage }, isCurrentScreen) {
     const startScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
@@ -183,7 +183,7 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.enableBackButton();
     }
-    
+
     if (startNode && startNode.type && startNode.type.library && startNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
       // First node is Branching Question, no sliding, just trigger BQ overlay
       self.trigger('navigated', {
@@ -245,7 +245,7 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       // Try to stop any playback
       self.libraryScreen.stopPlayback(self.currentId);
-      
+
       // Try to collect xAPIData for last screen
       if (!this.params.preventXAPI) {
         const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
@@ -255,7 +255,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     }
 
-    
+
     // Re-display library screen if it has been hidden by an ending screen
     if (self.currentEndScreen && self.currentEndScreen.isShowing) {
       if (nextLibrary) {

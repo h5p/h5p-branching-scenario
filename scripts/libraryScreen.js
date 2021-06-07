@@ -363,7 +363,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         return;
       }
 
-      if(self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+      if (self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         self.parent.isReverseTransition = true;
         self.parent.trigger('restarted');
         return backButton;
@@ -730,25 +730,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (instance) {
       try {
         if (instance.pause !== undefined &&
-            (instance.pause instanceof Function ||
-              typeof instance.pause === 'function')) {
+          (instance.pause instanceof Function ||
+            typeof instance.pause === 'function')) {
           instance.pause();
         }
         else if (instance.video !== undefined &&
-                 instance.video.pause !== undefined &&
-                 (instance.video.pause instanceof Function ||
-                   typeof instance.video.pause === 'function')) {
+          instance.video.pause !== undefined &&
+          (instance.video.pause instanceof Function ||
+            typeof instance.video.pause === 'function')) {
           instance.video.pause();
         }
         else if (instance.stop !== undefined &&
-                 (instance.stop instanceof Function ||
-                   typeof instance.stop === 'function')) {
+          (instance.stop instanceof Function ||
+            typeof instance.stop === 'function')) {
           instance.stop();
         }
         else if (instance.pauseMedia !== undefined &&
-                 (instance.pauseMedia instanceof Function ||
-                   typeof instance.pauseMedia === 'function') &&
-                 instance.elementInstances[instance.currentSlideIndex]) {
+          (instance.pauseMedia instanceof Function ||
+            typeof instance.pauseMedia === 'function') &&
+          instance.elementInstances[instance.currentSlideIndex]) {
           for (let i = 0; i < instance.elementInstances[instance.currentSlideIndex].length; i++) {
             instance.pauseMedia(instance.elementInstances[instance.currentSlideIndex][i]);
           }
@@ -761,10 +761,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-   /* Check whether instance needs to be finished by user.
-   * @param {object} instance Instance of the content type.
-   * @param {string} library Library that's active on screen (H5P.Foo).
-   */
+  /* Check whether instance needs to be finished by user.
+  * @param {object} instance Instance of the content type.
+  * @param {string} library Library that's active on screen (H5P.Foo).
+  */
   LibraryScreen.prototype.forceContentFinished = function (instance, library) {
     let forceContentFinished = false;
 
@@ -811,7 +811,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         instance.on('xAPI', (event) => {
           if (event.data.statement.verb.display['en-US'] === 'progressed') {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
-            if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
+            if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0)) {
               if (this.navButton.classList.contains('h5p-disabled')) {
                 that.parent.enableNavButton(true);
               }
@@ -824,7 +824,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         // Permit progression when results have been submitted or video ended if no tasks
         instance.on('xAPI', (event) => {
           if (event.data.statement.verb.display['en-US'] === 'completed') {
-              that.handleVideoOver();
+            that.handleVideoOver();
           }
         });
         instance.video.on('stateChange', function (event) {
@@ -890,21 +890,21 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.showContentOverlay();
     }
     this.parent.enableNavButton();
-  }
+  };
 
   /**
    * Show content overlay.
    */
   LibraryScreen.prototype.showContentOverlay = function () {
     this.contentOverlays[this.currentLibraryId].show();
-  }
+  };
 
   /**
    * Hide content overlay.
    */
   LibraryScreen.prototype.hideContentOverlay = function () {
     this.contentOverlays[this.currentLibraryId].hide();
-  }
+  };
 
   /**
    * Used to get XAPI data for "previous" library.
@@ -948,13 +948,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       return true;
     }
     else if (params.media && params.media.params &&
-             params.media.params.playback &&
-             params.media.params.playback.autoplay) {
+      params.media.params.playback &&
+      params.media.params.playback.autoplay) {
       params.media.params.playback.autoplay = false;
       return true;
     }
     else if (params.media && params.media.params &&
-             params.media.params.autoplay) {
+      params.media.params.autoplay) {
       params.media.params.autoplay = false;
       return true;
     }
@@ -1109,7 +1109,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       : type.params.sources;
 
     if (type && (videoLibrary === "Interactive Video" || videoLibrary === 'Video') &&
-    videoSource && videoSource[0].mime !== "video/unknown"
+      videoSource && videoSource[0].mime !== "video/unknown"
     ) {
       return true;
     }
@@ -1273,7 +1273,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
     screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
-  }
+  };
 
   /**
    * Slides in the next library which may be either a 'normal content type' or a
@@ -1528,12 +1528,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
         const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
-        
+
         // Video with no source should appear on top
-        if (isVideo 
+        if (isVideo
           && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
           element.classList.add('h5p-video-no-source');
-        }else{
+        } else {
           element.classList.remove('h5p-video-no-source');
         }
 
@@ -1569,7 +1569,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         this.resizeScreen(true);
       }
       else if (this.overlay) {
-        this.resizeScreen()
+        this.resizeScreen();
       }
       else {
         // reset wrapper height
