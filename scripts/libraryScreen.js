@@ -1530,7 +1530,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.lastChild.getBoundingClientRect() : null);
+        let videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.getBoundingClientRect() : null);
 
         // Video with no source should appear on top
         if (isVideo
