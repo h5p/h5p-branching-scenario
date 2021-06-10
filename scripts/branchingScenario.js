@@ -250,10 +250,11 @@ H5P.BranchingScenario = function (params, contentId) {
       if (!this.params.preventXAPI) {
         const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
         // We do not include branching questions that hasn't been answered in the report (going back from a BQ)
-        const branchingWithoutAnswer = H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId))
-          && xAPIData.statement && xAPIData.statement.result && xAPIData.statement.result.response === undefined;
+        const isBranching = H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId));
+        const isBranchingQuestionAndAnswered = isBranching
+          && xAPIData.statement && xAPIData.statement.result && xAPIData.statement.result.response !== undefined;
 
-        if (xAPIData && !branchingWithoutAnswer) {
+        if (xAPIData && (!isBranching || isBranchingQuestionAndAnswered)) {
           self.xAPIDataCollector.push(xAPIData);
         }
       }
