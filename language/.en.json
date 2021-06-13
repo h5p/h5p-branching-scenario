@@ -57,6 +57,21 @@
                 "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {
                 "label": "Next Content ID (end screens are defined by negative numbers)"
               },
               {
@@ -74,6 +89,21 @@
                   {
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ]
+              },
+              {
+                "label": "Behavioural settings",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               }
@@ -97,6 +127,23 @@
                   "label": "No scoring"
                 }
               ]
+            },
+            {
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+            }
+          ]
+        },
+        {
+          "label": "Behavioural settings",
+          "fields": [
+            {
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation"
+            },
+            {
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
             }
           ]
         },
@@ -112,12 +159,28 @@
               "default": "Restart the course"
             },
             {
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
+            },
+            {
               "label": "Text for the button on each of the library screens",
               "default": "Proceed"
             },
             {
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
+            },
+            {
               "label": "Label for score on the end screen",
               "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
             }
           ]
         }

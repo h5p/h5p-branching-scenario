@@ -1,60 +1,60 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Redigerare för Branching Scenario",
       "fields": [
         {
-          "label": "Title"
+          "label": "Titel"
         },
         {
-          "label": "Start screen",
+          "label": "Startskärm",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Redigera skärmtitel",
+              "placeholder": "Titel för din kurs"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Undertext för startskärm",
+              "placeholder": "Information om kursen"
             },
             {
-              "label": "Start screen image"
+              "label": "Bild på startskärm"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Lista med slutskärmar",
           "field": {
-            "label": "End screen",
+            "label": "Slutskärm",
             "fields": [
               {
-                "label": "Title"
+                "label": "Titel"
               },
               {
                 "label": "Text"
               },
               {
-                "label": "Image"
+                "label": "Bild"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Poäng",
+                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot"
               },
               {
-                "label": "Content ID"
+                "label": "Innehålls-ID"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "Lista över innehåll i branching scenario",
+          "entity": "innehåll",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Visa innehållstitel i vy",
+                "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
                 "label": "Required to be completed",
@@ -72,23 +72,23 @@
                 ]
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
               },
               {
                 "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Feedback-titel"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Feedback-text"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Feedback-bild"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Poäng för detta scenario",
+                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som slutför detta scenario"
                   }
                 ]
               },
@@ -111,20 +111,20 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Inställningar för poängsättning",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Inställningar för poängsättning",
+              "description": "Välj typ av poängsättning",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Använd statistik för att ange poäng för varje slutscenario"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Kalkylera poäng från användares svar dynamiskt"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Ingen poängsättning"
                 }
               ]
             },
@@ -148,27 +148,27 @@
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lokalisering",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start kurset"
+              "label": "Text för knappen på startskärmen",
+              "default": "Starta kursen"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart kurset"
+              "label": "Text för knappen på slutskärmen",
+              "default": "Starta om kursen"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Gå videre"
+              "label": "Text för knappen på varje skärm i biblioteket",
+              "default": "Fortsätt"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Ditt resultat:"
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
             },
             {
               "label": "Label for score on the end screen",

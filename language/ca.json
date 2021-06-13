@@ -1,60 +1,60 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Editor d’escenaris amb ramificacions",
       "fields": [
         {
-          "label": "Title"
+          "label": "Títol"
         },
         {
-          "label": "Start screen",
+          "label": "Pantalla d’inici",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Títol de la pantalla d’inici",
+              "placeholder": "Títol del vostre curs"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Subtítol de la pantalla d’inici",
+              "placeholder": "Detalls sobre el curs"
             },
             {
-              "label": "Start screen image"
+              "label": "Imatge de la pantalla d’inici"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Llista de pantalles finals",
           "field": {
-            "label": "End screen",
+            "label": "Pantalla final",
             "fields": [
               {
-                "label": "Title"
+                "label": "Títol"
               },
               {
                 "label": "Text"
               },
               {
-                "label": "Image"
+                "label": "Imatge"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Puntuació",
+                "description": "La puntuació s’enviarà a qualsevol LMS, LRS o qualsevol altre servei connectat que rebi puntuacions de H5P per als usuaris que arriben a l’escenari final predeterminat"
               },
               {
-                "label": "Content ID"
+                "label": "ID del contingut"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "Llista del contingut de l’escenari amb ramificacions",
+          "entity": "contingut",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Mostra el títol del contingut a la visualització",
+                "description": "Si se selecciona aquesta opció, l’usuari veurà el títol de contingut a la barra superior, a sobre d’aquest contingut"
               },
               {
                 "label": "Required to be completed",
@@ -64,31 +64,31 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activat"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivat"
                   }
                 ]
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "Identificador del contingut següent (les pantalles finals es defineixen amb números negatius)"
               },
               {
-                "label": "Feedback",
+                "label": "Retroacció",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Títol de la retroacció"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Text de retroacció"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Imatge de retroacció"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Puntuació d’aquest escenari",
+                    "description": "La puntuació s’enviarà al LMS, LRS o qualsevol altre servei connectat que rebi puntuacions de H5P per als usuaris que arribin a aquest escenari."
                   }
                 ]
               },
@@ -100,10 +100,10 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activat"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivat"
                   }
                 ]
               }
@@ -111,20 +111,20 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Opcions de puntuació",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Opcions de puntuació",
+              "description": "Seleccioneu el tipus de puntuació",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Establiu la puntuació de manera estàtica per a cada escenari"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Calculeu dinàmicament la puntuació en funció de les respostes dels usuaris"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Sense puntuació"
                 }
               ]
             },
@@ -135,7 +135,7 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Opcions de comportament",
           "fields": [
             {
               "label": "Override require content finished",
@@ -148,27 +148,27 @@
           ]
         },
         {
-          "label": "Localization",
+          "label": "Localització",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start kurset"
+              "label": "Text del botó a la pantalla inicial",
+              "default": "Inicia el curs"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart kurset"
+              "label": "Text del botó a la pantalla final",
+              "default": "Torna a iniciar el curs"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Gå videre"
+              "label": "Text del botó de cada una de les pantalles de biblioteca",
+              "default": "Continua"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Ditt resultat:"
+              "label": "Etiqueta per a la puntuació a la pantalla final",
+              "default": "Torna a reproduir el vídeo"
             },
             {
               "label": "Label for score on the end screen",

@@ -24,7 +24,16 @@
             "placeholder": "Title for your course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code",
+              "a"
+            ]
           },
           {
             "name": "startScreenSubtitle",
@@ -32,7 +41,16 @@
             "placeholder": "Details about the course",
             "type": "text",
             "importance": "medium",
-            "optional": true
+            "optional": true,
+            "widget": "html",
+            "enterMode": "p",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "code",
+              "a"
+            ]
           },
           {
             "name": "startScreenImage",
@@ -59,14 +77,32 @@
               "label": "Title",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code",
+                "a"
+              ]
             },
             {
               "name": "endScreenSubtitle",
               "label": "Text",
               "type": "text",
               "importance": "medium",
-              "optional": true
+              "optional": true,
+              "widget": "html",
+              "enterMode": "p",
+              "tags": [
+                "strong",
+                "em",
+                "del",
+                "code",
+                "a"
+              ]
             },
             {
               "name": "endScreenImage",
@@ -113,7 +149,7 @@
                 "H5P.CoursePresentation 1.22",
                 "H5P.AdvancedText 1.1",
                 "H5P.Image 1.1",
-                "H5P.ImageHotspots 1.8",
+                "H5P.ImageHotspots 1.9",
                 "H5P.InteractiveVideo 1.22",
                 "H5P.Video 1.5"
               ]
@@ -126,6 +162,28 @@
               "importance": "high"
             },
             {
+              "name": "forceContentFinished",
+              "type": "select",
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+              "optional": "true",
+              "options": [
+                {
+                  "value": "useBehavioural",
+                  "label": "Use behavioural setting"
+                },
+                {
+                  "value": "enabled",
+                  "label": "Enabled"
+                },
+                {
+                  "value": "disabled",
+                  "label": "Disabled"
+                }
+              ],
+              "default": "useBehavioural"
+            },
+            {
               "name": "nextContentId",
               "label": "Next Content ID (end screens are defined by negative numbers)",
               "type": "number",
@@ -136,12 +194,21 @@
               "name": "feedback",
               "type": "group",
               "label": "Feedback",
+              "expanded": true,
               "fields": [
                 {
                   "name": "title",
                   "type": "text",
                   "label": "Feedback title",
-                  "optional": true
+                  "widget": "html",
+                  "enterMode": "p",
+                  "tags": [
+                    "strong",
+                    "em",
+                    "del",
+                    "code",
+                    "a"
+                  ]
                 },
                 {
                   "name": "subtitle",
@@ -154,7 +221,8 @@
                     "strong",
                     "em",
                     "del",
-                    "code"
+                    "code",
+                    "a"
                   ]
                 },
                 {
@@ -171,12 +239,33 @@
                   "optional": true
                 }
               ]
+            },
+            {
+              "name": "contentBehaviour",
+              "label": "Navigate back",
+              "type": "select",
+              "description": "This will allow user to go back and see the previous content/question in the scenario",
+              "options": [
+                {
+                  "value": "useBehavioural",
+                  "label": "Use behavioural setting"
+                },
+                {
+                  "value": "enabled",
+                  "label": "Enabled"
+                },
+                {
+                  "value": "disabled",
+                  "label": "Disabled"
+                }
+              ],
+              "default": "useBehavioural"
             }
           ]
         }
       },
       {
-        "name": "scoringOption",
+        "name": "scoringOptionGroup",
         "type": "group",
         "label": "Scoring options",
         "importance": "low",
@@ -201,6 +290,47 @@
               }
             ],
             "default": "no-score"
+          },
+          {
+            "name": "includeInteractionsScores",
+            "label": "Include scores from interactions within the Branching Scenario",
+            "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count.",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "widget": "showWhen",
+            "showWhen": {
+              "rules": [
+                {
+                  "field": "scoringOption",
+                  "equals": "dynamic-score"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "behaviour",
+        "type": "group",
+        "label": "Behavioural settings",
+        "importance": "low",
+        "fields": [
+          {
+            "name": "enableBackwardsNavigation",
+            "label": "Navigate back",
+            "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level",
+            "type": "boolean",
+            "optional": true,
+            "default": false
+          },
+          {
+            "name": "forceContentFinished",
+            "label": "Required to watch",
+            "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level",
+            "type": "boolean",
+            "optional": true,
+            "default": false
           }
         ]
       },
@@ -226,6 +356,13 @@
             "default": "Restart the course"
           },
           {
+            "name": "backButtonText",
+            "label": "Text for the back button on each of the library screens and branching questions",
+            "type": "text",
+            "importance": "low",
+            "default": "Back"
+          },
+          {
             "name": "proceedButtonText",
             "label": "Text for the button on each of the library screens",
             "type": "text",
@@ -233,11 +370,32 @@
             "default": "Proceed"
           },
           {
+            "name": "disableProceedButtonText",
+            "label": "Text for the disbled button on the library screens",
+            "type": "text",
+            "importance": "low",
+            "default": "Require to complete the current module"
+          },
+          {
+            "name": "replayButtonText",
+            "label": "Text for the button used to replay a video",
+            "type": "text",
+            "importance": "low",
+            "default": "Replay the video"
+          },
+          {
             "name": "scoreText",
             "label": "Label for score on the end screen",
             "type": "text",
             "importance": "low",
             "default": "Your score:"
+          },
+          {
+            "name": "fullscreenAria",
+            "label": "Aria label for fullscreen button",
+            "type": "text",
+            "importance": "low",
+            "default": "Fullscreen"
           }
         ]
       }

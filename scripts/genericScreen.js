@@ -55,6 +55,11 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     navButton.onclick = function () {
       screenData.isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
+      let startScreen = document.getElementsByClassName('h5p-start-screen')[0];
+      // Resize start screen when user restart the course
+      if (!screenData.isStartScreen) {
+        startScreen.style.height = '';
+      }
       self.parent.navigating = true;
     };
 
@@ -79,6 +84,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     if (H5P.canHasFullScreen) {
       const fullScreenButton = document.createElement('button');
       fullScreenButton.className = 'h5p-branching-full-screen';
+      fullScreenButton.setAttribute('aria-label', this.parent.params.l10n.fullscreenAria);
       fullScreenButton.addEventListener('click', () => {
         this.trigger('toggleFullScreen');
       });
@@ -97,6 +103,25 @@ H5P.BranchingScenario.GenericScreen = (function () {
      */
     self.getScore = function () {
       return screenData.score;
+    };
+
+    self.getMaxScore = function () {
+      return screenData.maxScore;
+    };
+
+    
+    /**
+     * Used to check if on the final screen to prepare the course to restart
+     */
+    self.checkIntroReset = function () {
+      let startScreen = document.getElementsByClassName('h5p-start-screen')[0];
+      const finalScreenReachedClasses = ['h5p-end-screen', 'h5p-current-screen'];
+      if (finalScreenReachedClasses.every(i => self.screenWrapper.classList.contains(i))) {
+        startScreen.classList.add('h5p-reset-start');
+      } 
+      else if (startScreen.classList.contains('h5p-reset-start')) {
+        startScreen.classList.remove('h5p-reset-start');
+      }
     };
   }
 
@@ -117,6 +142,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
   GenericScreen.prototype.setScore = function (score) {
     if (this.scoreValue && score !== undefined) {
       this.scoreValue.textContent = score.toString();
+    }
+  };
+
+  /**
+   * Set max score for screen
+   *
+   * @param maxScore
+   */
+  GenericScreen.prototype.setMaxScore = function (maxScore) {
+    if (maxScore !== undefined) {
+      this.maxScoreValue.textContent = maxScore.toString();
     }
   };
 
@@ -149,17 +185,17 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     scoreCircle.appendChild(achievedScore);
 
-    if (maxScore && maxScore > 0) {
-      const scoreDelimiter = document.createElement('span');
-      scoreDelimiter.className = 'h5p-score-delimiter';
-      scoreDelimiter.textContent = '/';
-      scoreCircle.appendChild(scoreDelimiter);
+    const scoreDelimiter = document.createElement('span');
+    scoreDelimiter.className = 'h5p-score-delimiter';
+    scoreDelimiter.textContent = '/';
+    scoreCircle.appendChild(scoreDelimiter);
 
-      const maxAchievableScore = document.createElement('span');
-      maxAchievableScore.className = 'h5p-max-score';
-      maxAchievableScore.textContent = maxScore.toString();
-      scoreCircle.appendChild(maxAchievableScore);
-    }
+    const maxAchievableScore = document.createElement('span');
+    maxAchievableScore.className = 'h5p-max-score';
+
+    this.maxScoreValue = document.createTextNode(maxScore.toString());
+    maxAchievableScore.appendChild(this.maxScoreValue);
+    scoreCircle.appendChild(maxAchievableScore);
 
     resultContainer.appendChild(scoreText);
     resultContainer.appendChild(scoreCircle);
@@ -202,22 +238,31 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
   /**
    * Slides the screen in and styles it as the current screen
+   *
+   * @param {boolean} slideBack True if sliding back to screen
    * @return {undefined}
    */
-  GenericScreen.prototype.show = function () {
+  GenericScreen.prototype.show = function (slideBack = false) {
     const self = this;
     self.isShowing = true;
+    if (slideBack) {
+      self.screenWrapper.classList.add('h5p-previous');
+    }
     self.screenWrapper.classList.add('h5p-slide-in');
     self.screenWrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
     self.screenWrapper.addEventListener('animationend', function (event) {
       if (event.animationName === 'slide-in') {
+        if (slideBack) {
+          self.screenWrapper.classList.remove('h5p-previous');
+        }
         self.screenWrapper.classList.remove('h5p-next-screen');
         self.screenWrapper.classList.remove('h5p-slide-in');
         self.screenWrapper.classList.add('h5p-current-screen');
         self.parent.trigger('resize');
         self.navButton.focus();
+        self.checkIntroReset();
       }
     });
   };

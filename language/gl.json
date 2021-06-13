@@ -1,64 +1,64 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Editor de dilemas conceptuais",
       "fields": [
         {
-          "label": "Title"
+          "label": "Título"
         },
         {
-          "label": "Start screen",
+          "label": "Pantalla de inicio",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Título da pantalla de inicio",
+              "placeholder": "Título para o teu curso"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Subtítulo da pantalla de inicio",
+              "placeholder": "Detalles sobre o curso"
             },
             {
-              "label": "Start screen image"
+              "label": "Imaxe da pantalla de inicio"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Lista de pantallas finais",
           "field": {
-            "label": "End screen",
+            "label": "Pantalla final",
             "fields": [
               {
-                "label": "Title"
+                "label": "Título"
               },
               {
-                "label": "Text"
+                "label": "Texto"
               },
               {
-                "label": "Image"
+                "label": "Imaxe"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Puntuación",
+                "description": "A puntuación enviarase a calquera LMS, LRS ou a calquera outro servizo que reciba puntuación do H5P para os usuarios que cheguen á pantalla final por defecto"
               },
               {
-                "label": "Content ID"
+                "label": "ID do contido"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "Lista do contido do dilema conceptual",
+          "entity": "contido",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "Amosar o título do contido na vista",
+                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
               },
               {
                 "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -72,10 +72,10 @@
                 ]
               },
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
+                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)"
               },
               {
-                "label": "Feedback",
+                "label": "Retroalimentación",
                 "fields": [
                   {
                     "label": "Feedback title"
@@ -93,7 +93,7 @@
                 ]
               },
               {
-                "label": "Navigate back",
+                "label": "Behavioural settings",
                 "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
@@ -111,20 +111,20 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Opcións de puntuación",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Opcións de puntuación",
+              "description": "Selecciona o tipo de puntuación",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Aplicar puntuación estática para cada pantalla final"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Calcular a puntuación dinamicamente a partir das respostas do usuario"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Sen puntuación"
                 }
               ]
             },
@@ -138,41 +138,41 @@
           "label": "Behavioural settings",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Localización",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start kurset"
+              "label": "Texto para o botón na pantalla inicial",
+              "default": "Start the course"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart kurset"
+              "label": "Texto para o botón na pantalla final",
+              "default": "Restart the course"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Gå videre"
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
+            },
+            {
+              "label": "Texto para o botón en cada pantalla da biblioteca",
+              "default": "Adiante"
             },
             {
               "label": "Text for the button used to replay a video",
               "default": "Replay the video"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Ditt resultat:"
-            },
-            {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiqueta para a puntuación na pantalla final",
+              "default": "A túa puntuación:"
             },
             {
               "label": "Label for score on the end screen",

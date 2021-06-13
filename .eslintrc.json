@@ -1,0 +1,43 @@
+{
+  "globals": {
+    "H5P": true,
+    "H5PIntegration": true,
+    "H5PEditor": true
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "valid-jsdoc": "off",
+    "semi": [2, "always"],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "brace-style": ["error", "stroustrup"],
+    "keyword-spacing": ["error", {"after": true}],
+    "comma-spacing": ["error", {"before": false, "after": true}],
+    "space-before-blocks": "error",
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "no-extra-boolean-cast": "off",
+    "no-console": ["error", {"allow": ["warn", "error"]}],
+    "no-restricted-globals": [2, "event"],
+    "react/prop-types": 0
+  }
+}
