@@ -122,6 +122,12 @@
   padding: 0 1em;
 }
 
+/* Override link color and set underline so it is shown in preview*/
+.h5p-branching-scenario-title-text a {
+  color: white;
+  text-decoration: underline;
+}
+
 .h5p-branching-scenario-subtitle-text {
   color: white;
   font-size: 1.083em;
@@ -130,6 +136,11 @@
   padding: 0 2em;
 }
 
+/* Override link color and set underline so it is shown in preview */
+.h5p-branching-scenario-subtitle-text a {
+  text-decoration: underline;
+  color: white;
+}
 /* Reduce padding in smaller device */
 @media screen and (max-width: 400px) {
   .h5p-content .h5p-branching-scenario.h5p-mobile-screen .h5p-branching-scenario-subtitle-text {
@@ -174,7 +185,7 @@
 .h5p-branching-scenario .h5p-start-button:active,
 .h5p-end-button:active,
 .h5p-back-button:not(.h5p-disabled):active,
-.h5p-nav-button:active {
+.h5p-nav-button:not(.h5p-disabled):active {
   border-color: #9fe281;
   color: #4b4c60;
   background: #9fe281;

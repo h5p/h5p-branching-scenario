@@ -27,7 +27,7 @@ H5P.BranchingScenario = function (params, contentId) {
       for (var key in arguments[i]) {
         if (arguments[i].hasOwnProperty(key)) {
           if (typeof arguments[0][key] === 'object' &&
-          typeof arguments[i][key] === 'object') {
+            typeof arguments[i][key] === 'object') {
             extend(arguments[0][key], arguments[i][key]);
           }
           else {
@@ -52,7 +52,9 @@ H5P.BranchingScenario = function (params, contentId) {
         contentId: -1
       }
     ],
-    scoringOption: 'no-score',
+    scoringOptionGroup: {
+      scoringOption: 'no-score'
+    },
     l10n: {},
     behaviour: 'individual'
   }, params.branchingScenario); // Account for the wrapper!
@@ -78,7 +80,7 @@ H5P.BranchingScenario = function (params, contentId) {
   });
 
   // Compute pattern for enabling/disabling back button
-  self.backwardsAllowedFlags = params.content.map( content => {
+  self.backwardsAllowedFlags = params.content.map(content => {
     if (content.contentBehaviour === 'useBehavioural') {
       return params.behaviour.enableBackwardsNavigation;
     }
@@ -98,7 +100,7 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
-  const createStartScreen = function ({startScreenTitle, startScreenSubtitle, startScreenImage}, isCurrentScreen) {
+  const createStartScreen = function ({ startScreenTitle, startScreenSubtitle, startScreenImage }, isCurrentScreen) {
     const startScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
@@ -181,7 +183,7 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       self.enableBackButton();
     }
-    
+
     if (startNode && startNode.type && startNode.type.library && startNode.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
       // First node is Branching Question, no sliding, just trigger BQ overlay
       self.trigger('navigated', {
@@ -204,6 +206,11 @@ H5P.BranchingScenario = function (params, contentId) {
   self.on('navigated', function (e) {
     // Trace back user steps
     if (e.data.reverse) {
+      // Reset library screen wrapper if it was set to fit large BQ
+      if (self.libraryScreen && self.libraryScreen.wrapper) {
+        self.libraryScreen.wrapper.style.height = '';
+      }
+
       self.userPath.pop();
       e.data.nextContentId = self.userPath.pop() || 0;
     }
@@ -238,17 +245,22 @@ H5P.BranchingScenario = function (params, contentId) {
     else {
       // Try to stop any playback
       self.libraryScreen.stopPlayback(self.currentId);
-      
+
       // Try to collect xAPIData for last screen
       if (!this.params.preventXAPI) {
         const xAPIData = self.libraryScreen.getXAPIData(self.currentId);
-        if (xAPIData) {
+        // We do not include branching questions that hasn't been answered in the report (going back from a BQ)
+        const isBranching = H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId));
+        const isBranchingQuestionAndAnswered = isBranching
+          && xAPIData.statement && xAPIData.statement.result && xAPIData.statement.result.response !== undefined;
+
+        if (xAPIData && (!isBranching || isBranchingQuestionAndAnswered)) {
           self.xAPIDataCollector.push(xAPIData);
         }
       }
     }
 
-    
+
     // Re-display library screen if it has been hidden by an ending screen
     if (self.currentEndScreen && self.currentEndScreen.isShowing) {
       if (nextLibrary) {
@@ -282,10 +294,21 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     if (self.currentId !== -1) {
       self.triggerXAPI('progressed');
+
+      let contentScores = {};
+
+      if (self.libraryScreen.currentLibraryInstance && self.libraryScreen.currentLibraryInstance.getScore) {
+        contentScores = {
+          "score": self.libraryScreen.currentLibraryInstance.getScore(),
+          "maxScore": self.libraryScreen.currentLibraryInstance.getMaxScore()
+        };
+      }
+
       self.scoring.addLibraryScore(
         this.currentId,
         this.libraryScreen.currentLibraryId,
-        e.data.chosenAlternative
+        e.data.chosenAlternative,
+        contentScores
       );
     }
 
@@ -305,6 +328,7 @@ H5P.BranchingScenario = function (params, contentId) {
       }
       else if (self.scoring.isDynamicScoring()) {
         self.currentEndScreen.setScore(self.getScore());
+        self.currentEndScreen.setMaxScore(self.getMaxScore());
       }
 
       self.startScreen.hide();
@@ -347,6 +371,7 @@ H5P.BranchingScenario = function (params, contentId) {
     }
     self.scoring.restart();
     self.xAPIDataCollector = [];
+    self.startScreen.screenWrapper.style.height = "";
     self.startScreen.screenWrapper.classList.remove('h5p-slide-out');
 
     self.startScreen.show(self.isReverseTransition);
@@ -375,6 +400,7 @@ H5P.BranchingScenario = function (params, contentId) {
     if (self.bubblingUpwards) {
       return; // Prevent sending the event back down
     }
+    self.changeLayoutToFitWidth();
     if (
       self.libraryScreen
       && typeof self.libraryScreen === 'object'
@@ -382,7 +408,6 @@ H5P.BranchingScenario = function (params, contentId) {
     ) {
       self.libraryScreen.resize(event);
     }
-    self.changeLayoutToFitWidth();
 
     // Add classname for phone size adjustments
     const rect = self.$container[0].getBoundingClientRect();
@@ -511,7 +536,7 @@ H5P.BranchingScenario = function (params, contentId) {
   /**
    * Get accumulative score for all attempted scenarios
    *
-   * @returns {number} Current score for Brnaching Scenario
+   * @returns {number} Current score for Branching Scenario
    */
   self.getScore = function () {
     return self.scoring.getScore();
@@ -634,7 +659,7 @@ H5P.BranchingScenario = function (params, contentId) {
    */
   self.getXAPIData = function () {
     if (!self.currentEndScreen) {
-      console.error('Called getXAPIData before finished.')
+      console.error('Called getXAPIData before finished.');
       return;
     }
 

@@ -38,6 +38,16 @@
   overflow: hidden;
 }
 
+.h5p-branching-scenario .h5p-screen-header .library-subtitle {
+  outline: none;
+}
+
+/* Override link color and set underline so it is shown in preview*/
+.h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper .h5p-branching-header a {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
 .h5p-branching-scenario .h5p-screen-header .h5p-back-button:before {
   font-family: 'H5PFontAwesome4';
   content: "\f100";
@@ -51,6 +61,8 @@
 }
 .h5p-branching-scenario .h5p-branching-header p {
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .h5p-branching-scenario .h5p-nav-button-wrapper {
@@ -220,10 +232,10 @@
   max-height: 100%;
 }
 
-.h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
-.h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-course-presentation.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-image-hotspots.h5p-fullscreen {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -231,8 +243,40 @@
   transform: translate(-50%, -50%);
 }
 
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-interactive-video.h5p-fullscreen,
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen {
+  background: transparent;
+  box-shadow: none;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen.h5p-video-no-source {
+  background: #EFEFEF;
+  display: block;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen{
+  display: flex;
+  align-items: center;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen > div{
+  max-height: 100%;
+}
+
+.h5p-branching-scenario .h5p-branching-scenario-content.h5p-video.h5p-fullscreen iframe{
+  max-height: 100%;
+}
+
+
 /* Make CSS consistent between Preview and normal use */
 .preview-wrapper .h5p-sc-set ul {
   margin: 1em;
   padding: 0;
+}
+
+/* Transform: translateZ(0) to apply "hardware acceleration" causes IV posters
+ * to be hidden behind dialog overlay
+*/
+.h5peditor .preview-wrapper .hardware-accelerated {
+  transform: none;
 }

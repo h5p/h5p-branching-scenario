@@ -59,7 +59,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (!$tabbables) {
         return;
       }
-      
+
       for (let i = 0; i < $tabbables.length; i++) {
         if (index === "-1") {
           let elementTabIndex = $tabbables[i].getAttribute('tabindex');
@@ -71,11 +71,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
           if ($tabbables[i].classList.contains("ui-slider-handle")) {
             $tabbables[i].setAttribute('tabindex', 0);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else if (tabindex !== undefined) {
             $tabbables[i].setAttribute('tabindex', index);
             $tabbables[i].dataset.tabindex = '';
-          } 
+          }
           else {
             $tabbables[i].setAttribute('tabindex', index);
           }
@@ -109,6 +109,17 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
       }
     };
+
+    /**
+     * Handle enterfullscreen event and resize the library instance
+     */
+    parent.on('enterFullScreen', () => {
+      setTimeout(() => {
+        if (this.currentLibraryInstance) {
+          this.currentLibraryInstance.trigger('resize');
+        }
+      }, 500);
+    });
 
     parent.on('started', self.triggerAutoplay);
     parent.on('navigated', self.triggerAutoplay);
@@ -352,7 +363,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         return;
       }
 
-      if(self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+      if (self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         self.parent.isReverseTransition = true;
         self.parent.trigger('restarted');
         return backButton;
@@ -368,7 +379,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     return backButton;
   };
-  
+
   //  Hande proceed to next slide.
   LibraryScreen.prototype.handleProceed = function () {
     let returnValue = true;
@@ -408,7 +419,16 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         questionContainer.classList.add('h5p-start-outside');
         questionContainer.classList.add('h5p-fly-in');
         this.currentLibraryWrapper.style.zIndex = 0;
-        this.wrapper.appendChild(branchingQuestion);
+        setTimeout(() => {
+          // Small wait for safari browsers
+          this.wrapper.appendChild(branchingQuestion);
+
+          // After adding feedback, check whether the resize is needed or not
+          if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
+            this.currentLibraryElement.style.height = questionContainer.offsetHeight + 'px';
+            this.wrapper.style.height = questionContainer.offsetHeight + 'px';
+          }
+        }, 100);
         feedbackScreen.focus();
         this.parent.navigating = true;
       }
@@ -531,7 +551,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         'replay',
         this.parent.params.l10n.replayButtonText,
         () => {
-          this.handleReplayVideo(libraryMachineName);
+          this.handleReplayVideo(libraryMachineName, library);
         }
       );
       this.contentOverlays[library.contentId].addButton(
@@ -558,8 +578,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     return wrapper;
   };
 
-  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName) {
+  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName, library) {
     this.contentOverlays[this.currentLibraryId].hide();
+
+    // Hide procced button
+    if (this.libraryFinishingRequirements[library.contentId] === true
+      && this.hasValidVideo(library)) {
+      this.parent.disableNavButton();
+    }
 
     // sets buffering state for video
     this.currentLibraryInstance.currentState = 3;
@@ -572,7 +598,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-  
+
   /**
    *  Used to reset an IV after you replay it.
    */
@@ -661,6 +687,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     }
 
+    // Ensure that iframe is resized when image is loaded.
+    if (content.library.indexOf('H5P.Image') === 0) {
+      instance.on('loaded', function () {
+        self.handleLibraryResize();
+        self.parent.trigger('resize');
+      });
+    }
+
     if (content.library.indexOf('H5P.Video') === 0 || content.library.indexOf('H5P.InteractiveVideo') === 0) {
       const videoInstance = (content.library.indexOf('H5P.Video') === 0) ? instance : instance.video;
 
@@ -696,25 +730,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (instance) {
       try {
         if (instance.pause !== undefined &&
-            (instance.pause instanceof Function ||
-              typeof instance.pause === 'function')) {
+          (instance.pause instanceof Function ||
+            typeof instance.pause === 'function')) {
           instance.pause();
         }
         else if (instance.video !== undefined &&
-                 instance.video.pause !== undefined &&
-                 (instance.video.pause instanceof Function ||
-                   typeof instance.video.pause === 'function')) {
+          instance.video.pause !== undefined &&
+          (instance.video.pause instanceof Function ||
+            typeof instance.video.pause === 'function')) {
           instance.video.pause();
         }
         else if (instance.stop !== undefined &&
-                 (instance.stop instanceof Function ||
-                   typeof instance.stop === 'function')) {
+          (instance.stop instanceof Function ||
+            typeof instance.stop === 'function')) {
           instance.stop();
         }
         else if (instance.pauseMedia !== undefined &&
-                 (instance.pauseMedia instanceof Function ||
-                   typeof instance.pauseMedia === 'function') &&
-                 instance.elementInstances[instance.currentSlideIndex]) {
+          (instance.pauseMedia instanceof Function ||
+            typeof instance.pauseMedia === 'function') &&
+          instance.elementInstances[instance.currentSlideIndex]) {
           for (let i = 0; i < instance.elementInstances[instance.currentSlideIndex].length; i++) {
             instance.pauseMedia(instance.elementInstances[instance.currentSlideIndex][i]);
           }
@@ -727,10 +761,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
   };
 
-   /* Check whether instance needs to be finished by user.
-   * @param {object} instance Instance of the content type.
-   * @param {string} library Library that's active on screen (H5P.Foo).
-   */
+  /* Check whether instance needs to be finished by user.
+  * @param {object} instance Instance of the content type.
+  * @param {string} library Library that's active on screen (H5P.Foo).
+  */
   LibraryScreen.prototype.forceContentFinished = function (instance, library) {
     let forceContentFinished = false;
 
@@ -777,7 +811,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         instance.on('xAPI', (event) => {
           if (event.data.statement.verb.display['en-US'] === 'progressed') {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
-            if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0) ) {
+            if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0)) {
               if (this.navButton.classList.contains('h5p-disabled')) {
                 that.parent.enableNavButton(true);
               }
@@ -787,22 +821,27 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         break;
 
       case 'H5P.InteractiveVideo':
-        if (instance.isTask) {
-          // Permit progression when results have been submitted or video ended if no tasks
-          instance.on('xAPI', (event) => {
-            if (event.data.statement.verb.display['en-US'] === 'completed') {
+        // Permit progression when results have been submitted or video ended if no tasks
+        instance.on('xAPI', (event) => {
+          if (event.data.statement.verb.display['en-US'] === 'completed') {
+            that.handleVideoOver();
+          }
+        });
+        instance.video.on('stateChange', function (event) {
+          if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
+            const answered = instance.interactions
+              .filter(interaction => interaction.getProgress() !== undefined);
+
+            // Giving opportunity to submit the answers 
+            if (instance.hasStar && answered.length > 0) {
+              that.parent.enableNavButton();
+            }
+            else {
               that.handleVideoOver();
             }
-          });
-        }
-        else {
-          instance.video.on('stateChange', function (event) {
-            if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
-              that.handleVideoOver();
-              this.pause();
-            }
-          });
-        }
+            this.pause();
+          }
+        });
         break;
 
       // Permit progression when video ended
@@ -810,7 +849,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         instance.on('stateChange', function (event) {
           if (event.data === H5P.Video.ENDED) {
             if (!that.nextIsBranching(that.currentLibraryId)) {
-              that.showContentOverlay();
+              that.handleVideoOver();
             }
             // else already handled by general video listener
           }
@@ -850,21 +889,22 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     else {
       this.showContentOverlay();
     }
-  }
+    this.parent.enableNavButton();
+  };
 
   /**
    * Show content overlay.
    */
   LibraryScreen.prototype.showContentOverlay = function () {
     this.contentOverlays[this.currentLibraryId].show();
-  }
+  };
 
   /**
    * Hide content overlay.
    */
   LibraryScreen.prototype.hideContentOverlay = function () {
     this.contentOverlays[this.currentLibraryId].hide();
-  }
+  };
 
   /**
    * Used to get XAPI data for "previous" library.
@@ -908,13 +948,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       return true;
     }
     else if (params.media && params.media.params &&
-             params.media.params.playback &&
-             params.media.params.playback.autoplay) {
+      params.media.params.playback &&
+      params.media.params.playback.autoplay) {
       params.media.params.playback.autoplay = false;
       return true;
     }
     else if (params.media && params.media.params &&
-             params.media.params.autoplay) {
+      params.media.params.autoplay) {
       params.media.params.autoplay = false;
       return true;
     }
@@ -1058,19 +1098,21 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
-   * Checks to see if the library has an invalid video (no source file or external link).
+   * Checks to see if the library has a valid video (source file or external link).
    * video/unknown check is to verify that external Youtube links work correctly.
    */
-  LibraryScreen.prototype.hasInvalidVideo = function (currentLibraryParams) {
+  LibraryScreen.prototype.hasValidVideo = function (currentLibraryParams) {
     const type = currentLibraryParams.type;
-    if (type && type.metadata.contentType === "Interactive Video" &&
-    (!type.params.interactiveVideo.video.files || type.params.interactiveVideo.video.files[0].mime === "video/unknown")
-    ) {
-      return true;
-    }
-    else if (
-      type && type.metadata.contentType === 'Video' &&
-      (!type.params.sources || type.params.sources[0].mime === "video/unknown")
+    const videoLibrary = type.metadata.contentType;
+    let videoSource = videoLibrary === "Interactive Video"
+      ? type.params.interactiveVideo.video.files
+      : type.params.sources;
+    if (type
+      && (videoLibrary === "Interactive Video" || videoLibrary === 'Video')
+      && videoSource
+      && videoSource[0].mime
+      && videoSource[0].mime !== "video/unknown"
+      && ((videoSource[0].mime !== "video/webm" && videoSource[0].mime !== "video/mp4") || H5P.VideoHtml5.canPlay(videoSource))
     ) {
       return true;
     }
@@ -1083,8 +1125,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    */
   LibraryScreen.prototype.show = function () {
     const self = this;
+    const library = self.parent.params.content[self.currentLibraryId];
+
     if (self.libraryFinishingRequirements[self.currentLibraryId] === true
-      && !self.hasInvalidVideo(self.parent.params.content[self.currentLibraryId])) {
+      && (self.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
       self.contentOverlays[self.currentLibraryId].hide();
       self.parent.disableNavButton();
     }
@@ -1218,6 +1262,23 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   /**
+   * Ensure that start screen can contain branching questions
+   * @param {boolean} isStartScreen True if resizing the start screen
+   */
+  LibraryScreen.prototype.resizeScreen = function (isStartScreen = false) {
+    // Ensure start screen expands to encompass large branching questions
+    if (!this.questionContainer) {
+      return;
+    }
+    let screenWrapper = isStartScreen
+      ? this.parent.startScreen.screenWrapper
+      : this.wrapper;
+
+    const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
+    screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
+  };
+
+  /**
    * Slides in the next library which may be either a 'normal content type' or a
    * branching question
    *
@@ -1233,7 +1294,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       let showProceedButtonflag = true;
       // First priority - Hide navigation button first to prevent user to make unecessary clicks
       if (this.libraryFinishingRequirements[library.contentId] === true
-        && !this.hasInvalidVideo(this.parent.params.content[this.currentLibraryId])) {
+        && (this.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
         this.contentOverlays[this.currentLibraryId].hide();
         this.parent.disableNavButton();
         showProceedButtonflag = false;
@@ -1313,7 +1374,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         self.createNextLibraries(library);
         self.parent.navigating = false;
         self.libraryTitle.focus();
-        
+
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
           self.parent.enableNavButton();
@@ -1355,7 +1416,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
         this.bqBackButton = this.createBackButton(this.parent.params.l10n.backButtonText);
         this.bqBackButton.setAttribute('isBQ', true);
-        
+
         // Check the back button is enable or not
         if (this.parent.canEnableBackButton(library.contentId) === false) {
           this.bqBackButton.classList.add('h5p-disabled');
@@ -1373,6 +1434,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       const labelId = 'h5p-branching-question-title-' + LibraryScreen.idCounter++;
       const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');
+      this.questionContainer = questionContainer;
       questionContainer.setAttribute('role', 'dialog');
       questionContainer.setAttribute('tabindex', '-1');
       questionContainer.setAttribute('aria-labelledby', labelId);
@@ -1387,11 +1449,15 @@ H5P.BranchingScenario.LibraryScreen = (function () {
        * Resizes the wrapper to the height of the container. If the current BQ is at the very start of the content type then resize parent wrapper
        * Make exception for starting screen, so it does not cut from the top, as well as fullscreen.
        */
-      const isFullscreen = document.body.classList.contains('h5p-fullscreen');
+      const isFullscreen = this.parent.isFullScreen();
+      const isSmallerDevice = this.parent.$container[0].classList.contains('h5p-mobile-screen');
 
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen) {
-        const paddingTop = parseInt(window.getComputedStyle(questionContainer, null).getPropertyValue('padding-top'), 10);
-        wrapper.style.height = (questionContainer.offsetHeight + paddingTop) + 'px';
+      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isSmallerDevice) {
+        this.resizeScreen();
+      }
+      else if (this.parent.startScreen.isShowing && !isFullscreen) {
+        // Ensure start screen expands to encompass large branching questions
+        this.resizeScreen(true);
       }
       else if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
         this.currentLibraryWrapper.style.height = questionContainer.offsetHeight + 'px';
@@ -1464,16 +1530,25 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const videoRect = (isVideo ? element.lastChild.getBoundingClientRect() : null);
-        if (videoRect || isHotspots) {
+        const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.getBoundingClientRect() : null);
+
+        // Video with no source should appear on top
+        if (isVideo
+          && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+          element.classList.add('h5p-video-no-source');
+        } else {
+          element.classList.remove('h5p-video-no-source');
+        }
+
+        if (videoRect || isHotspots || isCP || isImage) {
           const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
           const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
           const aspectRatio = (height / width);
           const targetElement = isIV ? element.lastChild : element;
           const availableSpace = targetElement.getBoundingClientRect();
-          
+
           const availableAspectRatio = (availableSpace.height / availableSpace.width);
-          
+
           if (aspectRatio > availableAspectRatio) {
             if (isHotspots) {
               targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
@@ -1486,12 +1561,24 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
             if (isYoutube && element.querySelector('iframe') !== null) {
               element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
-            } 
+            }
           }
         }
       }
     }
     else {
+      // Fullscreen with branching question must set wrapper size
+      if (this.parent.startScreen.isShowing) {
+        this.resizeScreen(true);
+      }
+      else if (this.overlay) {
+        this.resizeScreen();
+      }
+      else {
+        // reset wrapper height
+        this.wrapper.style.height = '';
+      }
+
       const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
       if (isIV && videoWrapperInstance.length > 0) {
         let videoWrapper = videoWrapperInstance[0].firstChild;
@@ -1507,6 +1594,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     if (instance) {
       instance.trigger('resize', e);
+      // Must resize library screen after resizing content
       this.handleLibraryResize();
     }
   };

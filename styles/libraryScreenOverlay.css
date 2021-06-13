@@ -9,7 +9,7 @@
   position: absolute;
   top: 20px;
   width: calc(100% - 40px);
-  z-index: 2; /* 2 Required for IV */
+  z-index: 3; /* 3 Required for IV */
 }
 
 .h5p-branching-scenario .h5p-library-wrapper .h5p-content-overlay-buttons-container {

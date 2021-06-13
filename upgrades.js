@@ -38,6 +38,18 @@ H5PUpgrades['H5P.BranchingScenario'] = (function () {
 
         finished(null, parameters, extras);
       },
-  }
+      5: function (parameters, finished, extras) {
+        // Sanitization
+        parameters.branchingScenario = parameters.branchingScenario || {};
+        parameters.branchingScenario.scoringOptionGroup = parameters.branchingScenario.scoringOptionGroup || {};
+
+        // Change from scoringOption to scoringGroup
+        parameters.branchingScenario.scoringOptionGroup.scoringOption = parameters.branchingScenario.scoringOption || "no-score";
+        delete  parameters.branchingScenario.scoringOption;
+        // Don't want to change behaviour of old content
+        parameters.branchingScenario.scoringOptionGroup.includeInteractionsScores = false;
+        finished(null, parameters, extras);
+      },
+    }
   };
 })();

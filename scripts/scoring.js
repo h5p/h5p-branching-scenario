@@ -16,7 +16,6 @@ H5P.BranchingScenario.Scoring = (function () {
     const self = this;
     let scores = [];
     let visitedIndex = 0;
-    let maxScore = null;
 
     /**
      * Check if library has end score
@@ -97,10 +96,10 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Max score
      */
     const calculateMaxScore = function () {
-      if (params.scoringOption === SCORE_TYPES.STATIC_SCORE) {
+      if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE) {
         return calculateStaticMaxScore();
       }
-      else if (params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
+      else if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
         return calculateDynamicMaxScore();
       }
       // No scoring
@@ -142,44 +141,11 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number}
      */
     const calculateDynamicMaxScore = function () {
-      const startNode = params.content[0];
-      const visitedNodes = [{
-        type: 'content',
-        index: 0,
-        alternativeParent: null,
-      }];
-
-      // DFS from start node to find all possible paths
-      const foundPaths = findBranchingPaths(startNode, visitedNodes);
-
-      // Find summarized score for all paths and grab max
-      return foundPaths.map(function (path) {
-        return path.map(function (p) {
-          // Grab score for each path list
-          let content = null;
-          if (p.type === 'alternative') {
-            const branchingQuestion = params.content[p.alternativeParent];
-            const alternatives = branchingQuestion.type.params
-              .branchingQuestion.alternatives;
-
-            content = alternatives[p.index];
-          }
-          else {
-            content = params.content[p.index];
-          }
-
-          if (hasEndScreenScore(content) && content.nextContentId && content.nextContentId > -1) {
-            return content.feedback.endScreenScore;
-          }
-
-          // No score found
-          return 0;
-        }).reduce(function (sum, score) {
-          return sum + score;
-        }, 0);
-      }).reduce(function (prev, score) {
-        return prev >= score ? prev : score;
-      }, 0);
+      let maxScore = 0;
+      scores.forEach(function (score) {
+        maxScore += score.maxScore;
+      });
+      return maxScore;
     };
 
     /**
@@ -206,11 +172,34 @@ H5P.BranchingScenario.Scoring = (function () {
       }
       const alt = libraryParams.type.params.branchingQuestion.alternatives[chosenAlternative];
 
-      if (!hasEndScreenScore(alt) || !alt.nextContentId || alt.nextContentId < 0) {
+      if (!hasEndScreenScore(alt) || alt.nextContentId === undefined || alt.nextContentId < 0) {
         return 0;
       }
 
       return alt.feedback.endScreenScore;
+    };
+
+    /**
+     * Get max score for a Branching Question
+     *
+     * @param libraryParams
+     * @returns {*}
+     */
+    const getQuestionMaxScore = function (libraryParams, chosenAlternative) {
+      if (!(chosenAlternative >= 0)) {
+        return 0;
+      }
+      const alt = libraryParams.type.params.branchingQuestion.alternatives;
+      let maxScore = 0;
+      alt.forEach(function (score, index) {
+        // If you change from static to dynamic scoring an end screen can have score
+        // This should not be used for dynamic scroing since the field isn't shown 
+        if (alt[index].feedback.endScreenScore > maxScore && alt[index].nextContentId !== -1) {
+          maxScore = alt[index].feedback.endScreenScore;
+        }
+      });
+
+      return maxScore;
     };
 
     /**
@@ -220,12 +209,12 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Current score
      */
     this.getScore = function (screenScore) {
-      if (params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
+      if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE) {
         return scores.reduce(function (previousValue, score) {
           return previousValue + score.score;
         }, 0);
       }
-      else if (params.scoringOption === SCORE_TYPES.STATIC_SCORE) {
+      else if (params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE) {
         return screenScore;
       }
       else {
@@ -239,11 +228,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {number} Max score for branching scenario
      */
     this.getMaxScore = function () {
-      if (!maxScore) {
-        maxScore = calculateMaxScore();
-      }
-
-      return maxScore;
+      return calculateMaxScore();
     };
 
     /**
@@ -262,10 +247,11 @@ H5P.BranchingScenario.Scoring = (function () {
      * @param {number} [chosenAlternative] Chosen alternative for branching
      *  questions
      */
-    this.addLibraryScore = function (currentId, libraryId, chosenAlternative) {
+    this.addLibraryScore = function (currentId, libraryId, chosenAlternative, contentScores) {
       visitedIndex = visitedIndex + 1;
       const libraryParams = params.content[currentId];
       let currentLibraryScore = 0;
+      let currentLibraryMaxScore = 0; 
 
       // BQ if library id differs or if it is the first content
       const isBranchingQuestion = currentId !== libraryId
@@ -273,12 +259,19 @@ H5P.BranchingScenario.Scoring = (function () {
 
       // For Branching Questions find score for chosen alternative
       if (isBranchingQuestion) {
-        currentLibraryScore =
-          getAlternativeScore(libraryParams, chosenAlternative);
+        currentLibraryScore = getAlternativeScore(libraryParams, chosenAlternative);
+        currentLibraryMaxScore = getQuestionMaxScore(libraryParams, chosenAlternative);
       }
       else {
+        // Add score from field
         if (hasEndScreenScore(libraryParams) && libraryParams.nextContentId && libraryParams.nextContentId > -1) {
           currentLibraryScore = libraryParams.feedback.endScreenScore;
+          currentLibraryMaxScore = libraryParams.feedback.endScreenScore;
+        }
+        // Add score from content
+        if (params.scoringOptionGroup.includeInteractionsScores && Object.entries(contentScores).length !== 0) {
+          currentLibraryScore += contentScores.score;
+          currentLibraryMaxScore += contentScores.maxScore;
         }
       }
 
@@ -292,6 +285,7 @@ H5P.BranchingScenario.Scoring = (function () {
       scores.forEach(function (score, index) {
         if (score.id === currentId) {
           score.score = currentLibraryScore;
+          score.visitedIndex = visitedIndex;
           loopBackIndex = score.visitedIndex;
 
           // If our current id params is not pointing to the next item
@@ -326,6 +320,7 @@ H5P.BranchingScenario.Scoring = (function () {
           visitedIndex: visitedIndex,
           id: currentId,
           score: currentLibraryScore,
+          maxScore: currentLibraryMaxScore
         });
       }
     };
@@ -351,7 +346,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {boolean} True if dynamic scoring
      */
     this.isDynamicScoring = function () {
-      return params.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
+      return params.scoringOptionGroup.scoringOption === SCORE_TYPES.DYNAMIC_SCORE;
     };
 
     /**
@@ -360,7 +355,7 @@ H5P.BranchingScenario.Scoring = (function () {
      * @returns {boolean} True if score should show
      */
     this.shouldShowScore = function () {
-      return params.scoringOption === SCORE_TYPES.STATIC_SCORE
+      return params.scoringOptionGroup.scoringOption === SCORE_TYPES.STATIC_SCORE
         || this.isDynamicScoring();
     };
   }
