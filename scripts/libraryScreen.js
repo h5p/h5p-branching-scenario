@@ -1606,7 +1606,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
    * @returns {boolean} True if library is a Branching Question
    */
   LibraryScreen.isBranching = function (library) {
-    return library.type.library.indexOf('H5P.BranchingQuestion ') === 0;
+    if (library && library.type && library.type.library) {
+      return library.type.library.indexOf('H5P.BranchingQuestion ') === 0;
+    }
+    return false;
   };
 
   LibraryScreen.idCounter = 0;
