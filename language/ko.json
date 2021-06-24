@@ -4,7 +4,7 @@
       "label": "학습 가지 시나리오 편집기",
       "fields": [
         {
-          "label": "제모"
+          "label": "제목"
         },
         {
           "label": "화면 시작",
@@ -57,17 +57,17 @@
                 "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "완료 필수",
+                "description": "사용자가 시나리오를 진행하기 전에 상호 작용을 완료해야 합니다. 이 설정은 완료할 수 있는 상호 작용에만 적용됩니다.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "행동설정 사용"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "활성화"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "비활성화"
                   }
                 ]
               },
@@ -93,17 +93,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "뒤로 돌아가기",
+                "description": "이를 통해 사용자는 시나리오에서 이전 내용/질문을 다시 볼 수 있습니다.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "행동설정 사용"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "활성화"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "비활성화"
                   }
                 ]
               }
@@ -135,15 +135,15 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "행동설정",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "콘텐츠 완료 필수 재정의",
+              "description": "\"Proceed\" (진행) 버튼 활성화 전에 콘텐츠 완료 필수에 대한 개별 설정을 다시 합니다. \"finished\" (완료)되었음을 표시하지 않는 콘텐츠(예>이미지 혹은 한 장의 슬라이드만 있는 코스 프레젠테이션)이면 영향을 받지 않습니다."
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "시청 필수",
+              "description": "시나리오를 진행하기 전에 시청자에게 비디오, 상호작용형 비디오 및 코스 프레젠테이션을 완료하도록 요청합니다. 내용 수준에서 재정의할 수 있습니다."
             }
           ]
         },
@@ -163,24 +163,24 @@
               "default": "진행"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "비디오 재시청 버튼에 대한 텍스트",
+              "default": "비디오 재시청"
             },
             {
               "label": "끝 화면에 점수 표시 라벨",
               "default": "점수:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "최종 스크린에서 점수에 대한 라벨",
+              "default": "점수:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "최종 스크린에서 점수에 대한 라벨",
+              "default": "점수:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "전체 화면 라벨",
+              "default": "전체화면"
             }
           ]
         }
