@@ -100,10 +100,10 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Lubatud"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Keelatud"
                   }
                 ]
               }
@@ -168,7 +168,7 @@
             },
             {
               "label": "Lõppvaatel näidatava punktisumma silt",
-              "default": "Sinu punktid:"
+              "default": "Mängi videot uuesti"
             },
             {
               "label": "Label for score on the end screen",
@@ -180,7 +180,7 @@
             },
             {
               "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "default": "Täisekraan"
             }
           ]
         }
