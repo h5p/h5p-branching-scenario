@@ -10,11 +10,11 @@
           "label": "Startskärm",
           "fields": [
             {
-              "label": "Redigera skärmtitel",
+              "label": "Titel på startskärm",
               "placeholder": "Titel för din kurs"
             },
             {
-              "label": "Undertext för startskärm",
+              "label": "Undertitel för startskärm",
               "placeholder": "Information om kursen"
             },
             {
@@ -57,17 +57,17 @@
                 "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Måste genomföras",
+                "description": "Uppmanar deltagaren att genomföra interaktionen före denne kan fortsätta med scenariot. Denna inställning fungerar endast för interaktioner som kan genomföras",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Använd beteende-inställning"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiverad"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inaktiverad"
                   }
                 ]
               },
@@ -93,17 +93,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Beteende-inställningar",
+                "description": "Detta låter användaren gå tillbaka och se föregående innehåll/fråga i scenariot",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Använd beteende-inställning"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiverad"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inaktiverad"
                   }
                 ]
               }
@@ -118,7 +118,7 @@
               "description": "Välj typ av poängsättning",
               "options": [
                 {
-                  "label": "Använd statistik för att ange poäng för varje slutscenario"
+                  "label": "Sätt poäng för varje slutscenario statiskt"
                 },
                 {
                   "label": "Kalkylera poäng från användares svar dynamiskt"
@@ -129,21 +129,21 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Inkludera poäng från interaktioner i Branching Scenario",
+              "description": "Om valt, så kommer poäng från exempelvis Interactive Video att läggas till i den totalt uppnådda poängen. Om inte valt, så kommer endast poäng som är specificerade i feedback-sektionerna i innehållsposter, branching-frågor samt slutscenarion att räknas."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Beteende-inställningar",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Ignorera bakåt-navigation",
+              "description": "Ignorera de individuella inställningarna för att tillåta bakåt-navigation"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Ignorera att innehåll måste avslutas",
+              "description": "Ignorera de individuella inställningarna för att kräva att innehållet måste avslutas före \"Framåt\"-knappen aktiveras. Detta kommer inte ha någon effekt om innehållet inte indikerar att det var \"avslutat\", exempelvis bilder eller Course Presentations som bara har en sida."
             }
           ]
         },
@@ -159,28 +159,28 @@
               "default": "Starta om kursen"
             },
             {
-              "label": "Text för knappen på varje skärm i biblioteket",
+              "label": "Text för tillbaka-knappen på varje biblioteksskärm och branching-fråga",
+              "default": "Tillbaka"
+            },
+            {
+              "label": "Text för knappen på varje biblioteksskärm",
               "default": "Fortsätt"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Etikett för knappen som används för att starta om en video",
+              "default": "Starta om video"
             },
             {
               "label": "Etikett för poäng på slutskärmen",
               "default": "Din poäng:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etikett för poäng på slutskärmen",
+              "default": "Din poäng:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria-etikett för helskärms-knappen",
+              "default": "Helskärm"
             }
           ]
         }
