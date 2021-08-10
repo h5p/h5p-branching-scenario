@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Haarautuvaskenaario",
+      "label": "Haarautuva skenaario",
       "fields": [
         {
           "label": "Otsikko"
@@ -14,7 +14,7 @@
               "placeholder": "Kurssisi otsikko"
             },
             {
-              "label": "Aloitusruudun teksti ",
+              "label": "Aloitusruudun teksti",
               "placeholder": "Kurssin kuvaus"
             },
             {
@@ -28,17 +28,17 @@
             "label": "Haaranpääte",
             "fields": [
               {
-                "label": "otsikko"
+                "label": "Otsikko"
               },
               {
-                "label": "teksti"
+                "label": "Teksti"
               },
               {
-                "label": "kuva"
+                "label": "Kuva"
               },
               {
                 "label": "Pisteet",
-                "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) Pisteet lähetetään silloin kun käyttäjä saavuttaa haaranpäätteen."
+                "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) Pisteet lähetetään silloin, kun käyttäjä saavuttaa haaranpäätteen."
               },
               {
                 "label": "Aineiston ID"
@@ -53,21 +53,21 @@
             "fields": [
               {},
               {
-                "label": "Näytä sisältö-otsikko",
-                "description": "Jos valittuna käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella."
+                "label": "Näytä sisältöotsikko",
+                "description": "Jos valittuna, käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Suoritus vaaditaan",
+                "description": "Kehottaa katsojia suorittamaan loppuun vuorovaikutuksen ennen skenaariossa jatkamista. Asetus toimii vain niiden vuorovaikutusten kanssa, jotka voi suorittaa loppuun",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Käytä käyttäytymisasetuksia"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Käytössä"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Pois käytöstä"
                   }
                 ]
               },
@@ -88,22 +88,22 @@
                   },
                   {
                     "label": "Tämän skenaarion pisteet",
-                    "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille jotka saavuttavat tämän haarakohdan"
+                    "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille, jotka saavuttavat tämän haarakohdan"
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Käyttäytymisasetukset",
+                "description": "Tämä sallii käyttäjän palaamisen taaksepäin ja skenaarion edellisen sisällön/kysymyksen näkemisen",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Käytä käyttäytymisasetuksia"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Käytössä"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Pois käytöstä"
                   }
                 ]
               }
@@ -121,7 +121,7 @@
                   "label": "Määritän itse haaranpäätteiden pisteytyksen"
                 },
                 {
-                  "label": "Automaattinenpisteytys käyttäjän vastausten perusteella"
+                  "label": "Automaattinen pisteytys käyttäjän vastausten perusteella"
                 },
                 {
                   "label": "Ei pisteytystä"
@@ -129,26 +129,26 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Ota mukaan pisteet Haarautuvan skenaarion vuorovaikutteisista osioista",
+              "description": "Jos valittuna, niin esimerkiksi Interaktiivisten videoiden pisteet lisätään kokonaispistemäärään. Jos ei valittuna, kokonaispistemäärään lasketaan vain sisältökohteiden, haarautuvien kysymysten ja haaranpäätteiden palauteosioissa määritetyt pisteet."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Käyttäytymisasetukset",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Yliaja taaksepäin navigointi",
+              "description": "Yliaja yksittäiset asetukset taaksepäin navigoinnin sallimiseksi"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Yliaja sisällön loppuun pääsemisen vaatimus",
+              "description": "Yliaja yksittäiset asetukset sisällön loppuun pääsemisen vaatimisesta ennen \"Jatka\" -painikkeen aktivoitumista. Tällä ei ole vaikutusta, jos sisällössä ei määritellä milloin se on \"valmis\", esim. kuvat tai yhden sivun diaesitys."
             }
           ]
         },
         {
-          "label": "Lokalisaatio",
+          "label": "Lokalisointi",
           "fields": [
             {
               "label": "Aloitusruudun painikkeen teksti",
@@ -156,31 +156,31 @@
             },
             {
               "label": "Lopetusruudun painikkeen teksti",
-              "default": "Aloita uudelleen alusta."
+              "default": "Aloita uudelleen alusta"
             },
             {
-              "label": "Painikeen, jolla jatketaan aineistotyypistä toiseen, teksti",
+              "label": "Aineistotyyppien ja haarautuvien kysymysten paluupainikkeen teksti",
+              "default": "Paluu"
+            },
+            {
+              "label": "Painikkeen, jolla jatketaan aineistotyypistä toiseen, teksti",
               "default": "Jatka"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Painikkeen, jolla toistetaan video uudelleen, teksti",
+              "default": "Toista video uudelleen"
             },
             {
-              "label": "Haaranpäätteen teksti pisteytykselle",
+              "label": "Loppunäkymän pisteiden teksti",
               "default": "Pisteesi:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Loppunäkymän pisteiden teksti",
+              "default": "Pisteesi:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Koko näytön painikkeen teksti",
+              "default": "Koko näyttö"
             }
           ]
         }
