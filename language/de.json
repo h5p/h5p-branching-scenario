@@ -129,8 +129,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Verwende die Punkte der Interaktionen innerhalb des Branching Scenario",
+              "description": "Wenn diese Option gewählt ist, werden Punkte aus Inhalten wie Interactive Video zur Gesamtpunktzahl hinzugezählt. Wenn die Option nicht angewählt ist, werden nur die Punkte gezählt, die bei den Rückmeldungen zu Inhalten, bei verzweigenden Fragen und bei den Endszenarios vergeben wurden."
             }
           ]
         },
@@ -138,8 +138,8 @@
           "label": "Interaktionseinstellungen",
           "fields": [
             {
-              "label": "Überschreiben der Optionen zum Fortfahren nach Abschluss",
-              "description": "Überschreibt die individuellen Einstellungen der Rückwerts-Navigation"
+              "label": "Rückwärtsnavigation überschreiben",
+              "description": "Erlaube den Nutzern zurückzugehen und den vorherigen Inhalt/die vorherige Frage zu sehen"
             },
             {
               "label": "Inhaltsabschluss überschreiben",
