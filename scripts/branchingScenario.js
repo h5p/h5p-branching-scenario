@@ -68,6 +68,7 @@ H5P.BranchingScenario = function (params, contentId) {
     backButtonText: "Back",
     fullscreenAria: "Fullscreen",
     replayButtonText: "Replay the video",
+    feedbackImage: "Feedback Image",
     disableProceedButtonText: "Require to complete the current module"
   }, params.l10n);
 
