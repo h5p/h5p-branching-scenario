@@ -41,6 +41,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     var feedbackText = document.createElement('div');
     feedbackText.classList.add('h5p-feedback-content-content');
     contentDiv.appendChild(feedbackText);
+    self.contentDiv = contentDiv;
 
     const title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
@@ -273,6 +274,9 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
         if (!self.isFeedbackAvailable) {
           self.navButton.focus();
+        }
+        else {
+          self.contentDiv.focus();
         }
         self.checkIntroReset();
       }
