@@ -1,0 +1,190 @@
+{
+  "semantics": [
+    {
+      "label": "Dallanma Senaryosu Editörü",
+      "fields": [
+        {
+          "label": "Başlık"
+        },
+        {
+          "label": "Başlangıç ekranı",
+          "fields": [
+            {
+              "label": "Başlangıç ekranı başlığı",
+              "placeholder": "Kursun başlığı
+            },
+            {
+              "label": "Başlangıç ekranı alt yazısı",
+              "placeholder": "Kurs hakkında detaylı bilgi"
+            },
+            {
+              "label": "Başlat ekranı görseli"
+            }
+          ]
+        },
+        {
+          "label": "Bitiş ekranlarının listesi",
+          "field": {
+            "label": "Bitiş ekranı",
+            "fields": [
+              {
+                "label": "Başlık"
+              },
+              {
+                "label": "Metin"
+              },
+              {
+                "label": "Görsel"
+              },
+              {
+                "label": "Puan",
+                "description": "Puan, varsayılan bitiş senaryosuna ulaşan kullanıcılar için H5P'den alınan puan. Bir LMS, LRS veya bağlı başka bir servise gönderilecektir."
+              },
+              {
+                "label": "İçerik ID"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Dallanma senaryosu içeriğinin listesi",
+          "entity": "içerik",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "İçerik başlığı görünsün",
+                "description": "Bu seçenek işaretlenirse, üst çubukta içerik başlığı görünecektir."
+              },
+              {
+                "label": "Tamamlanması gerekli",
+                "description": "Senaryoyu geçmeden önce kullnıcıların etkileşimi tamamlamalarını önerir. Bu ayar yalnızca tamamlanabilen etkileşimler için çalışır.",
+                "options": [
+                  {
+                    "label": "Etkinlik ayarını kullan "
+                  },
+                  {
+                    "label": "Etkinleştirildi"
+                  },
+                  {
+                    "label": "Etkisizleştirildi"
+                  }
+                ]
+              },
+              {
+                "label": "Sonraki İçerik Id no (bitiş ekranları negatif sayılarla tanımlanır)"
+              },
+              {
+                "label": "Geri Bildirim",
+                "fields": [
+                  {
+                    "label": "Geri bildirim"
+                  },
+                  {
+                    "label": "Geri bildirim metni"
+                  },
+                  {
+                    "label": "Geri bildirim görseli"
+                  },
+                  {
+                    "label": "Bu senaryodan alınan puan",
+                    "description": "Puan, varsayılan bitiş senaryosuna ulaşan kullanıcılar için H5P'den alınan puan. Bir LMS, LRS veya bağlı başka bir servise gönderilecektir."
+                  }
+                ]
+              },
+              {
+                "label": "Etkinlik ayarları",
+                "description": "Bu, kullanıcının geri dönüp senaryodaki önceki içeriği/soruyu görmesine izin verir.",
+                "options": [
+                  {
+                    "label": "Etkinlik ayarlarını kullan"
+                  },
+                  {
+                    "label": "Etkinleştirildi"
+                  },
+                  {
+                    "label": "Etkisizleştirildi"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Puanlama seçenekleri",
+          "fields": [
+            {
+              "label": "Puanlama seçenekleri",
+              "description": "Puanlama türünü seçin",
+              "options": [
+                {
+                  "label": "Her bitiş senaryosu için belirlenen sabit puan"
+                },
+                {
+                  "label": "Kullanıcı yanıtlarından puanı otomatik olarak hesaplama"
+                },
+                {
+                  "label": "Puanlama yok"
+                }
+              ]
+            },
+            {
+              "label": "Dallanma Senaryosu içindeki etkileşimlerden alınan puanları dahil et",
+              "description": "Örneğin Etkileşimli Videolardan seçilen puanlar, elde edilen toplam puana eklenecektir. İçerik öğelerinin geri bildirim bölümlerinde belirtilen puanlar seçilmezse, dallanma soruları ve bitiş senaryoları sayılacaktır."
+            }
+          ]
+        },
+        {
+          "label": "Etkinlik ayarları",
+          "fields": [
+            {
+              "label": "Geri gezinme izni yok.",
+              "description": "Geriye doğru gezinmeyi etkinleştirmek için bireysel ayarları devre dışı bırakın."
+            },
+            {
+              "label": "İçeriğin tamamlanması gerekliliğini iptal et",
+              "description": "\"Proceed\" butonunu etkinleştirmeden önce içeriğin tamamlanmasını gerektiren bireysel ayarları devre dışı bırakın. İçeriğin  \"finished\" görsel mi yoksa tek slaytlı ders sunumları mı olduğunu belirtilmemesi durumunda herhangi bir etkisi olmayacaktır."
+            }
+          ]
+        },
+        {
+          "label": "Bölge ve dil seçenekleri",
+          "fields": [
+            {
+              "label": "Başlangıç ekranı için buton",
+              "default": "Kursu başlat"
+            },
+            {
+              "label": "Bitiş ekranı için buton",
+              "default": "Kursu yeniden başlat
+            },
+            {
+              "label": "Her bir kitaplık ekranındaki geri düğmesi ve dallanma soruları için metin",
+              "default": "Geri"
+            },
+            {
+              "label": "Kütüphane ekranlarının her birinde buton için metin",
+              "default": "İlerleme"
+            },
+            {
+              "label": "Videoyu yeniden oynatmak için metin",
+              "default": "Videoyu yeniden oynat"
+            },
+            {
+              "label": "Bitiş ekranında puan etiketi",
+              "default": "Puanınız:"
+            },
+            {
+              "label": "Bitiş ekranında puan etiketi",
+              "default": "Puanınız:"
+            },
+            {
+              "label": "Tam ekran butonu",
+              "default": "Tam ekran"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
