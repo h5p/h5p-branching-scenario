@@ -24,6 +24,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     const self = this;
     self.parent = parent;
     self.isShowing = screenData.isStartScreen;
+    self.isFeedbackAvailable = false;
     self.screenWrapper = document.createElement('div');
     self.screenWrapper.classList.add(screenData.isStartScreen ? 'h5p-start-screen' : 'h5p-end-screen');
     self.screenWrapper.classList.add(screenData.isCurrentScreen ? 'h5p-current-screen' : 'h5p-next-screen');
@@ -40,6 +41,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     var feedbackText = document.createElement('div');
     feedbackText.classList.add('h5p-feedback-content-content');
     contentDiv.appendChild(feedbackText);
+    self.feedbackText = feedbackText;
 
     const title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
@@ -95,6 +97,12 @@ H5P.BranchingScenario.GenericScreen = (function () {
       self.createScreenBackground(screenData.isStartScreen, screenData.image)
     );
     self.screenWrapper.appendChild(contentDiv);
+
+    // Validate any of the contents are present, make screen reader to read
+    if ((screenData.showScore && screenData.score !== undefined) || screenData.titleText !== "" || screenData.subtitleText !== "") {
+      feedbackText.tabIndex = -1;
+      self.isFeedbackAvailable = true;
+    }
 
     /**
      * Get score for screen
@@ -221,6 +229,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     backgroundImage.classList.add('h5p-background-image');
 
     if (image && image.path) {
+      backgroundImage.tabIndex = 0;
       backgroundImage.src = H5P.getPath(image.path, this.parent.contentId);
     }
     else {
@@ -261,7 +270,13 @@ H5P.BranchingScenario.GenericScreen = (function () {
         self.screenWrapper.classList.remove('h5p-slide-in');
         self.screenWrapper.classList.add('h5p-current-screen');
         self.parent.trigger('resize');
-        self.navButton.focus();
+
+        if (!self.isFeedbackAvailable) {
+          self.navButton.focus();
+        }
+        else {
+          self.feedbackText.focus();
+        }
         self.checkIntroReset();
       }
     });
