@@ -41,7 +41,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     var feedbackText = document.createElement('div');
     feedbackText.classList.add('h5p-feedback-content-content');
     contentDiv.appendChild(feedbackText);
-    self.contentDiv = contentDiv;
+    self.feedbackText = feedbackText;
 
     const title = document.createElement('h1');
     title.className = 'h5p-branching-scenario-title-text';
@@ -100,7 +100,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     // Validate any of the contents are present, make screen reader to read
     if ((screenData.showScore && screenData.score !== undefined) || screenData.titleText !== "" || screenData.subtitleText !== "") {
-      contentDiv.tabIndex = 0;
+      feedbackText.tabIndex = -1;
       self.isFeedbackAvailable = true;
     }
 
@@ -229,7 +229,6 @@ H5P.BranchingScenario.GenericScreen = (function () {
     backgroundImage.classList.add('h5p-background-image');
 
     if (image && image.path) {
-      backgroundImage.ariaLabel = this.parent.params.l10n.feedbackImage;
       backgroundImage.tabIndex = 0;
       backgroundImage.src = H5P.getPath(image.path, this.parent.contentId);
     }
@@ -276,7 +275,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
           self.navButton.focus();
         }
         else {
-          self.contentDiv.focus();
+          self.feedbackText.focus();
         }
         self.checkIntroReset();
       }

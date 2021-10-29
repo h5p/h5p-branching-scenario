@@ -210,6 +210,7 @@
   width: 100%;
   /* Trick so FF doesn't show a horizontal scrollbar when not needed */
   margin-right: 1px;
+  outline: 0;
 }
 
 .h5p-feedback-default {
