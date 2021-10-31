@@ -58,7 +58,7 @@
               },
               {
                 "label": "Osaketa derrigorrezkoa da",
-                "description": "Ikusleek eskenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen.",
+                "description": "Ikusleek eskenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
                 "options": [
                   {
                     "label": "Erabili jokaeraren ezarpena"
@@ -129,8 +129,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Sartu Adarkatze-Eszenatokiko interakzioen puntuazioak",
+              "description": "Aukeratuz gero, Bideo Interaktiboetako instantzien puntuazioak lortutako guztirako puntuaziora gehituko dira. Ez bada aukeratzen, soilik eduki-elementuen feedback-ataletan, adarkatze-galderetan eta eszenatoki-amaieratan zehaztutako puntuazioak hartuko dira kontuan."
             }
           ]
         },
@@ -139,11 +139,11 @@
           "fields": [
             {
               "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "description": "Baliogabetu atzerako nabigazioa gaitzeko banakako ezarpenak"
             },
             {
               "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
             }
           ]
         },
@@ -168,7 +168,7 @@
             },
             {
               "label": "Kalifikazioaren etiketa amaiera-pantailan",
-              "default": "Zure kalifikazioa:"
+              "default": "Berriz erreproduzitu bideoa"
             },
             {
               "label": "Puntuazioaren etiketa pantaila amaieran",
