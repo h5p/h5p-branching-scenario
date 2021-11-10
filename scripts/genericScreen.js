@@ -10,6 +10,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
    * @param {string}  screenData.subtitleText Subtitle
    * @param {string}  screenData.scoreText Score text
    * @param {Object}  screenData.image Image object
+   * @param {String}  screenData.altText Alternative text for image
    * @param {string}  screenData.buttonText Text for the button
    * @param {boolean} screenData.isCurrentScreen Determines if the screen is shown immediately
    * @param {number} screenData.score Score that should be displayed
@@ -94,7 +95,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
     }
 
     self.screenWrapper.appendChild(
-      self.createScreenBackground(screenData.isStartScreen, screenData.image)
+      self.createScreenBackground(screenData.isStartScreen, screenData.image, screenData.altText)
     );
     self.screenWrapper.appendChild(contentDiv);
 
@@ -216,9 +217,10 @@ H5P.BranchingScenario.GenericScreen = (function () {
    *
    * @param  {boolean} isStartScreen Determines if the screen is a starting screen
    * @param  {Object} image Image object
+   * @param  {String} altText Alternative text for image
    * @return {HTMLElement} Wrapping div for the background
    */
-  GenericScreen.prototype.createScreenBackground = function (isStartScreen, image) {
+  GenericScreen.prototype.createScreenBackground = function (isStartScreen, image, altText) {
     const backgroundWrapper = document.createElement('div');
     backgroundWrapper.classList.add('h5p-screen-background');
 
@@ -235,6 +237,11 @@ H5P.BranchingScenario.GenericScreen = (function () {
     else {
       backgroundImage.src = isStartScreen ? this.parent.getLibraryFilePath('assets/start-screen-default.jpg') : this.parent.getLibraryFilePath('assets/end-screen-default.jpg');
     }
+
+    if (altText && altText.length) {
+      backgroundImage.setAttribute('aria-label', altText);
+    }
+
     backgroundImage.addEventListener('load', () => {
       this.parent.trigger('resize');
     });
