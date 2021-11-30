@@ -19,6 +19,9 @@
             },
             {
               "label": "Start screen image"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

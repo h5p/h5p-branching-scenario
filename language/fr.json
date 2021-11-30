@@ -19,6 +19,9 @@
             },
             {
               "label": "Image de l'écran de départ"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

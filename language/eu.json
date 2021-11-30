@@ -19,6 +19,9 @@
             },
             {
               "label": "Hasierako pantailaren irudia"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

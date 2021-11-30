@@ -19,6 +19,9 @@
             },
             {
               "label": "Imatge de la pantalla d’inici"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

@@ -19,6 +19,9 @@
             },
             {
               "label": "تصویر صفحه شروع"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

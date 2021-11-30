@@ -19,6 +19,9 @@
             },
             {
               "label": "스크린 이미지 시작"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

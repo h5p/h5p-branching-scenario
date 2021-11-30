@@ -19,6 +19,9 @@
             },
             {
               "label": "Beginskermprent"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

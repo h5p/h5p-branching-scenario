@@ -19,6 +19,9 @@
             },
             {
               "label": "Afbeelding startscherm"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

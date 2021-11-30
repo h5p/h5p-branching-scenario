@@ -19,6 +19,9 @@
             },
             {
               "label": "Obrázek úvodní obrazovky"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

@@ -19,6 +19,9 @@
             },
             {
               "label": "Bild på startskärm"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

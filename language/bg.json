@@ -19,6 +19,9 @@
             },
             {
               "label": "Изображение на начален екран"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

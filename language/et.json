@@ -19,6 +19,9 @@
             },
             {
               "label": "Algusvaate pilt"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

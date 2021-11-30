@@ -19,6 +19,9 @@
             },
             {
               "label": "Slika začetnega zaslona"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

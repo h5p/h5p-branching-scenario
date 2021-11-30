@@ -19,6 +19,9 @@
             },
             {
               "label": "Aloitusruudun kuva"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

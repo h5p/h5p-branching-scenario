@@ -19,6 +19,9 @@
             },
             {
               "label": "Kursbild"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },
