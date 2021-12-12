@@ -64,7 +64,7 @@
                 "description": "Ikusleek eskenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
                 "options": [
                   {
-                    "label": "Erabili jokaeraren ezarpena"
+                    "label": "Erabili portaeraren ezarpena"
                   },
                   {
                     "label": "Gaituta"
@@ -96,11 +96,11 @@
                 ]
               },
               {
-                "label": "Nabigatu atzera",
+                "label": "Portaeraren ezarpenak",
                 "description": "Honek erabiltzaileari atzera egin eta eskenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio",
                 "options": [
                   {
-                    "label": "Erabili jokaeraren ezarpena"
+                    "label": "Erabili portaeraren ezarpena"
                   },
                   {
                     "label": "Gaituta"
@@ -138,14 +138,14 @@
           ]
         },
         {
-          "label": "Portaera-ezarpenak",
+          "label": "Portaeraren ezarpenak",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Baliogabetu atzerako nabigazioa gaitzeko banakako ezarpenak"
+              "label": "Baliogabetu atzerakako nabigazioa",
+              "description": "Baliogabetu atzerakako nabigazioa gaitzeko banakako ezarpenak"
             },
             {
-              "label": "Required to watch",
+              "label": "Baliogabetu edukia amaitzea behartzea",
               "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
             }
           ]
