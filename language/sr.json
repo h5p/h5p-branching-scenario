@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Уређивач сценариа за гранање",
       "fields": [
         {
           "label": "Наслов"
@@ -51,7 +51,7 @@
         },
         {
           "label": "Листа садржаја сценарија гранања",
-          "entity": "content",
+          "entity": "садржај",
           "field": {
             "fields": [
               {},
