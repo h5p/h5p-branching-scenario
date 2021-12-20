@@ -135,10 +135,13 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.wrapper.style.minHeight = '';
       return;
     }
-
+    
     this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 40 + 'px';
     // NOTE: This is a brittle hardcoding of the header height
     this.wrapper.style.minHeight = this.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
+    if (this.currentLibraryWrapper.offsetHeight < this.currentLibraryElement.scrollHeight) {
+      this.currentLibraryElement.tabIndex = 0;
+    }
   }
 
   /**
