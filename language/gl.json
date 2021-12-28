@@ -19,6 +19,9 @@
             },
             {
               "label": "Imaxe da pantalla de inicio"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

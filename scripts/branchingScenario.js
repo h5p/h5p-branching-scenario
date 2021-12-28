@@ -97,15 +97,17 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {string} startscreendata.startScreenTitle Title
    * @param  {string} startscreendata.startScreenSubtitle Subtitle
    * @param  {Object} startscreendata.startScreenImage Object containing image metadata
+   * @param  {String} startscreendata.startScreenAltText Alt text for image
    * @param  {boolean} isCurrentScreen When Branching Scenario is first initialized
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
-  const createStartScreen = function ({ startScreenTitle, startScreenSubtitle, startScreenImage }, isCurrentScreen) {
+  const createStartScreen = function ({ startScreenTitle, startScreenSubtitle, startScreenImage, startScreenAltText }, isCurrentScreen) {
     const startScreen = new H5P.BranchingScenario.GenericScreen(self, {
       isStartScreen: true,
       titleText: startScreenTitle,
       subtitleText: startScreenSubtitle,
       image: startScreenImage,
+      altText: startScreenAltText,
       fullscreenAria: params.l10n.fullscreenAria,
       buttonText: params.l10n.startScreenButtonText,
       isCurrentScreen

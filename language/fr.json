@@ -19,6 +19,9 @@
             },
             {
               "label": "Image de l'écran de départ"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },
@@ -57,17 +60,17 @@
                 "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Requis pour terminer",
+                "description": "Requiert la complétion de l’interaction avant de poursuivre le scénario. Cette préférence ne fonctionne que pour les interactions qui peuvent être complétées.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Utiliser les paramètres de comportement"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activée"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Désactivée"
                   }
                 ]
               },
@@ -75,35 +78,35 @@
                 "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
               },
               {
-                "label": "Feedback",
+                "label": "Rétroaction",
                 "fields": [
                   {
-                    "label": "Titre du feedback"
+                    "label": "Titre de la rétroaction"
                   },
                   {
-                    "label": "Teste du feedback"
+                    "label": "Texte de la rétroaction"
                   },
                   {
-                    "label": "Image du feedback"
+                    "label": "Image de la rétroaction"
                   },
                   {
                     "label": "Score pour ce scénario",
-                    "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
+                    "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoit des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Paramètres de comportement",
+                "description": "Ce paramètre permettra aux gens de revenir en arrière pour parcourir le contenu ou les questions du scénario",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Utiliser les paramètres de comportement"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activée"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Désactivée"
                   }
                 ]
               }
@@ -124,26 +127,26 @@
                   "label": "Calculer dynamiquement le score à partir des réponses de l'utilisateur"
                 },
                 {
-                  "label": "Pas de score"
+                  "label": "Pas de notation"
                 }
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Inclure la notation des interactions à l’intérieur du scénario à embranchements",
+              "description": "La notation d’autres activités  (de vidéos interactives, par exemple) sera ajoutée à la notation finale obtenue. Si cette option n’est pas sélectionnée, les notations spécifiées dans les sections de rétroactions des éléments de contenus, des questions d’embranchement et des scénarios finaux seront comptabilisées."
             }
           ]
         },
         {
-          "label": "Options générales",
+          "label": "Options comportementales",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Désactiver la navigation vers l’arrière",
+              "description": "Contourner les options comportementales pour activer la navigation vers l’arrière"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Contourner la nécessité de terminer le contenu",
+              "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple)."
             }
           ]
         },
@@ -160,27 +163,27 @@
             },
             {
               "label": "Texte pour le bouton de chaque écran de la bibliothèque",
+              "default": "Revenir en arrière"
+            },
+            {
+              "label": "Texte du bouton pour chaque écran de la bibliothèque",
               "default": "Continuer"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Libellé du bouton pour jouer la vidéo de nouveau",
+              "default": "Jouer la vidéo de nouveau"
             },
             {
-              "label": "Libellé pour le score affiché sur l'écran de fin",
-              "default": "Votre score:"
+              "label": "Libellé de la notation dans l’écran de fin",
+              "default": "Votre note:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Étiquette de la notation de l'écran de fin",
+              "default": "Votre note:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Étiquette Aria pour le bouton de plein écran",
+              "default": "Plein écran"
             }
           ]
         }

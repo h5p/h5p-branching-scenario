@@ -19,6 +19,9 @@
             },
             {
               "label": "Imagen de la pantalla inicial"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },
@@ -129,8 +132,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Incluir puntajes de interacciones dentro de Escenario Ramificado",
+              "description": "Si se elige, puntajes de instancia de Videos Interactivos serán añadidos al puntaje total obtenido. Si no se elige, solamente los puntajes especificados en las secciones de retroalimentación de los elementos de contenido, preguntas ramificadas y escenarios finales contarán."
             }
           ]
         },

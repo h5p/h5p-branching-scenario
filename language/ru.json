@@ -19,6 +19,9 @@
             },
             {
               "label": "Изображение на стартовом экране"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },

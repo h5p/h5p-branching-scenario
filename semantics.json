@@ -58,6 +58,13 @@
             "type": "image",
             "optional": true,
             "importance": "medium"
+          },
+          {
+            "name": "startScreenAltText",
+            "label": "Image alternative text",
+            "type": "text",
+            "optional": true,
+            "importance": "medium"
           }
         ]
       },

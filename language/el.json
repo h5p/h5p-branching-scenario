@@ -19,6 +19,9 @@
             },
             {
               "label": "Εικόνα οθόνης έναρξης"
+            },
+            {
+              "label": "Image alternative text"
             }
           ]
         },
