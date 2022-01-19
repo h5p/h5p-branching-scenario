@@ -3,7 +3,7 @@
   "description": "description",
   "majorVersion": 1,
   "minorVersion": 5,
-  "patchVersion": 7,
+  "patchVersion": 8,
   "runnable": 1,
   "embedTypes": [
     "iframe"
