@@ -2,8 +2,8 @@
   "title": "Branching Scenario",
   "description": "description",
   "majorVersion": 1,
-  "minorVersion": 5,
-  "patchVersion": 8,
+  "minorVersion": 6,
+  "patchVersion": 0,
   "runnable": 1,
   "embedTypes": [
     "iframe"
@@ -49,7 +49,7 @@
     {
       "machineName": "H5PEditor.BranchingScenario",
       "majorVersion": 1,
-      "minorVersion": 2
+      "minorVersion": 3
     }
   ]
 }
