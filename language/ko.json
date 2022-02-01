@@ -21,7 +21,7 @@
               "label": "스크린 이미지 시작"
             },
             {
-              "label": "Image alternative text"
+              "label": "이미지 대안 텍스트"
             }
           ]
         },
@@ -64,7 +64,7 @@
                 "description": "사용자가 시나리오를 진행하기 전에 상호 작용을 완료해야 합니다. 이 설정은 완료할 수 있는 상호 작용에만 적용됩니다.",
                 "options": [
                   {
-                    "label": "행동설정 사용"
+                    "label": "동작 설정 사용"
                   },
                   {
                     "label": "활성화"
@@ -132,8 +132,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "분기 시나리오 내의 상호 작용 점수 포함",
+              "description": "선택되면 예를 들어 대화형 비디오에서 선택한 점수가 획득한 총 점수에 추가됩니다. 선택되지 않으면 컨텐츠 항목, 분기 질문 및 종료 시나리오의 피드백 섹션에 지정된 점수만 반영됩니다."
             }
           ]
         },
