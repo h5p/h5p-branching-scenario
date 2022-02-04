@@ -1,17 +1,17 @@
 {
   "semantics": [
     {
-      "label": "Adarkatze Eskenatokien Editorea",
+      "label": "Branchig Scenario Editorea (Egoera Adarkatuak)",
       "fields": [
         {
-          "label": "Titulua"
+          "label": "Izenburua"
         },
         {
           "label": "Hasierako pantaila",
           "fields": [
             {
-              "label": "Hasierako pantailaren titulua",
-              "placeholder": "Izenburua zure ikastaroarentzat"
+              "label": "Hasierako pantailaren izenburua",
+              "placeholder": "Zure ikastaroaren izenburua"
             },
             {
               "label": "Hasierako pantailaren azpititulua",
@@ -41,7 +41,7 @@
               },
               {
                 "label": "Kalifikazioa",
-                "description": "Lehenetsitako eskenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+                "description": "Lehenetsitako eszenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
               },
               {
                 "label": "Edukiaren IDa"
@@ -50,7 +50,7 @@
           }
         },
         {
-          "label": "Aukerako erantzunen edukien zerrenda",
+          "label": "Egoera adarkatuen edukien zerrenda",
           "entity": "edukia",
           "field": {
             "fields": [
@@ -61,7 +61,7 @@
               },
               {
                 "label": "Osaketa derrigorrezkoa da",
-                "description": "Ikusleek eskenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
+                "description": "Ikusleek eszenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
                 "options": [
                   {
                     "label": "Erabili portaeraren ezarpena"
@@ -91,13 +91,13 @@
                   },
                   {
                     "label": "Eskenatoki honen kalifikazioa",
-                    "description": "Eskenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+                    "description": "Eszenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
                   }
                 ]
               },
               {
                 "label": "Portaeraren ezarpenak",
-                "description": "Honek erabiltzaileari atzera egin eta eskenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio",
+                "description": "Honek erabiltzaileari atzera egin eta eszenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio",
                 "options": [
                   {
                     "label": "Erabili portaeraren ezarpena"
@@ -121,7 +121,7 @@
               "description": "Aukeratu kalifikazio-mota",
               "options": [
                 {
-                  "label": "Estatistikoki zehaztu eskenatoki bakoitzaren amaieraren kalifikazioa"
+                  "label": "Estatikoki zehaztu eszenatoki bakoitzaren amaierako kalifikazioa"
                 },
                 {
                   "label": "Dinamikoki kalkulatu kalifikazioa erabiltzaileen erantzunen arabera"
@@ -132,8 +132,8 @@
               ]
             },
             {
-              "label": "Sartu Adarkatze-Eszenatokiko interakzioen puntuazioak",
-              "description": "Aukeratuz gero, Bideo Interaktiboetako instantzien puntuazioak lortutako guztirako puntuaziora gehituko dira. Ez bada aukeratzen, soilik eduki-elementuen feedback-ataletan, adarkatze-galderetan eta eszenatoki-amaieratan zehaztutako puntuazioak hartuko dira kontuan."
+              "label": "Sartu Eszenatoki Adarkatuaren interakzioen puntuazioak",
+              "description": "Aukeratuz gero, Bideo Interaktiboetako instantzien puntuazioak lortutako guztirako puntuaziora gehituko dira. Ez bada aukeratzen, soilik eduki-elementuen feedback-ataletan, galdera adarkatuen eta eszenatoki-amaieratan zehaztutako puntuazioak hartuko dira kontuan."
             }
           ]
         },
@@ -162,15 +162,15 @@
               "default": "Berriz hasi ikastaroa"
             },
             {
-              "label": "Liburutegi-pantailetako botoi bakoitzarentzako testua",
-              "default": "Jarraitu"
+              "label": "Liburutegi-pantaila bakoitzean atzera botoiaren eta adarkatutako galderen testua",
+              "default": "Atzera"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Liburutegi-pantaila bakoitzeko botoiaren testua",
+              "default": "Ekin"
             },
             {
-              "label": "Kalifikazioaren etiketa amaiera-pantailan",
+              "label": "Bideo bat berriro erreproduzitzeko erabilitako botoiaren testua",
               "default": "Berriz erreproduzitu bideoa"
             },
             {
