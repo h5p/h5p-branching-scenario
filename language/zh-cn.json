@@ -1,0 +1,193 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "label": "Title"
+        },
+        {
+          "label": "Start screen",
+          "fields": [
+            {
+              "label": "Start screen title",
+              "placeholder": "Title for your course"
+            },
+            {
+              "label": "Start screen subtitle",
+              "placeholder": "Details about the course"
+            },
+            {
+              "label": "Start screen image"
+            },
+            {
+              "label": "Image alternative text"
+            }
+          ]
+        },
+        {
+          "field": {
+            "fields": [
+              {
+                "label": "Title"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Image"
+              },
+              {
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario",
+                "label": "Score"
+              },
+              {
+                "label": "Content ID"
+              }
+            ],
+            "label": "End screen"
+          },
+          "label": "List of end screens"
+        },
+        {
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content"
+              },
+              {
+                "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {
+                "label": "Next Content ID (end screens are defined by negative numbers)"
+              },
+              {
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                  }
+                ],
+                "label": "Feedback"
+              },
+              {
+                "label": "Behavioural settings",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              }
+            ]
+          },
+          "label": "List of branching scenario content",
+          "entity": "content"
+        },
+        {
+          "fields": [
+            {
+              "options": [
+                {
+                  "label": "Statically set score for each end scenario"
+                },
+                {
+                  "label": "Dynamically calculate score from user answers"
+                },
+                {
+                  "label": "No scoring"
+                }
+              ],
+              "label": "Scoring options",
+              "description": "Select type of scoring"
+            },
+            {
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count.",
+              "label": "Include scores from interactions within the Branching Scenario"
+            }
+          ],
+          "label": "Scoring options"
+        },
+        {
+          "fields": [
+            {
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation"
+            },
+            {
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+              "label": "Override require content finished"
+            }
+          ],
+          "label": "Behavioural settings"
+        },
+        {
+          "fields": [
+            {
+              "label": "Text for the button on the start screen",
+              "default": "Start the course"
+            },
+            {
+              "default": "Restart the course",
+              "label": "Text for the button on the end screen"
+            },
+            {
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
+            },
+            {
+              "label": "Text for the button on each of the library screens",
+              "default": "Proceed"
+            },
+            {
+              "default": "Replay the video",
+              "label": "Text for the button used to replay a video"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
+            },
+            {
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
+            }
+          ],
+          "label": "Localization"
+        }
+      ],
+      "label": "Branching Scenario Editor"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Vertakkkingsscenario Editor",
       "fields": [
         {
           "label": "Titel"
@@ -21,7 +21,7 @@
               "label": "Afbeelding startscherm"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternatieve tekst voor afbeelding"
             }
           ]
         },
@@ -141,7 +141,7 @@
           "label": "Gedragsinstellingen",
           "fields": [
             {
-              "label": "Overschrijf inhoud voltooid vereist",
+              "label": "Overschrijf achterwaartse navigatie",
               "description": "Overschrijf de individuele instellingen om achterwaarts navigeren in te schakelen"
             },
             {
@@ -162,7 +162,7 @@
               "default": "Herstart de cursus"
             },
             {
-              "label": "Tekst voor de \"Terug\"-knop op elk bibliotheekscherm en vertakkingsvragen",
+              "label": "Tekst voor de \"Terug\"-knop op elk bibliotheekscherm en bij vertakkingsvragen",
               "default": "Terug"
             },
             {
