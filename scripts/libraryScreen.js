@@ -27,7 +27,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.branchingQuestions = [];
     this.navButton;
     this.header;
-    this.shouldAutoplay = [];
     this.isShowing = false;
     this.contentOverlays = [];
 
@@ -84,32 +83,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       }
     };
 
-    self.triggerAutoplay = function (e) {
-      const id = (e.data !== undefined && e.data.nextContentId !== undefined ? e.data.nextContentId : 0);
-      if (id < 0 || id !== self.currentLibraryId) {
-        return; // All of the stars did not align, skip autoplay
-      }
-
-      const library = parent.getLibrary(id);
-      if (library.type.library.split(' ')[0] === 'H5P.BranchingQuestion') {
-        return;
-      }
-
-      if (self.shouldAutoplay[self.currentLibraryId]) {
-        if (self.currentLibraryInstance.play !== undefined) {
-          self.currentLibraryInstance.play();
-        }
-        else if (self.currentLibraryInstance.elementInstances) {
-          for (let i = 0; i < self.currentLibraryInstance.elementInstances[0].length; i++) {
-            const elementInstance = self.currentLibraryInstance.elementInstances[0][i];
-            if (elementInstance.play !== undefined) {
-              elementInstance.play();
-            }
-          }
-        }
-      }
-    };
-
     /**
      * Handle enterfullscreen event and resize the library instance
      */
@@ -120,9 +93,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         }
       }, 500);
     });
-
-    parent.on('started', self.triggerAutoplay);
-    parent.on('navigated', self.triggerAutoplay);
   }
 
   /**
@@ -135,14 +105,14 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.wrapper.style.minHeight = '';
       return;
     }
-    
+
     this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 40 + 'px';
     // NOTE: This is a brittle hardcoding of the header height
     this.wrapper.style.minHeight = this.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
     if (this.currentLibraryWrapper.offsetHeight < this.currentLibraryElement.scrollHeight) {
       this.currentLibraryElement.tabIndex = 0;
     }
-  }
+  };
 
   /**
    * Creates a wrapping div for the library screen
@@ -260,24 +230,23 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.navButton.classList.add('transition');
     this.navButton.addEventListener('animationend', () => {
       this.parent.unanimateNavButton();
-    })
+    });
 
-    this.navButton.addEventListener('click', (event) => {
+    this.navButton.addEventListener('click', () => {
       if (this.parent.proceedButtonInProgress) {
         return;
       }
 
       this.parent.proceedButtonInProgress = true;
       const that = this;
-      let promise = new Promise(resolve => {
+      new Promise(resolve => {
         const response = that.handleProceed();
 
         // Wait until receive positive response
         if (response) {
           resolve(true);
         }
-      })
-      promise.then(bool => {
+      }).then(() => {
         that.parent.proceedButtonInProgress = false;
       });
     });
@@ -447,13 +416,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         // Allow user to naviate to next slide/library if the execution completes
         const self = this;
         returnValue = false;
-        var promise = new Promise(resolve => {
+        new Promise(resolve => {
           resolve(self.parent.trigger('navigated', nextScreen));
-        })
-        promise.then(bool => {
+        }).then(() => {
           this.parent.proceedButtonInProgress = false;
           this.parent.navigating = true;
-          return true;
         });
       }
     }
@@ -462,7 +429,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     if (returnValue) {
       return returnValue;
     }
-  }
+  };
 
   LibraryScreen.prototype.createFeedbackScreen = function (feedback, nextContentId) {
     const self = this;
@@ -653,9 +620,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
 
     const contentClone = H5P.jQuery.extend(true, {}, content);
-    if (hasAutoplay(contentClone.params)) {
-      this.shouldAutoplay[id] = true;
-    }
     this.currentMachineName = contentClone.library.split(' ', 2)[0];
 
     // Create content instance
@@ -835,7 +799,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
             const answered = instance.interactions
               .filter(interaction => interaction.getProgress() !== undefined);
 
-            // Giving opportunity to submit the answers 
+            // Giving opportunity to submit the answers
             if (instance.hasStar && answered.length > 0) {
               that.parent.enableNavButton();
             }
@@ -933,48 +897,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     return (nextContentId !== undefined && nextContentId > 0) ?
       LibraryScreen.isBranching(this.parent.params.content[nextContentId]) :
       false;
-  };
-
-  /**
-   * Check if params has autoplay enabled
-   *
-   * @param {Object} params
-   * @return {boolean}
-   */
-  const hasAutoplay = function (params) {
-    if (params.autoplay) {
-      params.autoplay = false;
-      return true;
-    }
-    else if (params.playback && params.playback.autoplay) {
-      params.playback.autoplay = false;
-      return true;
-    }
-    else if (params.media && params.media.params &&
-      params.media.params.playback &&
-      params.media.params.playback.autoplay) {
-      params.media.params.playback.autoplay = false;
-      return true;
-    }
-    else if (params.media && params.media.params &&
-      params.media.params.autoplay) {
-      params.media.params.autoplay = false;
-      return true;
-    }
-    else if (params.override && params.override.autoplay) {
-      // Handle auto-play for Interactive Video :-)
-      params.override.autoplay = false;
-      return true;
-    }
-    else if (params.presentation && params.presentation.slides[0].elements) {
-      for (let i = 0; i < params.presentation.slides[0].elements.length; i++) {
-        const instanceParams = params.presentation.slides[0].elements[i];
-        if (!instanceParams.displayAsButton && instanceParams.action && instanceParams.action.params && hasAutoplay(instanceParams.action.params)) {
-          return true;
-        }
-      }
-    }
-    return false;
   };
 
   /**
@@ -1493,8 +1415,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   };
 
   LibraryScreen.prototype.remove = function () {
-    this.parent.off('started', this.triggerAutoplay);
-    this.parent.off('navigated', this.triggerAutoplay);
     if (this.wrapper.parentNode !== null) {
       this.wrapper.parentNode.removeChild(this.wrapper);
     }
@@ -1536,10 +1456,11 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.getBoundingClientRect() : null);
 
         // Video with no source should appear on top
-        if (isVideo
-          && this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+        if (isVideo &&
+            this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
           element.classList.add('h5p-video-no-source');
-        } else {
+        }
+        else {
           element.classList.remove('h5p-video-no-source');
         }
 
