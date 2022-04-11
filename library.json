@@ -2,7 +2,7 @@
   "title": "Branching Scenario",
   "description": "description",
   "majorVersion": 1,
-  "minorVersion": 6,
+  "minorVersion": 7,
   "patchVersion": 0,
   "runnable": 1,
   "embedTypes": [
@@ -49,7 +49,7 @@
     {
       "machineName": "H5PEditor.BranchingScenario",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 4
     }
   ]
 }
