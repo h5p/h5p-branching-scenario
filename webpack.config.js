@@ -14,6 +14,7 @@ module.exports = {
     filename: 'dist.js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: process.env.NODE_ENV == 'development' ? 'eval-source-map' : false,
   module: {
     loaders: [
       {
