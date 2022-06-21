@@ -147,6 +147,10 @@
             {
               "label": "Ignorera att innehåll måste avslutas",
               "description": "Ignorera de individuella inställningarna för att kräva att innehållet måste avslutas före \"Framåt\"-knappen aktiveras. Detta kommer inte ha någon effekt om innehållet inte indikerar att det var \"avslutat\", exempelvis bilder eller Course Presentations som bara har en sida."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

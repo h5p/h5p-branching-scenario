@@ -147,6 +147,10 @@
             {
               "label": "Anular requirimento de rematado de contido",
               "description": "Anular elementos individuais da configuración que requiren que se complete o contido antes de activar o botón \"Adiante\". Non terá efecto se o contido non indica se foi completado ou non; p. ex. imaxes ou presentacións de curso cunha soa diapositiva."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
