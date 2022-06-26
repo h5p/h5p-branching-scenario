@@ -314,6 +314,14 @@ H5P.BranchingScenario = function (params, contentId) {
       );
     }
 
+    // Set the xAPI feedback before it is overwritten
+    if (e.data.feedback) {
+      self.xAPIDataCollector[self.xAPIDataCollector.length-1].statement.result.feedback = {
+        title: e.data.feedback.title,
+        subtitle: e.data.feedback.subtitle
+      }
+    }
+
     if (nextLibrary === false) {
       //  Show the relevant end screen if there is no next library
       self.currentEndScreen = self.endScreens[id];
