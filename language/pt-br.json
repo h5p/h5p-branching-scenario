@@ -147,6 +147,10 @@
             {
               "label": "Substituir requer conteúdo concluído",
               "description": "Substitua as configurações individuais para exigir que o conteúdo seja terminado antes de ativar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"terminado\", por exemplo, imagens ou apresentações do curso com apenas um slide."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

@@ -61,6 +61,7 @@
               },
               {
                 "label": "Obligāti jāaizpilda",
+                "description": "Mudina skatītājus pabeigt mijiedarbību, pirms turpināt scenāriju. Šis iestatījums darbosies tikai tām mijiedarbībām, kuras var pabeigt",
                 "options": [
                   {
                     "label": "Izmantot uzvedības iestatījumus"
@@ -71,8 +72,7 @@
                   {
                     "label": "Atspējots"
                   }
-                ],
-                "description": "Mudina skatītājus pabeigt mijiedarbību, pirms turpināt scenāriju. Šis iestatījums darbosies tikai tām mijiedarbībām, kuras var pabeigt"
+                ]
               },
               {
                 "label": "Nākamā Satura ID (beigu ekrānus nosaka negatīvi skaitļi)"
@@ -114,8 +114,11 @@
           }
         },
         {
+          "label": "Punktu skaitīšanas iestatījumi",
           "fields": [
             {
+              "label": "Punktu skaitīšanas iestatījumi",
+              "description": "Izvēlieties punktu skaitīšanas veidu",
               "options": [
                 {
                   "label": "Statiski iestatiet punktu skaitu katram beigu scenārijam"
@@ -126,16 +129,13 @@
                 {
                   "label": "Nav punktu"
                 }
-              ],
-              "label": "Punktu skaitīšanas iestatījumi",
-              "description": "Izvēlieties punktu skaitīšanas veidu"
+              ]
             },
             {
               "label": "Iekļaut mijiedarbību rezultātus zarošanās scenārija punktu skaitā",
               "description": "Ja izvēlēts, punkti, piemēram, no interaktīvajiem video, tiks pievienoti iegūtajam kopvērtējumam. Ja nav izvēlēts, tiks ņemti vērā tikai zarojošo jautājumu un scenārija beigu ekrānu atgriezeniskās saites sadaļās norādītie punkti."
             }
-          ],
-          "label": "Punktu skaitīšanas iestatījumi"
+          ]
         },
         {
           "label": "Uzvedības iestatījumi",
@@ -147,6 +147,10 @@
             {
               "label": "Ignorēt pabeigšanai obligātā satura iestatījumus",
               "description": "Ignorēt atsevišķus iestatījumus, kas nosaka obligātu satura apguvi pirms pogas \"Turpināt\" aktivizēšanas. Neietekmēs saturu, kas nenorāda, ka ir \"pabeigts\", piemēram, attēli vai kursa prezentācija ar tikai vienu slaidu."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -170,8 +174,8 @@
               "default": "Turpināt"
             },
             {
-              "default": "Atkārtot videoklipu",
-              "label": "Teksts pogai, ko izmanto, lai atkārtotu videoklipu"
+              "label": "Teksts pogai, ko izmanto, lai atkārtotu videoklipu",
+              "default": "Atkārtot videoklipu"
             },
             {
               "label": "Rezultāta etiķete beigu ekrānā",

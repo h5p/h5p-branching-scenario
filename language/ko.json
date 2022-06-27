@@ -147,6 +147,10 @@
             {
               "label": "시청 필수",
               "description": "시나리오를 진행하기 전에 시청자에게 비디오, 상호작용형 비디오 및 코스 프레젠테이션을 완료하도록 요청합니다. 내용 수준에서 재정의할 수 있습니다."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

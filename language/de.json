@@ -147,6 +147,10 @@
             {
               "label": "Inhaltsabschluss überschreiben",
               "description": "Überschreibt die individuellen Einstellungen, die vorgeben, dass der Inhalt abgeschlossen sein muss bevor der „Weiter“-Button klickbar wird. Hat keinen Effekt, wenn der Inhalt nicht mitteilt, dass er „abgeschlossen“ wurde, wie z.B. bei Bildern oder Kurspräsentationen mit nur einer Folie."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

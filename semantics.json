@@ -338,6 +338,14 @@
             "type": "boolean",
             "optional": true,
             "default": false
+          },
+          {
+            "name": "randomizeBranchingQuestions",
+            "label": "Randomize Branching Questions",
+            "description": "Branching questions will be displayed in random order",
+            "type": "boolean",
+            "optional": true,
+            "default": false
           }
         ]
       },

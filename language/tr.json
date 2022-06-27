@@ -147,6 +147,10 @@
             {
               "label": "İçerğinin tamamlanması gerekir ayarını geçersiz kıl",
               "description": "\"Devam\" düğmesini etkinleştirmeden önce içeriğin tamamlanmasını gerektiren bireysel ayarları geçersiz kılar. İçerik \"bitti\" olarak belirtilmiyorsa hiçbir etkisi olmayacak. Ör: görüntü ve sunum tek slayttan oluşuyorsa."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
