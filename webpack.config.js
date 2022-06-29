@@ -1,29 +1,30 @@
 const path = require('path');
+const nodeEnv = process.env.NODE_ENV || 'development';
 
 module.exports = {
+  mode: nodeEnv,
+  context: path.resolve(__dirname, 'scripts'),
   entry: {
     entries: [
-      './scripts/branchingScenario.js',
-      './scripts/genericScreen.js',
-      './scripts/libraryScreen.js',
-      './scripts/libraryScreenOverlay.js',
-      './scripts/scoring.js'
+      './branchingScenario.js',
+      './genericScreen.js',
+      './libraryScreen.js',
+      './libraryScreenOverlay.js',
+      './scoring.js'
     ]
   },
+  devtool: (nodeEnv == 'development') ? 'eval-source-map' : false,
   output: {
     filename: 'dist.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: process.env.NODE_ENV == 'development' ? 'eval-source-map' : false,
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel-loader',
+        test: /\.js$/,
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015']
-        }
-      }
+        use: 'babel-loader'
+      },
     ]
   }
 };

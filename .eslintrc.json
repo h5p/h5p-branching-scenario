@@ -9,7 +9,7 @@
     "browser": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module"
@@ -22,6 +22,7 @@
   "plugins": [
     "react"
   ],
+  "ignorePatterns": ["webpack.config.js", "dist/*.js"],
   "rules": {
     "valid-jsdoc": "off",
     "semi": [2, "always"],
