@@ -1366,6 +1366,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       questionContainer.classList.add('h5p-start-outside');
       questionContainer.classList.add('h5p-fly-in');
       branchingQuestion.querySelector('.h5p-branching-question-title').id = labelId;
+      const multiChoiceWrapper = branchingQuestion.querySelector('.h5p-multichoice-wrapper');
+      multiChoiceWrapper.setAttribute('role', 'group');
+      multiChoiceWrapper.setAttribute('aria-labelledby', labelId);
 
       document.querySelector('.h5p-branching-question').appendChild(buttonWrapper);
       this.currentLibraryWrapper.style.zIndex = 0;
