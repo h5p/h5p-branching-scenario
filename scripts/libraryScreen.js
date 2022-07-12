@@ -161,7 +161,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     const header = document.createElement('div');
     header.classList.add('h5p-screen-header');
-    
+
     this.header = header;
 
     header.appendChild(titleDiv);
@@ -411,7 +411,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     const libraryElement = document.createElement('div');
     libraryElement.classList.add('h5p-branching-scenario-content');
-    libraryElement.tabIndex = 0;
     this.appendRunnable(libraryElement, library.type, library.contentId);
 
     const libraryMachineName = library.type && library.type.library.split(' ')[0];
