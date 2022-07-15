@@ -118,7 +118,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
       return screenData.maxScore;
     };
 
-    
+
     /**
      * Used to check if on the final screen to prepare the course to restart
      */
@@ -127,7 +127,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
       const finalScreenReachedClasses = ['h5p-end-screen', 'h5p-current-screen'];
       if (finalScreenReachedClasses.every(i => self.screenWrapper.classList.contains(i))) {
         startScreen.classList.add('h5p-reset-start');
-      } 
+      }
       else if (startScreen.classList.contains('h5p-reset-start')) {
         startScreen.classList.remove('h5p-reset-start');
       }
@@ -231,7 +231,6 @@ H5P.BranchingScenario.GenericScreen = (function () {
     backgroundImage.classList.add('h5p-background-image');
 
     if (image && image.path) {
-      backgroundImage.tabIndex = 0;
       backgroundImage.src = H5P.getPath(image.path, this.parent.contentId);
     }
     else {
