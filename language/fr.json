@@ -1,13 +1,13 @@
 {
   "semantics": [
     {
-      "label": "Editeur de scénario",
+      "label": "Éditeur de scénario",
       "fields": [
         {
           "label": "Titre"
         },
         {
-          "label": "Ecran de départ",
+          "label": "Écran de départ",
           "fields": [
             {
               "label": "Titre de l'écran de départ",
@@ -15,20 +15,20 @@
             },
             {
               "label": "Sous-titre de l'écran de départ",
-              "placeholder": "Détails sur votre cours"
+              "placeholder": "Informations sur votre cours"
             },
             {
               "label": "Image de l'écran de départ"
             },
             {
-              "label": "Image alternative text"
+              "label": "Texte alternatif pour l'image"
             }
           ]
         },
         {
           "label": "Liste des écrans de fin",
           "field": {
-            "label": "Ecran de fin",
+            "label": "Écran de fin",
             "fields": [
               {
                 "label": "Titre"
@@ -41,7 +41,7 @@
               },
               {
                 "label": "Score",
-                "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoivent des résultats depuis H5P pour des utilisateurs qui atteignent le scénario de fin par défaut"
+                "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoit des résultats depuis H5P pour des utilisateurs qui atteignent le scénario de fin par défaut"
               },
               {
                 "label": "Identifiant du contenu"
@@ -61,7 +61,7 @@
               },
               {
                 "label": "Requis pour terminer",
-                "description": "Requiert la complétion de l’interaction avant de poursuivre le scénario. Cette préférence ne fonctionne que pour les interactions qui peuvent être complétées.",
+                "description": "Requiert l'accomplissement de l'activité avant de poursuivre le scénario. Cette préférence ne fonctionne que pour l'activité qui demandent une réponse de la part de l'utilisateur.",
                 "options": [
                   {
                     "label": "Utiliser les paramètres de comportement"
@@ -78,16 +78,16 @@
                 "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
               },
               {
-                "label": "Rétroaction",
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Titre de la rétroaction"
+                    "label": "Titre du feedback"
                   },
                   {
-                    "label": "Texte de la rétroaction"
+                    "label": "Texte du feedback"
                   },
                   {
-                    "label": "Image de la rétroaction"
+                    "label": "Image du feedback"
                   },
                   {
                     "label": "Score pour ce scénario",
@@ -97,7 +97,7 @@
               },
               {
                 "label": "Paramètres de comportement",
-                "description": "Ce paramètre permettra aux gens de revenir en arrière pour parcourir le contenu ou les questions du scénario",
+                "description": "Ce paramètre permettra aux utilisateurs de revenir en arrière pour parcourir le contenu ou les questions du scénario",
                 "options": [
                   {
                     "label": "Utiliser les paramètres de comportement"
@@ -133,7 +133,7 @@
             },
             {
               "label": "Inclure la notation des interactions à l’intérieur du scénario à embranchements",
-              "description": "La notation d’autres activités  (de vidéos interactives, par exemple) sera ajoutée à la notation finale obtenue. Si cette option n’est pas sélectionnée, les notations spécifiées dans les sections de rétroactions des éléments de contenus, des questions d’embranchement et des scénarios finaux seront comptabilisées."
+              "description": "La notation d’autres activités  (de vidéos interactives, par exemple) sera ajoutée à la notation finale obtenue. Si cette option n’est pas sélectionnée, les notations spécifiées dans les sections de feedbacks des éléments de contenus, des questions de branchement et des scénarios finaux seront comptabilisées."
             }
           ]
         },
@@ -147,6 +147,10 @@
             {
               "label": "Contourner la nécessité de terminer le contenu",
               "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple)."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

@@ -147,6 +147,10 @@
             {
               "label": "Anular requerir contenido terminado",
               "description": "Anular las configuraciones individuales para requerir que el contenido esté terminado antes de activar el botón para \"Proceder\". No tendrá efecto si el contenido no indica si fue \"terminada\"; por ejemplo imágenes o presentaciones d curso con una sola página."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },

@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Editor de dilemas conceptuais",
+      "label": "Editor de escenarios ramificados",
       "fields": [
         {
           "label": "Título"
@@ -21,7 +21,7 @@
               "label": "Imaxe da pantalla de inicio"
             },
             {
-              "label": "Image alternative text"
+              "label": "Texto alternativo da imaxe"
             }
           ]
         },
@@ -50,7 +50,7 @@
           }
         },
         {
-          "label": "Lista do contido do dilema conceptual",
+          "label": "Lista do contido do escenario ramificado",
           "entity": "contido",
           "field": {
             "fields": [
@@ -60,17 +60,17 @@
                 "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
               },
               {
-                "label": "Required to be completed",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Completado obrigatorio",
+                "description": "Pídelle ao usuario que complete a interacción antes de seguir co escenario. Esta característica só funciona en interaccións que poden completarse",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar configuración de comportamento"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activado"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivado"
                   }
                 ]
               },
@@ -81,32 +81,32 @@
                 "label": "Retroalimentación",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Título da retroalimentación"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Texto da retroalimentación"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Imaxe da retroalimentación"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "Puntación para este escenario",
+                    "description": "Enviarase a puntuación a calquera LMS, LRS ou calquera dispositivo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario"
                   }
                 ]
               },
               {
-                "label": "Behavioural settings",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Configuración de comportamento",
+                "description": "Permiten que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar a configuración de comportamento"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activado"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desactivado"
                   }
                 ]
               }
@@ -132,21 +132,25 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Incluir as puntuacións das interaccións dentro do Escenario Ramificado",
+              "description": "Se se activa, engadiranse as puntuacións do Vídeo Interactivo á puntuación total obtida. En caso contrario, só contarán as puntuacións especificadas nas seccións de retroalimentación dos elementos de contido, preguntas ramificadas e escenarios finais."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Configuración de comportamento",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation"
+              "label": "Anular a navegación cara atrás",
+              "description": "Anular a configuración individual que permite navegar cara atrás"
             },
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Anular requirimento de rematado de contido",
+              "description": "Anular elementos individuais da configuración que requiren que se complete o contido antes de activar o botón \"Adiante\". Non terá efecto se o contido non indica se foi completado ou non; p. ex. imaxes ou presentacións de curso cunha soa diapositiva."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -155,35 +159,35 @@
           "fields": [
             {
               "label": "Texto para o botón na pantalla inicial",
-              "default": "Start the course"
+              "default": "Empezar o curso"
             },
             {
               "label": "Texto para o botón na pantalla final",
-              "default": "Restart the course"
+              "default": "Reiniciar o curso"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
+              "label": "Texto para o botón atrás en cada pantalla da biblioteca e pregunta ramificada",
+              "default": "Atrás"
             },
             {
               "label": "Texto para o botón en cada pantalla da biblioteca",
               "default": "Adiante"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Texto para o botón usado para volver a reproducir o vídeo",
+              "default": "Volver a reproducir o vídeo"
             },
             {
               "label": "Etiqueta para a puntuación na pantalla final",
               "default": "A túa puntuación:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etiqueta para a puntuación na pantalla final",
+              "default": "A túa puntuación:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Etiqueta Aria para botón de pantalla completa",
+              "default": "Pantalla completa"
             }
           ]
         }

@@ -147,6 +147,10 @@
             {
               "label": "Oorskryding vereis voltooide inhoud",
               "description": "Stel die individuele instellings oor om te vereis dat die inhoud klaar moet wees voordat jy die \"Gaan voort\" -knoppie aktiveer. Sal geen effek hê as die inhoud nie aandui of dit 'klaar' is nie, bv. beelde of kursusaanbiedings met net een skyfie."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
