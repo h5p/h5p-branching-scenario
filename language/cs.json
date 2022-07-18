@@ -21,7 +21,7 @@
               "label": "Obrázek úvodní obrazovky"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternativní text obrázku"
             }
           ]
         },
@@ -132,8 +132,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Zahrnout skóre z interakcí v rámci Větvení scénáře",
+              "description": "Pokud jsou vybrána skóre například z interaktivních videí, budou přidána k celkovému získanému skóre. Pokud je nezvolíte, budou se počítat pouze skóre specifikovaná v sekcích zpětné vazby položek obsahu, větvené otázky a konečné scénáře."
             }
           ]
         },
