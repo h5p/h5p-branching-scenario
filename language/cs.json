@@ -147,6 +147,10 @@
             {
               "label": "Přepsat vyžaduje dokončení obsahu",
               "description": "Před aktivací tlačítka „Pokračovat“ přepsat jednotlivá nastavení vyžadující dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
