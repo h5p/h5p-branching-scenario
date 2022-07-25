@@ -21,7 +21,7 @@
               "label": "Slika začetnega zaslona"
             },
             {
-              "label": "Image alternative text"
+              "label": "Nadomestno besedilo slike"
             }
           ]
         },
@@ -60,17 +60,17 @@
                 "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino."
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Zahtevaj zaključek vsebine",
+                "description": "Udeleženci morajo pred nadaljevanjem scenarija obvezno zaključiti zahtevano interakcijo. Nastavitev deluje le za interakcije, ki jih je dejansko mogoče zaključiti.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Upoštevaj iz Nastavitve interakcije"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Omogoči"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Onemogoči"
                   }
                 ]
               },
@@ -96,17 +96,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Vrni nazaj",
+                "description": "Nastavitev omogoča udeležencem vrnitev nazaj na ogled vsebine oz. vprašanja.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Upoštevaj iz Nastavitve interakcije"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Omogoči"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Onemogoči"
                   }
                 ]
               }
@@ -132,25 +132,25 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "V scenariju poteka upoštevaj točke interakcij",
+              "description": "Pri končnem rezultatu bodo upoštevane tudi točke iz posamezne vsebine (npr. v interaktivnem videoposnetku. Sicer upošteva le točke, ki so določene v scenariju."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Nastavitve interakcije",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Preglasi navigacijo nazaj",
+              "description": "Nastavitev preglasi posamezna dovoljenja za vrnitev nazaj na vprašanja."
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Zahtevaj zaključek vsebine",
+              "description": "Nastavitev preglasi posamezne zahteve po zaključku vsebine in vpliva na uporabo gumba \"Nadaljuj\". Nastavitev nima vpliva, če vsebine ni mogoče zaključiti (npr. slika brez interakcije)."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Naključna razporeditev odločitvenih vprašanj",
+              "description": "Omogoči prikaz odločitvenih vprašanj po naključnem vrstnem redu."
             }
           ]
         },
@@ -166,28 +166,28 @@
               "default": "Začni znova"
             },
             {
+              "label": "Besedilo gumba za vrnitev na odločitvena vprašanja",
+              "default": "Nazaj"
+            },
+            {
               "label": "Besedilo gumba za nadaljevanje na vmesnih zaslonih",
               "default": "Nadaljuj"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Besedilo gumba za ponovno predvajanje videoposnetka",
+              "default": "Ponovno predvajaj videoposnetek"
             },
             {
               "label": "Besedilo za prikaz rezultatov na končnem zaslonu",
               "default": "Rezultat:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Besedilo za prikaz rezultatov na končnem zaslonu",
+              "default": "Rezultat:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Besedilo za celozaslonski način",
+              "default": "Celozaslonski način"
             }
           ]
         }
