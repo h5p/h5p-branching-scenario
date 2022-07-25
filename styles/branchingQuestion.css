@@ -58,10 +58,10 @@
   font-weight: 200;
 }
 
-.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative):not(.h5p-branching-question-close) {
+.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative, .h5p-branching-question-close) {
   margin-top: 1em;
   background-color: #C4FEBF;
-  padding: 0.9rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   border-style: solid;
   border-width: 0.1250rem;
   border-color: #98fd8e;
@@ -71,19 +71,19 @@
   font-family: H5PRobotoMedium;
 }
 
-.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative):not(.h5p-branching-question-close):hover {
+.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative, .h5p-branching-question-close):hover {
   color: #4b495e;
   background: #e4ffe1;
   border-color: #b0f88f;
 }
 
-.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative):not(.h5p-branching-question-close):active {
+.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative, .h5p-branching-question-close):active {
   color: #4b495e;
   background: #b0f88f;
   border-color: #9fe281;
 }
 
-.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative):after button::not(.h5p-branching-question-close):after{
+.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative, .h5p-branching-question-close):after {
   font-family: 'H5PFontAwesome4';
   content: "\f101";
   padding-left: 10px;
@@ -97,10 +97,6 @@
 .h5p-fly-in {
   animation: fly-in 0.8s forwards;
   -webkit-animation: fly-in 0.8s forwards;
-}
-
-.h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative):not(.h5p-branching-question-close) {
-  padding: 0.6rem 1.5rem;
 }
 
 .h5p-branching-question-alternative {
