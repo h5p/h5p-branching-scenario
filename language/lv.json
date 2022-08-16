@@ -149,8 +149,8 @@
               "description": "Ignorēt atsevišķus iestatījumus, kas nosaka obligātu satura apguvi pirms pogas \"Turpināt\" aktivizēšanas. Neietekmēs saturu, kas nenorāda, ka ir \"pabeigts\", piemēram, attēli vai kursa prezentācija ar tikai vienu slaidu."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Zarošanās jautājumus izkārtot nejauši",
+              "description": "Zarošanās jautājumi tiks izkārtoti nejaušā secībā"
             }
           ]
         },
