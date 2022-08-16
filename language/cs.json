@@ -60,6 +60,10 @@
                 "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Povinné vyplnění",
                 "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili interakci. Toto nastavení bude fungovat pouze u interakcí, které lze dokončit",
                 "options": [
@@ -167,10 +171,6 @@
             },
             {
               "label": "Text pro tlačítko Zpět na každé z obrazovek knihovny a větvící otázky",
-              "default": "Pokračovat"
-            },
-            {
-              "label": "Text tlačítka na každé obrazovce knihovny",
               "default": "Pokračovat"
             },
             {

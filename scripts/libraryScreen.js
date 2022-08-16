@@ -379,7 +379,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     };
 
-    var text = document.createTextNode(this.parent.params.l10n.proceedButtonText);
+    const proceedButtonText = this.parent.getLibrary(self.currentLibraryId).proceedButtonText;
+    var text = document.createTextNode(proceedButtonText);
     navButton.appendChild(text);
 
     feedbackContent.appendChild(navButton);
@@ -428,7 +429,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       );
       this.contentOverlays[library.contentId].addButton(
         'proceed',
-        this.parent.params.l10n.proceedButtonText,
+        library.proceedButtonText,
         () => {
           this.handleProceedAfterVideo();
         }
@@ -518,7 +519,8 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       content.params.visuals.fit = false;
     }
     if (library === 'H5P.BranchingQuestion') {
-      content.params.proceedButtonText = parent.params.l10n.proceedButtonText;
+      const proceedButtonText = parent.getLibrary(self.currentLibraryId).proceedButtonText;
+      content.params.proceedButtonText = proceedButtonText;
     }
 
     const contentClone = H5P.jQuery.extend(true, {}, content);
@@ -1127,6 +1129,10 @@ H5P.BranchingScenario.LibraryScreen = (function () {
         showProceedButtonflag = false;
       }
 
+      // Update proceed button text
+      const proceedButton = document.querySelector('.h5p-proceed-button');
+      proceedButton.innerHTML = library.proceedButtonText;
+
       // Update the title
       const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
       this.libraryTitle.setAttribute('aria-label', contentTitle ? contentTitle : 'Untitled Content');
@@ -1540,9 +1546,9 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     });
 
-    this.navButton.classList.add('h5p-nav-button');
-
-    this.navButton.appendChild(document.createTextNode(parent.params.l10n.proceedButtonText));
+    this.navButton.classList.add('h5p-nav-button','h5p-proceed-button');
+    const proceedButtonText = parent.getLibrary(this.currentLibraryId).proceedButtonText;
+    this.navButton.appendChild(document.createTextNode(proceedButtonText));
     buttonWrapper.appendChild(this.navButton);
 
     const footer = document.createElement('div');

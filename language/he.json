@@ -1,11 +1,13 @@
 {
   "semantics": [
     {
+      "label": "Branching Scenario Editor",
       "fields": [
         {
           "label": "Title"
         },
         {
+          "label": "Start screen",
           "fields": [
             {
               "label": "Start screen title",
@@ -21,12 +23,12 @@
             {
               "label": "Image alternative text"
             }
-          ],
-          "label": "Start screen"
+          ]
         },
         {
           "label": "List of end screens",
           "field": {
+            "label": "End screen",
             "fields": [
               {
                 "label": "Title"
@@ -38,18 +40,18 @@
                 "label": "Image"
               },
               {
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario",
-                "label": "Score"
+                "label": "Score",
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
               },
               {
                 "label": "Content ID"
               }
-            ],
-            "label": "End screen"
+            ]
           }
         },
         {
           "label": "List of branching scenario content",
+          "entity": "content",
           "field": {
             "fields": [
               {},
@@ -58,7 +60,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Required to be completed",
+                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -69,8 +76,7 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed"
+                ]
               },
               {
                 "label": "Next Content ID (end screens are defined by negative numbers)"
@@ -95,6 +101,7 @@
               },
               {
                 "label": "Behavioural settings",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -105,17 +112,17 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "This will allow user to go back and see the previous content/question in the scenario"
+                ]
               }
             ]
-          },
-          "entity": "content"
+          }
         },
         {
+          "label": "Scoring options",
           "fields": [
             {
               "label": "Scoring options",
+              "description": "Select type of scoring",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -126,17 +133,16 @@
                 {
                   "label": "No scoring"
                 }
-              ],
-              "description": "Select type of scoring"
+              ]
             },
             {
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count.",
-              "label": "Include scores from interactions within the Branching Scenario"
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
             }
-          ],
-          "label": "Scoring options"
+          ]
         },
         {
+          "label": "Behavioural settings",
           "fields": [
             {
               "label": "Override backwards navigation",
@@ -150,48 +156,42 @@
               "label": "Randomize Branching Questions",
               "description": "Branching questions will be displayed in random order"
             }
-          ],
-          "label": "Behavioural settings"
+          ]
         },
         {
           "label": "Localization",
           "fields": [
             {
-              "default": "Start the course",
-              "label": "Text for the button on the start screen"
+              "label": "Text for the button on the start screen",
+              "default": "Start the course"
             },
             {
-              "default": "Restart the course",
-              "label": "Text for the button on the end screen"
+              "label": "Text for the button on the end screen",
+              "default": "Restart the course"
             },
             {
-              "default": "Back",
-              "label": "Text for the back button on each of the library screens and branching questions"
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Back"
             },
             {
-              "default": "Proceed",
-              "label": "Text for the button on each of the library screens"
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
-              "default": "Replay the video",
-              "label": "Text for the button used to replay a video"
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
             },
             {
-              "default": "Your score:",
-              "label": "Label for score on the end screen"
+              "label": "Label for score on the end screen",
+              "default": "Your score:"
             },
             {
-              "default": "Your score:",
-              "label": "Label for score on the end screen"
-            },
-            {
-              "default": "Fullscreen",
-              "label": "Aria label for fullscreen button"
+              "label": "Aria label for fullscreen button",
+              "default": "Fullscreen"
             }
           ]
         }
-      ],
-      "label": "Branching Scenario Editor"
+      ]
     }
   ]
 }

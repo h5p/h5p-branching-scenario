@@ -60,6 +60,10 @@
                 "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Muss abgeschlossen werden",
                 "description": "Zwingt Lernende, die Interaktion zu beenden, bevor mit dem Szenario fortgefahren werden kann. Diese Einstellung funktioniert nur, wenn Interaktionen abgeschlossen werden können.",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Text des \"Zurück\"-Buttons auf jedem Inhaltsbildschirm und jeder Verzweigung",
               "default": "Zurück"
-            },
-            {
-              "label": "Text des Buttons auf jedem Inhaltsbildschirm",
-              "default": "Weiter"
             },
             {
               "label": "Text für den Button, der das Video erneut abspielen lässt",

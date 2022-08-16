@@ -60,6 +60,10 @@
                 "description": "Ja atlasīts, lietotājs redzēs satura nosaukumu augšējā joslā virs šī satura"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Obligāti jāaizpilda",
                 "description": "Mudina skatītājus pabeigt mijiedarbību, pirms turpināt scenāriju. Šis iestatījums darbosies tikai tām mijiedarbībām, kuras var pabeigt",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Pogas \"Atpakaļ\" teksts katram bibliotēkas ekrānam un zarošanās jautājumam",
               "default": "Atpakaļ"
-            },
-            {
-              "label": "Teksts pogai katrā bibliotēkas ekrānā",
-              "default": "Turpināt"
             },
             {
               "label": "Teksts pogai, ko izmanto, lai atkārtotu videoklipu",

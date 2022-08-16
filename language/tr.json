@@ -60,6 +60,10 @@
                 "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Tamamlanması gerekli",
                 "description": "İzleyicileri senaryoya devam etmeden önce etkileşimi tamamlamaya teşvik eder. Bu ayar yalnızca tamamlanabilen etkileşimler için çalışır",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Her bir kitaplık ekranındaki geri düğmesi ve dallanma soruları için metin",
               "default": "Geri"
-            },
-            {
-              "label": "Kütüphane ekranlarının her birinde düğme için metin",
-              "default": "İlerle"
             },
             {
               "label": "Bir videoyu tekrar oynatmak için kullanılan düğmenin metni",
