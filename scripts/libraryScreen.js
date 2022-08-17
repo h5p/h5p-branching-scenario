@@ -379,7 +379,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       });
     };
 
-    const proceedButtonText = this.parent.getLibrary(self.currentLibraryId).proceedButtonText;
+    const proceedButtonText = self.parent.getLibrary(self.currentLibraryId).proceedButtonText;
     var text = document.createTextNode(proceedButtonText);
     navButton.appendChild(text);
 
@@ -519,7 +519,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       content.params.visuals.fit = false;
     }
     if (library === 'H5P.BranchingQuestion') {
-      const proceedButtonText = parent.getLibrary(self.currentLibraryId).proceedButtonText;
+      const proceedButtonText = parent.getLibrary(id).proceedButtonText;
       content.params.proceedButtonText = proceedButtonText;
     }
 
