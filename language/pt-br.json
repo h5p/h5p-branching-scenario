@@ -78,7 +78,7 @@
                 "label": "Próximo ID de conteúdo (as telas finais são definidas por números negativos)"
               },
               {
-                "label": "Feedback",
+                "label": "Feedback (retorno)",
                 "fields": [
                   {
                     "label": "Título do feedback"
@@ -149,8 +149,8 @@
               "description": "Substitua as configurações individuais para exigir que o conteúdo seja terminado antes de ativar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"terminado\", por exemplo, imagens ou apresentações do curso com apenas um slide."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Randomizar perguntas de ramificação",
+              "description": "As perguntas de ramificação serão exibidas em ordem aleatória"
             }
           ]
         },

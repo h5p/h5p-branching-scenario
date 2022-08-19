@@ -149,8 +149,8 @@
               "description": "Overschrijft de individuele instelling die vereist dat inhoud voltooid moet zijn voordat de \"Verder gaan\"-knop geactiveerd wordt. Heeft geen effect als de inhoud niet \"voltooid\" kan worden, bijv. afbeeldingen of cursuspresentaties met slechts één dia."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Willekeurige vertakkingsvragen",
+              "description": "Vertakkingsvragen worden weergegeven in willekeurige volgorde"
             }
           ]
         },
