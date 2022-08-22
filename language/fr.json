@@ -60,6 +60,10 @@
                 "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Requis pour terminer",
                 "description": "Requiert l'accomplissement de l'activité avant de poursuivre le scénario. Cette préférence ne fonctionne que pour l'activité qui demandent une réponse de la part de l'utilisateur.",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Texte pour le bouton de chaque écran de la bibliothèque",
               "default": "Revenir en arrière"
-            },
-            {
-              "label": "Texte du bouton pour chaque écran de la bibliothèque",
-              "default": "Continuer"
             },
             {
               "label": "Libellé du bouton pour jouer la vidéo de nouveau",

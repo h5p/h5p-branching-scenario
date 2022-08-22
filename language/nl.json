@@ -60,6 +60,10 @@
                 "description": "Indien geselecteerd, ziet de gebruiker de titel van de inhoud in de balk boven deze inhoud"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Vereist voor voltooiing",
                 "description": "Dwingt kijkers de interactie te voltooien alvorens door te gaan met het scenario. Deze instelling werkt alleen bij interacties die kunnen worden voltooid",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Tekst voor de \"Terug\"-knop op elk bibliotheekscherm en bij vertakkingsvragen",
               "default": "Terug"
-            },
-            {
-              "label": "Tekst voor de knop op elk bibliotheekscherm",
-              "default": "Doorgaan"
             },
             {
               "label": "Tekst van de knop voor opnieuw afspelen video",

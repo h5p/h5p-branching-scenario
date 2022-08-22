@@ -60,6 +60,10 @@
                 "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino."
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Zahtevaj zaključek vsebine",
                 "description": "Udeleženci morajo pred nadaljevanjem scenarija obvezno zaključiti zahtevano interakcijo. Nastavitev deluje le za interakcije, ki jih je dejansko mogoče zaključiti.",
                 "options": [
@@ -168,10 +172,6 @@
             {
               "label": "Besedilo gumba za vrnitev na odločitvena vprašanja",
               "default": "Nazaj"
-            },
-            {
-              "label": "Besedilo gumba za nadaljevanje na vmesnih zaslonih",
-              "default": "Nadaljuj"
             },
             {
               "label": "Besedilo gumba za ponovno predvajanje videoposnetka",
