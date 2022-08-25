@@ -60,6 +60,10 @@
                 "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "완료 필수",
                 "description": "사용자가 시나리오를 진행하기 전에 상호 작용을 완료해야 합니다. 이 설정은 완료할 수 있는 상호 작용에만 적용됩니다.",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "시청 필수",
               "description": "시나리오를 진행하기 전에 시청자에게 비디오, 상호작용형 비디오 및 코스 프레젠테이션을 완료하도록 요청합니다. 내용 수준에서 재정의할 수 있습니다."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "각 라이브러리 화면의 버튼에 대한 텍스트",
               "default": "진행"
-            },
-            {
-              "label": "비디오 재시청 버튼에 대한 텍스트",
-              "default": "비디오 재시청"
             },
             {
               "label": "끝 화면에 점수 표시 라벨",

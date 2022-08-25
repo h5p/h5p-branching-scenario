@@ -60,6 +60,10 @@
                 "description": "Если выбрано, пользователь увидит заголовок контента в верхней панели над этим контентом."
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Required to be completed",
                 "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Required to watch",
               "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Текст для кнопки на каждом из экранов библиотеки",
               "default": "Продолжить"
-            },
-            {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
             },
             {
               "label": "Надпись для оценки на конечном экране",

@@ -60,6 +60,10 @@
                 "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Osaketa derrigorrezkoa da",
                 "description": "Ikusleek eszenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Baliogabetu edukia amaitzea behartzea",
               "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Liburutegi-pantaila bakoitzean atzera botoiaren eta adarkatutako galderen testua",
               "default": "Atzera"
-            },
-            {
-              "label": "Liburutegi-pantaila bakoitzeko botoiaren testua",
-              "default": "Ekin"
             },
             {
               "label": "Bideo bat berriro erreproduzitzeko erabilitako botoiaren testua",

@@ -63,7 +63,6 @@ H5P.BranchingScenario = function (params, contentId) {
   params.l10n = extend({
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
-    proceedButtonText: "Proceed",
     scoreText: "Your score:",
     backButtonText: "Back",
     fullscreenAria: "Fullscreen",
@@ -71,11 +70,16 @@ H5P.BranchingScenario = function (params, contentId) {
     disableProceedButtonText: "Require to complete the current module"
   }, params.l10n);
 
-  // Sanitize the (next)ContentIds that the editor didn't set
   params.content.forEach((item, index) => {
+    // Sanitize the (next)ContentIds that the editor didn't set
     item.contentId = index;
     if (item.nextContentId === undefined) {
       item.nextContentId = -1;
+    }
+
+    // Pass `randomize` parameter to branching question
+    if (params.behaviour.randomizeBranchingQuestions && item.type.library.indexOf('H5P.BranchingQuestion') !== -1) {
+      item.type.params.branchingQuestion.randomize = true;
     }
   });
 

@@ -60,6 +60,10 @@
                 "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Vereis om te voltooi",
                 "description": "Versoek kykers om die interaksie te voltooi voordat hulle met die scenario voortgaan. Hierdie instelling sal slegs werk vir interaksies wat voltooi kan word",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Oorskryding vereis voltooide inhoud",
               "description": "Stel die individuele instellings oor om te vereis dat die inhoud klaar moet wees voordat jy die \"Gaan voort\" -knoppie aktiveer. Sal geen effek hê as die inhoud nie aandui of dit 'klaar' is nie, bv. beelde of kursusaanbiedings met net een skyfie."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Teks vir die terugknoppie op elk van die biblioteekskerms en vertakkingsvrae",
               "default": "Terug"
-            },
-            {
-              "label": "Teks vir die knoppie op elk van die biblioteekskerms",
-              "default": "Gaan voort"
             },
             {
               "label": "Teks vir die knoppies wat gebruik is om die video te herspeel",

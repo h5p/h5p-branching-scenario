@@ -60,6 +60,10 @@
                 "description": "Jos valittuna, käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Suoritus vaaditaan",
                 "description": "Kehottaa katsojia suorittamaan loppuun vuorovaikutuksen ennen skenaariossa jatkamista. Asetus toimii vain niiden vuorovaikutusten kanssa, jotka voi suorittaa loppuun",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Yliaja sisällön loppuun pääsemisen vaatimus",
               "description": "Yliaja yksittäiset asetukset sisällön loppuun pääsemisen vaatimisesta ennen \"Jatka\" -painikkeen aktivoitumista. Tällä ei ole vaikutusta, jos sisällössä ei määritellä milloin se on \"valmis\", esim. kuvat tai yhden sivun diaesitys."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Aineistotyyppien ja haarautuvien kysymysten paluupainikkeen teksti",
               "default": "Paluu"
-            },
-            {
-              "label": "Painikkeen, jolla jatketaan aineistotyypistä toiseen, teksti",
-              "default": "Jatka"
             },
             {
               "label": "Painikkeen, jolla toistetaan video uudelleen, teksti",

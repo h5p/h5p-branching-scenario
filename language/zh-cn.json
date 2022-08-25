@@ -1,6 +1,7 @@
 {
   "semantics": [
     {
+      "label": "Branching Scenario Editor",
       "fields": [
         {
           "label": "Title"
@@ -25,7 +26,9 @@
           ]
         },
         {
+          "label": "List of end screens",
           "field": {
+            "label": "End screen",
             "fields": [
               {
                 "label": "Title"
@@ -37,24 +40,28 @@
                 "label": "Image"
               },
               {
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario",
-                "label": "Score"
+                "label": "Score",
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
               },
               {
                 "label": "Content ID"
               }
-            ],
-            "label": "End screen"
-          },
-          "label": "List of end screens"
+            ]
+          }
         },
         {
+          "label": "List of branching scenario content",
+          "entity": "content",
           "field": {
             "fields": [
               {},
               {
                 "label": "Show content title in view",
                 "description": "If selected, the user will see the content title in the top bar above this content"
+              },
+              {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
               },
               {
                 "label": "Required to be completed",
@@ -75,6 +82,7 @@
                 "label": "Next Content ID (end screens are defined by negative numbers)"
               },
               {
+                "label": "Feedback",
                 "fields": [
                   {
                     "label": "Feedback title"
@@ -89,8 +97,7 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
                   }
-                ],
-                "label": "Feedback"
+                ]
               },
               {
                 "label": "Behavioural settings",
@@ -108,13 +115,14 @@
                 ]
               }
             ]
-          },
-          "label": "List of branching scenario content",
-          "entity": "content"
+          }
         },
         {
+          "label": "Scoring options",
           "fields": [
             {
+              "label": "Scoring options",
+              "description": "Select type of scoring",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -125,51 +133,49 @@
                 {
                   "label": "No scoring"
                 }
-              ],
-              "label": "Scoring options",
-              "description": "Select type of scoring"
+              ]
             },
             {
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count.",
-              "label": "Include scores from interactions within the Branching Scenario"
+              "label": "Include scores from interactions within the Branching Scenario",
+              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
             }
-          ],
-          "label": "Scoring options"
+          ]
         },
         {
+          "label": "Behavioural settings",
           "fields": [
             {
               "label": "Override backwards navigation",
               "description": "Override the individual settings for enabling backwards navigation"
             },
             {
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
-              "label": "Override require content finished"
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
-          ],
-          "label": "Behavioural settings"
+          ]
         },
         {
+          "label": "Localization",
           "fields": [
             {
               "label": "Text for the button on the start screen",
               "default": "Start the course"
             },
             {
-              "default": "Restart the course",
-              "label": "Text for the button on the end screen"
+              "label": "Text for the button on the end screen",
+              "default": "Restart the course"
             },
             {
               "label": "Text for the back button on each of the library screens and branching questions",
               "default": "Back"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
-            },
-            {
-              "default": "Replay the video",
-              "label": "Text for the button used to replay a video"
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Label for score on the end screen",
@@ -183,11 +189,9 @@
               "label": "Aria label for fullscreen button",
               "default": "Fullscreen"
             }
-          ],
-          "label": "Localization"
+          ]
         }
-      ],
-      "label": "Branching Scenario Editor"
+      ]
     }
   ]
 }

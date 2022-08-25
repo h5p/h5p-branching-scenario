@@ -60,6 +60,10 @@
                 "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Måste genomföras",
                 "description": "Uppmanar deltagaren att genomföra interaktionen före denne kan fortsätta med scenariot. Denna inställning fungerar endast för interaktioner som kan genomföras",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Ignorera att innehåll måste avslutas",
               "description": "Ignorera de individuella inställningarna för att kräva att innehållet måste avslutas före \"Framåt\"-knappen aktiveras. Detta kommer inte ha någon effekt om innehållet inte indikerar att det var \"avslutat\", exempelvis bilder eller Course Presentations som bara har en sida."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Text för tillbaka-knappen på varje biblioteksskärm och branching-fråga",
               "default": "Tillbaka"
-            },
-            {
-              "label": "Text för knappen på varje biblioteksskärm",
-              "default": "Fortsätt"
             },
             {
               "label": "Etikett för knappen som används för att starta om en video",

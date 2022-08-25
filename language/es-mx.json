@@ -60,6 +60,10 @@
                 "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior arriba de este contenido"
               },
               {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
                 "label": "Obligatorio que sea completado",
                 "description": "Urge a los espectadores a que completen la interacción antes de proceder con el escenario. Esta configuración solamente funcionará para interacciones que puedan ser completadas",
                 "options": [
@@ -147,6 +151,10 @@
             {
               "label": "Anular requerir contenido terminado",
               "description": "Anular las configuraciones individuales para requerir que el contenido esté terminado antes de activar el botón de \"Proceder\". No tendrá efecto alguno si el contenido no indica que fue \"terminado\", por ejemplo imágenes o presentaciones del curso con una sola diapositiva."
+            },
+            {
+              "label": "Aleatorizar Preguntas Ramificadas",
+              "description": "Preguntas ramificadas serán mostradas en orden aleatorio"
             }
           ]
         },
@@ -164,10 +172,6 @@
             {
               "label": "Texto para el botón Retroceder en cada una de las pantallas de la biblioteca y preguntas ramificadas",
               "default": "Regresar"
-            },
-            {
-              "label": "Texto para el botón en cada pantalla de biblioteca",
-              "default": "Proceder"
             },
             {
               "label": "Texto para el botón usado para reproducir un video",

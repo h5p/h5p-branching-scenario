@@ -100,7 +100,7 @@
                 ]
               },
               {
-                "label": "Navigate back",
+                "label": "Behavioural settings",
                 "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
@@ -145,12 +145,12 @@
           "label": "Behavioural settings",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Override backwards navigation",
+              "description": "Override the individual settings for enabling backwards navigation"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Override require content finished",
+              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
             },
             {
               "label": "Randomize Branching Questions",
@@ -163,31 +163,31 @@
           "fields": [
             {
               "label": "Text for the button on the start screen",
-              "default": "Start kurset"
+              "default": "Start"
             },
             {
               "label": "Text for the button on the end screen",
-              "default": "Restart kurset"
+              "default": "Start forfra"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Gå videre"
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Tilbage"
+            },
+            {
+              "label": "Text for the disbled button on the library screens",
+              "default": "Svar på spørgsmålet for at fortsætte"
+            },
+            {
+              "label": "Text for the button used to replay a video",
+              "default": "Se Videoen igen"
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Ditt resultat:"
-            },
-            {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "Dine point:"
             },
             {
               "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "default": "Fuld skærm"
             }
           ]
         }

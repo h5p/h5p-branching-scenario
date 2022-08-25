@@ -41,20 +41,24 @@
 .h5p-branching-scenario .h5p-screen-header .library-subtitle {
   outline: none;
 }
-
+.h5p-branching-scenario .h5p-screen-footer {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 /* Override link color and set underline so it is shown in preview*/
 .h5p-branching-scenario .h5p-screen-header .h5p-title-wrapper .h5p-branching-header a {
   text-decoration: underline;
   color: #ffffff;
 }
 
-.h5p-branching-scenario .h5p-screen-header .h5p-back-button:before {
+.h5p-branching-scenario .h5p-screen-footer .h5p-back-button:before {
   font-family: 'H5PFontAwesome4';
   content: "\f100";
   padding-right: 10px;
 }
 
-.h5p-branching-scenario .h5p-screen-header .h5p-nav-button:after {
+.h5p-branching-scenario .h5p-screen-footer .h5p-nav-button:after {
   font-family: 'H5PFontAwesome4';
   content: "\f101";
   padding-left: 10px;

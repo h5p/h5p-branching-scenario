@@ -169,6 +169,13 @@
               "importance": "high"
             },
             {
+              "name": "proceedButtonText",
+              "label": "Text for the proceed button",
+              "type": "text",
+              "importance": "low",
+              "default": "Proceed"
+            },
+            {
               "name": "forceContentFinished",
               "type": "select",
               "label": "Override require content finished",
@@ -338,6 +345,14 @@
             "type": "boolean",
             "optional": true,
             "default": false
+          },
+          {
+            "name": "randomizeBranchingQuestions",
+            "label": "Randomize Branching Questions",
+            "description": "Branching questions will be displayed in random order",
+            "type": "boolean",
+            "optional": true,
+            "default": false
           }
         ]
       },
@@ -368,13 +383,6 @@
             "type": "text",
             "importance": "low",
             "default": "Back"
-          },
-          {
-            "name": "proceedButtonText",
-            "label": "Text for the button on each of the library screens",
-            "type": "text",
-            "importance": "low",
-            "default": "Proceed"
           },
           {
             "name": "disableProceedButtonText",

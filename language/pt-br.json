@@ -1,37 +1,37 @@
 {
   "semantics": [
     {
-      "label": "Editor de cenário de ramificação",
+      "label": "Editor do Cenário de Ramificação",
       "fields": [
         {
-          "label": "Titulo"
+          "label": "Título"
         },
         {
-          "label": "Tela de início",
+          "label": "Tela inicial",
           "fields": [
             {
-              "label": "Titulo da tela de início",
-              "placeholder": "Titulo para seu curso"
+              "label": "Título da tela inicial",
+              "placeholder": "Título para o seu curso"
             },
             {
-              "label": "Subtitulo da tela de início",
+              "label": "Subtítulo da tela inicial",
               "placeholder": "Detalhes sobre o curso"
             },
             {
-              "label": "Imagem da tela de inicio"
+              "label": "Imagem da tela inicial"
             },
             {
-              "label": "Image alternative text"
+              "label": "Texto alternativo da imagem"
             }
           ]
         },
         {
-          "label": "Lista das telas de fim",
+          "label": "Lista das telas finais",
           "field": {
-            "label": "Tela de fim",
+            "label": "Tela Final",
             "fields": [
               {
-                "label": "Titulo"
+                "label": "Título"
               },
               {
                 "label": "Texto"
@@ -41,72 +41,76 @@
               },
               {
                 "label": "Pontuação",
-                "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram ao cenário de fim padrão"
+                "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que receba pontuação do H5P para usuários que atinjam o cenário final padrão"
               },
               {
-                "label": "ID do conteúdo"
+                "label": "ID do Conteúdo"
               }
             ]
           }
         },
         {
           "label": "Lista dos conteúdos dos cenários de ramificação",
-          "entity": "conteudo",
+          "entity": "conteúdo",
           "field": {
             "fields": [
               {},
               {
-                "label": "Mostra o conteúdo do titulo na tela",
-                "description": "Se selecionado, o usuário verá o titulo do conteúdo na barra superior desde componente"
+                "label": "Mostrar o título do conteúdo visualizado",
+                "description": "Se selecionado, o usuário verá o título do conteúdo na barra superior acima deste conteúdo"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Text for the proceed button",
+                "default": "Proceed"
+              },
+              {
+                "label": "Necessário para ser completado",
+                "description": "Incentiva a completar a interação antes de prosseguir com o cenário. Este cenário só funcionará para interações que possam ser completadas",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar as Configurações Comportamentais"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ativo"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inativo"
                   }
                 ]
               },
               {
-                "label": "Próximo Id de conteúdo (as telas finais são definidas por números negativos)"
+                "label": "Próximo ID de conteúdo (as telas finais são definidas por números negativos)"
               },
               {
-                "label": "Feedback",
+                "label": "Feedback (retorno)",
                 "fields": [
                   {
-                    "label": "Titulo de feedback"
+                    "label": "Título do feedback"
                   },
                   {
-                    "label": "Texto de feedback"
+                    "label": "Texto do feedback"
                   },
                   {
-                    "label": "Imagem de feedback"
+                    "label": "Imagem do feedback"
                   },
                   {
-                    "label": "Placar para este cenário",
-                    "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que recebe placares de usuários H5P os quais chegaram neste cenário de fim"
+                    "label": "Pontuação para este cenário",
+                    "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço conectado que receba pontuação do H5P para usuários que atinjam este cenário"
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "Configurações comportamentais",
+                "description": "Isto permitirá que o usuário volte atrás e veja o conteúdo/questão anterior no cenário",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar as Configurações Comportamentais"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ativo"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inativo"
                   }
                 ]
               }
@@ -121,10 +125,10 @@
               "description": "Selecione o tipo de pontuação",
               "options": [
                 {
-                  "label": "Defina um valor stático para cada cenário"
+                  "label": "Pontuação definida estaticamente para cada cenário final"
                 },
                 {
-                  "label": "Calcule dinamicamente o placar de acordo com as respostas do usuário"
+                  "label": "Calcular dinamicamente a pontuação das respostas do usuário"
                 },
                 {
                   "label": "Sem pontuação"
@@ -132,21 +136,25 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Incluir pontuações de interações dentro do Cenário de Ramificação",
+              "description": "Se forem escolhidas pontuações de, por exemplo, Vídeos Interativos, serão adicionadas à pontuação total obtida. Se não forem escolhidas, apenas pontuações especificadas nas seções de feedback dos itens de conteúdo, perguntas de ramificação e cenários finais contarão."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Configurações comportamentais",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Anular a navegação para trás",
+              "description": "Substituir as configurações individuais para permitir a navegação para trás"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Substituir requer conteúdo concluído",
+              "description": "Substitua as configurações individuais para exigir que o conteúdo seja terminado antes de ativar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"terminado\", por exemplo, imagens ou apresentações do curso com apenas um slide."
+            },
+            {
+              "label": "Randomizar perguntas de ramificação",
+              "description": "As perguntas de ramificação serão exibidas em ordem aleatória"
             }
           ]
         },
@@ -154,36 +162,32 @@
           "label": "Localização",
           "fields": [
             {
-              "label": "Texto para o botão no começo da tela",
-              "default": "Começo do curso"
+              "label": "Texto para o botão na Tela Inicial",
+              "default": "Comece o curso"
             },
             {
-              "label": "Texto para o botão no fim da tela",
-              "default": "Reinicie o curso"
+              "label": "Texto para o botão na Tela Final",
+              "default": "Reiniciar o curso"
             },
             {
-              "label": "Texto para o botão de cada tela da biblioteca",
-              "default": "Continuar"
+              "label": "Texto para o botão de retorno em cada uma das telas da biblioteca e perguntas de ramificação",
+              "default": "Voltar"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Texto para o botão usado para reproduzir um vídeo",
+              "default": "Reproduzir o vídeo"
             },
             {
-              "label": "Rótulo para o placar na tela de fim",
-              "default": "Seu placar:"
+              "label": "Rótulo para pontuação na tela final",
+              "default": "Sua pontuação:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Rótulo para pontuação na tela final",
+              "default": "Sua pontuação:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
-            },
-            {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Rótulo Aria para botão de tela cheia",
+              "default": "Tela Cheia"
             }
           ]
         }

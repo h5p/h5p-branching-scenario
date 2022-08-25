@@ -21,7 +21,7 @@
               "label": "Obrázek úvodní obrazovky"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternativní text obrázku"
             }
           ]
         },
@@ -58,6 +58,10 @@
               {
                 "label": "Zobrazit název obsahu v zobrazení",
                 "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
+              },
+              {
+                "label": "Text for the proceed button",
+                "default": "Proceed"
               },
               {
                 "label": "Povinné vyplnění",
@@ -132,8 +136,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Zahrnout skóre z interakcí v rámci Větvení scénáře",
+              "description": "Pokud jsou vybrána skóre například z interaktivních videí, budou přidána k celkovému získanému skóre. Pokud je nezvolíte, budou se počítat pouze skóre specifikovaná v sekcích zpětné vazby položek obsahu, větvené otázky a konečné scénáře."
             }
           ]
         },
@@ -147,6 +151,10 @@
             {
               "label": "Přepsat vyžaduje dokončení obsahu",
               "description": "Před aktivací tlačítka „Pokračovat“ přepsat jednotlivá nastavení vyžadující dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
@@ -163,10 +171,6 @@
             },
             {
               "label": "Text pro tlačítko Zpět na každé z obrazovek knihovny a větvící otázky",
-              "default": "Pokračovat"
-            },
-            {
-              "label": "Text tlačítka na každé obrazovce knihovny",
               "default": "Pokračovat"
             },
             {
