@@ -63,6 +63,7 @@ H5P.BranchingScenario = function (params, contentId) {
   params.l10n = extend({
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
+    proceedButtonText: "Proceed",
     scoreText: "Your score:",
     backButtonText: "Back",
     fullscreenAria: "Fullscreen",
