@@ -520,7 +520,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     }
     if (library === 'H5P.BranchingQuestion') {
       const proceedButtonText = parent.getLibrary(id).proceedButtonText;
-      content.params.proceedButtonText = proceedButtonText || parent.params.l10n.proceedButtonText;
+      content.params.proceedButtonText = proceedButtonText;
     }
 
     const contentClone = H5P.jQuery.extend(true, {}, content);
@@ -1131,7 +1131,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
       // Update proceed button text
       const proceedButton = document.querySelector('.h5p-proceed-button');
-      proceedButton.innerHTML = library.proceedButtonText || this.parent.params.l10n.proceedButtonText;
+      proceedButton.innerHTML = library.proceedButtonText;
 
       // Update the title
       const contentTitle = (library.type && library.type.metadata && library.type.metadata.title ? library.type.metadata.title : '');
@@ -1547,7 +1547,7 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     });
 
     this.navButton.classList.add('h5p-nav-button','h5p-proceed-button');
-    const proceedButtonText = parent.getLibrary(this.currentLibraryId).proceedButtonText || this.parent.params.l10n.proceedButtonText;
+    const proceedButtonText = parent.getLibrary(this.currentLibraryId).proceedButtonText;
     this.navButton.appendChild(document.createTextNode(proceedButtonText));
     buttonWrapper.appendChild(this.navButton);
 

@@ -82,6 +82,11 @@ H5P.BranchingScenario = function (params, contentId) {
     if (params.behaviour.randomizeBranchingQuestions && item.type.library.indexOf('H5P.BranchingQuestion') !== -1) {
       item.type.params.branchingQuestion.randomize = true;
     }
+
+    // Overwrite Proceedbutton text if not added
+    if (params.proceedButtonText === undefined) {
+      item.proceedButtonText =  params.l10n.proceedButtonText;
+    }
   });
 
   // Compute pattern for enabling/disabling back button
