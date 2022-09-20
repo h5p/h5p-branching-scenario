@@ -83,9 +83,9 @@ H5P.BranchingScenario = function (params, contentId) {
       item.type.params.branchingQuestion.randomize = true;
     }
 
-    // Overwrite Proceedbutton text if not added
-    if (params.proceedButtonText === undefined) {
-      item.proceedButtonText =  params.l10n.proceedButtonText;
+    // Set Proceedbutton to default text if not added
+    if (item.proceedButtonText === undefined) {
+      item.proceedButtonText = params.l10n.proceedButtonText;
     }
   });
 
