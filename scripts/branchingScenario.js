@@ -63,6 +63,7 @@ H5P.BranchingScenario = function (params, contentId) {
   params.l10n = extend({
     startScreenButtonText: "Start the course",
     endScreenButtonText: "Restart the course",
+    proceedButtonText: "Proceed",
     scoreText: "Your score:",
     backButtonText: "Back",
     fullscreenAria: "Fullscreen",
@@ -80,6 +81,11 @@ H5P.BranchingScenario = function (params, contentId) {
     // Pass `randomize` parameter to branching question
     if (params.behaviour.randomizeBranchingQuestions && item.type.library.indexOf('H5P.BranchingQuestion') !== -1) {
       item.type.params.branchingQuestion.randomize = true;
+    }
+
+    // Set Proceedbutton to default text if not added
+    if (item.proceedButtonText === undefined) {
+      item.proceedButtonText = params.l10n.proceedButtonText;
     }
   });
 
