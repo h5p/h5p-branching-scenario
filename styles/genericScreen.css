@@ -289,8 +289,9 @@
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question .h5p-branching-question.h5p-feedback-image {
   max-width: 15%;
 }
-.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question button:not(.h5p-branching-question-alternative, .h5p-branching-question-close) {
+.h5p-branching-scenario.h5p-medium-tablet-size .h5p-branching-question button:not(.h5p-branching-question-alternative) {
   font-size: 1rem;
+  padding: 0.6rem 1.5rem;
 }
 .h5p-branching-scenario.h5p-medium-tablet-size .h5p-feedback-content {
   padding: 0em;
