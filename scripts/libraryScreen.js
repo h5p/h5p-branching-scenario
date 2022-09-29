@@ -1,6 +1,6 @@
 import { addResizeListener } from 'detect-resize';
 
-H5P.BranchingScenario.LibraryScreen = (function () {
+H5P.BranchingScenario.LibraryScreen = (function ($) {
 
   /**
    * LibraryScreen
@@ -45,45 +45,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
     this.wrapper.appendChild(libraryWrapper);
 
     this.createNavButtons();
-
-    /**
-     * Disable or enable tab indexes hidden behind overlay.
-     * Currently only targets the endscreen as the IV deals with the other elements.
-     * TODO: Since endscreen isn't always shown it should also target all the elements.
-     */
-    self.toggleIVTabIndexes = function (index) {
-      var self = this.currentLibraryInstance;
-      const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
-
-      let $tabbables = self.$container[0].querySelectorAll(selector);
-
-      if (!$tabbables) {
-        return;
-      }
-
-      for (let i = 0; i < $tabbables.length; i++) {
-        if (index === "-1") {
-          let elementTabIndex = $tabbables[i].getAttribute('tabindex');
-          $tabbables[i].dataset.tabindex = elementTabIndex;
-          $tabbables[i].setAttribute('tabindex', index);
-        }
-        else {
-          let tabindex = $tabbables[i].dataset.tabindex;
-          if ($tabbables[i].classList.contains("ui-slider-handle")) {
-            $tabbables[i].setAttribute('tabindex', 0);
-            $tabbables[i].dataset.tabindex = '';
-          }
-          else if (tabindex !== undefined) {
-            $tabbables[i].setAttribute('tabindex', index);
-            $tabbables[i].dataset.tabindex = '';
-          }
-          else {
-            $tabbables[i].setAttribute('tabindex', index);
-          }
-        }
-
-      }
-    };
 
     /**
      * Handle enterfullscreen event and resize the library instance
@@ -385,15 +346,6 @@ H5P.BranchingScenario.LibraryScreen = (function () {
 
     feedbackContent.appendChild(navButton);
 
-    var KEYCODE_TAB = 9;
-    feedbackContent.addEventListener('keydown', function (e) {
-      var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
-      if (isTabPressed) {
-        e.preventDefault();
-        return;
-      }
-    });
-
     wrapper.appendChild(feedbackContent);
 
     return wrapper;
@@ -518,13 +470,12 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       // Prevent video from growing endlessly since height is unlimited.
       content.params.visuals.fit = false;
     }
-    if (library === 'H5P.BranchingQuestion') {
+    else if (library === 'H5P.BranchingQuestion') {
       const proceedButtonText = parent.getLibrary(id).proceedButtonText;
       content.params.proceedButtonText = proceedButtonText;
     }
 
     const contentClone = H5P.jQuery.extend(true, {}, content);
-    this.currentMachineName = contentClone.library.split(' ', 2)[0];
 
     // Create content instance
     // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
@@ -543,31 +494,30 @@ H5P.BranchingScenario.LibraryScreen = (function () {
       this.parent.params.content[id].forceContentFinished === 'useBehavioural' &&
       this.parent.params.behaviour.forceContentFinished === true
     ) {
-      this.libraryFinishingRequirements[id] = this.forceContentFinished(instance, content.library.split(' ')[0]);
-      this.addFinishedListeners(instance, content.library.split(' ')[0]);
+      this.libraryFinishingRequirements[id] = this.forceContentFinished(instance, library);
+      this.addFinishedListeners(instance, library);
     }
 
     instance.setActivityStarted();
 
     // Proceed to Branching Question automatically after video has ended
-    if (content.library.indexOf('H5P.Video ') === 0 && this.nextIsBranching(id)) {
+    if (library === 'H5P.Video' && this.nextIsBranching(id)) {
       instance.on('stateChange', function (event) {
         if (event.data === H5P.Video.ENDED && self.navButton) {
           self.handleProceed();
         }
       });
     }
-
-    // Ensure that iframe is resized when image is loaded.
-    if (content.library.indexOf('H5P.Image') === 0) {
+    else if (library === 'H5P.Image') {
+      // Ensure that iframe is resized when image is loaded.
       instance.on('loaded', function () {
         self.handleLibraryResize();
         self.parent.trigger('resize');
       });
     }
 
-    if (content.library.indexOf('H5P.Video') === 0 || content.library.indexOf('H5P.InteractiveVideo') === 0) {
-      const videoInstance = (content.library.indexOf('H5P.Video') === 0) ? instance : instance.video;
+    if (library === 'H5P.Video' || library === 'H5P.InteractiveVideo') {
+      const videoInstance = (library === 'H5P.Video') ? instance : instance.video;
 
       videoInstance.on('loaded', () => {
         self.handleLibraryResize();
@@ -1312,11 +1262,62 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.prototype.hideBackgroundFromReadspeaker = function () {
     this.header.setAttribute('aria-hidden', 'true');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'true');
+
+    this.$tabbables = $('.h5p-container').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, iframe, object, embed, *[tabindex], *[contenteditable], video, audio').filter(function () {
+      var $tabbable = $(this);
+
+      // tabIndex has already been modified, keep it in the set.
+      if (!$tabbable.data('tabindex')) {
+        const tabbable = $tabbable.get(0);
+
+        if (tabbable instanceof HTMLMediaElement) {
+          // For native Media elements (audio & video) we can't set the tab index.
+          // Instead, we'll just remove the controls, which makes it non-tabbable
+          if (tabbable.controls) {
+            tabbable.controls = false;
+          }
+
+          // These elements are recreated when navigating back.
+          return false;
+        }
+        else {
+          // Store current tabindex, so we can set it back when dialog closes
+          $tabbable.data('tabindex', $tabbable.attr('tabindex'));
+
+          // Make it non tabbable
+          $tabbable.attr('tabindex', '-1');
+        }
+      }
+
+      return true;
+    });
   };
 
   LibraryScreen.prototype.showBackgroundToReadspeaker = function () {
     this.header.setAttribute('aria-hidden', 'false');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'false');
+
+    if (this.$tabbables) {
+      this.$tabbables.each(function () {
+        var $element = $(this);
+        var tabindex = $element.data('tabindex');
+
+        // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+        if ($element.hasClass('ui-slider-handle')) {
+          $element.attr('tabindex', 0);
+          $element.removeData('tabindex');
+        }
+        else if (tabindex !== undefined) {
+          $element.attr('tabindex', tabindex);
+          $element.removeData('tabindex');
+        }
+        else {
+          $element.removeAttr('tabindex');
+        }
+      });
+
+      this.$tabbables = null;
+    }
   };
 
   LibraryScreen.prototype.getElement = function () {
@@ -1560,4 +1561,4 @@ H5P.BranchingScenario.LibraryScreen = (function () {
   LibraryScreen.idCounter = 0;
 
   return LibraryScreen;
-})();
+})(H5P.jQuery);
