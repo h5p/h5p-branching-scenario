@@ -1276,9 +1276,11 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           if (tabbable.controls) {
             tabbable.controls = false;
           }
-
-          // These elements are recreated when navigating back.
-          return false;
+          else {
+            // No controls - no need to do anything when showBackgroundToReadspeaker
+            // is invoked
+            return false;
+          }
         }
         else {
           // Store current tabindex, so we can set it back when dialog closes
@@ -1300,19 +1302,26 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     if (this.$tabbables) {
       this.$tabbables.each(function () {
         var $element = $(this);
-        var tabindex = $element.data('tabindex');
 
-        // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
-        if ($element.hasClass('ui-slider-handle')) {
-          $element.attr('tabindex', 0);
-          $element.removeData('tabindex');
-        }
-        else if (tabindex !== undefined) {
-          $element.attr('tabindex', tabindex);
-          $element.removeData('tabindex');
+        const tabbable = $element.get(0);
+        if (tabbable instanceof HTMLMediaElement) {
+          tabbable.controls = true;
         }
         else {
-          $element.removeAttr('tabindex');
+          var tabindex = $element.data('tabindex');
+
+          // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+          if ($element.hasClass('ui-slider-handle')) {
+            $element.attr('tabindex', 0);
+            $element.removeData('tabindex');
+          }
+          else if (tabindex !== undefined) {
+            $element.attr('tabindex', tabindex);
+            $element.removeData('tabindex');
+          }
+          else {
+            $element.removeAttr('tabindex');
+          }
         }
       });
 
