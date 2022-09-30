@@ -386,7 +386,7 @@
           },
           {
             "name": "disableProceedButtonText",
-            "label": "Text for the disbled button on the library screens",
+            "label": "Text for the disabled button on the library screens",
             "type": "text",
             "importance": "low",
             "default": "Require to complete the current module"
