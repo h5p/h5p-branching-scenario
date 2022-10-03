@@ -174,12 +174,12 @@
               "default": "Pokračovat"
             },
             {
-              "label": "Text tlačítka použitého k přehrání videa",
-              "default": "Přehrát video"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Popisek pro skóre na závěrečné obrazovce",
-              "default": "Vaše skóre:"
+              "label": "Text tlačítka použitého k přehrání videa",
+              "default": "Přehrát video"
             },
             {
               "label": "Popisek pro skóre na závěrečné obrazovce",

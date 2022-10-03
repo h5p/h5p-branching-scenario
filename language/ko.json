@@ -174,11 +174,11 @@
               "default": "진행"
             },
             {
-              "label": "끝 화면에 점수 표시 라벨",
-              "default": "점수:"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "최종 스크린에서 점수에 대한 라벨",
+              "label": "끝 화면에 점수 표시 라벨",
               "default": "점수:"
             },
             {

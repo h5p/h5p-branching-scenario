@@ -174,12 +174,12 @@
               "default": "Geri"
             },
             {
-              "label": "Bir videoyu tekrar oynatmak için kullanılan düğmenin metni",
-              "default": "Videoyu tekrar oynat"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Bitiş ekranında puan etiketi",
-              "default": "Puanın:"
+              "label": "Bir videoyu tekrar oynatmak için kullanılan düğmenin metni",
+              "default": "Videoyu tekrar oynat"
             },
             {
               "label": "Bitiş ekranında puan etiketi",

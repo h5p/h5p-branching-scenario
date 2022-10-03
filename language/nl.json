@@ -174,12 +174,12 @@
               "default": "Terug"
             },
             {
-              "label": "Tekst van de knop voor opnieuw afspelen video",
-              "default": "Speel de video opnieuw af"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Label voor score op het eindscherm",
-              "default": "Jouw score:"
+              "label": "Tekst van de knop voor opnieuw afspelen video",
+              "default": "Speel de video opnieuw af"
             },
             {
               "label": "Label voor score op het eindscherm",

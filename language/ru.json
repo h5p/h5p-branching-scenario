@@ -174,12 +174,12 @@
               "default": "Продолжить"
             },
             {
-              "label": "Надпись для оценки на конечном экране",
-              "default": "Повторить видео"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Надпись для оценки на конечном экране",
+              "default": "Повторить видео"
             },
             {
               "label": "Label for score on the end screen",

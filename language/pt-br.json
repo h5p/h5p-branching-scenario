@@ -174,12 +174,12 @@
               "default": "Voltar"
             },
             {
-              "label": "Texto para o botão usado para reproduzir um vídeo",
-              "default": "Reproduzir o vídeo"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Rótulo para pontuação na tela final",
-              "default": "Sua pontuação:"
+              "label": "Texto para o botão usado para reproduzir um vídeo",
+              "default": "Reproduzir o vídeo"
             },
             {
               "label": "Rótulo para pontuação na tela final",
