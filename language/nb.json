@@ -178,12 +178,12 @@
               "default": "Require to complete the current module"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Ditt resultat:"
+              "label": "Text for the button used to replay a video",
+              "default": "Replay the video"
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "Ditt resultat:"
             },
             {
               "label": "Aria label for fullscreen button",
