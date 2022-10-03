@@ -186,10 +186,6 @@
               "default": "Deine Punktzahl:"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Deine Punkte:"
-            },
-            {
               "label": "Aria-Beschriftung des Vollbild-Buttons",
               "default": "Vollbild"
             }
