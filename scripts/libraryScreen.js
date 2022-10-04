@@ -1260,38 +1260,38 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
   };
 
   LibraryScreen.prototype.hideBackgroundFromReadspeaker = function () {
+    const self = this;
     this.header.setAttribute('aria-hidden', 'true');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'true');
 
-    this.$tabbables = $('.h5p-container').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, iframe, object, embed, *[tabindex], *[contenteditable], video, audio').filter(function () {
-      var $tabbable = $(this);
-
-      // tabIndex has already been modified, keep it in the set.
-      if (!$tabbable.data('tabindex')) {
-        const tabbable = $tabbable.get(0);
-
-        if (tabbable instanceof HTMLMediaElement) {
-          // For native Media elements (audio & video) we can't set the tab index.
-          // Instead, we'll just remove the controls, which makes it non-tabbable
-          if (tabbable.controls) {
-            tabbable.controls = false;
-          }
-          else {
-            // No controls - no need to do anything when showBackgroundToReadspeaker
-            // is invoked
-            return false;
-          }
+    // The section below tries to make all elements untabbable
+    // (to avoid tabbing to background elements)
+    const h5pContainer = document.querySelector('.h5p-container');
+    const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, iframe, object, embed, *[tabindex], *[contenteditable], video, audio';
+    this.tabbables = [];
+    h5pContainer.querySelectorAll(selector).forEach(function (element) {
+      if (element instanceof HTMLMediaElement) {
+        // For native Media elements (audio & video) we can't set the tab index.
+        // Instead, we'll just remove the controls, which makes it non-tabbable
+        if (element.controls) {
+          element.controls = false;
+          self.tabbables.push({element: element});
         }
-        else {
-          // Store current tabindex, so we can set it back when dialog closes
-          $tabbable.data('tabindex', $tabbable.attr('tabindex'));
-
-          // Make it non tabbable
-          $tabbable.attr('tabindex', '-1');
-        }
+        // If no controls - no need to do anything when showBackgroundToReadspeaker is invoked
       }
+      else {
+        // Store current tabindex, so we can set it back when dialog closes
+        // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+        const currentTabindex = element.classList.contains('ui-slider-handle') ? 0 : element.getAttribute('tabindex');
 
-      return true;
+        // Make it untabbable
+        element.setAttribute('tabindex', '-1');
+
+        self.tabbables.push({
+          element: element,
+          tabindex: currentTabindex
+        });
+      }
     });
   };
 
@@ -1299,33 +1299,23 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     this.header.setAttribute('aria-hidden', 'false');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'false');
 
-    if (this.$tabbables) {
-      this.$tabbables.each(function () {
-        var $element = $(this);
+    // Resets tabindex to the original state
+    if (this.tabbables) {
+      this.tabbables.forEach(function (tabbable) {
+        const element = tabbable.element;
 
-        const tabbable = $element.get(0);
-        if (tabbable instanceof HTMLMediaElement) {
-          tabbable.controls = true;
+        if (element instanceof HTMLMediaElement) {
+          element.controls = true;
+        }
+        else if (tabbable.tabindex !== undefined) {
+          element.setAttribute('tabindex', tabbable.tabindex);
         }
         else {
-          var tabindex = $element.data('tabindex');
-
-          // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
-          if ($element.hasClass('ui-slider-handle')) {
-            $element.attr('tabindex', 0);
-            $element.removeData('tabindex');
-          }
-          else if (tabindex !== undefined) {
-            $element.attr('tabindex', tabindex);
-            $element.removeData('tabindex');
-          }
-          else {
-            $element.removeAttr('tabindex');
-          }
+          element.removeAttribute('tabindex');
         }
       });
 
-      this.$tabbables = null;
+      this.tabbables = null;
     }
   };
 
