@@ -10,15 +10,15 @@
           "label": "Start screen",
           "fields": [
             {
-              "label": "Start screen title",
+              "label": "Course Title",
               "placeholder": "Title for your course"
             },
             {
-              "label": "Start screen subtitle",
+              "label": "Course Details",
               "placeholder": "Details about the course"
             },
             {
-              "label": "Start screen image"
+              "label": "Course image"
             },
             {
               "label": "Image alternative text"
@@ -64,8 +64,8 @@
                 "default": "Proceed"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -100,7 +100,7 @@
                 ]
               },
               {
-                "label": "Behavioural settings",
+                "label": "Navigate back",
                 "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
@@ -145,12 +145,12 @@
           "label": "Behavioural settings",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation"
+              "label": "Navigate back",
+              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
             },
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Required to watch",
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             },
             {
               "label": "Randomize Branching Questions",
