@@ -174,12 +174,12 @@
               "default": "Atzera"
             },
             {
-              "label": "Bideo bat berriro erreproduzitzeko erabilitako botoiaren testua",
-              "default": "Berriz erreproduzitu bideoa"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Puntuazioaren etiketa pantaila amaieran",
-              "default": "Zure puntuazioa:"
+              "label": "Bideo bat berriro erreproduzitzeko erabilitako botoiaren testua",
+              "default": "Berriz erreproduzitu bideoa"
             },
             {
               "label": "Puntuazioaren etiketa pantaila amaieran",

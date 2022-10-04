@@ -174,12 +174,12 @@
               "default": "Revenir en arrière"
             },
             {
-              "label": "Libellé du bouton pour jouer la vidéo de nouveau",
-              "default": "Jouer la vidéo de nouveau"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Libellé de la notation dans l’écran de fin",
-              "default": "Votre note:"
+              "label": "Libellé du bouton pour jouer la vidéo de nouveau",
+              "default": "Jouer la vidéo de nouveau"
             },
             {
               "label": "Étiquette de la notation de l'écran de fin",

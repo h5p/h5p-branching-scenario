@@ -174,12 +174,12 @@
               "default": "Συνέχισε"
             },
             {
-              "label": "Ετικέτα βαθμολογίας στην οθόνη λήξης",
-              "default": "Η βαθμολογία σου:"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Ετικέτα για τη βαθμολογία στην τελική οθόνη",
-              "default": "Η βαθμολογία σας:"
+              "label": "Ετικέτα βαθμολογίας στην οθόνη λήξης",
+              "default": "Η βαθμολογία σου:"
             },
             {
               "label": "Ετικέτα για τη βαθμολογία στην τελική οθόνη",
