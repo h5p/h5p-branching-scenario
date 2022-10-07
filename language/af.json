@@ -174,12 +174,12 @@
               "default": "Terug"
             },
             {
-              "label": "Teks vir die knoppies wat gebruik is om die video te herspeel",
-              "default": "Speel video weer"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Etiket vir eindskermtelling",
-              "default": "Jou telling:"
+              "label": "Teks vir die knoppies wat gebruik is om die video te herspeel",
+              "default": "Speel video weer"
             },
             {
               "label": "Etiket vir telling by eindskerm",

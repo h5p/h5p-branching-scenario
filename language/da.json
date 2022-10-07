@@ -174,7 +174,7 @@
               "default": "Tilbage"
             },
             {
-              "label": "Text for the disbled button on the library screens",
+              "label": "Text for the disabled button on the library screens",
               "default": "Svar på spørgsmålet for at fortsætte"
             },
             {

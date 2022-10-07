@@ -174,12 +174,12 @@
               "default": "ទៅ"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "ពិន្ទុរបស់អ្នក:"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "ពិន្ទុរបស់អ្នក:"
             },
             {
               "label": "Label for score on the end screen",

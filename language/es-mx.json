@@ -174,12 +174,12 @@
               "default": "Regresar"
             },
             {
-              "label": "Texto para el botón usado para reproducir un video",
-              "default": "Reproducir el video"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Etiqueta para puntaje en la pantalla final",
-              "default": "Su puntaje:"
+              "label": "Texto para el botón usado para reproducir un video",
+              "default": "Reproducir el video"
             },
             {
               "label": "Etiqueta para puntaje en la pantalla final",

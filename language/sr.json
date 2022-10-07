@@ -174,12 +174,12 @@
               "default": "Назад"
             },
             {
-              "label": "Текст дугмета за репродукцију видео записа",
-              "default": "Поново репродукујте видео"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Ознака за резултат на крајњем екрану",
-              "default": "Ваш резултат:"
+              "label": "Текст дугмета за репродукцију видео записа",
+              "default": "Поново репродукујте видео"
             },
             {
               "label": "Ознака за резултат на крајњем екрану",

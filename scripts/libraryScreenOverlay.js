@@ -34,27 +34,9 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
       this.buttonsContainer.classList.remove('h5p-hidden');
       this.hidden = false;
 
-      this.setLibraryTabIndex("-1");
-
       // Focus last button (assuming proceed)
       Object.values(this.buttons)[Object.keys(this.buttons).length - 1].focus();
     });
-  };
-
-  /**
-   * Sets the tab index of the library behind the overlay, so that these elements can not
-   * visited when the overlay is present and visited when the overlay goes away.
-   */
-  LibraryScreenOverlay.prototype.setLibraryTabIndex = function (index) {
-    const $currentLibraryWrapper = this.parent.currentLibraryWrapper;
-    // Used in Video and IVs.
-    if ($currentLibraryWrapper && $currentLibraryWrapper.querySelector('iframe')) {
-      $currentLibraryWrapper.querySelector('iframe').setAttribute("tabindex", index);
-      //  Used in just IVs
-      if (this.parent.currentLibraryInstance.libraryInfo.machineName === 'H5P.InteractiveVideo') {
-        this.parent.toggleIVTabIndexes(index);
-      }
-    }
   };
 
   /**
@@ -64,7 +46,6 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     this.hidden = true;
     this.overlay.classList.add('h5p-hidden');
     this.buttonsContainer.classList.add('h5p-hidden');
-    this.setLibraryTabIndex('0');
   };
 
   /**

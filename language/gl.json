@@ -174,12 +174,12 @@
               "default": "Atrás"
             },
             {
-              "label": "Texto para o botón usado para volver a reproducir o vídeo",
-              "default": "Volver a reproducir o vídeo"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Etiqueta para a puntuación na pantalla final",
-              "default": "A túa puntuación:"
+              "label": "Texto para o botón usado para volver a reproducir o vídeo",
+              "default": "Volver a reproducir o vídeo"
             },
             {
               "label": "Etiqueta para a puntuación na pantalla final",

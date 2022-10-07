@@ -174,12 +174,12 @@
               "default": "Paluu"
             },
             {
-              "label": "Painikkeen, jolla toistetaan video uudelleen, teksti",
-              "default": "Toista video uudelleen"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Loppunäkymän pisteiden teksti",
-              "default": "Pisteesi:"
+              "label": "Painikkeen, jolla toistetaan video uudelleen, teksti",
+              "default": "Toista video uudelleen"
             },
             {
               "label": "Loppunäkymän pisteiden teksti",

@@ -174,12 +174,12 @@
               "default": "Procedi"
             },
             {
-              "label": "Etichetta per il punteggio sulla schermata finale",
-              "default": "Il tuo punteggio:"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Etichetta per il punteggio sulla schermata finale",
+              "default": "Il tuo punteggio:"
             },
             {
               "label": "Label for score on the end screen",

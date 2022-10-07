@@ -174,12 +174,12 @@
               "default": "Bwrw ymlaen"
             },
             {
-              "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
-              "default": "Eich sgôr:"
+              "label": "Text for the disabled button on the library screens",
+              "default": "Require to complete the current module"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Label ar gyfer y sgôr ar y sgrin diweddu",
+              "default": "Eich sgôr:"
             },
             {
               "label": "Label for score on the end screen",
