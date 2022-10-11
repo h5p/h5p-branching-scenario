@@ -1266,7 +1266,16 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
     // The section below tries to make all elements untabbable
     // (to avoid tabbing to background elements)
-    const h5pContainer = document.querySelector('.h5p-container');
+    let h5pContainer = document.querySelector('.h5p-container');
+
+    if (!h5pContainer) {
+      // Probably in preview (where .h5p-container does not exist)
+      h5pContainer = document.querySelector('.preview-wrapper');
+      if (!h5pContainer) {
+        return;
+      }
+    }
+
     const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, iframe, object, embed, *[tabindex], *[contenteditable], video, audio';
     this.tabbables = [];
     h5pContainer.querySelectorAll(selector).forEach(function (element) {
