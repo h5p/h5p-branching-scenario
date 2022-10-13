@@ -60,7 +60,7 @@
                 "description": "Ако е избрано, потребителят ще види заглавието на съдържанието в горната лента над това съдържание"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

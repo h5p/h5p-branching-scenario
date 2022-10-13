@@ -60,7 +60,7 @@
                 "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

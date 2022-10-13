@@ -60,7 +60,7 @@
                 "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다."
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

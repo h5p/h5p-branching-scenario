@@ -60,7 +60,7 @@
                 "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino."
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

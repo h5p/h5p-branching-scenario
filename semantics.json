@@ -170,10 +170,11 @@
             },
             {
               "name": "proceedButtonText",
-              "label": "Text for the proceed button",
+              "label": "Text for the proceed button (max length: 50 characters)",
               "type": "text",
               "importance": "low",
-              "default": "Proceed"
+              "default": "Proceed",
+              "maxLength": 50
             },
             {
               "name": "forceContentFinished",

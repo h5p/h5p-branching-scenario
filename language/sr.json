@@ -60,7 +60,7 @@
                 "description": "Ако је изабрано, корисник ће видети наслов садржаја у горњој траци изнад овог садржаја"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
