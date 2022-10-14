@@ -60,7 +60,7 @@
                 "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

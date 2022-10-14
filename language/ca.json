@@ -60,7 +60,7 @@
                 "description": "Si se selecciona aquesta opció, l’usuari veurà el títol de contingut a la barra superior, a sobre d’aquest contingut"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

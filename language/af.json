@@ -60,7 +60,7 @@
                 "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

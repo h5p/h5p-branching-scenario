@@ -60,7 +60,7 @@
                 "description": "در صورت انتخاب، کاربر عنوان محتوا را در نوار بالای محتوا خواهد دید"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

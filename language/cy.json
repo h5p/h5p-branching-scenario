@@ -60,7 +60,7 @@
                 "description": "Os wedi'i ddewis, bydd y defnyddiwr yn gweld teitl y cynnwys yn y bar ar y brig uwchben y cynnwys hwn"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {

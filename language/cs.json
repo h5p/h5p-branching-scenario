@@ -60,7 +60,7 @@
                 "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
               },
               {
-                "label": "Text for the proceed button",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
