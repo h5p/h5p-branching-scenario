@@ -275,6 +275,7 @@ H5P.BranchingScenario.GenericScreen = (function () {
         self.screenWrapper.classList.remove('h5p-next-screen');
         self.screenWrapper.classList.remove('h5p-slide-in');
         self.screenWrapper.classList.add('h5p-current-screen');
+        self.screenWrapper.setAttribute('aria-hidden', false);
         self.parent.trigger('resize');
 
         if (!self.isFeedbackAvailable) {

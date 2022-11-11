@@ -272,6 +272,10 @@ H5P.BranchingScenario = function (params, contentId) {
       }
     }
 
+    // Prevent screenreader to read previous screen's content when user is navigating from BQ
+    if (H5P.BranchingScenario.LibraryScreen.isBranching(self.getLibrary(self.currentId))) {
+      document.querySelector('.h5p-current-screen').setAttribute('aria-hidden', true);
+    }
 
     // Re-display library screen if it has been hidden by an ending screen
     if (self.currentEndScreen && self.currentEndScreen.isShowing) {

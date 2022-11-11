@@ -922,6 +922,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         self.wrapper.classList.remove('h5p-next-screen');
         self.wrapper.classList.remove('h5p-slide-in');
         self.wrapper.classList.add('h5p-current-screen');
+        self.wrapper.setAttribute('aria-hidden', false);
         self.parent.navigating = false;
         self.wrapper.style.minHeight = self.parent.currentHeight;
         self.libraryTitle.focus();
