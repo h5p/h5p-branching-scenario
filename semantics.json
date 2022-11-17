@@ -342,7 +342,7 @@
           {
             "name": "forceContentFinished",
             "label": "Required to watch",
-            "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level.",
+            "description": "Urges viewers to complete the Video, Interactive Video and Course Presentation before proceeding with the scenario. This can be overridden on a content level.",
             "type": "boolean",
             "optional": true,
             "default": false
