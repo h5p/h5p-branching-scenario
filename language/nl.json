@@ -61,7 +61,7 @@
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Doorgaan"
               },
               {
                 "label": "Vereist voor voltooiing",
