@@ -10,15 +10,15 @@
           "label": "Hasierako pantaila",
           "fields": [
             {
-              "label": "Hasierako pantailaren izenburua",
+              "label": "Ikastaroaren izenburua",
               "placeholder": "Zure ikastaroaren izenburua"
             },
             {
-              "label": "Hasierako pantailaren azpititulua",
+              "label": "Ikastaroaren xehetasunak",
               "placeholder": "Ikastaroaren xehetasunak"
             },
             {
-              "label": "Hasierako pantailaren irudia"
+              "label": "Ikastaroaren irudia"
             },
             {
               "label": "Irudiaren ordezko testua"
@@ -153,8 +153,8 @@
               "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Ausazkotu Adarkatze Galderak",
+              "description": "Adarkatze galderak ausazko ordenan erakutsiko dira"
             }
           ]
         },
