@@ -95,13 +95,13 @@
                   },
                   {
                     "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
                 "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -122,7 +122,7 @@
           "fields": [
             {
               "label": "Scoring options",
-              "description": "Select type of scoring",
+              "description": "Select type of scoring.",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -146,15 +146,15 @@
           "fields": [
             {
               "label": "Navigate back",
-              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
+              "description": "This will allow the user to go back and see the previous content/question in the scenario. This can be overridden on a content level."
             },
             {
               "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "description": "Urges viewers to complete the Video, Interactive Video and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             },
             {
               "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "description": "Branching questions will be displayed in random order."
             }
           ]
         },
