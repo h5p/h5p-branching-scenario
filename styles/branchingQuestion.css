@@ -59,7 +59,7 @@
 }
 
 .h5p-branching-scenario .h5p-branching-question button:not(.h5p-branching-question-alternative) {
-  margin-top: 1em;
+  margin: 1em 0.188em 0.188em 0.188em;
   background-color: #C4FEBF;
   padding: 0.9rem 1.5rem;
   border-style: solid;
