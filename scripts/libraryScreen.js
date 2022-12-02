@@ -262,6 +262,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
             this.currentLibraryElement.style.height = questionContainer.offsetHeight + 'px';
             this.wrapper.style.height = questionContainer.offsetHeight + 'px';
+            this.parent.trigger('resize');
           }
         }, 100);
         feedbackScreen.focus();
