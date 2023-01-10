@@ -42,6 +42,11 @@
   ],
   "editorDependencies": [
     {
+      "machineName": "H5P.BranchingScenario",
+      "majorVersion": 1,
+      "minorVersion": 8
+    },
+    {
       "machineName": "H5PEditor.ShowWhen",
       "majorVersion": 1,
       "minorVersion": 0
