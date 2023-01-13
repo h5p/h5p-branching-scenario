@@ -4,34 +4,34 @@
       "label": "Branching Scenario Editor",
       "fields": [
         {
-          "label": "Title"
+          "label": "Pavadinimas"
         },
         {
-          "label": "Start screen",
+          "label": "Pradžios ekranas",
           "fields": [
             {
-              "label": "Course Title",
-              "placeholder": "Title for your course"
+              "label": "Kurso pavadinimas",
+              "placeholder": "Jūsų kurso pavadinimas"
             },
             {
-              "label": "Course Details",
-              "placeholder": "Details about the course"
+              "label": "Išsami informacija apie kursą",
+              "placeholder": "Išsami informacija apie kursą"
             },
             {
-              "label": "Course image"
+              "label": "Kurso paveiksliukas"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternatyvus paveikslėlio tekstas"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Pabaigos užsklandų sąrašas",
           "field": {
             "label": "End screen",
             "fields": [
               {
-                "label": "Title"
+                "label": "Pavadinimas"
               },
               {
                 "label": "Text"
@@ -50,13 +50,13 @@
           }
         },
         {
-          "label": "List of branching scenario content",
+          "label": "Išsišakojusio scenarijaus turinio sąrašas",
           "entity": "content",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
+                "label": "Rodyti turinio pavadinimą rodinyje",
                 "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
@@ -68,13 +68,13 @@
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Naudoti veikimo nustatymą"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Įjungta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Išjungta"
                   }
                 ]
               },
@@ -82,35 +82,35 @@
                 "label": "Next Content ID (end screens are defined by negative numbers)"
               },
               {
-                "label": "Feedback",
+                "label": "Atsiliepimas",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Atsiliepimo pavadinimas"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Atsiliepimo tekstas"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Atsiliepimo paveiksliukas"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Balas šiam scenarijui",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
                   }
                 ]
               },
               {
                 "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Naudoti veikimo nustatymą"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Įjungta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Išjungta"
                   }
                 ]
               }
@@ -118,11 +118,11 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Balų skaičiavimo parinktys",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring.",
+              "label": "Balų skaičiavimo parinktys",
+              "description": "Pasirinkite įvertinimo tipą",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -131,7 +131,7 @@
                   "label": "Dynamically calculate score from user answers"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Nėra balų"
                 }
               ]
             },
@@ -142,36 +142,36 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Veikimo nustatymai",
           "fields": [
             {
               "label": "Navigate back",
-              "description": "This will allow the user to go back and see the previous content/question in the scenario. This can be overridden on a content level."
+              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
             },
             {
               "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Video and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
             },
             {
               "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order."
+              "description": "Branching questions will be displayed in random order"
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lokalizacija",
           "fields": [
             {
               "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "default": "Pradėti kursą"
             },
             {
               "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "default": "Pradėti kursą iš naujo"
             },
             {
               "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
+              "default": "Atgal"
             },
             {
               "label": "Text for the disabled button on the library screens",
@@ -179,15 +179,15 @@
             },
             {
               "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "default": "Pakartoti vaizdo įrašą"
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "Tavo balas:"
             },
             {
               "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "default": "Visas ekranas"
             }
           ]
         }
