@@ -16,6 +16,8 @@ H5P.BranchingScenario.GenericScreen = (function () {
    * @param {number} screenData.score Score that should be displayed
    * @param {number} screenData.maxScore Max achievable score
    * @param {number} screenData.showScore Determines if score should be displayed
+   * @param {string} screenData.fetchingResults Text while fetching results
+   * @param {string} screenData.reportButtonText Report button text
    *
    * @return {GenericScreen} A screen object
    */
@@ -52,9 +54,15 @@ H5P.BranchingScenario.GenericScreen = (function () {
     subtitle.className = 'h5p-branching-scenario-subtitle-text';
     subtitle.innerHTML = screenData.subtitleText;
 
+    const navSection = document.createElement('nav');
+    navSection.classList.add('h5p-nav-section');
+
     const navButton = document.createElement('button');
     navButton.classList.add(screenData.isStartScreen ? 'h5p-start-button' : 'h5p-end-button');
     navButton.classList.add('transition');
+    const buttonTextNode = document.createTextNode(screenData.buttonText);
+    navButton.appendChild(buttonTextNode);
+    navSection.appendChild(navButton);
 
     navButton.onclick = function () {
       screenData.isStartScreen ? self.parent.trigger('started') : self.parent.trigger('restarted');
@@ -68,12 +76,32 @@ H5P.BranchingScenario.GenericScreen = (function () {
 
     self.navButton = navButton;
 
-    const buttonTextNode = document.createTextNode(screenData.buttonText);
-    navButton.appendChild(buttonTextNode);
+    if (H5PIntegration && H5PIntegration.canViewOwnReports && H5P.attemptsBar) {
+      const fetchingResults = document.createElement('div');
+      fetchingResults.classList.add('fetching-results', 'hide');
+      fetchingResults.innerHTML = screenData.fetchingResults;
+      contentDiv.appendChild(fetchingResults);
+
+      const viewReport = document.createElement('button');
+      viewReport.classList.add('h5p-end-button', 'report', 'hide');
+      viewReport.innerHTML = screenData.reportButtonText;
+      navSection.appendChild(viewReport);
+
+      // Initialize attempts bar listeners
+      H5P.attemptsBar.once('submit', () => {
+        fetchingResults.classList.remove('hide');
+      });
+
+      H5P.attemptsBar.once('success', (event) => {
+        viewReport.classList.remove('hide');
+        fetchingResults.classList.add('hide');
+        // TODO: On report click load report via AJAX
+      });
+    }
 
     feedbackText.appendChild(title);
     feedbackText.appendChild(subtitle);
-    contentDiv.appendChild(navButton);
+    contentDiv.appendChild(navSection);
 
     if (screenData.showScore && screenData.score !== undefined) {
       self.scoreWrapper = this.createResultContainer(

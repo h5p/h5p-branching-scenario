@@ -412,6 +412,20 @@
             "type": "text",
             "importance": "low",
             "default": "Fullscreen"
+          },
+          {
+            "name": "fetchingResults",
+            "label": "Text when fetching report URL",
+            "type": "text",
+            "importance": "low",
+            "default": "Fetching the report ..."
+          },
+          {
+            "name": "reportButtonText",
+            "label": "Text for the view reports button",
+            "type": "text",
+            "importance": "low",
+            "default": "See my report"
           }
         ]
       }

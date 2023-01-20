@@ -139,6 +139,8 @@ H5P.BranchingScenario = function (params, contentId) {
    * @param  {Object} endScreenData.endScreenImage Object containing image metadata
    * @param  {Object} endScreenData.endScreenScore Score
    * @param  {Object} endScreenData.showScore Determines if score is shown
+   * @param  {string} endScreenData.fetchingResults Fetching results text
+   * @param  {string} endScreenData.reportButtonText Report button text
    * @return {H5P.BranchingScenario.GenericScreen} Generic Screen object
    */
   const createEndScreen = function (endScreenData) {
@@ -154,6 +156,8 @@ H5P.BranchingScenario = function (params, contentId) {
       score: self.scoring.getScore(endScreenData.endScreenScore),
       maxScore: self.scoring.getMaxScore(),
       showScore: self.scoring.shouldShowScore(),
+      fetchingResults: params.l10n.fetchingResults,
+      reportButtonText: params.l10n.reportButtonText,
     });
 
     endScreen.on('toggleFullScreen', () => {
