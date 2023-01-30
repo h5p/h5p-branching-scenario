@@ -61,11 +61,11 @@
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Ekin"
               },
               {
-                "label": "Osaketa derrigorrezkoa da",
-                "description": "Ikusleek eszenatokiarekin jarraitu aurretik interakzioa osatzera derrigortzen ditu. Ezarpen honek osatu daitezkeen interakzioekin baino ez du funtzionatzen",
+                "label": "Gainidatzi behar da edukia amaituta",
+                "description": "Gainidatzi ezarpen indibidualak \"Ekin\" botoia aktibatu aurretik edukia amaitzea eskatzeko. Ez du inolako eraginik izango edukiak ez badu \"amaituta\" adierazten, adibidez irudiak edo ikastaroen aurkezpenak diapositiba bakarrarekin.",
                 "options": [
                   {
                     "label": "Erabili portaeraren ezarpena"
@@ -95,13 +95,13 @@
                   },
                   {
                     "label": "Eskenatoki honen kalifikazioa",
-                    "description": "Eszenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+                    "description": "Eszenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da."
                   }
                 ]
               },
               {
-                "label": "Portaeraren ezarpenak",
-                "description": "Honek erabiltzaileari atzera egin eta eszenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio",
+                "label": "Nabigatu atzera",
+                "description": "Honek erabiltzaileari atzera egin eta eszenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio.",
                 "options": [
                   {
                     "label": "Erabili portaeraren ezarpena"
@@ -122,7 +122,7 @@
           "fields": [
             {
               "label": "Kalifikazioaren aukerak",
-              "description": "Aukeratu kalifikazio-mota",
+              "description": "Aukeratu kalifikazio-mota.",
               "options": [
                 {
                   "label": "Estatikoki zehaztu eszenatoki bakoitzaren amaierako kalifikazioa"
@@ -145,16 +145,16 @@
           "label": "Portaeraren ezarpenak",
           "fields": [
             {
-              "label": "Baliogabetu atzerakako nabigazioa",
-              "description": "Baliogabetu atzerakako nabigazioa gaitzeko banakako ezarpenak"
+              "label": "Nabigatu atzera",
+              "description": "Honi esker, erabiltzaileak atzera egin eta aurreko edukia/galdera eszenatokian ikusteko aukera izango du. Eduki mailan baliogabetu daiteke."
             },
             {
-              "label": "Baliogabetu edukia amaitzea behartzea",
-              "description": "Baliogabetu \"Jarraitu\" botoia sakatu aurretik edukia amaitzeko banakako ezarpenak. Ez du edukian efekturik izango edukiak ez badu adierazten \"amaituta\" dagoela, esaterako irudietan edo diapositiba bakarreko ikastaro-aurkezpenetan."
+              "label": "Ikusi behar da",
+              "description": "Ikusleei bideoa, bideo interaktiboa eta ikastaroaren aurkezpena osatzeko eskatzen die eszenatokiarekin jarraitu aurretik. Eduki mailan baliogabetu daiteke"
             },
             {
               "label": "Ausazkotu Adarkatze Galderak",
-              "description": "Adarkatze galderak ausazko ordenan erakutsiko dira"
+              "description": "Adarkatze galderak ausazko ordenan erakutsiko dira."
             }
           ]
         },
