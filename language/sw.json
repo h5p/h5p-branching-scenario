@@ -61,7 +61,7 @@
               },
               {
                 "label": "Inahitajika kukamilishwa",
-                "default": "Proceed"
+                "default": "Kuendelea"
               },
               {
                 "label": "Kitambulisho cha Maudhui kinachofuata (skrini za mwisho hufafanuliwa kwa nambari hasi)",
@@ -71,10 +71,10 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Imewashwa"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Imezimwa"
                   }
                 ]
               },
@@ -85,13 +85,13 @@
                 "label": "Mipangilio ya tabia",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Kichwa cha maoni"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Maandishi ya maoni"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Maoni ya picha"
                   },
                   {
                     "label": "Score for this scenario",
@@ -100,17 +100,17 @@
                 ]
               },
               {
-                "label": "Navigate back",
+                "label": "Batilisha urambazaji wa nyuma",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Tumia mpangilio wa tabia"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Imewashwa"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Imezimwa"
                   }
                 ]
               }
@@ -122,7 +122,7 @@
           "fields": [
             {
               "label": "Chaguzi za kuweka alama",
-              "description": "Chagua aina ya kuweka alama",
+              "description": "Chagua aina ya kuweka alama.",
               "options": [
                 {
                   "label": "Kitaratibu weka alama kwa kila tukio la mwisho"
@@ -146,15 +146,15 @@
           "fields": [
             {
               "label": "Batilisha urambazaji wa nyuma",
-              "description": "Batilisha mipangilio ya kibinafsi kwa kuwezesha urambazaji wa nyuma"
+              "description": "Batilisha mipangilio ya kibinafsi kwa kuwezesha urambazaji wa nyuma."
             },
             {
               "label": "Kubatilisha kunahitaji kumaliza maudhui",
               "description": "Batilisha mipangilio ya kibinafsi kwa kuhitaji kumaliza maudhui kabla ya kuwasha kitufe cha Endelea. Haitakuwa na athari yoyote ikiwa maudhui hayaonyeshi ikiwa \"ilikamilika\" kwa mfano picha au mawasilisho ya kozi yenye slaidi moja tu."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order."
+              "label": "Maelezo Mafupi",
+              "description": "Maelezo ya namna yanaenda hapa."
             }
           ]
         },
