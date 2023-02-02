@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Další ID obsahu (koncové obrazovky jsou definovány zápornými čísly)"
-              },
+              {},
               {
                 "label": "Zpětná vazba",
                 "fields": [

@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Feedback"
-              },
+              {},
               {
                 "label": "Configurações comportamentais",
                 "fields": [

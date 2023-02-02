@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Siguiente identificador de contenido (las pantallas finales se definen con números negativos)"
-              },
+              {},
               {
                 "label": "Retroalimentación",
                 "fields": [

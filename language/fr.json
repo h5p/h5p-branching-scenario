@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [

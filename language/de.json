@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Nächste Inhalts-ID (Endbildschirme werden durch negative Zahlen definiert)"
-              },
+              {},
               {
                 "label": "Rückmeldung",
                 "fields": [

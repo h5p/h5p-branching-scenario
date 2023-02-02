@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "ID Cynnwys Nesaf (caiff sgriniau diweddu eu hadnabod gan rifau negatif)"
-              },
+              {},
               {
                 "label": "Adborth",
                 "fields": [

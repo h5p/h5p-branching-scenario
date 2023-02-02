@@ -200,7 +200,6 @@
             },
             {
               "name": "nextContentId",
-              "label": "Next Content ID (end screens are defined by negative numbers)",
               "type": "number",
               "importance": "high",
               "widget": "none"

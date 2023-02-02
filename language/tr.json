@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Sonraki İçerik Kimliği (bitiş ekranları negatif sayılarla tanımlanır)"
-              },
+              {},
               {
                 "label": "Geri bildirim",
                 "fields": [

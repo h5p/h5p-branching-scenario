@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Hurrengo Edukiaren IDa (amaierako pantailek zenbaki negatiboen bitartez identifikatzen dira)"
-              },
+              {},
               {
                 "label": "Feedbacka",
                 "fields": [

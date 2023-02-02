@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)"
-              },
+              {},
               {
                 "label": "Retroalimentación",
                 "fields": [

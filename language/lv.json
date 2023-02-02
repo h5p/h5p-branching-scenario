@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Nākamā Satura ID (beigu ekrānus nosaka negatīvi skaitļi)"
-              },
+              {},
               {
                 "label": "Atgriezeniskā saite",
                 "fields": [

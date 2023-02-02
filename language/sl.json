@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Vsebina z naslednjo ID (končni zasloni so definirani z negativnimi vrednostmi)"
-              },
+              {},
               {
                 "label": "Povratna informacija",
                 "fields": [

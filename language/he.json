@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [

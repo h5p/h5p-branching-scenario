@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Próximo ID de conteúdo (as telas finais são definidas por números negativos)"
-              },
+              {},
               {
                 "label": "Feedback (retorno)",
                 "fields": [
