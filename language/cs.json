@@ -10,15 +10,15 @@
           "label": "Úvodní obrazovka",
           "fields": [
             {
-              "label": "Název úvodní obrazovky",
+              "label": "Název kurzu",
               "placeholder": "Titulek vašeho kurzu"
             },
             {
-              "label": "Podtitul úvodní obrazovky",
+              "label": "Detaily kurzu",
               "placeholder": "Podrobnosti o kurzu"
             },
             {
-              "label": "Obrázek úvodní obrazovky"
+              "label": "Obrázek kurzu"
             },
             {
               "label": "Alternativní text obrázku"
@@ -60,12 +60,12 @@
                 "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
+                "default": "Pokračovat"
               },
               {
-                "label": "Povinné vyplnění",
-                "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili interakci. Toto nastavení bude fungovat pouze u interakcí, které lze dokončit",
+                "label": "Přepsání povinného obsahu bylo dokončeno",
+                "description": "Před aktivací tlačítka „Pokračovat“ přepište jednotlivá nastavení, která vyžadují dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem.",
                 "options": [
                   {
                     "label": "Použít nastavení chování"
@@ -93,13 +93,13 @@
                   },
                   {
                     "label": "Skóre pro tento scénář",
-                    "description": "Skóre bude odesláno do všech LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou tohoto scénáře"
+                    "description": "Skóre bude odesláno do všech LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou tohoto scénáře."
                   }
                 ]
               },
               {
-                "label": "Nastavení chování",
-                "description": "To umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku ve scénáři",
+                "label": "Přejít zpět",
+                "description": "To umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku ve scénáři.",
                 "options": [
                   {
                     "label": "Použít nastavení chování"
@@ -120,7 +120,7 @@
           "fields": [
             {
               "label": "Možnosti bodování",
-              "description": "Vybrat typ bodování",
+              "description": "Vybrat typ bodování.",
               "options": [
                 {
                   "label": "Staticky stanovené skóre pro každý scénář"
@@ -143,16 +143,16 @@
           "label": "Nastavení chování",
           "fields": [
             {
-              "label": "Přepsat zpětnou navigaci",
-              "description": "Přepsat jednotlivá nastavení pro povolení zpětné navigace"
+              "label": "Přejít zpět",
+              "description": "To uživateli umožní vrátit se a zobrazit předchozí obsah/otázku ve scénáři. To lze přepsat na úrovni obsahu."
             },
             {
-              "label": "Přepsat vyžaduje dokončení obsahu",
-              "description": "Před aktivací tlačítka „Pokračovat“ přepsat jednotlivá nastavení vyžadující dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem."
+              "label": "Povinné sledování",
+              "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili video, interaktivní video a prezentaci kurzu. To lze přepsat na úrovni obsahu"
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Náhodné větvení otázek",
+              "description": "Otázky větvení se zobrazí v náhodném pořadí."
             }
           ]
         },
@@ -172,8 +172,8 @@
               "default": "Pokračovat"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Text pro deaktivované tlačítko na obrazovkách knihovny",
+              "default": "Vyžadovat dokončení aktuálního modulu"
             },
             {
               "label": "Text tlačítka použitého k přehrání videa",
@@ -184,7 +184,7 @@
               "default": "Vaše skóre:"
             },
             {
-              "label": "Aria label pro tlačítko na celou obrazovku",
+              "label": "Popisek pro tlačítko na celou obrazovku",
               "default": "Celá obrazovka"
             }
           ]

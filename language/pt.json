@@ -10,15 +10,15 @@
           "label": "Ecrã inicial",
           "fields": [
             {
-              "label": "Título da ecrã inicial",
+              "label": "Título do curso",
               "placeholder": "Título para o seu curso"
             },
             {
-              "label": "Subtítulo da ecrã inicial",
+              "label": "Detalhes do curso",
               "placeholder": "Detalhes sobre o curso"
             },
             {
-              "label": "Imagem da ecrã inicial"
+              "label": "Imagem do curso"
             },
             {
               "label": "Texto alternativo da imagem"
@@ -26,9 +26,9 @@
           ]
         },
         {
-          "label": "Lista das telas finais",
+          "label": "Lista dos ecrãs finais",
           "field": {
-            "label": "Tela Final",
+            "label": "Ecrã Final",
             "fields": [
               {
                 "label": "Título"
@@ -60,55 +60,55 @@
                 "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo"
               },
               {
-                "label": "Deve ser completado",
-                "default": "Proceed"
+                "label": "Texto para o botão continuar (tamanho máximo: 50 caracteres)",
+                "default": "Avançar"
               },
               {
-                "label": "Próximo ID do conteúdo (as telas finais são definidas por números negativos)",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Substituir requer conteúdo concluído",
+                "description": "Substituir as configurações individuais para exigir que o conteúdo seja concluído antes de ativar o botão \"Continuar\". Não terá efeito se o conteúdo não indicar se foi \"concluído\", por exemplo imagens ou apresentações de cursos com apenas um slide.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar as Configurações Comportamentais"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ativo"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inativo"
                   }
                 ]
               },
               {},
               {
-                "label": "Configurações comportamentais",
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Título do feedback"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Texto do feedback"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Imagem do feedback"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Pontuação para este cenário",
+                    "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço que receba pontuações do H5P para os utilizadores que atingirem este cenário."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Voltar atrás",
+                "description": "Isto permitirá que o utilizador volte e veja o conteúdo/pergunta anterior no cenário.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Usar as Configurações Comportamentais"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ativo"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inativo"
                   }
                 ]
               }
@@ -134,8 +134,8 @@
               ]
             },
             {
-              "label": "Incluir pontuações de interacções dentro do Cenário de Ramificação",
-              "description": "Se forem escolhidas pontuações de, por exemplo, Vídeos Interactivos, serão adicionadas à pontuação total obtida. Se não forem escolhidas, apenas pontuações especificadas nas secções de feedback dos artigo de guia do autor do conteúdo, perguntas de ramificação e cenários finais contarão."
+              "label": "Incluir pontuações de interações dentro do Cenário de Ramificação",
+              "description": "Se forem escolhidas pontuações de, por exemplo, Vídeos Interativos, serão adicionadas à pontuação total obtida. Se não forem escolhidas, apenas pontuações especificadas nas secções de feedback dos artigo de guia do autor do conteúdo, perguntas de ramificação e cenários finais contarão."
             }
           ]
         },
@@ -143,16 +143,16 @@
           "label": "Configurações comportamentais",
           "fields": [
             {
-              "label": "Anular a navegação reversa",
-              "description": "Anular as configurações individuais para permitir a navegação reversa"
+              "label": "Voltar atrás",
+              "description": "Permitirá que o utilizador volte e veja o conteúdo/pergunta anterior no cenário. Isso pode ser substituído num nível de conteúdo."
             },
             {
               "label": "Anular requer a conclusão do conteúdo",
-              "description": "Anular as configurações individuais para exigir que o conteúdo seja concluído antes de activar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"concluído\", por exemplo, imagens ou apresentações do curso com apenas um slide."
+              "description": "Anular as configurações individuais para exigir que o conteúdo seja concluído antes de ativar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"concluído\", por exemplo, imagens ou apresentações do curso com apenas um slide."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order."
+              "label": "Randomizar perguntas de ramificação",
+              "description": "Perguntas de ramificação são exibidas  aleatoriamente."
             }
           ]
         },
@@ -172,8 +172,8 @@
               "default": "Voltar"
             },
             {
-              "label": "Texto para o botão em cada uma das bibliotecas de tela",
-              "default": "Continuar"
+              "label": "Texto para o botão desabilitado nas telas da biblioteca",
+              "default": "É necessária a conclusão do módulo atual"
             },
             {
               "label": "Texto para o botão usado para reproduzir um vídeo",
@@ -184,8 +184,8 @@
               "default": "Sua pontuação:"
             },
             {
-              "label": "Notificação para pontuação na tela final",
-              "default": "Sua pontuação:"
+              "label": "Notificação para pontuação no ecrã final",
+              "default": "Ecrã total"
             }
           ]
         }

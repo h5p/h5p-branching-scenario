@@ -10,18 +10,18 @@
           "label": "Startskärm",
           "fields": [
             {
-              "label": "Titel på startskärm",
+              "label": "Titel på kurs",
               "placeholder": "Titel för din kurs"
             },
             {
-              "label": "Undertitel för startskärm",
+              "label": "Uppgifter om kurs",
               "placeholder": "Information om kursen"
             },
             {
-              "label": "Bild på startskärm"
+              "label": "Kursbild"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternativ text för bild"
             }
           ]
         },
@@ -60,12 +60,12 @@
                 "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text för fortsätt-knappen (maxlängd: 50 tecken)",
+                "default": "Fortsätt"
               },
               {
-                "label": "Måste genomföras",
-                "description": "Uppmanar deltagaren att genomföra interaktionen före denne kan fortsätta med scenariot. Denna inställning fungerar endast för interaktioner som kan genomföras",
+                "label": "Ignorera att innehåll måste avslutas",
+                "description": "Ignorerar den individuella inställning som kräver att innehåll måste avslutas innan knappen \"Fortsätt\" aktiveras. Detta kommer inte ha någon påverkan om innehållet inte indikerar om det är \"avslutat\", exempelvis vid bilder eller kurspresentationer med endast en sida.",
                 "options": [
                   {
                     "label": "Använd beteende-inställning"
@@ -93,13 +93,13 @@
                   },
                   {
                     "label": "Poäng för detta scenario",
-                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som slutför detta scenario"
+                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som når detta scenario."
                   }
                 ]
               },
               {
-                "label": "Beteende-inställningar",
-                "description": "Detta låter användaren gå tillbaka och se föregående innehåll/fråga i scenariot",
+                "label": "Navigera bakåt",
+                "description": "Detta låter användaren gå tillbaka och se föregående innehåll/fråga i scenariot.",
                 "options": [
                   {
                     "label": "Använd beteende-inställning"
@@ -120,7 +120,7 @@
           "fields": [
             {
               "label": "Inställningar för poängsättning",
-              "description": "Välj typ av poängsättning",
+              "description": "Välj typ av poängsättning.",
               "options": [
                 {
                   "label": "Sätt poäng för varje slutscenario statiskt"
@@ -143,16 +143,16 @@
           "label": "Beteende-inställningar",
           "fields": [
             {
-              "label": "Ignorera bakåt-navigation",
-              "description": "Ignorera de individuella inställningarna för att tillåta bakåt-navigation"
+              "label": "Navigera bakåt",
+              "description": "Detta låter användaren gå bakåt och se föregående innehåll/fråga i scenariot. Detta kan ignoreras på innehållsnivå."
             },
             {
-              "label": "Ignorera att innehåll måste avslutas",
-              "description": "Ignorera de individuella inställningarna för att kräva att innehållet måste avslutas före \"Framåt\"-knappen aktiveras. Detta kommer inte ha någon effekt om innehållet inte indikerar att det var \"avslutat\", exempelvis bilder eller Course Presentations som bara har en sida."
+              "label": "Obligatoriskt att se",
+              "description": "Uppmanar användarna att slutföra videon, interaktiva videon och kursen före de kan fortsätta med scenariot. Detta kan ignoreras på innehållsnivå"
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Slumpa branching-frågor",
+              "description": "Branching-frågor kommer att visas i slumpmässig ordning."
             }
           ]
         },
@@ -172,8 +172,8 @@
               "default": "Tillbaka"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Text för den inaktiverade knappen på biblioteksskärmar",
+              "default": "Kräv att nuvarande modul genomförs"
             },
             {
               "label": "Etikett för knappen som används för att starta om en video",
