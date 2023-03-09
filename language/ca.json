@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Identificador del contingut següent (les pantalles finals es defineixen amb números negatius)"
-              },
+              {},
               {
                 "label": "Retroacció",
                 "fields": [

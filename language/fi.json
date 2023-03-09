@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Seuraava sisältö-ID (haaranpäätteet määritetään negatiivisilla numeroilla)"
-              },
+              {},
               {
                 "label": "Palaute",
                 "fields": [

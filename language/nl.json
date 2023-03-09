@@ -61,7 +61,7 @@
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Doorgaan"
               },
               {
                 "label": "Vereist voor voltooiing",
@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Volgende ID van de inhoud (eindschermen worden gedefinieerd door negatieve getallen)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [

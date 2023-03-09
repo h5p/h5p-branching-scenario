@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Järgmine sisu ID (lõppvaadete arvud on negatiivsed)"
-              },
+              {},
               {
                 "label": "Tagasiside",
                 "fields": [

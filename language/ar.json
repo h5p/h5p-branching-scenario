@@ -10,7 +10,7 @@
           "label": "شاشة البدء",
           "fields": [
             {
-              "label": "عنوان شاشةالبدء",
+              "label": "عنوان شاشة البدء",
               "placeholder": "Title for your course"
             },
             {
@@ -21,7 +21,7 @@
               "label": "صورة شاشة البدء"
             },
             {
-              "label": "Image alternative text"
+              "label": "نص بديل للصورة"
             }
           ]
         },
@@ -64,7 +64,7 @@
                 "default": "Proceed"
               },
               {
-                "label": "Required to be completed",
+                "label": "معرّف دليل تأليف المحتوى التالي (يتم تعريف شاشات النهاية بالأرقام السالبة)",
                 "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
                 "options": [
                   {
@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -122,7 +120,7 @@
           "fields": [
             {
               "label": "Scoring options",
-              "description": "Select type of scoring",
+              "description": "حدد نوع معدل العلامات",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -136,8 +134,8 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "أدرج معدل العلامات من التفاعلات ضمن السيناريو المتفرّع",
+              "description": "إذا تم اختيار العلامات من مقاطع الفيديو التفاعلية على سبيل المثال فستتم إضافتها إلى إجمالي المعدل التي تم الحصول عليها. إذا لم يتم اختيار علامة المحددة فقط في أقسام الملاحظات من عنصر دليل تأليف المحتوى، سيحسب السؤال المتفرع وسيناريوهات النهاية."
             }
           ]
         },
@@ -145,12 +143,12 @@
           "label": "إعدادات سلوكية",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "تجاوز التنقل للخلف",
+              "description": "تجاوز الإعدادات الفردية لتفعيل التنقل إلى الخلف"
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "يتطلب التجاوز إنهاء دليل تأليف المحتوى",
+              "description": "تجاوز الإعدادات الفردية لطلب إنهاء دليل تأليف المحتوى قبل تفعيل زر \"المتابعة\". لن يكون له أي تأثير إذا لم يشير دليل تأليف المحتوى إلى ما إذا كان قد «انتهى»، على سبيل المثال الصور أوتقديم الدورة بشريحة واحدة فقط."
             },
             {
               "label": "Randomize Branching Questions",

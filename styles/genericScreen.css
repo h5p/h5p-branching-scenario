@@ -192,13 +192,17 @@
   background: #9fe281;
 }
 
-.h5p-branching-scenario .h5p-branching-question button:focus-visible,
 .h5p-branching-full-screen:focus-visible,
 .h5p-branching-scenario .h5p-start-button:focus-visible,
 .h5p-end-button:focus-visible,
 .h5p-back-button:not(.h5p-disabled):focus-visible,
 .h5p-nav-button:not(.h5p-disabled):focus-visible {
   outline: 2px solid #8ecafb;
+  outline-offset: 2px;
+}
+
+.h5p-branching-scenario .h5p-branching-question button:focus-visible {
+  outline: 2px solid #0575d1;
   outline-offset: 2px;
 }
 

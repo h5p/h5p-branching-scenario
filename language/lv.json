@@ -10,15 +10,15 @@
           "label": "Sākuma ekrāns",
           "fields": [
             {
-              "label": "Sākuma ekrāna nosaukums",
+              "label": "Kursa nosaukums",
               "placeholder": "Jūsu kursa nosaukums"
             },
             {
-              "label": "Sākuma ekrāna apakšvirsraksts",
+              "label": "Kursa rekvizīti",
               "placeholder": "Detalizēta informācija par kursu"
             },
             {
-              "label": "Sākuma ekrāna attēls"
+              "label": "Kursa attēls"
             },
             {
               "label": "Attēla alternatīvais teksts"
@@ -61,10 +61,10 @@
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Turpināt"
               },
               {
-                "label": "Obligāti jāaizpilda",
+                "label": "Ignorēt prasību pabeigt saturu",
                 "description": "Mudina skatītājus pabeigt mijiedarbību, pirms turpināt scenāriju. Šis iestatījums darbosies tikai tām mijiedarbībām, kuras var pabeigt",
                 "options": [
                   {
@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Nākamā Satura ID (beigu ekrānus nosaka negatīvi skaitļi)"
-              },
+              {},
               {
                 "label": "Atgriezeniskā saite",
                 "fields": [

@@ -262,6 +262,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           if (parseInt(this.currentLibraryWrapper.style.height) < questionContainer.offsetHeight) {
             this.currentLibraryElement.style.height = questionContainer.offsetHeight + 'px';
             this.wrapper.style.height = questionContainer.offsetHeight + 'px';
+            this.parent.trigger('resize');
           }
         }, 100);
         feedbackScreen.focus();
@@ -922,7 +923,6 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         self.wrapper.classList.remove('h5p-next-screen');
         self.wrapper.classList.remove('h5p-slide-in');
         self.wrapper.classList.add('h5p-current-screen');
-        self.wrapper.setAttribute('aria-hidden', false);
         self.parent.navigating = false;
         self.wrapper.style.minHeight = self.parent.currentHeight;
         self.libraryTitle.focus();
@@ -1152,6 +1152,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           self.currentLibraryWrapper.parentNode.removeChild(self.currentLibraryWrapper);
         }
         self.currentLibraryWrapper = libraryWrapper;
+        self.wrapper.setAttribute('aria-hidden', false);
         self.currentLibraryWrapper.classList.remove('h5p-previous');
         self.currentLibraryWrapper.classList.remove('h5p-next');
         self.currentLibraryWrapper.classList.remove('h5p-slide-in');
@@ -1320,7 +1321,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         if (element instanceof HTMLMediaElement) {
           element.controls = true;
         }
-        else if (tabbable.tabindex !== undefined) {
+        else if (tabbable.tabindex !== undefined && tabbable.tabindex !== null) {
           element.setAttribute('tabindex', tabbable.tabindex);
         }
         else {

@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Nästa innehålls-ID (slutskärmar definieras av negativa nummer)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [

@@ -1,37 +1,37 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Išsišakojusio scenarijaus redaktorius",
       "fields": [
         {
-          "label": "Title"
+          "label": "Pavadinimas"
         },
         {
-          "label": "Start screen",
+          "label": "Pradžios ekranas",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Kurso pavadinimas",
+              "placeholder": "Jūsų kurso pavadinimas"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Išsami informacija apie kursą",
+              "placeholder": "Išsami informacija apie kursą"
             },
             {
-              "label": "Start screen image"
+              "label": "Kurso paveiksliukas"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternatyvus paveikslėlio tekstas"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "Pabaigos užsklandų sąrašas",
           "field": {
             "label": "End screen",
             "fields": [
               {
-                "label": "Title"
+                "label": "Pavadinimas"
               },
               {
                 "label": "Text"
@@ -50,13 +50,13 @@
           }
         },
         {
-          "label": "List of branching scenario content",
+          "label": "Išsišakojusio scenarijaus turinio sąrašas",
           "entity": "content",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
+                "label": "Rodyti turinio pavadinimą rodinyje",
                 "description": "If selected, the user will see the content title in the top bar above this content"
               },
               {
@@ -64,37 +64,35 @@
                 "default": "Proceed"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Naudoti veikimo nustatymą"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Įjungta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Išjungta"
                   }
                 ]
               },
+              {},
               {
-                "label": "Next Content ID (end screens are defined by negative numbers)"
-              },
-              {
-                "label": "Feedback",
+                "label": "Atsiliepimas",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Atsiliepimo pavadinimas"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Atsiliepimo tekstas"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Atsiliepimo paveiksliukas"
                   },
                   {
-                    "label": "Score for this scenario",
+                    "label": "Balas šiam scenarijui",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
                   }
                 ]
@@ -104,13 +102,13 @@
                 "description": "This will allow user to go back and see the previous content/question in the scenario",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Naudoti veikimo nustatymą"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Įjungta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Išjungta"
                   }
                 ]
               }
@@ -118,11 +116,11 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Balų skaičiavimo parinktys",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Balų skaičiavimo parinktys",
+              "description": "Pasirinkite įvertinimo tipą",
               "options": [
                 {
                   "label": "Statically set score for each end scenario"
@@ -131,7 +129,7 @@
                   "label": "Dynamically calculate score from user answers"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Nėra balų"
                 }
               ]
             },
@@ -142,11 +140,11 @@
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Veikimo nustatymai",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Navigate back",
+              "description": "This will allow user to go back and see the previous content/question in the scenario. This can be overridden on a content level"
             },
             {
               "label": "Required to watch",
@@ -159,19 +157,19 @@
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lokalizacija",
           "fields": [
             {
               "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "default": "Pradėti kursą"
             },
             {
               "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "default": "Pradėti kursą iš naujo"
             },
             {
-              "label": "Text for the button on each of the library screens",
-              "default": "Proceed"
+              "label": "Text for the back button on each of the library screens and branching questions",
+              "default": "Atgal"
             },
             {
               "label": "Text for the disabled button on the library screens",
@@ -179,15 +177,15 @@
             },
             {
               "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "default": "Pakartoti vaizdo įrašą"
             },
             {
               "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "default": "Tavo balas:"
             },
             {
               "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "default": "Visas ekranas"
             }
           ]
         }

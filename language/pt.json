@@ -1,0 +1,195 @@
+{
+  "semantics": [
+    {
+      "label": "Editor do Cenário de Ramificação",
+      "fields": [
+        {
+          "label": "Título"
+        },
+        {
+          "label": "Ecrã inicial",
+          "fields": [
+            {
+              "label": "Título da ecrã inicial",
+              "placeholder": "Título para o seu curso"
+            },
+            {
+              "label": "Subtítulo da ecrã inicial",
+              "placeholder": "Detalhes sobre o curso"
+            },
+            {
+              "label": "Imagem da ecrã inicial"
+            },
+            {
+              "label": "Texto alternativo da imagem"
+            }
+          ]
+        },
+        {
+          "label": "Lista das telas finais",
+          "field": {
+            "label": "Tela Final",
+            "fields": [
+              {
+                "label": "Título"
+              },
+              {
+                "label": "Texto"
+              },
+              {
+                "label": "Imagem"
+              },
+              {
+                "label": "Pontuação",
+                "description": "A pontuação será enviada para qualquer sistema de gestão da aprendizagem (SGA), LRS ou qualquer outro serviço conectado que receba pontuação do H5P para utilizadores que atinjam o cenário final padrão"
+              },
+              {
+                "label": "ID do conteúdo"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Lista do conteúdo do cenário de ramificação",
+          "entity": "conteúdo",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Mostrar o título do conteúdo visualizado",
+                "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo"
+              },
+              {
+                "label": "Deve ser completado",
+                "default": "Proceed"
+              },
+              {
+                "label": "Próximo ID do conteúdo (as telas finais são definidas por números negativos)",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              },
+              {},
+              {
+                "label": "Configurações comportamentais",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
+              {
+                "label": "Navigate back",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Marcação de pontos",
+          "fields": [
+            {
+              "label": "Marcação de pontos",
+              "description": "Selecione o tipo de marcação de pontos",
+              "options": [
+                {
+                  "label": "Pontuação estatisticamente definida para cada cenário final"
+                },
+                {
+                  "label": "Calcular dinamicamente a pontuação a partir das respostas dos utilizadores"
+                },
+                {
+                  "label": "Sem marcação de pontos"
+                }
+              ]
+            },
+            {
+              "label": "Incluir pontuações de interacções dentro do Cenário de Ramificação",
+              "description": "Se forem escolhidas pontuações de, por exemplo, Vídeos Interactivos, serão adicionadas à pontuação total obtida. Se não forem escolhidas, apenas pontuações especificadas nas secções de feedback dos artigo de guia do autor do conteúdo, perguntas de ramificação e cenários finais contarão."
+            }
+          ]
+        },
+        {
+          "label": "Configurações comportamentais",
+          "fields": [
+            {
+              "label": "Anular a navegação reversa",
+              "description": "Anular as configurações individuais para permitir a navegação reversa"
+            },
+            {
+              "label": "Anular requer a conclusão do conteúdo",
+              "description": "Anular as configurações individuais para exigir que o conteúdo seja concluído antes de activar o botão \"Prosseguir\". Não terá qualquer efeito se o conteúdo não indicar se foi \"concluído\", por exemplo, imagens ou apresentações do curso com apenas um slide."
+            },
+            {
+              "label": "Randomize Branching Questions",
+              "description": "Branching questions will be displayed in random order."
+            }
+          ]
+        },
+        {
+          "label": "Localização",
+          "fields": [
+            {
+              "label": "Texto para o botão na Ecrã inicial",
+              "default": "Comece o curso"
+            },
+            {
+              "label": "Texto para o botão na Tela Final",
+              "default": "Reiniciar o curso"
+            },
+            {
+              "label": "Texto para o botão de retorno em cada uma das telas da biblioteca e perguntas de ramificação",
+              "default": "Voltar"
+            },
+            {
+              "label": "Texto para o botão em cada uma das bibliotecas de tela",
+              "default": "Continuar"
+            },
+            {
+              "label": "Texto para o botão usado para reproduzir um vídeo",
+              "default": "Reproduzir o vídeo"
+            },
+            {
+              "label": "Notificação para pontuação na tela final",
+              "default": "Sua pontuação:"
+            },
+            {
+              "label": "Notificação para pontuação na tela final",
+              "default": "Sua pontuação:"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

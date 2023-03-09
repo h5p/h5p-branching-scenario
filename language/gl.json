@@ -10,15 +10,15 @@
           "label": "Pantalla de inicio",
           "fields": [
             {
-              "label": "Título da pantalla de inicio",
+              "label": "Título do curso",
               "placeholder": "Título para o teu curso"
             },
             {
-              "label": "Subtítulo da pantalla de inicio",
+              "label": "Detalles do curso",
               "placeholder": "Detalles sobre o curso"
             },
             {
-              "label": "Imaxe da pantalla de inicio"
+              "label": "Imaxe do curso"
             },
             {
               "label": "Texto alternativo da imaxe"
@@ -60,12 +60,12 @@
                 "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Texto para o botón Continuar (lonxitude máxima: 50 caracteres)",
+                "default": "Adiante"
               },
               {
-                "label": "Completado obrigatorio",
-                "description": "Pídelle ao usuario que complete a interacción antes de seguir co escenario. Esta característica só funciona en interaccións que poden completarse",
+                "label": "Anular requirimento de rematado de contido",
+                "description": "Anula a configuración individual para esixir que o contido estea rematado antes de activar o botón \"Adiante\". Non terá ningún efecto se o contido non indica se estaba \"rematado\", por exemplo, imaxes ou presentacións de cursos cunha soa diapositiva.",
                 "options": [
                   {
                     "label": "Usar configuración de comportamento"
@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Seguinte ID de contido (as pantallas finais defínense con números negativos)"
-              },
+              {},
               {
                 "label": "Retroalimentación",
                 "fields": [
@@ -95,13 +93,13 @@
                   },
                   {
                     "label": "Puntación para este escenario",
-                    "description": "Enviarase a puntuación a calquera LMS, LRS ou calquera dispositivo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario"
+                    "description": "Enviarase a puntuación a calquera LMS, LRS ou calquera dispositivo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario."
                   }
                 ]
               },
               {
-                "label": "Configuración de comportamento",
-                "description": "Permiten que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario",
+                "label": "Navega cara atrás",
+                "description": "Permite que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario.",
                 "options": [
                   {
                     "label": "Usar a configuración de comportamento"
@@ -122,7 +120,7 @@
           "fields": [
             {
               "label": "Opcións de puntuación",
-              "description": "Selecciona o tipo de puntuación",
+              "description": "Selecciona o tipo de puntuación.",
               "options": [
                 {
                   "label": "Aplicar puntuación estática para cada pantalla final"
@@ -145,16 +143,16 @@
           "label": "Configuración de comportamento",
           "fields": [
             {
-              "label": "Anular a navegación cara atrás",
-              "description": "Anular a configuración individual que permite navegar cara atrás"
+              "label": "Navegar cara atrás",
+              "description": "Isto permitirá ao usuario volver atrás e ver o contido/pregunta anterior no escenario. Pódese anular a nivel de contido."
             },
             {
-              "label": "Anular requirimento de rematado de contido",
-              "description": "Anular elementos individuais da configuración que requiren que se complete o contido antes de activar o botón \"Adiante\". Non terá efecto se o contido non indica se foi completado ou non; p. ex. imaxes ou presentacións de curso cunha soa diapositiva."
+              "label": "Vista obrigatoria",
+              "description": "Insta aos espectadores a completar o vídeo, o vídeo interactivo e a presentación do curso antes de continuar co escenario. Pódese anular a nivel de contido"
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Preguntas de ramificación aleatorias",
+              "description": "As preguntas de ramificación mostraranse en orde aleatoria."
             }
           ]
         },
@@ -174,8 +172,8 @@
               "default": "Atrás"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Texto para o botón desactivado nas pantallas da biblioteca",
+              "default": "Requirido para completar o módulo actual"
             },
             {
               "label": "Texto para o botón usado para volver a reproducir o vídeo",

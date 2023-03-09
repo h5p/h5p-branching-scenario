@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Volgende inhoud ID (eindskerms word definieer deur negatiewe getalle)"
-              },
+              {},
               {
                 "label": "Terugvoer",
                 "fields": [

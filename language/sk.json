@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Nasledujúce ID obsahu (koncové obrazovky sú definované zápornými číslami)"
-              },
+              {},
               {
                 "label": "Spätná väzba",
                 "fields": [

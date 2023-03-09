@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "ID del prossimo contenuto (le schermate finali sono definite da numeri negativi)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [

@@ -10,15 +10,15 @@
           "label": "Écran de départ",
           "fields": [
             {
-              "label": "Titre de l'écran de départ",
+              "label": "Titre de l’écran d'accueil",
               "placeholder": "Titre de votre cours"
             },
             {
-              "label": "Sous-titre de l'écran de départ",
+              "label": "Sous-titre de l’écran d'accueil",
               "placeholder": "Informations sur votre cours"
             },
             {
-              "label": "Image de l'écran de départ"
+              "label": "Image de l’écran d'accueil"
             },
             {
               "label": "Texte alternatif pour l'image"
@@ -64,7 +64,7 @@
                 "default": "Proceed"
               },
               {
-                "label": "Requis pour terminer",
+                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)",
                 "description": "Requiert l'accomplissement de l'activité avant de poursuivre le scénario. Cette préférence ne fonctionne que pour l'activité qui demandent une réponse de la part de l'utilisateur.",
                 "options": [
                   {
@@ -78,9 +78,7 @@
                   }
                 ]
               },
-              {
-                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)"
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -122,7 +120,7 @@
           "fields": [
             {
               "label": "Options de notation",
-              "description": "Sélectionnez le type de notation",
+              "description": "Sélectionner le type de notation",
               "options": [
                 {
                   "label": "Définir de façon statique le score pour chaque scénario de fin"
@@ -145,12 +143,12 @@
           "label": "Options comportementales",
           "fields": [
             {
-              "label": "Désactiver la navigation vers l’arrière",
-              "description": "Contourner les options comportementales pour activer la navigation vers l’arrière"
+              "label": "Contourner la navigation vers l’arrière",
+              "description": "Contourner les paramètres individuels pour activer la navigation vers l'arrière"
             },
             {
               "label": "Contourner la nécessité de terminer le contenu",
-              "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple)."
+              "description": "Contourner les paramètres individuels exigeant que le contenu soit complété avant d'activer la touche « Continuer ». N'aura aucun effet si le contenu n'indique pas qu'il a été « fini », p.ex. des images ou des diaporamas avec une seule diapositive."
             },
             {
               "label": "Randomize Branching Questions",

@@ -153,11 +153,11 @@
               "importance": "high",
               "options": [
                 "H5P.BranchingQuestion 1.0",
-                "H5P.CoursePresentation 1.24",
+                "H5P.CoursePresentation 1.25",
                 "H5P.AdvancedText 1.1",
                 "H5P.Image 1.1",
                 "H5P.ImageHotspots 1.10",
-                "H5P.InteractiveVideo 1.24",
+                "H5P.InteractiveVideo 1.26",
                 "H5P.Video 1.6"
               ]
             },
@@ -200,7 +200,6 @@
             },
             {
               "name": "nextContentId",
-              "label": "Next Content ID (end screens are defined by negative numbers)",
               "type": "number",
               "importance": "high",
               "widget": "none"
