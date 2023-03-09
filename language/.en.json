@@ -41,7 +41,7 @@
               },
               {
                 "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario."
               },
               {
                 "label": "Content ID"
@@ -54,10 +54,9 @@
           "entity": "content",
           "field": {
             "fields": [
-              {},
               {
                 "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
@@ -148,7 +147,7 @@
             },
             {
               "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Video and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "description": "Urges viewers to complete the Video, Interactive Video and Course Presentation before proceeding with the scenario. This can be overridden on a content level."
             },
             {
               "label": "Randomize Branching Questions",
