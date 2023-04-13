@@ -54,14 +54,30 @@
           "entity": "контент",
           "field": {
             "fields": [
-              {},
+              {
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
+              },
               {
                 "label": "Показать заголовок контента в просмотре",
-                "description": "Если выбрано, пользователь увидит заголовок контента в верхней панели над этим контентом."
+                "description": "Если выбрано, пользователь увидит заголовок контента в верхней панели над этим контентом.",
+                "default": "Proceed"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
                 "label": "Required to be completed",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Обратная связь",
                 "fields": [
@@ -94,6 +127,18 @@
                   {
                     "label": "Оценка по этому сценарию",
                     "description": "Оценка будет отправлена в любую LMS, LRS или любую другую подключенную службу, которая получает оценки от H5P для пользователей, которые достигли этого сценария."
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               },
