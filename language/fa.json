@@ -54,14 +54,30 @@
           "entity": "محتوا",
           "field": {
             "fields": [
-              {},
+              {
+                "description": "If selected, the user will see the content title in the top bar above this content.",
+                "label": "Show content title in view"
+              },
               {
                 "label": "نمایش عنوان محتوا در نما",
-                "description": "در صورت انتخاب، کاربر عنوان محتوا را در نوار بالای محتوا خواهد دید"
+                "description": "در صورت انتخاب، کاربر عنوان محتوا را در نوار بالای محتوا خواهد دید",
+                "default": "Proceed"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
               },
               {
                 "label": "لازم است تکمیل شود",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "بازخورد",
                 "fields": [
@@ -94,6 +127,18 @@
                   {
                     "label": "نمره این سناریو",
                     "description": "نمره به هر LMS، LRS یا هر خدمات متصل دیگری که نمرات کاربرانی که به این سناریو می‌رسند را از H5P دریافت می‌کند، ارسال خواهد شد"
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               },
