@@ -54,14 +54,30 @@
           "entity": "Inhalt",
           "field": {
             "fields": [
-              {},
+              {
+                "description": "If selected, the user will see the content title in the top bar above this content.",
+                "label": "Show content title in view"
+              },
               {
                 "label": "Titel anzeigen",
-                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
+                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt",
+                "default": "Proceed"
               },
               {
                 "label": "Beschriftung des \"Weiter\"-Buttons (maximale Länge: 50 Zeichen)",
-                "default": "Weiter"
+                "default": "Weiter",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
               },
               {
                 "label": "\"Muss abgeschlossen werden\" überschreiben",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Rückmeldung",
                 "fields": [
@@ -94,6 +127,18 @@
                   {
                     "label": "Punkte für dieses Szenario",
                     "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt."
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               },
