@@ -41,7 +41,7 @@
               },
               {
                 "label": "Puntuación",
-                "description": "A puntuación enviarase a calquera LMS, LRS ou a calquera outro servizo que reciba puntuación do H5P para os usuarios que cheguen á pantalla final por defecto"
+                "description": "A puntuación enviarase a calquera LMS, LRS ou a calquera outro servizo que reciba puntuación do H5P para os usuarios que cheguen á pantalla final por defecto."
               },
               {
                 "label": "ID do contido"
@@ -54,14 +54,30 @@
           "entity": "contido",
           "field": {
             "fields": [
-              {},
               {
                 "label": "Amosar o título do contido na vista",
-                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior"
+                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior."
               },
               {
                 "label": "Texto para o botón Continuar (lonxitude máxima: 50 caracteres)",
-                "default": "Adiante"
+                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior",
+                "default": "Continuar"
+              },
+              {
+                "label": "Anular requirimento de rematado de contido",
+                "default": "Adiante",
+                "options": [
+                  {
+                    "label": "Usar a configuración do comportamento"
+                  },
+                  {
+                    "label": "Activado"
+                  },
+                  {
+                    "label": "Desactivado"
+                  }
+                ],
+                "description": "Anula a configuración individual para esixir que o contido estea rematado antes de activar o botón \"Continuar\". Non terá ningún efecto se o contido non indica se estaba \"acabado\", por exemplo, imaxes ou presentacións de cursos cunha soa diapositiva."
               },
               {
                 "label": "Anular requirimento de rematado de contido",
@@ -78,9 +94,26 @@
                   }
                 ]
               },
-              {},
               {
                 "label": "Retroalimentación",
+                "fields": [
+                  {
+                    "label": "Título da retroalimentación"
+                  },
+                  {
+                    "label": "Texto de retroalimentación"
+                  },
+                  {
+                    "label": "Imaxe da retroalimentación"
+                  },
+                  {
+                    "label": "Puntuación para este escenario",
+                    "description": "A puntuación enviarase a calquera LMS, LRS ou calquera outro servizo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario."
+                  }
+                ]
+              },
+              {
+                "label": "Navegar cara atrás",
                 "fields": [
                   {
                     "label": "Título da retroalimentación"
@@ -94,6 +127,18 @@
                   {
                     "label": "Puntación para este escenario",
                     "description": "Enviarase a puntuación a calquera LMS, LRS ou calquera dispositivo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario."
+                  }
+                ],
+                "description": "Permite que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario.",
+                "options": [
+                  {
+                    "label": "Usar a configuración do comportamento"
+                  },
+                  {
+                    "label": "Activado"
+                  },
+                  {
+                    "label": "Desactivado"
                   }
                 ]
               },
@@ -148,7 +193,7 @@
             },
             {
               "label": "Vista obrigatoria",
-              "description": "Insta aos espectadores a completar o vídeo, o vídeo interactivo e a presentación do curso antes de continuar co escenario. Pódese anular a nivel de contido"
+              "description": "Insta aos espectadores a completar o vídeo, o vídeo interactivo e a presentación do curso antes de continuar co escenario. Pódese anular a nivel de contido."
             },
             {
               "label": "Preguntas de ramificación aleatorias",
