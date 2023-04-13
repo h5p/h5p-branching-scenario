@@ -54,14 +54,30 @@
           "entity": "inhoud",
           "field": {
             "fields": [
-              {},
+              {
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
+              },
               {
                 "label": "Wys inhoudtitel in sig",
-                "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien"
+                "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien",
+                "default": "Proceed"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
                 "label": "Vereis om te voltooi",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Terugvoer",
                 "fields": [
@@ -94,6 +127,18 @@
                   {
                     "label": "Telling vir hierdie scenario",
                     "description": "Die telling sal gestuur word na enige LBS of enige ander verbonde diens wat tellings van H5P vir gebruikers wat hierdie scenario bereik"
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               },
