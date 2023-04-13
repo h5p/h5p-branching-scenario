@@ -54,14 +54,30 @@
           "entity": "edukia",
           "field": {
             "fields": [
-              {},
               {
-                "label": "Erakutsi edukiaren izenburua ikuspegian",
-                "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran"
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Ekin"
+                "label": "Erakutsi edukiaren izenburua ikuspegian",
+                "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran",
+                "default": "Proceed"
+              },
+              {
+                "label": "Ekiteko botoiaren testua (gehienezko luzera: 50 karaktere)",
+                "default": "Ekin",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
               },
               {
                 "label": "Gainidatzi behar da edukia amaituta",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Feedbacka",
                 "fields": [
@@ -94,6 +127,18 @@
                   {
                     "label": "Eskenatoki honen kalifikazioa",
                     "description": "Eszenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da."
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
                   }
                 ]
               },
@@ -172,8 +217,8 @@
               "default": "Atzera"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Liburutegiko pantailetako desgaitutako botoiaren testua",
+              "default": "Uneko modulua osatzea eskatu"
             },
             {
               "label": "Bideo bat berriro erreproduzitzeko erabilitako botoiaren testua",
