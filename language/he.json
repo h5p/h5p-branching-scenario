@@ -1,114 +1,159 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "עורך תרחישי הסתעפות",
       "fields": [
         {
           "label": "כותרת"
         },
         {
-          "label": "Start screen",
+          "label": "מסך התחלה",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "כותרת של מסך התחלה",
+              "placeholder": "כותרת ללומדה"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "פרטי הלומדה",
+              "placeholder": "מידע אודות הקורס"
             },
             {
-              "label": "Start screen image"
+              "label": "תמונת הקורס"
             },
             {
-              "label": "Image alternative text"
+              "label": "מידע חלופי על התמונה"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "רשימה של מסכי סיום",
           "field": {
-            "label": "End screen",
+            "label": "מסך סיום",
             "fields": [
               {
-                "label": "Title"
+                "label": "כותרת"
               },
               {
-                "label": "Text"
+                "label": "טקסט"
               },
               {
-                "label": "Image"
+                "label": "תמונה"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "ציון",
+                "description": "הציון יישלח לLMS, LRS או כל שירות שיכול לקבל ציונים מH5P של משתמשים המגיעים לתרחיש הסיום כברירת מחדל."
               },
               {
-                "label": "Content ID"
+                "label": "מזהה תוכן"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "רשימת תוכן של תרחישים מסתעפים",
+          "entity": "תוכן",
           "field": {
             "fields": [
-              {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content"
+                "label": "הצג את כותרת התוכן בתצוגה",
+                "description": "אם נבחר, המשתמש יראה את כותרת התוכן בסרגל העליון המופיע מעל תוכן זה."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "טקסט עבור כפתור ההמשך (אורך מקסימלי: 50 תווים)",
+                "description": "אם נבחר, המשתמש יראה את כותרת התוכן בסרגל העליון המופיע מעל תוכן זה",
+                "default": "להמשיך"
               },
               {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
+                "label": "ביטול דרישה לתוכן הסתיים",
+                "default": "להמשיך",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "השתמש בהגדרת התנהגות"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "פעיל"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "כבוי"
+                  }
+                ],
+                "description": "תעקוף את ההגדרות האישיות לדרישת סיום התוכן לפני הפעלת כפתור ״המשך״. לא תהיה השפעה אם התוכן לא מציין אם הוא ״גמר״, למשל תמונות או מצגות קורס עם שקופית אחת בלבד."
+              },
+              {
+                "label": "תהליך ביטול דרישה לתוכן הסתיים",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "השתמש בהגדרת התנהגות"
+                  },
+                  {
+                    "label": "הופעל"
+                  },
+                  {
+                    "label": "לא הופעל"
                   }
                 ]
               },
-              {},
               {
-                "label": "Feedback",
+                "label": "משוב",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "כותרת משוב"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "משוב"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "תמונת משוב"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario"
+                    "label": "ציון עבור תרחיש זה",
+                    "description": "הציון יישלח לLMS, LRS או אמצעים אחרים שיכולים להתחבר לשירות שמקבל ציונים מH5P, למשתמשים שלוקחים חלק בתרחיש זה."
                   }
                 ]
               },
               {
-                "label": "Behavioural settings",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "label": "נווט אחורה",
+                "fields": [
+                  {
+                    "label": "כותרת תגובה"
+                  },
+                  {
+                    "label": "תוכן תגובה"
+                  },
+                  {
+                    "label": "תמונת תגובה"
+                  },
+                  {
+                    "label": "ציון לתרחיש",
+                    "description": "הציון יישלח לLMS, LRS או אמצעים אחרים שיכולים להתחבר לשירות שמקבל ציונים מH5P, למשתמשים שלוקחים חלק בתרחיש זה."
+                  }
+                ],
+                "description": "זה יאפשר למשתמש לנווט אחורה ולראות תוכן או שאלות הנוגעים לתרחיש.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "השתמש בהגדרת התנהגות"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "פעיל"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "כבוי"
+                  }
+                ]
+              },
+              {
+                "label": "נווט אחורה",
+                "description": "זה יאפשר למשתמש לנווט אחורה ולראות תוכן או שאלות הנוגעים לתרחיש.",
+                "options": [
+                  {
+                    "label": "השתמש בנתונים התנהגותיים"
+                  },
+                  {
+                    "label": "הופעל"
+                  },
+                  {
+                    "label": "לא הופעל"
                   }
                 ]
               }
@@ -116,76 +161,76 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "אפשרויות ניקוד",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "אפשרויות ניקוד",
+              "description": "בחירת אופן ניקוד.",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "מתן ציונים באופן סטטיסטי לכל תרחישי סיום"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "מחשב באופן דינמי ציונים מתשובות המשתמש"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "אין ניקוד"
                 }
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "שילוב ניקוד מאינטרקציות שנלקחות מתרחיש הסתעפות",
+              "description": "אם נבחר ציון מוידאו אינטראקטיבי למשל, הוא יוזן לציון הכולל שהושג. אם לא נבחר ציונים המצוינים בחלק המשוב של פרטי התוכן, שאלות מסתעפות ותרחישי סיום ייחשבו."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "הגדרות התנהגות",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation"
+              "label": "נווט אחורה",
+              "description": "זה יאפשר למשתמש לנווט אחורה ולראות את התוכן או השאלה שהוצגו בתרחיש הקודם. ניתן לעקוף זאת ברמת התוכן."
             },
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "נדרש לראות",
+              "description": "דורש מהצופים להשלים צפיה בסרטון, סרטונים אינטראקטיבים והקורס הנחוצים לפני המשך התהליך בתרחישים. ניתן לעקוף זאת בשלב התוכן."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "תרחישים אקראיים לשאלות",
+              "description": "שאלות התרחישים יוצגו בסדר אקראי."
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "תרגום מקומי",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "label": "טקסט עבור הכפתור במסך הפתיחה",
+              "default": "התחלת הלומדה"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "label": "טקסט לכפתור במסך הסיום",
+              "default": "התחלה מחדש של הלומדה"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
+              "label": "טקסט לגב הכפתור של כל מסכי הספריה ושאלות ההסתעפות",
+              "default": "אחורה"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "טקסט עבור הכפתור ההשבתה במסכי הספרייה",
+              "default": "דרישה להשלים את המודול הנוכחי"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "טקסט עבור הכפתור המשמש להפעלה חוזרת של סרטון",
+              "default": "תצוגה מחדש של הסרטון"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "תווית לציון במסך הסיום",
+              "default": "הציון שלך:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "תווית ARIA עבור כפתור מסך מלא",
+              "default": "מסך מלא"
             }
           ]
         }
