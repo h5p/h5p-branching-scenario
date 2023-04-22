@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "Wys inhoudtitel in sig",
-                "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien"
+                "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien",
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
               },
               {
                 "label": "Vereis om te voltooi",
