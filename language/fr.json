@@ -59,12 +59,13 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
+                "label": "Voir le titre du contenu dans la vue",
+                "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu",
                 "default": "Proceed"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)",
+                "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple).",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -77,7 +78,7 @@
                   }
                 ]
               },
-              {},
+	      {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -94,7 +95,7 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
-                ]
+                ],
               },
               {
                 "label": "Navigate back",
