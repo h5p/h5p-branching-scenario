@@ -59,8 +59,8 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
+                "default": "Pokračovat",
               },
               {
                 "label": "Override require content finished",
@@ -94,7 +94,7 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
-                ]
+                ],
               },
               {
                 "label": "Navigate back",
