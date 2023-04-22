@@ -55,12 +55,12 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Onyesha mada ya maudhui inayoonekana",
+                "description": "Ikichaguliwa, mtumiaji ataona mada ya maudhui kwenye upau wa juu, juu ya maudhui haya",
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Inahitajika kukamilishwa",
+                "default": "Kuendelea"
               },
               {
                 "label": "Override require content finished",
