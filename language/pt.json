@@ -55,12 +55,12 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Mostrar o título do conteúdo visualizado",
+                "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo",
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Texto para o botão continuar (tamanho máximo: 50 caracteres)",
+                "default": "Avançar"
               },
               {
                 "label": "Override require content finished",
