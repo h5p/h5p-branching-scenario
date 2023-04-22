@@ -59,12 +59,11 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
-              },
+                "label": "Ekiteko botoiaren testua (gehienezko luzera: 50 karaktere)",
+                "default": "Ekin"
+	      },
               {
                 "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -75,7 +74,8 @@
                   {
                     "label": "Disabled"
                   }
-                ]
+                ],
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
               },
               {},
               {
