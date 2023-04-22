@@ -55,12 +55,12 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Прикажи наслов садржаја у приказу",
+                "description": "Ако је изабрано, корисник ће видети наслов садржаја у горњој траци изнад овог садржаја",
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
               },
               {
                 "label": "Override require content finished",
@@ -94,7 +94,7 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
-                ]
+                ],
               },
               {
                 "label": "Navigate back",
