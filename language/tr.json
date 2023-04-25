@@ -54,14 +54,30 @@
           "entity": "içerik",
           "field": {
             "fields": [
-              {},
+              {
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
+              },
               {
                 "label": "İçerik başlığını görünümde göster",
-                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."
+                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir.",
+                "default": "Proceed"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ]
               },
               {
                 "label": "Tamamlanması gerekli",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Geri bildirim",
                 "fields": [
@@ -95,7 +128,19 @@
                     "label": "Bu senaryo için puan",
                     "description": "Puan, bu senaryoya ulaşan kullanıcılar için H5P'den puan alan herhangi bir LMS (Ör: EBA), LRS veya diğer bağlı hizmete gönderilecektir."
                   }
-                ]
+                ],
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario."
               },
               {
                 "label": "Etkinlik Ayarları",

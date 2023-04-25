@@ -54,14 +54,30 @@
           "entity": "sisu",
           "field": {
             "fields": [
-              {},
+              {
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
+              },
               {
                 "label": "Näita sisu pealkirja vaates",
-                "description": "Kui märgitud, siis kasutaja näeb sisu tiitlit selle sisu ülaosas"
+                "description": "Kui märgitud, siis kasutaja näeb sisu tiitlit selle sisu ülaosas",
+                "default": "Proceed"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "Proceed",
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
               },
               {
                 "label": "Required to be completed",
@@ -78,7 +94,24 @@
                   }
                 ]
               },
-              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Feedback title"
+                  },
+                  {
+                    "label": "Feedback text"
+                  },
+                  {
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                  }
+                ]
+              },
               {
                 "label": "Tagasiside",
                 "fields": [
@@ -95,7 +128,19 @@
                     "label": "Selle stsenaariumi punktisumma",
                     "description": "Punktisumma saadetakse LMS, LRS või mõnele teisele ühendatud teenusele, mis kogub H5P keskkonnas selle stsenaariumini jõudnud kasutajate tulemusi"
                   }
-                ]
+                ],
+                "options": [
+                  {
+                    "label": "Use behavioural setting"
+                  },
+                  {
+                    "label": "Enabled"
+                  },
+                  {
+                    "label": "Disabled"
+                  }
+                ],
+                "description": "This will allow the user to go back and see the previous content/question in the scenario."
               },
               {
                 "label": "Navigate back",
