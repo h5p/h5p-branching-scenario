@@ -55,105 +55,59 @@
           "field": {
             "fields": [
               {
-                "label": "Amosar o título do contido na vista",
-                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior."
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Texto para o botón Continuar (lonxitude máxima: 50 caracteres)",
-                "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior",
-                "default": "Continuar"
+                "label": "Text for the proceed button (max length: 50 characters)",
+                "default": "Proceed"
               },
               {
-                "label": "Anular requirimento de rematado de contido",
-                "default": "Adiante",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
-                    "label": "Usar a configuración do comportamento"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Activado"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "Desactivado"
-                  }
-                ],
-                "description": "Anula a configuración individual para esixir que o contido estea rematado antes de activar o botón \"Continuar\". Non terá ningún efecto se o contido non indica se estaba \"acabado\", por exemplo, imaxes ou presentacións de cursos cunha soa diapositiva."
-              },
-              {
-                "label": "Anular requirimento de rematado de contido",
-                "description": "Anula a configuración individual para esixir que o contido estea rematado antes de activar o botón \"Adiante\". Non terá ningún efecto se o contido non indica se estaba \"rematado\", por exemplo, imaxes ou presentacións de cursos cunha soa diapositiva.",
-                "options": [
-                  {
-                    "label": "Usar configuración de comportamento"
-                  },
-                  {
-                    "label": "Activado"
-                  },
-                  {
-                    "label": "Desactivado"
+                    "label": "Disabled"
                   }
                 ]
               },
+              {},
               {
-                "label": "Retroalimentación",
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Título da retroalimentación"
+                    "label": "Feedback title"
                   },
                   {
-                    "label": "Texto de retroalimentación"
+                    "label": "Feedback text"
                   },
                   {
-                    "label": "Imaxe da retroalimentación"
+                    "label": "Feedback image"
                   },
                   {
-                    "label": "Puntuación para este escenario",
-                    "description": "A puntuación enviarase a calquera LMS, LRS ou calquera outro servizo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario."
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
-                "label": "Navegar cara atrás",
-                "fields": [
-                  {
-                    "label": "Título da retroalimentación"
-                  },
-                  {
-                    "label": "Texto da retroalimentación"
-                  },
-                  {
-                    "label": "Imaxe da retroalimentación"
-                  },
-                  {
-                    "label": "Puntación para este escenario",
-                    "description": "Enviarase a puntuación a calquera LMS, LRS ou calquera dispositivo conectado que reciba puntuacións de H5P para os usuarios que cheguen a este escenario."
-                  }
-                ],
-                "description": "Permite que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario.",
+                "label": "Navigate back",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
-                    "label": "Usar a configuración do comportamento"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Activado"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "Desactivado"
-                  }
-                ]
-              },
-              {
-                "label": "Navega cara atrás",
-                "description": "Permite que o usuario volva atrás e vexa a pregunta ou contido anterior do escenario.",
-                "options": [
-                  {
-                    "label": "Usar a configuración de comportamento"
-                  },
-                  {
-                    "label": "Activado"
-                  },
-                  {
-                    "label": "Desactivado"
+                    "label": "Disabled"
                   }
                 ]
               }

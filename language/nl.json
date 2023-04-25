@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Toon titel van inhoud in weergave",
-                "description": "Indien geselecteerd, ziet de gebruiker de titel van de inhoud in de balk boven deze inhoud",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Doorgaan",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Vereist voor voltooiing",
-                "description": "Dwingt kijkers de interactie te voltooien alvorens door te gaan met het scenario. Deze instelling werkt alleen bij interacties die kunnen worden voltooid",
-                "options": [
-                  {
-                    "label": "Gebruik gedragsinstelling"
-                  },
-                  {
-                    "label": "Ingeschakeld"
-                  },
-                  {
-                    "label": "Uitgeschakeld"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Feedback",
-                "fields": [
-                  {
-                    "label": "Titel van feedbacktekst"
-                  },
-                  {
-                    "label": "Feedbacktekst"
-                  },
-                  {
-                    "label": "Feedback afbeelding"
-                  },
-                  {
-                    "label": "Score voor dit scenario",
-                    "description": "De score wordt verzonden naar een LMS, LRS of een andere aangesloten dienst die scores van H5P ontvangt voor gebruikers die dit scenario bereiken"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Gedragsinstellingen",
-                "description": "Dit staat de gebruiker toe terug te keren en de vorige inhoud/vraag in het scenario te bekijken",
-                "options": [
-                  {
-                    "label": "Gebruik gedragsinstelling"
-                  },
-                  {
-                    "label": "Ingeschakeld"
-                  },
-                  {
-                    "label": "Uitgeschakeld"
                   }
                 ]
               }

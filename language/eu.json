@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Erakutsi edukiaren izenburua ikuspegian",
-                "description": "Aukeratuz gero, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko barran",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Ekiteko botoiaren testua (gehienezko luzera: 50 karaktere)",
-                "default": "Ekin",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Gainidatzi behar da edukia amaituta",
-                "description": "Gainidatzi ezarpen indibidualak \"Ekin\" botoia aktibatu aurretik edukia amaitzea eskatzeko. Ez du inolako eraginik izango edukiak ez badu \"amaituta\" adierazten, adibidez irudiak edo ikastaroen aurkezpenak diapositiba bakarrarekin.",
-                "options": [
-                  {
-                    "label": "Erabili portaeraren ezarpena"
-                  },
-                  {
-                    "label": "Gaituta"
-                  },
-                  {
-                    "label": "Desgaituta"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Feedbacka",
-                "fields": [
-                  {
-                    "label": "Feedbackaren izenburua"
-                  },
-                  {
-                    "label": "Feedbackaren testua"
-                  },
-                  {
-                    "label": "Feedbackaren irudia"
-                  },
-                  {
-                    "label": "Eskenatoki honen kalifikazioa",
-                    "description": "Eszenatoki honen amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Nabigatu atzera",
-                "description": "Honek erabiltzaileari atzera egin eta eszenatokiko aurreko eduki/galderak ikustea ahalbidetzen dio.",
-                "options": [
-                  {
-                    "label": "Erabili portaeraren ezarpena"
-                  },
-                  {
-                    "label": "Gaituta"
-                  },
-                  {
-                    "label": "Desgaituta"
                   }
                 ]
               }

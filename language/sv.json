@@ -59,13 +59,11 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Visa innehållstitel i vy",
-                "description": "Om valt, så kommer användaren att se innehållets titel i toppraden ovanför detta innehåll",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text för fortsätt-knappen (maxlängd: 50 tecken)",
-                "default": "Fortsätt",
+                "label": "Override require content finished",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
@@ -79,21 +77,7 @@
                   }
                 ]
               },
-              {
-                "label": "Ignorera att innehåll måste avslutas",
-                "description": "Ignorerar den individuella inställning som kräver att innehåll måste avslutas innan knappen \"Fortsätt\" aktiveras. Detta kommer inte ha någon påverkan om innehållet inte indikerar om det är \"avslutat\", exempelvis vid bilder eller kurspresentationer med endast en sida.",
-                "options": [
-                  {
-                    "label": "Använd beteende-inställning"
-                  },
-                  {
-                    "label": "Aktiverad"
-                  },
-                  {
-                    "label": "Inaktiverad"
-                  }
-                ]
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Feedback",
-                "fields": [
-                  {
-                    "label": "Feedback-titel"
-                  },
-                  {
-                    "label": "Feedback-text"
-                  },
-                  {
-                    "label": "Feedback-bild"
-                  },
-                  {
-                    "label": "Poäng för detta scenario",
-                    "description": "Poängen kommer att skickas till något LMS, LRS eller annan tjänst som tar emot poäng från H5P för användare som når detta scenario."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Navigera bakåt",
-                "description": "Detta låter användaren gå tillbaka och se föregående innehåll/fråga i scenariot.",
-                "options": [
-                  {
-                    "label": "Använd beteende-inställning"
-                  },
-                  {
-                    "label": "Aktiverad"
-                  },
-                  {
-                    "label": "Inaktiverad"
                   }
                 ]
               }

@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Прикажи наслов садржаја у приказу",
-                "description": "Ако је изабрано, корисник ће видети наслов садржаја у горњој траци изнад овог садржаја",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Обавезно да се попуни",
-                "description": "Подстиче гледаоце да доврше интеракцију пре него што наставе са сценаријем. Ово подешавање ће радити само за интеракције које се могу довршити",
-                "options": [
-                  {
-                    "label": "Користите поставке понашања"
-                  },
-                  {
-                    "label": "Омогућено"
-                  },
-                  {
-                    "label": "Онемогућено"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Повратна информација",
-                "fields": [
-                  {
-                    "label": "Наслов повратне информације"
-                  },
-                  {
-                    "label": "Текст повратне информације"
-                  },
-                  {
-                    "label": "Слика повратне информације"
-                  },
-                  {
-                    "label": "Оцена за овај сценарио",
-                    "description": "Резултат ће бити послат било којем ЛМС-у, ЛРС-у или било којој другој повезаној услузи која прима оцене од Х5П за кориснике који достигну овај сценарио"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Поставке понашања",
-                "description": "Ово ће омогућити кориснику да се врати и види претходни садржај / питање у сценарију",
-                "options": [
-                  {
-                    "label": "Користите поставке понашања"
-                  },
-                  {
-                    "label": "Омогућено"
-                  },
-                  {
-                    "label": "Онемогућено"
                   }
                 ]
               }

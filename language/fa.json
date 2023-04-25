@@ -55,17 +55,16 @@
           "field": {
             "fields": [
               {
-                "description": "If selected, the user will see the content title in the top bar above this content.",
-                "label": "Show content title in view"
-              },
-              {
-                "label": "نمایش عنوان محتوا در نما",
-                "description": "در صورت انتخاب، کاربر عنوان محتوا را در نوار بالای محتوا خواهد دید",
-                "default": "Proceed"
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "default": "Proceed"
+              },
+              {
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "لازم است تکمیل شود",
-                "description": "از مشاهده‌کنندگان می‌خواهد که تعامل را پیش از ادامه سناریو تکمیل کنند. این تنظیم فقط برای تعامل‌هایی کار خواهد کرد که قابل تکمیل شدن باشند",
-                "options": [
-                  {
-                    "label": "استفاده از تنظیم عملکرد"
-                  },
-                  {
-                    "label": "فعال"
-                  },
-                  {
-                    "label": "غیرفعال"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "بازخورد",
-                "fields": [
-                  {
-                    "label": "عنوان بازخورد"
-                  },
-                  {
-                    "label": "متن بازخورد"
-                  },
-                  {
-                    "label": "تصویر بازخورد"
-                  },
-                  {
-                    "label": "نمره این سناریو",
-                    "description": "نمره به هر LMS، LRS یا هر خدمات متصل دیگری که نمرات کاربرانی که به این سناریو می‌رسند را از H5P دریافت می‌کند، ارسال خواهد شد"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "تنظیمات عملکرد",
-                "description": "این به کاربر اجازه می‌دهد که به عقب برگردد و محتوا/سؤال قبلی را در سناریو ببیند",
-                "options": [
-                  {
-                    "label": "استفاده از تنظیمات عملکرد"
-                  },
-                  {
-                    "label": "فعال"
-                  },
-                  {
-                    "label": "غیرفعال"
                   }
                 ]
               }

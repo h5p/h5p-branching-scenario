@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Onyesha mada ya maudhui inayoonekana",
-                "description": "Ikichaguliwa, mtumiaji ataona mada ya maudhui kwenye upau wa juu, juu ya maudhui haya",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Inahitajika kukamilishwa",
-                "default": "Kuendelea",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Kitambulisho cha Maudhui kinachofuata (skrini za mwisho hufafanuliwa kwa nambari hasi)",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
-                "options": [
-                  {
-                    "label": "Use behavioural setting"
-                  },
-                  {
-                    "label": "Imewashwa"
-                  },
-                  {
-                    "label": "Imezimwa"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Mipangilio ya tabia",
-                "fields": [
-                  {
-                    "label": "Kichwa cha maoni"
-                  },
-                  {
-                    "label": "Maandishi ya maoni"
-                  },
-                  {
-                    "label": "Maoni ya picha"
-                  },
-                  {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Batilisha urambazaji wa nyuma",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
-                "options": [
-                  {
-                    "label": "Tumia mpangilio wa tabia"
-                  },
-                  {
-                    "label": "Imewashwa"
-                  },
-                  {
-                    "label": "Imezimwa"
                   }
                 ]
               }

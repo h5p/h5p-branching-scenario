@@ -55,105 +55,59 @@
           "field": {
             "fields": [
               {
-                "label": "הצג את כותרת התוכן בתצוגה",
-                "description": "אם נבחר, המשתמש יראה את כותרת התוכן בסרגל העליון המופיע מעל תוכן זה."
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "טקסט עבור כפתור ההמשך (אורך מקסימלי: 50 תווים)",
-                "description": "אם נבחר, המשתמש יראה את כותרת התוכן בסרגל העליון המופיע מעל תוכן זה",
-                "default": "להמשיך"
+                "label": "Text for the proceed button (max length: 50 characters)",
+                "default": "Proceed"
               },
               {
-                "label": "ביטול דרישה לתוכן הסתיים",
-                "default": "להמשיך",
-                "options": [
-                  {
-                    "label": "השתמש בהגדרת התנהגות"
-                  },
-                  {
-                    "label": "פעיל"
-                  },
-                  {
-                    "label": "כבוי"
-                  }
-                ],
-                "description": "תעקוף את ההגדרות האישיות לדרישת סיום התוכן לפני הפעלת כפתור ״המשך״. לא תהיה השפעה אם התוכן לא מציין אם הוא ״גמר״, למשל תמונות או מצגות קורס עם שקופית אחת בלבד."
-              },
-              {
-                "label": "תהליך ביטול דרישה לתוכן הסתיים",
+                "label": "Override require content finished",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
-                    "label": "השתמש בהגדרת התנהגות"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "הופעל"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "לא הופעל"
+                    "label": "Disabled"
                   }
                 ]
               },
+              {},
               {
-                "label": "משוב",
+                "label": "Feedback",
                 "fields": [
                   {
-                    "label": "כותרת משוב"
+                    "label": "Feedback title"
                   },
                   {
-                    "label": "משוב"
+                    "label": "Feedback text"
                   },
                   {
-                    "label": "תמונת משוב"
+                    "label": "Feedback image"
                   },
                   {
-                    "label": "ציון עבור תרחיש זה",
-                    "description": "הציון יישלח לLMS, LRS או אמצעים אחרים שיכולים להתחבר לשירות שמקבל ציונים מH5P, למשתמשים שלוקחים חלק בתרחיש זה."
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
-                "label": "נווט אחורה",
-                "fields": [
-                  {
-                    "label": "כותרת תגובה"
-                  },
-                  {
-                    "label": "תוכן תגובה"
-                  },
-                  {
-                    "label": "תמונת תגובה"
-                  },
-                  {
-                    "label": "ציון לתרחיש",
-                    "description": "הציון יישלח לLMS, LRS או אמצעים אחרים שיכולים להתחבר לשירות שמקבל ציונים מH5P, למשתמשים שלוקחים חלק בתרחיש זה."
-                  }
-                ],
-                "description": "זה יאפשר למשתמש לנווט אחורה ולראות תוכן או שאלות הנוגעים לתרחיש.",
+                "label": "Navigate back",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
-                    "label": "השתמש בהגדרת התנהגות"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "פעיל"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "כבוי"
-                  }
-                ]
-              },
-              {
-                "label": "נווט אחורה",
-                "description": "זה יאפשר למשתמש לנווט אחורה ולראות תוכן או שאלות הנוגעים לתרחיש.",
-                "options": [
-                  {
-                    "label": "השתמש בנתונים התנהגותיים"
-                  },
-                  {
-                    "label": "הופעל"
-                  },
-                  {
-                    "label": "לא הופעל"
+                    "label": "Disabled"
                   }
                 ]
               }

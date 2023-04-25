@@ -59,13 +59,11 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "İçerik başlığını görünümde göster",
-                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir.",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
@@ -79,21 +77,7 @@
                   }
                 ]
               },
-              {
-                "label": "Tamamlanması gerekli",
-                "description": "İzleyicileri senaryoya devam etmeden önce etkileşimi tamamlamaya teşvik eder. Bu ayar yalnızca tamamlanabilen etkileşimler için çalışır",
-                "options": [
-                  {
-                    "label": "Davranış ayarını kullan"
-                  },
-                  {
-                    "label": "Etkinleştirilmiş"
-                  },
-                  {
-                    "label": "Engelli"
-                  }
-                ]
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,8 @@
                 ]
               },
               {
-                "label": "Geri bildirim",
-                "fields": [
-                  {
-                    "label": "Geri bildirim başlığı"
-                  },
-                  {
-                    "label": "Geri bildirim metni"
-                  },
-                  {
-                    "label": "Geri bildirim resmi"
-                  },
-                  {
-                    "label": "Bu senaryo için puan",
-                    "description": "Puan, bu senaryoya ulaşan kullanıcılar için H5P'den puan alan herhangi bir LMS (Ör: EBA), LRS veya diğer bağlı hizmete gönderilecektir."
-                  }
-                ],
+                "label": "Navigate back",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -138,22 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ],
-                "description": "This will allow the user to go back and see the previous content/question in the scenario."
-              },
-              {
-                "label": "Etkinlik Ayarları",
-                "description": "Bu, kullanıcının geri dönüp senaryodaki önceki içeriği/soruyu görmesine izin verecektir.",
-                "options": [
-                  {
-                    "label": "Davranış ayarını kullan"
-                  },
-                  {
-                    "label": "Etkinleştirilmiş"
-                  },
-                  {
-                    "label": "Engelli"
                   }
                 ]
               }

@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Mostrar o título do conteúdo visualizado",
-                "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Texto para o botão continuar (tamanho máximo: 50 caracteres)",
-                "default": "Avançar",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Substituir requer conteúdo concluído",
-                "description": "Substituir as configurações individuais para exigir que o conteúdo seja concluído antes de ativar o botão \"Continuar\". Não terá efeito se o conteúdo não indicar se foi \"concluído\", por exemplo imagens ou apresentações de cursos com apenas um slide.",
-                "options": [
-                  {
-                    "label": "Usar as Configurações Comportamentais"
-                  },
-                  {
-                    "label": "Ativo"
-                  },
-                  {
-                    "label": "Inativo"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -107,28 +91,13 @@
                     "label": "Feedback image"
                   },
                   {
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario.",
-                    "label": "Score for this scenario"
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
-                "label": "Feedback",
-                "fields": [
-                  {
-                    "label": "Título do feedback"
-                  },
-                  {
-                    "label": "Texto do feedback"
-                  },
-                  {
-                    "label": "Imagem do feedback"
-                  },
-                  {
-                    "label": "Pontuação para este cenário",
-                    "description": "A pontuação será enviada para qualquer LMS, LRS ou qualquer outro serviço que receba pontuações do H5P para os utilizadores que atingirem este cenário."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Voltar atrás",
-                "description": "Isto permitirá que o utilizador volte e veja o conteúdo/pergunta anterior no cenário.",
-                "options": [
-                  {
-                    "label": "Usar as Configurações Comportamentais"
-                  },
-                  {
-                    "label": "Ativo"
-                  },
-                  {
-                    "label": "Inativo"
                   }
                 ]
               }

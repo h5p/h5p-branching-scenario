@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Prikaži naslov vsebine ob ogledu",
-                "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino.",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Zahtevaj zaključek vsebine",
-                "description": "Udeleženci morajo pred nadaljevanjem scenarija obvezno zaključiti zahtevano interakcijo. Nastavitev deluje le za interakcije, ki jih je dejansko mogoče zaključiti.",
-                "options": [
-                  {
-                    "label": "Upoštevaj iz Nastavitve interakcije"
-                  },
-                  {
-                    "label": "Omogoči"
-                  },
-                  {
-                    "label": "Onemogoči"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Povratna informacija",
-                "fields": [
-                  {
-                    "label": "Naslov povratne informacije"
-                  },
-                  {
-                    "label": "Vsebina povratne informacije"
-                  },
-                  {
-                    "label": "Slika"
-                  },
-                  {
-                    "label": "Rezultat izbranega scenarija",
-                    "description": "Rezultat udeležencev je lahko poslan drugi povezani storitvi (npr. LMS, LRS)."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Vrni nazaj",
-                "description": "Nastavitev omogoča udeležencem vrnitev nazaj na ogled vsebine oz. vprašanja.",
-                "options": [
-                  {
-                    "label": "Upoštevaj iz Nastavitve interakcije"
-                  },
-                  {
-                    "label": "Omogoči"
-                  },
-                  {
-                    "label": "Onemogoči"
                   }
                 ]
               }

@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Voir le titre du contenu dans la vue",
-                "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Continuer",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)",
-                "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple).",
-                "options": [
-                  {
-                    "label": "Utiliser les paramètres de comportement"
-                  },
-                  {
-                    "label": "Activée"
-                  },
-                  {
-                    "label": "Désactivée"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Feedback",
-                "fields": [
-                  {
-                    "label": "Titre du feedback"
-                  },
-                  {
-                    "label": "Texte du feedback"
-                  },
-                  {
-                    "label": "Image du feedback"
-                  },
-                  {
-                    "label": "Score pour ce scénario",
-                    "description": "Le score sera envoyé à tout LMS, LRS ou tout autre service qui reçoit des résultats depuis H5P pour des utilisateurs qui atteignent ce scénario"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Paramètres de comportement",
-                "description": "Ce paramètre permettra aux utilisateurs de revenir en arrière pour parcourir le contenu ou les questions du scénario",
-                "options": [
-                  {
-                    "label": "Utiliser les paramètres de comportement"
-                  },
-                  {
-                    "label": "Activée"
-                  },
-                  {
-                    "label": "Désactivée"
                   }
                 ]
               }

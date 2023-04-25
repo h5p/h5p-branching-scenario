@@ -55,17 +55,16 @@
           "field": {
             "fields": [
               {
-                "description": "If selected, the user will see the content title in the top bar above this content.",
-                "label": "Show content title in view"
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Titel anzeigen",
-                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Beschriftung des \"Weiter\"-Buttons (maximale Länge: 50 Zeichen)",
-                "default": "Weiter",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "\"Muss abgeschlossen werden\" überschreiben",
-                "description": "Überschreibt die individuellen Einstellung, dass ein Inhalt abgeschlossen sein muss, bevor der \"Weiter\"-Button aktiviert wird. Hat keinen Effekt, wenn der Inhalt nicht angibt, ob er \"abgeschlossen\" wurde, z.B. bei Bildern oder Kurspräsentationen mit nur einer Folie.",
-                "options": [
-                  {
-                    "label": "Verhaltenseinstellung verwenden"
-                  },
-                  {
-                    "label": "Aktiviert"
-                  },
-                  {
-                    "label": "Deaktiviert"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Rückmeldung",
-                "fields": [
-                  {
-                    "label": "Titel der Rückmeldung"
-                  },
-                  {
-                    "label": "Text der Rückmeldung"
-                  },
-                  {
-                    "label": "Bild der Rückmeldung"
-                  },
-                  {
-                    "label": "Punkte für dieses Szenario",
-                    "description": "Wenn Lernende dieses Szenario erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Zurück navigieren",
-                "description": "Erlaubt es Nutzenden, zurückzugehen und den vorherigen Inhalt / Frage im Szenario anzuschauen.",
-                "options": [
-                  {
-                    "label": "Verhaltenseinstellung verwenden"
-                  },
-                  {
-                    "label": "Aktiviert"
-                  },
-                  {
-                    "label": "Deaktiviert"
                   }
                 ]
               }

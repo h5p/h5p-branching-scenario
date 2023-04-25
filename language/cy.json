@@ -59,13 +59,11 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Dangos teitl y cynnwys yn yr olygfa",
-                "description": "Os wedi'i ddewis, bydd y defnyddiwr yn gweld teitl y cynnwys yn y bar ar y brig uwchben y cynnwys hwn",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
@@ -79,21 +77,7 @@
                   }
                 ]
               },
-              {
-                "label": "Required to be completed",
-                "description": "Urges viewers to complete the interaction before proceeding with the scenario. This setting will only work for interactions that can be completed",
-                "options": [
-                  {
-                    "label": "Use behavioural setting"
-                  },
-                  {
-                    "label": "Enabled"
-                  },
-                  {
-                    "label": "Disabled"
-                  }
-                ]
-              },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,38 +97,8 @@
                 ]
               },
               {
-                "label": "Adborth",
-                "fields": [
-                  {
-                    "label": "Teitl adborth"
-                  },
-                  {
-                    "label": "Testun adborth"
-                  },
-                  {
-                    "label": "Delwedd adborth"
-                  },
-                  {
-                    "label": "Sgôr am y senario hon",
-                    "description": "Caiff y sgôr ei anfon i unrhyw 'LMS', 'LRS' neu unrhyw wasanaeth gysylltiedig sydd yn derbyn sgoriau oddi wrth H5P am ddefnyddwyr sydd yn cyrraedd y senario hon"
-                  }
-                ],
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
-                "options": [
-                  {
-                    "label": "Use behavioural setting"
-                  },
-                  {
-                    "label": "Enabled"
-                  },
-                  {
-                    "label": "Disabled"
-                  }
-                ]
-              },
-              {
                 "label": "Navigate back",
-                "description": "This will allow user to go back and see the previous content/question in the scenario",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
                     "label": "Use behavioural setting"

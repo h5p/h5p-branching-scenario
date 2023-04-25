@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Näytä sisältöotsikko",
-                "description": "Jos valittuna, käyttäjät näkevät tämän sisältöotsikon yläpalkissa aineiston yläpuolella",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Suoritus vaaditaan",
-                "description": "Kehottaa katsojia suorittamaan loppuun vuorovaikutuksen ennen skenaariossa jatkamista. Asetus toimii vain niiden vuorovaikutusten kanssa, jotka voi suorittaa loppuun",
-                "options": [
-                  {
-                    "label": "Käytä käyttäytymisasetuksia"
-                  },
-                  {
-                    "label": "Käytössä"
-                  },
-                  {
-                    "label": "Pois käytöstä"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Palaute",
-                "fields": [
-                  {
-                    "label": "Palautteen otsikko"
-                  },
-                  {
-                    "label": "Palautteen teksti"
-                  },
-                  {
-                    "label": "Palautteen kuva"
-                  },
-                  {
-                    "label": "Tämän skenaarion pisteet",
-                    "description": "Pisteet lähetetään LSM, LRS tai muille yhdistetyille palveluille (jotka pystyvät ottamaan arvosanatiedon vastaan H5P:n Haarautuvalta skenaariolta) käyttäjille, jotka saavuttavat tämän haarakohdan"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Käyttäytymisasetukset",
-                "description": "Tämä sallii käyttäjän palaamisen taaksepäin ja skenaarion edellisen sisällön/kysymyksen näkemisen",
-                "options": [
-                  {
-                    "label": "Käytä käyttäytymisasetuksia"
-                  },
-                  {
-                    "label": "Käytössä"
-                  },
-                  {
-                    "label": "Pois käytöstä"
                   }
                 ]
               }

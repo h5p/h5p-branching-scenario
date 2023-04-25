@@ -59,13 +59,11 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "보기에 콘텐츠 제목 표시",
-                "description": "선택한 경우, 사용자는 이 내용 위의 상단 막대에 콘텐츠 제목을 볼 수 있다.",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
                 "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
@@ -79,22 +77,9 @@
                   }
                 ]
               },
+              {},
               {
-                "label": "완료 필수",
-                "description": "사용자가 시나리오를 진행하기 전에 상호 작용을 완료해야 합니다. 이 설정은 완료할 수 있는 상호 작용에만 적용됩니다.",
-                "options": [
-                  {
-                    "label": "동작 설정 사용"
-                  },
-                  {
-                    "label": "활성화"
-                  },
-                  {
-                    "label": "비활성화"
-                  }
-                ]
-              },
-              {
+                "label": "Feedback",
                 "fields": [
                   {
                     "label": "Feedback title"
@@ -109,26 +94,10 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
-                ],
-                "label": "Feedback"
+                ]
               },
               {
-                "label": "피드백",
-                "fields": [
-                  {
-                    "label": "피드백 제목"
-                  },
-                  {
-                    "label": "피드백 텍스트"
-                  },
-                  {
-                    "label": "피드백 이미지"
-                  },
-                  {
-                    "label": "이 시나리오에 대한 점수",
-                    "description": "이 시나리오를 완성하는 모든 사용자에 대해 H5P로부터 점수를 받는 모든 LMS, LRS 또는 기타 연결된 서비스에 점수를 전송함."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "뒤로 돌아가기",
-                "description": "이를 통해 사용자는 시나리오에서 이전 내용/질문을 다시 볼 수 있습니다.",
-                "options": [
-                  {
-                    "label": "행동설정 사용"
-                  },
-                  {
-                    "label": "활성화"
-                  },
-                  {
-                    "label": "비활성화"
                   }
                 ]
               }

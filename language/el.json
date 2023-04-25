@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Προβολή τίτλου αντικειμένου",
-                "description": "Αν επιλεγεί, ο χρήστης θα βλέπει τον τίτλο του αντικειμένου στην μπάρα πάνω από το αντικείμενο",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Απαιτείται να ολοκληρωθεί",
-                "description": "Προτρέπει τους θεατές να ολοκληρώσουν την αλληλεπίδραση πριν προχωρήσουν στο σενάριο. Αυτή η ρύθμιση θα λειτουργεί μόνο για αλληλεπιδράσεις που μπορούν να ολοκληρωθούν",
-                "options": [
-                  {
-                    "label": "Χρήση ρυθμίσεων συμπεριφοράς"
-                  },
-                  {
-                    "label": "Ενεργοποιήθηκε"
-                  },
-                  {
-                    "label": "Απενεργοποιήθηκε"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Ανατροφοδότηση",
-                "fields": [
-                  {
-                    "label": "Τίτλος ανατροφοδότησης"
-                  },
-                  {
-                    "label": "Κείμενο ανατροφοδότησης"
-                  },
-                  {
-                    "label": "Εικόνα ανατροφοδότησης"
-                  },
-                  {
-                    "label": "Βαθμολογία για αυτό το σενάριο",
-                    "description": "Η βαθμολογία αποστέλλεται σε κάθε LMS, LRS ή οποιοδήποτε άλλο σχετικό service"
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Πλοήγηση πίσω",
-                "description": "Αυτό θα επιτρέψει στον χρήστη να επιστρέψει και να δει το προηγούμενο περιεχόμενο/ερώτηση στο σενάριο",
-                "options": [
-                  {
-                    "label": "Χρήση ρυθμίσεων συμπεριφοράς"
-                  },
-                  {
-                    "label": "Ενεργοποιήθηκε"
-                  },
-                  {
-                    "label": "Απενεργοποιήθηκε"
                   }
                 ]
               }

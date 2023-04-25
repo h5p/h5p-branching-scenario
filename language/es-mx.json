@@ -55,105 +55,59 @@
           "field": {
             "fields": [
               {
-                "label": "Mostrar título del contenido en vista",
-                "description": "Si se selecciona, el usuario verá el título del contenido en la barra superior arriba de este contenido."
+                "label": "Show content title in view",
+                "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Texto para el botón Proceder (longitud máxima: 50 caracteres)",
-                "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior arriba de este contenido",
-                "default": "Proceder"
+                "label": "Text for the proceed button (max length: 50 characters)",
+                "default": "Proceed"
               },
               {
-                "label": "Anular requerir contenido terminado",
-                "default": "Proceder",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
-                    "label": "Usar la configuración del comportamiento"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Habilitado"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "Deshabilitado"
+                    "label": "Disabled"
                   }
-                ],
-                "description": "Anular las configuraciones individuales que requieren que el contenido esté terminado antes de activar el botón para \"Proceder\". No tendrá ningún efecto i el contenido no indica si estuvo \"terminado\", como por ejemplo imágenes o presentaciones de curso con solamente una página."
+                ]
               },
+              {},
               {
-                "label": "Anular el requerir contenido terminado",
-                "description": "Anular las configuraciones individuales para requerir que el contenido esté terminado antes de activar el botón para \"Proceder\". No tendrá ningún efecto si el contenido no indica si ya estaba \"terminado, como por ejemplo en imágenes o presentaciones de curso con solamente una página.",
-                "options": [
+                "label": "Feedback",
+                "fields": [
                   {
-                    "label": "Usar la configuración del comportamiento"
+                    "label": "Feedback title"
                   },
                   {
-                    "label": "Habilitado"
+                    "label": "Feedback text"
                   },
                   {
-                    "label": "Deshabilitado"
+                    "label": "Feedback image"
+                  },
+                  {
+                    "label": "Score for this scenario",
+                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
-                "fields": [
-                  {
-                    "label": "Título de la retroalimentación"
-                  },
-                  {
-                    "label": "Texto de la retroalimentación"
-                  },
-                  {
-                    "label": "Imagen de la retroalimentación"
-                  },
-                  {
-                    "description": "El puntaje será enviado a cualquier LMS, LRS o cualquier otro servicio conectado que reciba puntajes de H5P para usuarios que alcanzan este escenario.",
-                    "label": "Puntaje para este escenario"
-                  }
-                ],
-                "label": "Retroalimentación"
-              },
-              {
-                "label": "Navegar atrás",
-                "fields": [
-                  {
-                    "label": "Título de la retroalimentación"
-                  },
-                  {
-                    "label": "Texto de retroalimentación"
-                  },
-                  {
-                    "label": "Imagen de retroalimentación"
-                  },
-                  {
-                    "label": "Puntaje para este escenario",
-                    "description": "El puntaje se enviará a cualquier LMS, LRS o cualquier otro servicio conectado que reciba puntajes de H5P para los usuarios que lleguen a este escenario."
-                  }
-                ],
-                "description": "Esto permitirá que el usuario regrese y vea el contenido/la pregunta anterior en el escenario.",
+                "label": "Navigate back",
+                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
-                    "label": "Usar la configuración del comportamiento"
+                    "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Habilitado"
+                    "label": "Enabled"
                   },
                   {
-                    "label": "Deshabilitado"
-                  }
-                ]
-              },
-              {
-                "label": "Navegar atrás",
-                "description": "Esto le permitirá al usuario regresar y ver la pregunta / el contenido anterior en el escenario.",
-                "options": [
-                  {
-                    "label": "Usar la configuración del comportamiento"
-                  },
-                  {
-                    "label": "Habilitado"
-                  },
-                  {
-                    "label": "Deshabilitado"
+                    "label": "Disabled"
                   }
                 ]
               }

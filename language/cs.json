@@ -59,13 +59,12 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Zobrazit název obsahu v zobrazení",
-                "description": "Pokud je vybráno, uvidí uživatel v horním pruhu nad tímto obsahem nadpis obsahu",
+                "label": "Text for the proceed button (max length: 50 characters)",
                 "default": "Proceed"
               },
               {
-                "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
-                "default": "Pokračovat",
+                "label": "Override require content finished",
+                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
                 "options": [
                   {
                     "label": "Use behavioural setting"
@@ -76,24 +75,9 @@
                   {
                     "label": "Disabled"
                   }
-                ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
-              },
-              {
-                "label": "Přepsání povinného obsahu bylo dokončeno",
-                "description": "Před aktivací tlačítka „Pokračovat“ přepište jednotlivá nastavení, která vyžadují dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem.",
-                "options": [
-                  {
-                    "label": "Použít nastavení chování"
-                  },
-                  {
-                    "label": "Povoleno"
-                  },
-                  {
-                    "label": "Zakázáno"
-                  }
                 ]
               },
+              {},
               {
                 "label": "Feedback",
                 "fields": [
@@ -113,22 +97,7 @@
                 ]
               },
               {
-                "label": "Zpětná vazba",
-                "fields": [
-                  {
-                    "label": "Nadpis zpětné vazby"
-                  },
-                  {
-                    "label": "Text zpětné vazby"
-                  },
-                  {
-                    "label": "Obrázek zpětné vazby"
-                  },
-                  {
-                    "label": "Skóre pro tento scénář",
-                    "description": "Skóre bude odesláno do všech LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou tohoto scénáře."
-                  }
-                ],
+                "label": "Navigate back",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
@@ -139,21 +108,6 @@
                   },
                   {
                     "label": "Disabled"
-                  }
-                ]
-              },
-              {
-                "label": "Přejít zpět",
-                "description": "To umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku ve scénáři.",
-                "options": [
-                  {
-                    "label": "Použít nastavení chování"
-                  },
-                  {
-                    "label": "Povoleno"
-                  },
-                  {
-                    "label": "Zakázáno"
                   }
                 ]
               }
