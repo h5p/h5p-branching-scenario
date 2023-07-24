@@ -59,8 +59,8 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Κείμενο για το κουμπί 'Συνέχεια' (μέγιστο μήκος: 50 χαρακτήρες)",
+                "default": "Συνέχεια"
               },
               {
                 "label": "Override require content finished",
@@ -171,8 +171,8 @@
               "default": "Συνέχισε"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Κείμενο για το απενεργοποιημένο κουμπί στις οθόνες της βιβλιοθήκης",
+              "default": "Απαίτηση ολοκλήρωσης της τρέχουσας ενότητας"
             },
             {
               "label": "Ετικέτα βαθμολογίας στην οθόνη λήξης",
