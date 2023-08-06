@@ -60,7 +60,7 @@
               },
               {
                 "label": "Text för fortsätt-knappen (maxlängd: 50 tecken)",
-                "default": "Fortsätt",
+                "default": "Fortsätt"
               },
               {
                 "label": "Override require content finished",

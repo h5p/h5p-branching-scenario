@@ -56,7 +56,7 @@
             "fields": [
               {
                 "label": "Mostrar o título do conteúdo visualizado",
-                "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo",
+                "description": "Se selecionado, o utilizador verá o título do conteúdo na barra superior acima deste conteúdo"
               },
               {
                 "label": "Texto para o botão continuar (tamanho máximo: 50 caracteres)",

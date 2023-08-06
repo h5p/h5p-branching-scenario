@@ -60,7 +60,7 @@
               },
               {
                 "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
-                "default": "Pokračovat",
+                "default": "Pokračovat"
               },
               {
                 "label": "Override require content finished",
@@ -94,7 +94,7 @@
                     "label": "Body za tento scénář",
                     "description": "Skóre bude odesláno do libovolného LMS, LRS nebo jakékoli jiné připojené služby, která obdrží skóre od H5P pro uživatele, kteří dosáhnou tento scénář."
                   }
-                ],
+                ]
               },
               {
                 "label": "Přejít zpět",

@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "Rādīt satura nosaukumu skatā",
-                "description": "Ja atlasīts, lietotājs redzēs satura nosaukumu augšējā joslā virs šī satura",
+                "description": "Ja atlasīts, lietotājs redzēs satura nosaukumu augšējā joslā virs šī satura"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Turpināt",
+                "default": "Turpināt"
               },
               {
                 "label": "Override require content finished",

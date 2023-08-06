@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "Toon titel van inhoud in weergave",
-                "description": "Indien geselecteerd, ziet de gebruiker de titel van de inhoud in de balk boven deze inhoud",
+                "description": "Indien geselecteerd, ziet de gebruiker de titel van de inhoud in de balk boven deze inhoud"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Doorgaan",
+                "default": "Doorgaan"
               },
               {
                 "label": "Override require content finished",

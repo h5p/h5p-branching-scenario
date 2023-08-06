@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "İçerik başlığını görünümde göster",
-                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir.",
+                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "default": "Proceed"
               },
               {
                 "label": "Override require content finished",

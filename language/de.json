@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "Titel anzeigen",
-                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt",
+                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
               },
               {
                 "label": "Beschriftung des \"Weiter\"-Buttons (maximale Länge: 50 Zeichen)",
-                "default": "Weiter",
+                "default": "Weiter"
               },
               {
                 "label": "Override require content finished",
@@ -94,7 +94,7 @@
                     "label": "Score for this scenario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
-                ],
+                ]
               },
               {
                 "label": "Navigate back",

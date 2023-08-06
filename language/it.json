@@ -56,11 +56,11 @@
             "fields": [
               {
                 "label": "Mostra il titolo del contenuto nella visualizzazione",
-                "description": "Se selezionato, l'utente vedrà il titolo del contenuto nella barra sopra questo contenuto",
+                "description": "Se selezionato, l'utente vedrà il titolo del contenuto nella barra sopra questo contenuto"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed",
+                "default": "Proceed"
               },
               {
                 "label": "Override require content finished",
