@@ -55,8 +55,8 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "İçerik başlığını görünümde göster",
+                "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",

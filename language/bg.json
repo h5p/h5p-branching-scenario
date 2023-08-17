@@ -55,8 +55,8 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Показване на заглавията на съдържанието при преглед",
+                "description": "Ако е избрано, потребителят ще види заглавието на съдържанието в горната лента над това съдържание"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",

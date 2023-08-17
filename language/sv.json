@@ -59,8 +59,8 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text för fortsätt-knappen (maxlängd: 50 tecken)",
+                "default": "Fortsätt"
               },
               {
                 "label": "Override require content finished",

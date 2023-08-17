@@ -55,8 +55,8 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Mostra il titolo del contenuto nella visualizzazione",
+                "description": "Se selezionato, l'utente vedrà il titolo del contenuto nella barra sopra questo contenuto"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",

@@ -59,8 +59,8 @@
                 "description": "If selected, the user will see the content title in the top bar above this content."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
+                "default": "Pokračovat"
               },
               {
                 "label": "Override require content finished",
@@ -70,44 +70,44 @@
                     "label": "Use behavioural setting"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povoleno"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázáno"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Zpětná vazba",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Nadpis zpětné vazby"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Obsah zpětné vazby"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Obrázek zpětné vazby"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Body za tento scénář",
+                    "description": "Skóre bude odesláno do libovolného LMS, LRS nebo jakékoli jiné připojené služby, která obdrží skóre od H5P pro uživatele, kteří dosáhnou tento scénář."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Přejít zpět",
+                "description": "Toto umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku scénáře.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použít nastavené chování"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povoleno"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázáno"
                   }
                 ]
               }
