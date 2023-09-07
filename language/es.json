@@ -79,10 +79,10 @@
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Retroalimentación",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Título de la retroalimentación"
                   },
                   {
                     "label": "Texto de la retroalimentación"
