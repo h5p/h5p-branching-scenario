@@ -41,7 +41,7 @@
               },
               {
                 "label": "Poäng",
-                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot"
+                "description": "Poängen kommer att skickas till något LMS, LRS eller annan kopplad tjänst som tar emot poäng från H5P för användare som når det förvalda slut-scenariot."
               },
               {
                 "label": "Innehålls-ID"
@@ -55,25 +55,25 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Visa innehållets titel i vy",
+                "description": "Om valt, så kommer användaren se innehållets titel i toppmenyn ovanför detta innehåll."
               },
               {
                 "label": "Text för fortsätt-knappen (maxlängd: 50 tecken)",
                 "default": "Fortsätt"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Ignorera krav på att innehåll är genomfört",
+                "description": "Ignorerar inställningen som gör att det krävs att innehåll är slutfört innan \"Fortsätt\"-knappen aktiveras. Detta kommer inte ha någon effekt om inte innehållet indikerar om det är \"genomfört\", exempelvis vid bilder eller kurspresentationer med endast en sida.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Använd beteende-inställning"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiverad"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inaktiverad"
                   }
                 ]
               },
@@ -82,32 +82,32 @@
                 "label": "Feedback",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Feedback-titel"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Feedback-text"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Feedback-bild"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Poäng för detta scenario",
+                    "description": "Poängen kommer skickas till ett LMS, LRS eller annan ansluten tjänst som tar emot poäng från H5P för användare som genomför detta scenario."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Navigera tilllbaka",
+                "description": "Detta kommer göra det möjligt för användaren att gå tillbaka och se föregående innehåll/fråga i scenariot.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Använd beteende-inställning"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiverad"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Inaktiverad"
                   }
                 ]
               }
@@ -147,7 +147,7 @@
             },
             {
               "label": "Obligatoriskt att se",
-              "description": "Uppmanar användarna att slutföra videon, interaktiva videon och kursen före de kan fortsätta med scenariot. Detta kan ignoreras på innehållsnivå"
+              "description": "Uppmanar användarna att slutföra videon, interaktiva videon och kursen före de kan fortsätta med scenariot. Detta kan ignoreras på innehållsnivå."
             },
             {
               "label": "Slumpa branching-frågor",

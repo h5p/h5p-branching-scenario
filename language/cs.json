@@ -41,7 +41,7 @@
               },
               {
                 "label": "Skóre",
-                "description": "Skóre bude odesláno do jakéhokoli LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou výchozího koncového scénáře"
+                "description": "Skóre bude odesláno do jakéhokoli LMS, LRS nebo jakékoli jiné připojené služby, která přijímá skóre od H5P pro uživatele, kteří dosáhnou výchozího koncového scénáře."
               },
               {
                 "label": "ID obsahu"
@@ -55,19 +55,19 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Zobrazit název obsahu",
+                "description": "Pokud je vybráno, uživatel uvidí název obsahu v horní liště nad tímto obsahem."
               },
               {
                 "label": "Text pro tlačítko Pokračovat (maximální délka: 50 znaků)",
                 "default": "Pokračovat"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Přepsání požadavku na obsah bylo dokončeno",
+                "description": "Před aktivací tlačítka „Pokračovat“ přepište jednotlivá nastavení, která vyžadují dokončení obsahu. Nebude mít žádný účinek, pokud obsah neuvádí, zda byl „dokončen“, např. obrázky nebo prezentace kurzů pouze s jedním snímkem.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použijte nastavení chování"
                   },
                   {
                     "label": "Povoleno"
@@ -97,7 +97,7 @@
                 ]
               },
               {
-                "label": "Přejít zpět",
+                "label": "Vrátit se zpět",
                 "description": "Toto umožní uživateli vrátit se zpět a zobrazit předchozí obsah/otázku scénáře.",
                 "options": [
                   {
@@ -147,7 +147,7 @@
             },
             {
               "label": "Povinné sledování",
-              "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili video, interaktivní video a prezentaci kurzu. To lze přepsat na úrovni obsahu"
+              "description": "Vyzývá diváky, aby před pokračováním ve scénáři dokončili video, interaktivní video a prezentaci kurzu. To lze přepsat na úrovni obsahu."
             },
             {
               "label": "Náhodné větvení otázek",
