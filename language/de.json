@@ -41,7 +41,7 @@
               },
               {
                 "label": "Punkte",
-                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt"
+                "description": "Wenn Lernende den Standard-Endbildschirm erreichen, werden die Punkte an ein LMS, einen LRS oder einen anderen Dienste geschickt, der Ergebnisse von H5P empfängt."
               },
               {
                 "label": "Inhalts-ID"
@@ -56,58 +56,58 @@
             "fields": [
               {
                 "label": "Titel anzeigen",
-                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt"
+                "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt."
               },
               {
                 "label": "Beschriftung des \"Weiter\"-Buttons (maximale Länge: 50 Zeichen)",
                 "default": "Weiter"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Überschreibe Einstellungen für Abschlussverfolgung",
+                "description": "Überschreibe die individuellen Einstellungen, die festlegen, ob ein Inhalt abgeschlossen sein muss, bevor der \"Weiter\"-Button aktiviert wird. Hat keinen Einfluss, wenn ein Inhalt nicht angibt, dass er \"beended\" wurde, z. B. Bilder oder Course Presentations mit nur einem Schaubild.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Benutze die Verhaltenseinstellungen"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiviert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktiviert"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Rückmeldung",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Rückmeldungstitel"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Rückmeldungstext"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Rückmeldungsbild"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Punkte für dieses Szenario",
+                    "description": "Die Punkte werden für Nutzende, die dieses Szenario erreichen, an ein LMS, LRS oder anderen Dienst geschickt, der Punkte von H5P aufnimmt."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Rückwärts gehen",
+                "description": "Diese Einstellung erlaubt es Nutzenden, rückwärts zu gehen und die vorherige Frage/den vorherigen Inhalt zu sehen.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Benutze die Verhaltenseinstellungen"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktiviert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktiviert"
                   }
                 ]
               }
@@ -147,7 +147,7 @@
             },
             {
               "label": "Anschauen nötig",
-              "description": "Hält Nutzer dazu an, das Video, Interaktive Video oder die Kurspräsentation anzusehen, bevor sie mit dem Szenario weitermachen. Dies kann auf Inhalts-Ebene überschrieben werden."
+              "description": "Hält Nutzer dazu an, das Video, Interaktive Video oder die Kurspräsentation anzusehen, bevor sie mit dem Szenario weitermachen können. Dies kann auf Inhalts-Ebene überschrieben werden."
             },
             {
               "label": "Verzweigende Fragen zufällig anordnen",

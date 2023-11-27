@@ -41,7 +41,7 @@
               },
               {
                 "label": "Kalifikazioa",
-                "description": "Lehenetsitako eszenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da"
+                "description": "Lehenetsitako eszenatokiaren amaierara heltzen diren erabiltzaileen kalifikazioa LMS, LRS edo H5Ptik kalifikazioak jasotzen dituen konektatuta dagoen beste edozein zerbitzura bidaliko da."
               },
               {
                 "label": "Edukiaren IDa"
@@ -55,59 +55,59 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Erakutsi edukiaren izenburua bistan",
+                "description": "Hautatzen bada, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko goiko barran."
               },
               {
                 "label": "Ekiteko botoiaren testua (gehienezko luzera: 50 karaktere)",
                 "default": "Ekin"
-	      },
+              },
               {
-                "label": "Override require content finished",
+                "label": "Gainidazteak behar du edukia amaituta",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Erabili jokabidearen ezarpena"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Gaituta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desgaituta"
                   }
                 ],
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+                "description": "Gainidatzi ezarpen pertsonalak edukia amaitzea eskatzeko \"Ekin\" botoia aktibatu aurretik. Ez du inolako eraginik izango edukiak ez badu adierazten \"amaitu\" den ala ez, adibidez, irudiak edo ikastaroen aurkezpenak diapositiba bakarrarekin."
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Iritzia",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Iritziaren izenburua"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Iritziaren testua"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Iritziaren irudia"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Eszenatoki honen puntuazioa",
+                    "description": "Puntuazioa eszenatoki honetara iristen diren erabiltzaileentzat H5P-ren puntuazioak jasotzen dituen edozein LMS, LRS edo konektatutako beste edozein zerbitzura bidaliko da."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Nabigatu atzera",
+                "description": "Horri esker, erabiltzaileak atzera egin eta aurreko edukia/galdera eszenatokian ikusteko aukera izango du.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Erabili jokabidearen ezarpena"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Gaituta"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Desgaituta"
                   }
                 ]
               }
@@ -147,7 +147,7 @@
             },
             {
               "label": "Ikusi behar da",
-              "description": "Ikusleei bideoa, bideo interaktiboa eta ikastaroaren aurkezpena osatzeko eskatzen die eszenatokiarekin jarraitu aurretik. Eduki mailan baliogabetu daiteke"
+              "description": "Ikusleei bideoa, bideo interaktiboa eta ikastaroaren aurkezpena osatzeko eskatzen die eszenatokiarekin jarraitu aurretik. Eduki mailan baliogabetu daiteke."
             },
             {
               "label": "Ausazkotu Adarkatze Galderak",
