@@ -10,11 +10,13 @@ export default class LibraryScreen extends H5P.EventDispatcher {
    * @param  {BranchingScenario} parent BranchingScenario object.
    * @param  {string} courseTitle Title.
    * @param  {object} library H5P Library Data.
+   * @param  {object} previousStates Previous states.
    */
-  constructor(parent, courseTitle, library) {
+  constructor(parent, courseTitle, library, previousStates) {
     super();
-
     this.parent = parent;
+    this.previousStates = previousStates ?? {};
+
     this.currentLibraryElement;
     this.currentLibraryInstance;
     this.currentLibraryId = 0;
@@ -169,6 +171,8 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
     // Navigation
     backButton.addEventListener('click', (event) => {
+      this.updateLibraryStates();
+
       // Hide overlay popup when user is at Branching Question
       if (event.currentTarget.hasAttribute('isBQ')) {
         if (this.overlay) {
@@ -185,7 +189,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         }
         // If the BQ is at first position, we need to restart the screen when user want to go back from the 2nd screen (next screen after BQ)
         if (this.parent.params.content[0].type.library.split(' ')[0] === 'H5P.BranchingQuestion' && this.parent.currentId === 0) {
-          this.parent.trigger('restarted');
+          this.parent.trigger('restarted', { keepStates: true });
           return backButton;
         }
         this.parent.trigger('navigated', {
@@ -201,7 +205,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
       if (this.currentLibraryId === 0 && this.parent.params.content[this.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
         this.parent.isReverseTransition = true;
-        this.parent.trigger('restarted');
+        this.parent.trigger('restarted', { keepStates: true });
         return backButton;
       }
 
@@ -336,6 +340,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
     const navButton = document.createElement('button');
     navButton.addEventListener('click', () => {
+      this.updateLibraryStates();
       this.parent.trigger('navigated', { nextContentId });
     });
 
@@ -364,7 +369,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     libraryElement.classList.add('h5p-branching-scenario-content');
     this.appendRunnable(libraryElement, library.type, library.contentId);
 
-    const libraryMachineName = library.type && library.type.library.split(' ')[0];
+    const libraryMachineName = library.type?.library.split(' ')[0];
 
     // Content overlay required for some instances
     this.contentOverlays[library.contentId] = new LibraryScreenOverlay(this);
@@ -483,15 +488,34 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       structuredClone(content) :
       H5P.jQuery.extend(true, {}, content);
 
+    /*
+     * The logic of how instances and their wrappers are handled seems to have
+     * grown over time. It's not obvious why new instances get created over and
+     * over again by different callers instead of instantiating them once by a
+     * manager and let them be served as needed. This would probably mean major
+     * refactoring (together with the intertwined class code).
+     * As a workaround, this class now manages the previous states of instances
+     * which are required to be kept to allow re-instantiating without losing
+     * info.
+     * All info content instances should keep the state unless one loops back
+     * to content that was already visited (including restart).
+     * When resuming a Branching Question, if feedback was visible, it should
+     * be visible, but when reopening that question, the feedback needs to be
+     * gone, or a user cannot move backwards or not choose an answer after
+     * revisiting.
+     */
+    const extras = { parent: this.parent };
+    if (this.previousStates[id]) {
+      extras.previousState = this.previousStates[id];
+    }
+
     // Create content instance
     const instance = H5P.newRunnable(
       contentClone,
       this.parent.contentId,
       H5P.jQuery(container),
       true,
-      {
-        parent: this.parent,
-      }
+      extras
     );
 
     if (
@@ -503,6 +527,18 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         this.forceContentFinished(instance, library);
 
       this.addFinishedListeners(instance, library);
+
+      // Ensure that user state when xAPI event occurs is kept
+      if (typeof instance.getAnswerGiven === 'function') {
+        instance.on('xAPI', (event) => {
+          if (
+            ['answered', 'completed', 'progressed']
+              .includes(event.data.statement.verb.display['en-US'])
+          ) {
+            this.libraryScreen.updateLibraryStates();
+          }
+        });
+      }
     }
 
     instance.setActivityStarted();
@@ -548,6 +584,35 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
     // Remove any fullscreen buttons
     this.disableFullscreen(instance);
+  }
+
+  /**
+   * Update libary states of instances that are instantiated.
+   * Required to store states of the content types that are needed to recreate
+   * them not only when resuming, but also when reinstantiating content.
+   */
+  updateLibraryStates() {
+    Object.keys(this.libraryInstances).forEach((id) => {
+      const state = this.libraryInstances[id].getCurrentState?.();
+      if (!H5P.isEmpty(state)) {
+        this.previousStates[id] = state;
+      }
+    });
+  }
+
+  /**
+   * Get current instance state.
+   */
+  getCurrentState() {
+    const states = {};
+    Object.keys(this.libraryInstances).forEach((id) => {
+      const state = this.libraryInstances[id].getCurrentState?.();
+      if (!H5P.isEmpty(state)) {
+        states[id] = state;
+      }
+    });
+
+    return states;
   }
 
   /**
@@ -925,8 +990,11 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
   /**
    * Slide screen in and style it as the current screen.
+   * @param {object} [options] Options.
+   * @param {boolean} [options.skipAnimation] True to skip animation.
+   * @param {boolean} [options.skipFocus] True to skip focus.
    */
-  show() {
+  show(options = {}) {
     const library = this.parent.params.content[this.currentLibraryId];
 
     if (
@@ -941,20 +1009,33 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     }
 
     this.isShowing = true;
-    this.wrapper.classList.add('h5p-slide-in');
+
     this.wrapper.classList.remove('h5p-branching-hidden');
 
-    // Style as the current screen
-    this.wrapper.addEventListener('animationend', (event) => {
-      if (event.target.className === 'h5p-next-screen h5p-slide-in') {
-        this.wrapper.classList.remove('h5p-next-screen');
-        this.wrapper.classList.remove('h5p-slide-in');
-        this.wrapper.classList.add('h5p-current-screen');
-        this.parent.navigating = false;
-        this.wrapper.style.minHeight = this.parent.currentHeight;
+    const done = () => {
+      this.wrapper.classList.remove('h5p-next-screen');
+      this.wrapper.classList.remove('h5p-slide-in');
+      this.wrapper.classList.add('h5p-current-screen');
+      this.parent.navigating = false;
+      this.wrapper.style.minHeight = this.parent.currentHeight;
+      if (!options.skipFocus) {
         this.libraryTitle.focus();
       }
-    });
+    };
+
+    if (options.skipAnimation) {
+      done();
+    }
+    else {
+      this.wrapper.classList.add('h5p-slide-in');
+
+      // Style as the current screen
+      this.wrapper.addEventListener('animationend', (event) => {
+        if (event.target.className === 'h5p-next-screen h5p-slide-in') {
+          done();
+        }
+      });
+    }
   }
 
   /**
@@ -1000,7 +1081,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         if (this.wrapper.parentNode !== null) {
           this.wrapper.parentNode.removeChild(this.wrapper);
           this.remove();
-          this.parent.libraryScreen = null;
           this.parent.trigger('resize');
         }
       }, 100);
@@ -1065,8 +1145,13 @@ export default class LibraryScreen extends H5P.EventDispatcher {
    * Slide in next library which may be either a 'normal content type' or a
    * branching question
    * @param {object} library Library data.
+   * @param {boolean} [reverse] True to slide in from the left.
+   * @param {boolean} [skipAnimation] True to skip animation.
+   * @param {boolean} [skipFocus] True to skip focus.
    */
-  showNextLibrary(library, reverse = false) {
+  showNextLibrary(
+    library, reverse = false, skipAnimation = false, skipFocus = false
+  ) {
     this.nextLibraryId = library.nextContentId;
     this.libraryFeedback = library.feedback;
 
@@ -1076,7 +1161,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       // First priority - Hide navigation button first to prevent user to make unecessary clicks
       if (this.libraryFinishingRequirements[library.contentId] === true
         && (this.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
-        this.contentOverlays[this.currentLibraryId].hide();
+        this.contentOverlays[this.currentLibraryId]?.hide();
         this.parent.disableNavButton();
         showProceedButtonflag = false;
       }
@@ -1090,17 +1175,19 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       this.libraryTitle.setAttribute('aria-label', contentTitle ? contentTitle : 'Untitled Content');
       this.libraryTitle.innerHTML = (library.showContentTitle && contentTitle ? contentTitle : '&nbsp;');
 
-      if (this.currentLibraryId === library.contentId) {
-        // Target slide is already being displayed
-        this.currentLibraryWrapper.classList.add('h5p-slide-pseudo');
-      }
-      else if (reverse) {
-        // Slide out the current library in reverse direction
-        this.currentLibraryWrapper.classList.add('h5p-slide-out-reverse');
-      }
-      else {
-        // Slide out the current library
-        this.currentLibraryWrapper.classList.add('h5p-slide-out');
+      if (!skipAnimation) {
+        if (this.currentLibraryId === library.contentId) {
+          // Target slide is already being displayed
+          this.currentLibraryWrapper.classList.add('h5p-slide-pseudo');
+        }
+        else if (reverse) {
+          // Slide out the current library in reverse direction
+          this.currentLibraryWrapper.classList.add('h5p-slide-out-reverse');
+        }
+        else {
+          // Slide out the current library
+          this.currentLibraryWrapper.classList.add('h5p-slide-out');
+        }
       }
 
       // Remove the branching questions if they exist
@@ -1135,18 +1222,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         libraryWrapper.classList.add('h5p-previous');
       }
 
-      libraryWrapper.classList.add('h5p-slide-in');
-      const libraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0];
-      libraryElement.classList.remove('h5p-branching-hidden');
-
-      this.currentLibraryId = library.contentId;
-      this.currentLibraryInstance = this.libraryInstances[library.contentId];
-
-      if (this.currentLibraryInstance.resize) {
-        this.currentLibraryInstance.resize();
-      }
-
-      this.currentLibraryWrapper.addEventListener('animationend', () => {
+      const done = () => {
         if (this.currentLibraryWrapper.parentNode !== null) {
           this.currentLibraryWrapper.parentNode.removeChild(this.currentLibraryWrapper);
         }
@@ -1157,9 +1233,12 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         this.currentLibraryWrapper.classList.remove('h5p-slide-in');
 
         this.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0]; // TODO: Why no use 'libraryElement' ?
+
         this.createNextLibraries(library);
         this.parent.navigating = false;
-        this.libraryTitle.focus();
+        if (!skipFocus) {
+          this.libraryTitle.focus();
+        }
 
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
@@ -1170,7 +1249,31 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         this.resize(new H5P.Event('resize', {
           element: libraryElement
         }));
-      });
+      };
+
+      if (!skipAnimation) {
+        libraryWrapper.classList.add('h5p-slide-in');
+      }
+
+      const libraryElement = libraryWrapper
+        .getElementsByClassName('h5p-branching-scenario-content')[0];
+      libraryElement.classList.remove('h5p-branching-hidden');
+
+      this.currentLibraryId = library.contentId;
+      this.currentLibraryInstance = this.libraryInstances[library.contentId];
+
+      if (this.currentLibraryInstance.resize) {
+        this.currentLibraryInstance.resize();
+      }
+
+      if (skipAnimation) {
+        done();
+      }
+      else {
+        this.currentLibraryWrapper.addEventListener('animationend', () => {
+          done();
+        });
+      }
     }
     else { // Show a branching question
       if (this.parent.params.behaviour === true) {
@@ -1218,13 +1321,18 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       wrapper.appendChild(branchingQuestion);
       this.branchingQuestions.push(branchingQuestion);
 
+      this.currentLibraryId = library.contentId;
+      this.currentLibraryInstance = this.libraryInstances[library.contentId];
+
       const labelId = 'h5p-branching-question-title-' + LibraryScreen.idCounter++;
       const questionContainer = branchingQuestion.querySelector('.h5p-branching-question-container');
       this.questionContainer = questionContainer;
       questionContainer.setAttribute('role', 'dialog');
       questionContainer.setAttribute('tabindex', '-1');
       questionContainer.setAttribute('aria-labelledby', labelId);
-      questionContainer.classList.add('h5p-start-outside');
+      if (!skipAnimation) {
+        questionContainer.classList.add('h5p-start-outside');
+      }
       questionContainer.classList.add('h5p-fly-in');
       branchingQuestion.querySelector('.h5p-branching-question-title').id = labelId;
       const multiChoiceWrapper = branchingQuestion.querySelector('.h5p-multichoice-wrapper');
@@ -1256,8 +1364,9 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       this.parent.navigating = false;
 
       branchingQuestion.addEventListener('animationend', () => {
-        const firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0];
-        if (typeof firstAlternative !== 'undefined') {
+        const firstAlternative = branchingQuestion
+          .querySelectorAll('.h5p-branching-question-alternative')[0];
+        if (!skipFocus && typeof firstAlternative !== 'undefined') {
           questionContainer.focus();
         }
       });
@@ -1496,66 +1605,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     }
 
     // Proceed button
-    const navButton = document.createElement('button');
-    navButton.classList.add('transition');
-
-    navButton.addEventListener('click', () => {
-      // Stop impatient users from breaking the view
-      if (this.parent.navigating === false) {
-        const hasFeedbackTitle = this.libraryFeedback.title
-          && this.libraryFeedback.title.trim();
-        const hasFeedbackSubtitle = this.libraryFeedback.subtitle
-          && this.libraryFeedback.subtitle.trim();
-
-        const hasFeedback = !!(hasFeedbackTitle
-          || hasFeedbackSubtitle
-          || this.libraryFeedback.image
-        );
-
-        if (hasFeedback && this.nextLibraryId !== -1) {
-          // Add an overlay if it doesn't exist yet
-          if (this.overlay === undefined) {
-            this.overlay = document.createElement('div');
-            this.overlay.className = 'h5p-branching-scenario-overlay';
-            this.wrapper.appendChild(this.overlay);
-            this.hideBackgroundFromReadspeaker();
-          }
-
-          const branchingQuestion = document.createElement('div');
-          branchingQuestion.classList.add('h5p-branching-question-wrapper');
-          branchingQuestion.classList.add('h5p-branching-scenario-feedback-dialog');
-
-
-          const questionContainer = document.createElement('div');
-          questionContainer.classList.add('h5p-branching-question-container');
-
-          branchingQuestion.appendChild(questionContainer);
-
-          const feedbackScreen = this.createFeedbackScreen(this.libraryFeedback, this.nextLibraryId);
-          questionContainer.appendChild(feedbackScreen);
-
-          questionContainer.classList.add('h5p-start-outside');
-          questionContainer.classList.add('h5p-fly-in');
-          this.currentLibraryWrapper.style.zIndex = 0;
-          this.wrapper.appendChild(branchingQuestion);
-          feedbackScreen.focus();
-        }
-        else {
-          const nextScreen = {
-            nextContentId: this.nextLibraryId
-          };
-
-          if (!!(hasFeedback || (this.libraryFeedback.endScreenScore !== undefined))) {
-            nextScreen.feedback = this.libraryFeedback;
-          }
-          this.parent.trigger('navigated', nextScreen);
-        }
-
-        this.parent.navigating = true;
-      }
-    });
-
-    navButton.classList.add('h5p-nav-button');
     this.navButton = document.createElement('button');
     this.navButton.classList.add('transition');
     this.navButton.addEventListener('animationend', () => {
@@ -1563,6 +1612,8 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     });
 
     this.navButton.addEventListener('click', () => {
+      this.updateLibraryStates();
+
       if (this.parent.proceedButtonInProgress) {
         return;
       }
@@ -1589,6 +1640,18 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     footer.classList.add('h5p-screen-footer');
     footer.appendChild(buttonWrapper);
     this.wrapper.appendChild(footer);
+  }
+
+  /**
+   * Reset instance.
+   * @param {number} id Id of instance to reset.
+   */
+  resetInstance(id) {
+    const instance = this.libraryInstances[id];
+    if (instance) {
+      instance.resetTask?.();
+    }
+    delete this.previousStates[id];
   }
 }
 

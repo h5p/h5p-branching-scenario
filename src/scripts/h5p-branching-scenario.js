@@ -9,19 +9,22 @@ export default class BranchingScenario extends H5P.EventDispatcher {
    * @class
    * @param {object} params Parameters passed by the editor.
    * @param {number} contentId Content's id.
+   * @param {object} [extras] Saved state, metadata, etc.
    */
-  constructor(params, contentId) {
+  constructor(params, contentId, extras = {}) {
     super('');
 
     this.contentId = contentId;
+    this.extras = extras;
+
     this.startScreen = {};
     this.libraryScreen = {};
     this.endScreens = {};
     this.navigating;
     this.currentHeight;
     this.currentId = -1;
-    this.xAPIDataCollector = [];
     this.userPath = [];
+    this.xAPIData = [];
     this.backwardsAllowedFlags = [];
     this.proceedButtonInProgress = false;
     this.isReverseTransition = false;
@@ -90,6 +93,8 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
     this.scoring = new Scoring(this.params);
 
+    this.restoreState(this.extras.previousState);
+
     /**
      * Handle exitfullscreen event and resize the BS screen
      */
@@ -124,7 +129,10 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         this.startScreen.hide();
         this.libraryScreen.show();
         this.triggerXAPI('progressed');
-        this.userPath.push(0);
+
+        if (this.userPath.length === 0) {
+          this.userPath.push(0);
+        }
       }
       this.currentId = 0;
     });
@@ -133,6 +141,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
      * Handle progression
      */
     this.on('navigated', (event) => {
+      this.libraryScreen.updateLibraryStates();
       // Trace back user steps
       if (event.data.reverse) {
         // Reset library screen wrapper if it was set to fit large BQ
@@ -145,9 +154,6 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       }
 
       const id = parseInt(event.data.nextContentId);
-
-      // Keep track of user steps
-      this.userPath.push(id);
 
       const backButton =
         this.container.querySelector('.h5p-back-button[isBQ="true"]');
@@ -164,42 +170,43 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       const nextLibrary = this.getLibrary(id);
       let resizeScreen = true;
 
-      if (!this.libraryScreen) {
-        this.libraryScreen = new LibraryScreen(
-          this,
-          this.params.startScreen.startScreenTitle,
-          nextLibrary
+      // Try to stop any playback
+      this.libraryScreen.stopPlayback(this.currentId);
+
+      // Try to collect xAPIData for last screen
+      if (!this.params.preventXAPI) {
+        const xAPIData = this.libraryScreen.getXAPIData(this.currentId);
+
+        /*
+          * We do not include branching questions that hasn't been answered in
+          * the report (going back from a BQ)
+          */
+        const isBranching = LibraryScreen.isBranching(
+          this.getLibrary(this.currentId)
         );
 
-        this.libraryScreen.on('toggleFullScreen', () => {
-          this.toggleFullScreen();
-        });
+        const isBranchingQuestionAndAnswered = isBranching
+          && typeof xAPIData.statement?.result?.response !== 'undefined';
 
-        this.container.append(this.libraryScreen.getElement());
-        this.currentId = id;
+        if (xAPIData && (!isBranching || isBranchingQuestionAndAnswered)) {
+          this.xAPIData.push(xAPIData);
+        }
       }
-      else {
-        // Try to stop any playback
-        this.libraryScreen.stopPlayback(this.currentId);
 
-        // Try to collect xAPIData for last screen
-        if (!this.params.preventXAPI) {
-          const xAPIData = this.libraryScreen.getXAPIData(this.currentId);
+      if (!event.data.isResuming) {
+        /*
+         * When resuming, Branching Question is allowed to show previous state,
+         * feedback in particular. Otherwise like here, it's reset to always
+         * start with the answer alternatives.
+         */
+        const lastVisitedId = this.userPath[this.userPath.length - 1];
+        if (LibraryScreen.isBranching(this.getLibrary(lastVisitedId))) {
+          this.libraryScreen.resetInstance(lastVisitedId);
+        }
 
-          /*
-           * We do not include branching questions that hasn't been answered in
-           * the report (going back from a BQ)
-           */
-          const isBranching = LibraryScreen.isBranching(
-            this.getLibrary(this.currentId)
-          );
-
-          const isBranchingQuestionAndAnswered = isBranching
-            && xAPIData.statement?.result?.response;
-
-          if (xAPIData && (!isBranching || isBranchingQuestionAndAnswered)) {
-            this.xAPIDataCollector.push(xAPIData);
-          }
+        // When looping back to a node that was already visited, clean state.
+        if (this.userPath.includes(event.data.nextContentId)) {
+          this.libraryScreen.resetInstance(event.data.nextContentId);
         }
       }
 
@@ -218,20 +225,27 @@ export default class BranchingScenario extends H5P.EventDispatcher {
           if (!LibraryScreen.isBranching(nextLibrary)) {
             this.currentEndScreen.hide();
             this.currentEndScreen = null;
-            this.libraryScreen.show();
+            this.libraryScreen.show(
+              { skipAnimation: event.data.isResuming }
+            );
           }
         }
         else {
           // Showing two end screens after each other
           this.libraryScreen.hideFeedbackDialogs();
-          this.currentEndScreen.hide();
+          this.currentEndScreen.hide(
+            { skipAnimation: event.data.isResuming }
+          );
           this.currentEndScreen = null;
         }
       }
       else if (this.startScreen?.isShowing && nextLibrary) {
         if (!LibraryScreen.isBranching(nextLibrary)) {
-          this.startScreen.hide();
-          this.libraryScreen.show();
+          this.startScreen.hide({ skipAnimation: event.data.isResuming });
+          this.libraryScreen.show({
+            skipAnimation: event.data.isResuming,
+            skipFocus: event.data.isResuming // Should not focus on resuming to avoid jumping on page
+          });
           resizeScreen = false;
         }
       }
@@ -245,7 +259,6 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       }
       if (this.currentId !== -1) {
         this.triggerXAPI('progressed');
-
         let contentScores = {};
 
         if (this.libraryScreen.currentLibraryInstance?.getScore) {
@@ -291,7 +304,12 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         );
       }
       else {
-        this.libraryScreen.showNextLibrary(nextLibrary, event.data.reverse);
+        this.libraryScreen.showNextLibrary(
+          nextLibrary,
+          event.data.reverse,
+          event.data.isResuming, // skip animation
+          event.data.isResuming // skip focus
+        );
 
         // Disable back button if not allowed in new library screen
         if (this.canEnableBackButton(id) === false) {
@@ -326,40 +344,20 @@ export default class BranchingScenario extends H5P.EventDispatcher {
           this.libraryScreen.show();
         }
       }
+
+      // Keep track of user steps if not resuming because we have all we need
+      if (!event.data.isResuming) {
+        this.userPath.push(id);
+      }
     });
 
     /**
      * Handle restarting
      */
-    this.on('restarted', () => {
-      if (this.currentEndScreen) {
-        this.currentEndScreen.hide();
-        this.currentEndScreen = null;
-      }
-      this.scoring.restart();
-      this.xAPIDataCollector = [];
-      this.startScreen.screenWrapper.style.height = '';
-      this.startScreen.screenWrapper.classList.remove('h5p-slide-out');
-
-      this.startScreen.show(this.isReverseTransition);
-      this.isReverseTransition = false;
-      this.currentId = -1;
-      this.userPath = [];
-
-      // Reset the library screen
-      if (this.libraryScreen) {
-        this.libraryScreen.remove();
-      }
-      // Note: the first library must always have an id of 0
-      this.libraryScreen = new LibraryScreen(
-        this, this.params.startScreen.startScreenTitle, this.getLibrary(0)
-      );
-
-      this.libraryScreen.on('toggleFullScreen', () => {
-        this.toggleFullScreen();
+    this.on('restarted', (event) => {
+      this.resetTask({
+        keepStates: event.data?.keepStates ?? false
       });
-
-      this.container.append(this.libraryScreen.getElement());
     });
 
     /**
@@ -370,13 +368,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         return; // Prevent sending the event back down
       }
       this.changeLayoutToFitWidth();
-      if (
-        this.libraryScreen
-        && typeof this.libraryScreen === 'object'
-        && Object.keys(this.libraryScreen).length !== 0
-      ) {
-        this.libraryScreen.resize(event);
-      }
+      this.libraryScreen?.resize(event);
 
       // Add classname for phone size adjustments
       const rect = this.container.getBoundingClientRect();
@@ -393,6 +385,79 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         this.container.classList.add('h5p-medium-tablet-size');
       }
     });
+  }
+
+  /**
+   * Restore state.
+   * @param {object} [previousState] Previous state.
+   * @param {object} [previousState.scoring] Scoring state.
+   * @param {object} [previousState.userPath] User path.
+   * @param {object} [previousState.xAPIData] xAPI data.
+   */
+  restoreState(previousState = {}) {
+    if (previousState.scoring) {
+      this.scoring.setState(previousState.scoring);
+    }
+    this.userPath = previousState.userPath || [];
+    this.xAPIData = previousState.xAPIData || [];
+  }
+
+  /**
+   * Restore view.
+   * @param {object} [previousState] Previous state.
+   * @param {object} [previousState.endScreen] End screen state.
+   * @param {object} [previousState.childStates] Child states.
+   */
+  restoreView(previousState = {}) {
+    if (this.userPath.length === 0) {
+      // Start screen
+    }
+    else if (previousState.endScreen) {
+      const endScreen = this.createEndScreen(
+        {
+          ...previousState.endScreen,
+          isCurrentScreen: true
+        }
+      );
+      this.container.append(endScreen.getElement());
+      this.currentEndScreen = endScreen;
+
+      this.startScreen.hide({ skipAnimation: true });
+      this.libraryScreen.hide(true);
+      this.currentEndScreen.show({
+        skipAnimation: true,
+        skipFocus: true
+      });
+    }
+    else {
+      const id = this.userPath[this.userPath.length - 1];
+      /*
+       * Handle previous node is a Branching Question. Requires to also to
+       * display the previous node first, so that the previous screen is set
+       * correctly when user can go backwards.
+       */
+      if (LibraryScreen.isBranching(this.getLibrary(id))) {
+        // Branching Question might be first node with no screen before
+        if (this.userPath.length > 1) {
+          /*
+           * Strictly, this is not 100% correct, because the user's last move
+           * may have been going back from a node to the BQ and we're showing
+           * the node before the BQ. Don't think it's worth to store in state.
+           */
+          const backgroundId = this.userPath[this.userPath.length - 2];
+
+          this.trigger('navigated', {
+            nextContentId: backgroundId,
+            isResuming: true
+          });
+        }
+      }
+
+      this.trigger('navigated', {
+        nextContentId: id,
+        isResuming: true
+      });
+    }
   }
 
   /**
@@ -600,6 +665,53 @@ export default class BranchingScenario extends H5P.EventDispatcher {
   }
 
   /**
+   * Reset task.
+   * @param {object} [options] Options.
+   * @param {boolean} [options.keepStates] True to keep states.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
+   */
+  resetTask(options = {}) {
+    if (this.currentEndScreen) {
+      this.currentEndScreen.hide();
+      this.currentEndScreen = null;
+    }
+    this.scoring.restart();
+    this.startScreen.screenWrapper.style.height = '';
+    this.startScreen.screenWrapper.classList.remove('h5p-slide-out');
+
+    this.startScreen.show({ slideBack: this.isReverseTransition });
+    this.isReverseTransition = false;
+    this.currentId = -1;
+    this.userPath = [];
+    this.xAPIData = [];
+
+    if (!options.keepStates) {
+      delete this.extras.previousState;
+    }
+
+    this.wasRestarted = true;
+
+    // Reset the library screen
+    if (this.libraryScreen) {
+      this.libraryScreen.remove();
+    }
+
+    // Note: the first library must always have an id of 0
+    this.libraryScreen = new LibraryScreen(
+      this,
+      this.params.startScreen.startScreenTitle,
+      this.getLibrary(0),
+      this.extras.previousState?.childStates
+    );
+
+    this.libraryScreen.on('toggleFullScreen', () => {
+      this.toggleFullScreen();
+    });
+
+    this.container.append(this.libraryScreen.getElement());
+  }
+
+  /**
    * Change width of branching question depending on the container changeLayoutToFitWidth.
    */
   changeLayoutToFitWidth() {
@@ -639,14 +751,6 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
     this.libraryScreen.backButton.classList.remove('h5p-disabled');
     this.libraryScreen.backButton.removeAttribute('disabled');
-  }
-
-  /**
-   * Get user path.
-   * @return {object[]} User path.
-   */
-  getUserPath() {
-    return this.userPath;
   }
 
   /**
@@ -692,7 +796,10 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
     // Note: the first library must always have an id of 0
     this.libraryScreen = new LibraryScreen(
-      this, this.params.startScreen.startScreenTitle, this.getLibrary(0)
+      this,
+      this.params.startScreen.startScreenTitle,
+      this.getLibrary(0),
+      this.extras.previousState?.childStates
     );
 
     this.libraryScreen.on('toggleFullScreen', () => {
@@ -705,6 +812,8 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       this.endScreens[endScreen.contentId] = this.createEndScreen(endScreen);
       this.container.append(this.endScreens[endScreen.contentId].getElement());
     });
+
+    this.restoreView(this.extras.previousState);
   }
 
   /**
@@ -744,7 +853,34 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
     return {
       statement: xAPIEvent.data.statement,
-      children: this.xAPIDataCollector
+      children: this.xAPIData
     };
+  }
+
+  /**
+   * Get current state.
+   * @returns {object} Current state to be retrieved later.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-7}
+   */
+  getCurrentState() {
+    if (this.userPath.length === 0 && !this.wasRestarted) {
+      return; // Only when on start screen threre is nothing to restore
+    }
+
+    const state = {
+      userPath: this.userPath,
+      scoring: this.scoring.getCurrentState()
+    };
+
+    const childStates = this.libraryScreen?.getCurrentState() ?? {};
+    if (Object.keys(childStates).length) {
+      state.childStates = childStates;
+    }
+
+    if (this.currentEndScreen) {
+      state.endScreen = this.currentEndScreen.getRecreationData();
+    }
+
+    return state;
   }
 }

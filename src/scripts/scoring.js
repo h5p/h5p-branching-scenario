@@ -229,6 +229,33 @@ export default class Scoring {
   }
 
   /**
+   * Get current state of scoring.
+   * @returns {object} Current state of scoring.
+   */
+  getCurrentState() {
+    return {
+      scores: this.scores,
+      visitedIndex: this.visitedIndex
+    };
+  }
+
+  /**
+   * Set state of scoring.
+   * @param {object} [state] State to set.
+   * @param {object[]} [state.scores] Scores to set.
+   * @param {number} [state.visitedIndex] Visited index to set.
+   */
+  setState(state = {}) {
+    if (state.scores) {
+      this.scores = state.scores;
+    }
+
+    if (state.visitedIndex) {
+      this.visitedIndex = state.visitedIndex;
+    }
+  }
+
+  /**
    * Restart scoring
    */
   restart() {
@@ -248,12 +275,8 @@ export default class Scoring {
     let currentLibraryScore = 0;
     let currentLibraryMaxScore = 0;
 
-    // BQ if library id differs or if it is the first content
-    const isBranchingQuestion = currentId !== libraryId ||
-      (currentId === 0 && this.isBranchingQuestion(libraryParams));
-
     // For Branching Questions find score for chosen alternative
-    if (isBranchingQuestion) {
+    if (this.isBranchingQuestion(libraryParams)) {
       currentLibraryScore = this.getAlternativeScore(libraryParams, chosenAlternative);
       currentLibraryMaxScore = this.getQuestionMaxScore(libraryParams, chosenAlternative);
     }

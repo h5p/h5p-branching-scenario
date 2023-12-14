@@ -137,6 +137,19 @@ export default class GenericScreen extends H5P.EventDispatcher {
   }
 
   /**
+   * Get data required to recreate the screen later.
+   * @returns {object} Data required to recreate the screen.
+   */
+  getRecreationData() {
+    return {
+      endScreenTitle: this.screenData.titleText,
+      endScreenSubtitle: this.screenData.subtitleText,
+      endScreenImage: this.screenData.image,
+      endScreenScore: this.screenData.score
+    };
+  }
+
+  /**
    * Used to check if on the final screen to prepare the course to restart
    */
   checkIntroReset() {
@@ -273,56 +286,88 @@ export default class GenericScreen extends H5P.EventDispatcher {
 
   /**
    * Slide screen in and style it as the current screen.
-   * @param {boolean} slideBack True if sliding back to screen
+   * @param {object} [options] Options.
+   * @param {boolean} [options.slideBack] True to slide backwards.
+   * @param {boolean} [options.skipAnimation] True to skip animation.
+   * @param {boolean} [options.skipFocus] True to skip focus.
    */
-  show(slideBack = false) {
+  show(options = {}) {
     this.isShowing = true;
 
+    // Skip animation takes precedence over slideBack
+    options.slideBack = options.slideBack && !options.skipAnimation;
+
+    if (options.slideBack) {
       this.screenWrapper.classList.remove('h5p-next-screen');
       this.screenWrapper.classList.add('h5p-previous');
     }
 
-    this.screenWrapper.classList.add('h5p-slide-in');
-    this.screenWrapper.classList.remove('h5p-branching-hidden');
+    const done = () => {
+      if (options.slideBack) {
+        this.screenWrapper.classList.remove('h5p-previous');
+      }
+      this.screenWrapper.classList.remove('h5p-next-screen');
+      this.screenWrapper.classList.remove('h5p-slide-in');
+      this.screenWrapper.classList.add('h5p-current-screen');
+      this.screenWrapper.setAttribute('aria-hidden', false);
+      this.parent.trigger('resize');
 
-    // Style as the current screen
-    this.screenWrapper.addEventListener('animationend', (event) => {
-      if (event.animationName === 'slide-in') {
-        if (slideBack) {
-          this.screenWrapper.classList.remove('h5p-previous');
-        }
-        this.screenWrapper.classList.remove('h5p-next-screen');
-        this.screenWrapper.classList.remove('h5p-slide-in');
-        this.screenWrapper.classList.add('h5p-current-screen');
-        this.screenWrapper.setAttribute('aria-hidden', false);
-        this.parent.trigger('resize');
-
+      if (!options.skipFocus) {
         if (!this.isFeedbackAvailable) {
           this.navButton.focus();
         }
         else {
           this.feedbackText.focus();
         }
-        this.checkIntroReset();
       }
-    });
+
+      this.checkIntroReset();
+    };
+
+    if (options.skipAnimation) {
+      this.screenWrapper.classList.remove('h5p-branching-hidden');
+      done();
+    }
+    else {
+      this.screenWrapper.classList.add('h5p-slide-in');
+      this.screenWrapper.classList.remove('h5p-branching-hidden');
+
+      // Style as the current screen
+      this.screenWrapper.addEventListener('animationend', (event) => {
+        if (event.animationName === 'slide-in') {
+          done();
+        }
+      });
+    }
   }
 
   /**
-   * Slide screen out and style it to be hidden.
+   * Hide generic screen.
+   * @param {object} options Options.
+   * @param {boolean} options.skipAnimation True to skip animation.
    */
-  hide() {
+  hide(options = {}) {
     this.isShowing = false;
-    this.screenWrapper.classList.add('h5p-slide-out');
 
-    // Style as hidden
-    this.screenWrapper.addEventListener('animationend', (event) => {
-      if (event.animationName === 'slide-out') {
-        this.screenWrapper.classList.add('h5p-branching-hidden');
-        this.screenWrapper.classList.remove('h5p-current-screen');
-        this.screenWrapper.classList.add('h5p-next-screen');
-        this.screenWrapper.classList.remove('h5p-slide-out');
-      }
-    });
+    const done = () => {
+      this.screenWrapper.classList.add('h5p-branching-hidden');
+      this.screenWrapper.classList.remove('h5p-current-screen');
+      this.screenWrapper.classList.add('h5p-next-screen');
+      this.screenWrapper.classList.remove('h5p-slide-out');
+    };
+
+    if (options.skipAnimation) {
+      done();
+    }
+    else {
+      this.screenWrapper.classList.add('h5p-slide-out');
+
+      // Style as hidden
+      this.screenWrapper.addEventListener('animationend', (event) => {
+        if (event.animationName === 'slide-out') {
+          done();
+        }
+      });
+    }
   }
 }
