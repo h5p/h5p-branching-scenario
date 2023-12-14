@@ -1,10 +1,12 @@
-H5P.BranchingScenario.LibraryScreenOverlay = (function () {
+import '@styles/libraryScreenOverlay.scss';
+
+export default class LibraryScreenOverlay {
 
   /**
-   * LibraryScreenOverlay
-   * @constructor
+   * @class
+   * @param {LibraryScreeb} parent.
    */
-  function LibraryScreenOverlay(parent) {
+  constructor(parent) {
     this.hidden = true;
     this.parent = parent;
     this.overlay = document.createElement('div');
@@ -21,14 +23,14 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
    * Get DOM element of overlay.
    * @return {HTMLElement} DOM element of overlay.
    */
-  LibraryScreenOverlay.prototype.getDOM = function () {
+  getDOM() {
     return this.overlay;
-  };
+  }
 
   /**
    * Show overlay.
    */
-  LibraryScreenOverlay.prototype.show = function () {
+  show() {
     this.overlay.classList.remove('h5p-hidden');
     window.requestAnimationFrame(() => {
       this.buttonsContainer.classList.remove('h5p-hidden');
@@ -37,24 +39,24 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
       // Focus last button (assuming proceed)
       Object.values(this.buttons)[Object.keys(this.buttons).length - 1].focus();
     });
-  };
+  }
 
   /**
    * Hide overlay.
    */
-  LibraryScreenOverlay.prototype.hide = function () {
+  hide() {
     this.hidden = true;
     this.overlay.classList.add('h5p-hidden');
     this.buttonsContainer.classList.add('h5p-hidden');
-  };
+  }
 
   /**
    * Determine whether overlay is visible.
    * @return {boolean} True, if overlay is visible, else false;
    */
-  LibraryScreenOverlay.prototype.isVisible = function () {
+  isVisible() {
     return !this.hidden;
-  };
+  }
 
   /**
    * Add button to overlay.
@@ -63,7 +65,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
    * @param {function} callback Callback for button click.
    * @return {HTMLElement} Button.
    */
-  LibraryScreenOverlay.prototype.addButton = function (id, label, callback) {
+  addButton(id, label, callback) {
     if (
       !id && id !== 0 ||
       !label ||
@@ -79,7 +81,7 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     button.classList.add(`h5p-nav-button-${id}`);
     button.innerText = label;
 
-    button.addEventListener('click', event => {
+    button.addEventListener('click', () => {
       callback(id);
     });
 
@@ -87,20 +89,18 @@ H5P.BranchingScenario.LibraryScreenOverlay = (function () {
     this.buttonsContainer.appendChild(button);
 
     return button;
-  };
+  }
 
   /**
    * Remove button.
    * @param {string|number} id Id of button.
    */
-  LibraryScreenOverlay.prototype.removeButton = function (id) {
+  removeButton(id) {
     if (!id && id !== 0 || !this.buttons[id]) {
       return;
     }
 
     this.buttonsContainer.removeChild(this.buttons[id]);
     delete this.buttons[id];
-  };
-
-  return LibraryScreenOverlay;
-})();
+  }
+}

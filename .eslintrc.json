@@ -1,35 +1,30 @@
 {
   "globals": {
-    "H5P": true,
-    "H5PIntegration": true,
-    "H5PEditor": true
+    "H5P": "readonly",
+    "H5PEditor": "readonly",
+    "H5PIntegration": "readonly"
   },
   "env": {
-    "es6": true,
-    "browser": true
+    "browser": true,
+    "node": true,
+    "es2020": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "ecmaVersion": 9,
-    "sourceType": "module"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "plugins": [
-    "react"
+  "extends": [
+    "eslint:recommended"
   ],
-  "ignorePatterns": ["webpack.config.js", "dist/*.js"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
   "rules": {
     "valid-jsdoc": "off",
-    "semi": [2, "always"],
-    "indent": ["error", 2, {"SwitchCase": 1}],
+    "semi": ["error", "always"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "brace-style": ["error", "stroustrup"],
-    "keyword-spacing": ["error", {"after": true}],
-    "comma-spacing": ["error", {"before": false, "after": true}],
+    "keyword-spacing": ["error", { "after": true }],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "eqeqeq": ["error", "smart"],
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", {
       "anonymous": "always",
@@ -37,8 +32,10 @@
       "asyncArrow": "always"
     }],
     "no-extra-boolean-cast": "off",
-    "no-console": ["error", {"allow": ["warn", "error"]}],
-    "no-restricted-globals": [2, "event"],
-    "react/prop-types": 0
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "quotes": ["error", "single"],
+    "arrow-parens": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "no-alert": ["error"]
   }
 }

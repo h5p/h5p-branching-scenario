@@ -1,18 +1,18 @@
+import LibraryScreenOverlay from './libraryScreenOverlay.js';
 import { addResizeListener } from 'detect-resize';
+import '@styles/libraryScreen.scss';
+import '@styles/branchingQuestion.scss';
 
-H5P.BranchingScenario.LibraryScreen = (function ($) {
-
+export default class LibraryScreen extends H5P.EventDispatcher {
   /**
-   * LibraryScreen
-   *
-   * @param  {BranchingScenario} parent BranchingScenario object
-   * @param  {string} courseTitle Title
-   * @param  {Object} library H5P Library Data
-   * @return {LibraryScreen} A screen oject
+   * LibraryScreen.
+   * @class
+   * @param  {BranchingScenario} parent BranchingScenario object.
+   * @param  {string} courseTitle Title.
+   * @param  {object} library H5P Library Data.
    */
-  function LibraryScreen(parent, courseTitle, library) {
-    const self = this;
-    H5P.EventDispatcher.call(this);
+  constructor(parent, courseTitle, library) {
+    super();
 
     this.parent = parent;
     this.currentLibraryElement;
@@ -49,7 +49,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     /**
      * Handle enterfullscreen event and resize the library instance
      */
-    parent.on('enterFullScreen', () => {
+    this.parent.on('enterFullScreen', () => {
       setTimeout(() => {
         if (this.currentLibraryInstance) {
           this.currentLibraryInstance.trigger('resize');
@@ -61,7 +61,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
   /**
    * Resize wrapper to fit library
    */
-  LibraryScreen.prototype.handleLibraryResize = function () {
+  handleLibraryResize() {
     // Fullscreen always use the full height available to it
     if (this.parent.isFullScreen()) {
       this.currentLibraryWrapper.style.height = '';
@@ -69,36 +69,39 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       return;
     }
 
-    this.currentLibraryWrapper.style.height = this.currentLibraryElement.clientHeight + 40 + 'px';
+    this.currentLibraryWrapper.style.height = `${this.currentLibraryElement.clientHeight + 40}px`;
     // NOTE: This is a brittle hardcoding of the header height
-    this.wrapper.style.minHeight = this.currentLibraryElement.clientHeight + 40 + 70.17 + 'px';
-    if (this.currentLibraryWrapper.offsetHeight < this.currentLibraryElement.scrollHeight) {
+    this.wrapper.style.minHeight = `${this.currentLibraryElement.clientHeight + 40 + 70.17}px`;
+    if (
+      this.currentLibraryWrapper.offsetHeight <
+      this.currentLibraryElement.scrollHeight
+    ) {
       this.currentLibraryElement.tabIndex = 0;
     }
-  };
+  }
 
   /**
-   * Creates a wrapping div for the library screen
-   *
-   * @param  {string} courseTitle Main title
-   * @param  {string} libraryTitle Library specific title
-   * @return {HTMLElement} Wrapping div
+   * Create wrapping div for library screen.
+   * @param {string} courseTitle Main title.
+   * @param {string} libraryTitle Library specific title.
+   * @returns {HTMLElement} Wrapping div.
    */
-  LibraryScreen.prototype.createWrapper = function (courseTitle, libraryTitle, showLibraryTitle) {
-    const self = this;
-    const parent = this.parent;
+  createWrapper(courseTitle, libraryTitle, showLibraryTitle) {
     const wrapper = document.createElement('div');
 
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('h5p-title-wrapper');
 
-    if (H5P.canHasFullScreen) {
+    if (H5P.fullscreenSupported) {
       const fullScreenButton = document.createElement('button');
       fullScreenButton.className = 'h5p-branching-full-screen';
-      fullScreenButton.setAttribute('aria-label', this.parent.params.l10n.fullscreenAria);
+      fullScreenButton.setAttribute(
+        'aria-label', this.parent.params.l10n.fullscreenAria
+      );
       fullScreenButton.addEventListener('click', () => {
         this.trigger('toggleFullScreen');
       });
+
       titleDiv.appendChild(fullScreenButton);
     }
 
@@ -130,37 +133,36 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
     const handleWrapperResize = () => {
       if (this.wrapper.clientHeight > 500) {
-        this.wrapper.style.minHeight = this.wrapper.clientHeight + 'px';
+        this.wrapper.style.minHeight = `${this.wrapper.clientHeight}px`;
       }
     };
 
     addResizeListener(wrapper, handleWrapperResize);
 
     // Resize container on animation end
-    wrapper.addEventListener("animationend", function (event) {
-      if (event.animationName === 'slide-in' && self.currentLibraryElement) {
-        parent.trigger('resize');
-        setTimeout(() => {
+    wrapper.addEventListener('animationend', (event) => {
+      if (event.animationName === 'slide-in' && this.currentLibraryElement) {
+        this.parent.trigger('resize');
+
+        window.setTimeout(() => {
           // Make the library resize then make the wrapper resize to the new library height
-          addResizeListener(self.currentLibraryElement, () => {
-            self.handleLibraryResize();
-            parent.trigger('resize');
+          addResizeListener(this.currentLibraryElement, () => {
+            this.handleLibraryResize();
+            this.parent.trigger('resize');
           });
         }, 100);
       }
     });
 
     return wrapper;
-  };
+  }
 
   /**
    * Append back button.
    * @param {string} label Button label.
    * @return {HTMLElement} Back button.
    */
-  LibraryScreen.prototype.createBackButton = function (label) {
-    const self = this;
-
+  createBackButton(label) {
     const backButton = document.createElement('button');
     backButton.classList.add('transition');
     backButton.classList.add('h5p-back-button');
@@ -168,14 +170,13 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     // Navigation
     backButton.addEventListener('click', (event) => {
       // Hide overlay popup when user is at Branching Question
-      if (event.currentTarget.hasAttribute("isBQ")) {
+      if (event.currentTarget.hasAttribute('isBQ')) {
         if (this.overlay) {
-          // TODO: When does this code every run?!
           if (this.overlay.parentNode !== null) {
             this.overlay.parentNode.removeChild(this.overlay);
           }
           this.overlay = undefined;
-          this.branchingQuestions.forEach(bq => {
+          this.branchingQuestions.forEach((bq) => {
             if (bq.parentNode !== null) {
               bq.parentNode.removeChild(bq);
             }
@@ -183,40 +184,40 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           this.showBackgroundToReadspeaker();
         }
         // If the BQ is at first position, we need to restart the screen when user want to go back from the 2nd screen (next screen after BQ)
-        if (self.parent.params.content[0].type.library.split(' ')[0] === 'H5P.BranchingQuestion' && self.parent.currentId === 0) {
-          self.parent.trigger('restarted');
+        if (this.parent.params.content[0].type.library.split(' ')[0] === 'H5P.BranchingQuestion' && this.parent.currentId === 0) {
+          this.parent.trigger('restarted');
           return backButton;
         }
-        self.parent.trigger('navigated', {
+        this.parent.trigger('navigated', {
           reverse: true
         });
         return;
       }
 
       // Stop impatient users from breaking the view
-      if (self.parent.navigating === true) {
+      if (this.parent.navigating === true) {
         return;
       }
 
-      if (self.currentLibraryId === 0 && self.parent.params.content[self.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
-        self.parent.isReverseTransition = true;
-        self.parent.trigger('restarted');
+      if (this.currentLibraryId === 0 && this.parent.params.content[this.parent.currentId].type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
+        this.parent.isReverseTransition = true;
+        this.parent.trigger('restarted');
         return backButton;
       }
 
-      self.parent.trigger('navigated', {
+      this.parent.trigger('navigated', {
         reverse: true
       });
-      self.parent.navigating = true;
+      this.parent.navigating = true;
     });
 
     backButton.appendChild(document.createTextNode(label));
 
     return backButton;
-  };
+  }
 
   //  Hande proceed to next slide.
-  LibraryScreen.prototype.handleProceed = function () {
+  handleProceed() {
     let returnValue = true;
     // Stop impatient users from breaking the view
     if (this.parent.navigating === false) {
@@ -278,10 +279,10 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         }
 
         // Allow user to naviate to next slide/library if the execution completes
-        const self = this;
         returnValue = false;
-        new Promise(resolve => {
-          resolve(self.parent.trigger('navigated', nextScreen));
+
+        new Promise((resolve) => {
+          resolve(this.parent.trigger('navigated', nextScreen));
         }).then(() => {
           this.parent.proceedButtonInProgress = false;
           this.parent.navigating = true;
@@ -293,12 +294,11 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     if (returnValue) {
       return returnValue;
     }
-  };
+  }
 
-  LibraryScreen.prototype.createFeedbackScreen = function (feedback, nextContentId) {
-    const self = this;
+  createFeedbackScreen(feedback, nextContentId) {
     const labelId = 'h5p-branching-feedback-title-' + LibraryScreen.idCounter++;
-    var wrapper = document.createElement('div');
+    const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-branching-question');
     wrapper.classList.add(feedback.image !== undefined ? 'h5p-feedback-has-image' : 'h5p-feedback-default');
     wrapper.setAttribute('role', 'dialog');
@@ -306,43 +306,41 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     wrapper.setAttribute('aria-labelledby', labelId);
 
     if (feedback.image !== undefined && feedback.image.path !== undefined) {
-      var imageContainer = document.createElement('div');
+      const imageContainer = document.createElement('div');
       imageContainer.classList.add('h5p-branching-question');
       imageContainer.classList.add('h5p-feedback-image');
-      var image = document.createElement('img');
-      image.src = H5P.getPath(feedback.image.path, self.parent.contentId);
+      const image = document.createElement('img');
+      image.src = H5P.getPath(feedback.image.path, this.parent.contentId);
       imageContainer.appendChild(image);
       wrapper.appendChild(imageContainer);
     }
 
-    var feedbackContent = document.createElement('div');
+    const feedbackContent = document.createElement('div');
     feedbackContent.classList.add('h5p-branching-question');
     feedbackContent.classList.add('h5p-feedback-content');
 
-    var feedbackText = document.createElement('div');
+    const feedbackText = document.createElement('div');
     feedbackText.classList.add('h5p-feedback-content-content');
     feedbackContent.appendChild(feedbackText);
 
-    var title = document.createElement('h1');
+    const title = document.createElement('h1');
     title.id = labelId;
     title.innerHTML = feedback.title || '';
     feedbackText.appendChild(title);
 
     if (feedback.subtitle) {
-      var subtitle = document.createElement('div');
+      const subtitle = document.createElement('div');
       subtitle.innerHTML = feedback.subtitle || '';
       feedbackText.appendChild(subtitle);
     }
 
-    var navButton = document.createElement('button');
-    navButton.onclick = function () {
-      self.parent.trigger('navigated', {
-        nextContentId
-      });
-    };
+    const navButton = document.createElement('button');
+    navButton.addEventListener('click', () => {
+      this.parent.trigger('navigated', { nextContentId });
+    });
 
-    const proceedButtonText = self.parent.getLibrary(self.currentLibraryId).proceedButtonText;
-    var text = document.createTextNode(proceedButtonText);
+    const proceedButtonText = this.parent.getLibrary(this.currentLibraryId).proceedButtonText;
+    const text = document.createTextNode(proceedButtonText);
     navButton.appendChild(text);
 
     feedbackContent.appendChild(navButton);
@@ -350,16 +348,15 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     wrapper.appendChild(feedbackContent);
 
     return wrapper;
-  };
+  }
 
   /**
-   * Creates the library element and hides it if necessary
-   *
-   * @param  {Object} library Library object
-   * @param  {boolean} isNextLibrary Determines if the lirbary should be hidden for now
-   * @return {HTMLElement} Wrapping div for the library element
+   * Create library element and hide it if necessary.
+   * @param {object} library Library object.
+   * @param {boolean} isNextLibrary Determines if the lirbary should be hidden for now.
+   * @returns {HTMLElement} Wrapping div for the library element.
    */
-  LibraryScreen.prototype.createLibraryElement = function (library, isNextLibrary) {
+  createLibraryElement(library, isNextLibrary) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-library-wrapper');
 
@@ -370,7 +367,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     const libraryMachineName = library.type && library.type.library.split(' ')[0];
 
     // Content overlay required for some instances
-    this.contentOverlays[library.contentId] = new H5P.BranchingScenario.LibraryScreenOverlay(this);
+    this.contentOverlays[library.contentId] = new LibraryScreenOverlay(this);
     wrapper.appendChild(this.contentOverlays[library.contentId].getDOM());
     if (libraryMachineName === 'H5P.InteractiveVideo' || libraryMachineName === 'H5P.Video') {
       this.contentOverlays[library.contentId].addButton(
@@ -402,14 +399,16 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     }
 
     return wrapper;
-  };
+  }
 
-  LibraryScreen.prototype.handleReplayVideo = function (libraryMachineName, library) {
+  handleReplayVideo(libraryMachineName, library) {
     this.contentOverlays[this.currentLibraryId].hide();
 
     // Hide procced button
-    if (this.libraryFinishingRequirements[library.contentId] === true
-      && this.hasValidVideo(library)) {
+    if (
+      this.libraryFinishingRequirements[library.contentId] === true &&
+      this.hasValidVideo(library)
+    ) {
       this.parent.disableNavButton();
     }
 
@@ -422,15 +421,14 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     if (libraryMachineName === 'H5P.InteractiveVideo') {
       this.resetIVProgress();
     }
-  };
-
+  }
 
   /**
    *  Used to reset an IV after you replay it.
    */
-  LibraryScreen.prototype.resetIVProgress = function () {
+  resetIVProgress() {
     let interactions = this.currentLibraryInstance.interactions;
-    interactions.forEach(function (interaction) {
+    interactions.forEach((interaction) => {
       interaction.resetTask();
     });
 
@@ -446,40 +444,46 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
     let ivSubmitScreenStar = this.wrapper.getElementsByClassName('h5p-star-foreground')[0];
     ivSubmitScreenStar.classList.remove('h5p-star-active');
-  };
-
-  LibraryScreen.prototype.handleProceedAfterVideo = function () {
-    this.contentOverlays[this.currentLibraryId].hide();
-    this.handleProceed();
-  };
+  }
 
   /**
-   * Creates a new content instance from the given content parameters and
-   * then attaches it the wrapper. Sets up event listeners.
-   *
-   * @param {Object} container Container the library should be appended to
-   * @param {Object} content Data for the library
-   * @param {number} id Id of the library
-   * @return {undefined}
+   * Handle proceed after video.
    */
-  LibraryScreen.prototype.appendRunnable = function (container, content, id) {
-    const self = this;
-    const parent = this.parent;
+  handleProceedAfterVideo() {
+    this.contentOverlays[this.currentLibraryId].hide();
+    this.handleProceed();
+  }
 
+  /**
+   * Create new content instance from given content parameters and
+   * attach it to wrapper. Set up event listeners.
+   * @param {object} container Container the library should be appended to
+   * @param {object} content Data for the library
+   * @param {number} id Id of the library
+   */
+  appendRunnable(container, content, id) {
     const library = content.library.split(' ')[0];
     if (library === 'H5P.Video') {
       // Prevent video from growing endlessly since height is unlimited.
       content.params.visuals.fit = false;
     }
     else if (library === 'H5P.BranchingQuestion') {
-      const proceedButtonText = parent.getLibrary(id).proceedButtonText;
+      const proceedButtonText = this.parent.getLibrary(id).proceedButtonText;
       content.params.proceedButtonText = proceedButtonText;
     }
 
-    const contentClone = H5P.jQuery.extend(true, {}, content);
+    /*
+     * Deep clone paramters to prevent modification (since they're reused each
+     * time the course is reset).
+     * `structuredClone(content)` can be used to replace the jQuery dependency,
+     * when jQuery is removed from H5P core, but currently it's not supported by
+     * Safari 15.4 which would mean to still violate the latest 3 browsers rule.
+     */
+    const contentClone = window.structuredClone ?
+      structuredClone(content) :
+      H5P.jQuery.extend(true, {}, content);
 
     // Create content instance
-    // Deep clone paramters to prevent modification (since they're reused each time the course is reset)
     const instance = H5P.newRunnable(
       contentClone,
       this.parent.contentId,
@@ -495,7 +499,9 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       this.parent.params.content[id].forceContentFinished === 'useBehavioural' &&
       this.parent.params.behaviour.forceContentFinished === true
     ) {
-      this.libraryFinishingRequirements[id] = this.forceContentFinished(instance, library);
+      this.libraryFinishingRequirements[id] =
+        this.forceContentFinished(instance, library);
+
       this.addFinishedListeners(instance, library);
     }
 
@@ -503,77 +509,72 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
     // Proceed to Branching Question automatically after video has ended
     if (library === 'H5P.Video' && this.nextIsBranching(id)) {
-      instance.on('stateChange', function (event) {
-        if (event.data === H5P.Video.ENDED && self.navButton) {
-          self.handleProceed();
+      instance.on('stateChange', (event) => {
+        if (event.data === H5P.Video.ENDED && this.navButton) {
+          this.handleProceed();
         }
       });
     }
     else if (library === 'H5P.Image') {
       // Ensure that iframe is resized when image is loaded.
-      instance.on('loaded', function () {
-        self.handleLibraryResize();
-        self.parent.trigger('resize');
+      instance.on('loaded', () => {
+        this.handleLibraryResize();
+        this.parent.trigger('resize');
       });
     }
 
     if (library === 'H5P.Video' || library === 'H5P.InteractiveVideo') {
-      const videoInstance = (library === 'H5P.Video') ? instance : instance.video;
+      const videoInstance = (library === 'H5P.Video') ?
+        instance :
+        instance.video;
 
       videoInstance.on('loaded', () => {
-        self.handleLibraryResize();
+        this.handleLibraryResize();
       });
 
       videoInstance.on('error', () => {
-        self.parent.enableNavButton();
+        this.parent.enableNavButton();
       });
     }
 
-    instance.on('navigated', function (e) {
-      parent.trigger('navigated', e.data);
+    instance.on('navigated', (event) => {
+      this.parent.trigger('navigated', event.data);
     });
 
     this.libraryInstances[id] = instance;
 
     // Bubble resize events
-    this.bubbleUp(instance, 'resize', parent);
+    this.bubbleUp(instance, 'resize', this.parent);
 
     // Remove any fullscreen buttons
     this.disableFullscreen(instance);
-  };
+  }
 
   /**
-   * Try to stop any playback on the instance.
-   *
-   * @param {number} id Id of the instance node
+   * Try to stop any playback on instance.
+   * @param {number} id Id of instance node.
    */
-  LibraryScreen.prototype.stopPlayback = function (id) {
+  stopPlayback(id) {
     const instance = this.libraryInstances[id];
     if (instance) {
       try {
-        if (instance.pause !== undefined &&
-          (instance.pause instanceof Function ||
-            typeof instance.pause === 'function')) {
+        if (typeof instance.pause === 'function') {
           instance.pause();
         }
-        else if (instance.video !== undefined &&
-          instance.video.pause !== undefined &&
-          (instance.video.pause instanceof Function ||
-            typeof instance.video.pause === 'function')) {
+        else if (typeof instance.video?.pause === 'function') {
           instance.video.pause();
         }
-        else if (instance.stop !== undefined &&
-          (instance.stop instanceof Function ||
-            typeof instance.stop === 'function')) {
+        else if (typeof instance.stop === 'function') {
           instance.stop();
         }
-        else if (instance.pauseMedia !== undefined &&
-          (instance.pauseMedia instanceof Function ||
-            typeof instance.pauseMedia === 'function') &&
-          instance.elementInstances[instance.currentSlideIndex]) {
-          for (let i = 0; i < instance.elementInstances[instance.currentSlideIndex].length; i++) {
-            instance.pauseMedia(instance.elementInstances[instance.currentSlideIndex][i]);
-          }
+        else if (
+          typeof instance.pauseMedia === 'function' &&
+          instance.elementInstances[instance.currentSlideIndex]
+        ) {
+          instance.elementInstances[instance.currentSlideIndex]
+            .forEach((element) => {
+              instance.pauseMedia(element);
+            });
         }
       }
       catch (err) {
@@ -581,17 +582,19 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         H5P.error(err);
       }
     }
-  };
+  }
 
-  /* Check whether instance needs to be finished by user.
-  * @param {object} instance Instance of the content type.
-  * @param {string} library Library that's active on screen (H5P.Foo).
-  */
-  LibraryScreen.prototype.forceContentFinished = function (instance, library) {
+  /**
+   * Check whether instance needs to be finished by user.
+   * @param {object} instance Instance of the content type.
+   * @param {string} library Library that's active on screen (H5P.Foo).
+   */
+  forceContentFinished(instance, library) {
     let forceContentFinished = false;
 
     if (instance) {
-      forceContentFinished = forceContentFinished || (instance.getScore && typeof instance.getScore === 'function');
+      forceContentFinished = forceContentFinished ||
+        typeof instance?.getScore === 'function';
     }
 
     /*
@@ -599,21 +602,21 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
      * detect whether they are a "finishable" content type
      */
     if (library) {
-      forceContentFinished = forceContentFinished || (library === 'H5P.Audio' || library === 'H5P.Video');
+      forceContentFinished = forceContentFinished ||
+        (library === 'H5P.Audio' || library === 'H5P.Video');
     }
 
     // Exceptions
     if (
       library === 'H5P.CoursePresentation' &&
-      instance &&
-      (instance.children.length + (instance.isTask ? 1 : 0) === 1) ||
-      instance.activeSurface === true
+      (instance?.children.length + (instance.isTask ? 1 : 0) === 1) ||
+      instance?.activeSurface === true
     ) {
       forceContentFinished = false;
     }
 
     return forceContentFinished;
-  };
+  }
 
   /**
    * Add listeners for screen finished.
@@ -621,9 +624,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
    * @param {object} instance Instance of the content type.
    * @param {string} library Library that's active on screen (H5P.Foo).
    */
-  LibraryScreen.prototype.addFinishedListeners = function (instance, library) {
-    const that = this;
-
+  addFinishedListeners(instance, library) {
     if (typeof library !== 'string' || !instance) {
       return;
     }
@@ -635,7 +636,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
             const slideProgressedTo = parseInt(event.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point']);
             if (slideProgressedTo === instance.children.length + (instance.isTask ? 1 : 0)) {
               if (this.navButton.classList.contains('h5p-disabled')) {
-                that.parent.enableNavButton(true);
+                this.parent.enableNavButton(true);
               }
             }
           }
@@ -646,20 +647,26 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         // Permit progression when results have been submitted or video ended if no tasks
         instance.on('xAPI', (event) => {
           if (event.data.statement.verb.display['en-US'] === 'completed') {
-            that.handleVideoOver();
+            this.handleVideoOver();
           }
         });
-        instance.video.on('stateChange', function (event) {
-          if (event.data === H5P.Video.ENDED || (event.data === H5P.Video.PLAYING && that.contentOverlays[that.currentLibraryId].hidden === false)) {
+        instance.video.on('stateChange', (event) => {
+          if (
+            event.data === H5P.Video.ENDED ||
+            (
+              event.data === H5P.Video.PLAYING &&
+              this.contentOverlays[this.currentLibraryId].hidden === false
+            )
+          ) {
             const answered = instance.interactions
-              .filter(interaction => interaction.getProgress() !== undefined);
+              .filter((interaction) => interaction.getProgress() !== undefined);
 
             // Giving opportunity to submit the answers
             if (instance.hasStar && answered.length > 0) {
-              that.parent.enableNavButton();
+              this.parent.enableNavButton();
             }
             else {
-              that.handleVideoOver();
+              this.handleVideoOver();
             }
             this.pause();
           }
@@ -668,10 +675,10 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
       // Permit progression when video ended
       case 'H5P.Video':
-        instance.on('stateChange', function (event) {
+        instance.on('stateChange', (event) => {
           if (event.data === H5P.Video.ENDED) {
-            if (!that.nextIsBranching(that.currentLibraryId)) {
-              that.handleVideoOver();
+            if (!this.nextIsBranching(this.currentLibraryId)) {
+              this.handleVideoOver();
             }
             // else already handled by general video listener
           }
@@ -680,8 +687,8 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
       // Permit progression when audio ended
       case 'H5P.Audio':
-        instance.audio.on('ended', function () {
-          that.parent.enableNavButton();
+        instance.audio.on('ended', () => {
+          this.parent.enableNavButton();
         });
         break;
 
@@ -693,96 +700,97 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
               event.data.statement.verb.display['en-US'] === 'answered' ||
               event.data.statement.verb.display['en-US'] === 'completed'
             ) {
-              that.parent.enableNavButton();
+              this.parent.enableNavButton();
             }
           });
         }
     }
-  };
+  }
 
   /**
    * Handle video completed.
    * Will proceed right away if next node is BQ, otherwise show intermediary overlay.
    */
-  LibraryScreen.prototype.handleVideoOver = function () {
+  handleVideoOver() {
     if (this.nextIsBranching(this.currentLibraryId)) {
       this.handleProceed();
     }
     else {
       this.showContentOverlay();
     }
+
     this.parent.enableNavButton();
-  };
+  }
 
   /**
    * Show content overlay.
    */
-  LibraryScreen.prototype.showContentOverlay = function () {
+  showContentOverlay() {
     this.contentOverlays[this.currentLibraryId].show();
-  };
+  }
 
   /**
    * Hide content overlay.
    */
-  LibraryScreen.prototype.hideContentOverlay = function () {
+  hideContentOverlay() {
     this.contentOverlays[this.currentLibraryId].hide();
-  };
+  }
 
   /**
-   * Used to get XAPI data for "previous" library.
-   *
-   * @param {number} id Id of the instance node
-   * @return {Object} XAPI Data
+   * Get XAPI data for "previous" library.
+   * @param {number} id Id of the instance node.
+   * @return {object} XAPI Data.
    */
-  LibraryScreen.prototype.getXAPIData = function (id) {
+  getXAPIData(id) {
     if (this.libraryInstances[id] && this.libraryInstances[id].getXAPIData) {
       return this.libraryInstances[id].getXAPIData();
     }
-  };
+  }
 
   /**
    * Check if next node is a Branching Question.
-   *
    * @param {number} id Id of node to check for.
    * @return {boolean} True, if next node is BQ, else false.
    */
-  LibraryScreen.prototype.nextIsBranching = function (id) {
-    const nextContentId = (id !== undefined) ? this.parent.params.content[id].nextContentId : undefined;
+  nextIsBranching(id) {
+    const nextContentId = (id !== undefined) ?
+      this.parent.params.content[id].nextContentId :
+      undefined;
 
     return (nextContentId !== undefined && nextContentId > 0) ?
       LibraryScreen.isBranching(this.parent.params.content[nextContentId]) :
       false;
-  };
+  }
 
   /**
-   * Pre-render the next libraries for smooth transitions for a specific library
-   * @param  {Object} library Library Data
-   * @return {undefined}
+   * Pre-render next libraries for smooth transitions for specific library.
+   * @param {object} library Library Data.
    */
-  LibraryScreen.prototype.createNextLibraries = function (library) {
+  createNextLibraries(library) {
     this.removeNextLibraries();
     this.nextLibraries = {};
     this.loadLibrary(library);
-  };
+  }
 
   /**
-   * Create next library
-   * @param {Object} library
+   * Create next library.
+   * @param {object} library.
    */
-  LibraryScreen.prototype.createNextLibrary = function (library) {
+  createNextLibrary(library) {
     this.removeNextLibraries();
     this.nextLibraries = {};
     this.loadLibrary(library, library.contentId);
-  };
+  }
 
   /**
-   * Load library
-   *
-   * @param {Object} library
-   * @param {number} [contentId] Id of loaded library
+   * Load library.
+   * @param {object} library Library.
+   * @param {number} [contentId] Id of loaded library.
    */
-  LibraryScreen.prototype.loadLibrary = function (library, contentId = null) {
-    const loadedContentId = contentId !== null ? contentId : library.nextContentId;
+  loadLibrary(library, contentId = null) {
+    const loadedContentId = contentId !== null ?
+      contentId :
+      library.nextContentId;
 
     // If not a branching question, just load the next library
     if (library.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
@@ -794,52 +802,62 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       }
 
       // Pre-render the next library if it is not a branching question
-      if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
-        this.nextLibraries[loadedContentId] = this.createLibraryElement(nextLibrary, true);
+      if (
+        nextLibrary?.type.library.split(' ')[0] !== 'H5P.BranchingQuestion'
+      ) {
+        this.nextLibraries[loadedContentId] =
+          this.createLibraryElement(nextLibrary, true);
+
         this.wrapper.appendChild(this.nextLibraries[loadedContentId]);
       }
     }
-
     // If it is a branching question, load all the possible libraries
     else {
-      const alternatives = library.type.params.branchingQuestion.alternatives || [];
-      const ids = alternatives.map(alternative => alternative.nextContentId);
-      ids.forEach(nextContentId => {
-        const nextLibrary = this.parent.getLibrary(nextContentId);
+      const alternatives = library.type.params.branchingQuestion.alternatives ||
+        [];
 
-        // Do nothing if the next screen is an end screen
-        if (nextLibrary === false) {
-          return;
-        }
+      alternatives
+        .map((alternative) => alternative.nextContentId)
+        .forEach((nextContentId) => {
+          const nextLibrary = this.parent.getLibrary(nextContentId);
 
-        // Pre-render all the next libraries as long as they are not branching questions
-        if (nextLibrary.type && nextLibrary.type.library.split(' ')[0] !== 'H5P.BranchingQuestion') {
-          this.nextLibraries[nextContentId] = this.createLibraryElement(nextLibrary, true);
-          this.wrapper.appendChild(this.nextLibraries[nextContentId]);
-        }
-      });
+          // Do nothing if the next screen is an end screen
+          if (nextLibrary === false) {
+            return;
+          }
+
+          // Pre-render all the next libraries as long as they are not branching questions
+          if (
+            nextLibrary?.type.library.split(' ')[0] !== 'H5P.BranchingQuestion'
+          ) {
+            this.nextLibraries[nextContentId] =
+              this.createLibraryElement(nextLibrary, true);
+
+            this.wrapper.appendChild(this.nextLibraries[nextContentId]);
+          }
+        });
     }
-  };
+  }
 
   /**
    * Remove next libraries
    */
-  LibraryScreen.prototype.removeNextLibraries = function () {
+  removeNextLibraries() {
     // Remove outdated 'next' libraries
-    let nextLibraryElements = this.wrapper.getElementsByClassName('h5p-next');
-    for (let i = 0; i < nextLibraryElements.length; i++) {
-      nextLibraryElements[i].parentNode.removeChild(nextLibraryElements[i]);
-    }
-  };
+    const nextLibraryElements =
+      [...this.wrapper.getElementsByClassName('h5p-next')];
+
+    nextLibraryElements.forEach((nextLibraryElement) => {
+      nextLibraryElement.parentNode.removeChild(nextLibraryElement);
+    });
+  }
 
   /**
    * Remove custom fullscreen buttons from sub content.
    * (A bit of a hack, there should have been some sort of override…)
-   *
-   * @param {Object} instance Library instance
-   * @return {undefined}
+   * @param {object} instance Library instance
    */
-  LibraryScreen.prototype.disableFullscreen = function (instance) {
+  disableFullscreen(instance) {
     switch (instance.libraryInfo.machineName) {
       case 'H5P.CoursePresentation':
         if (instance.$fullScreenButton) {
@@ -848,26 +866,23 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         break;
 
       case 'H5P.InteractiveVideo':
-        instance.on('controls', function () {
+        instance.on('controls', () => {
           if (instance.controls.$fullscreen) {
             instance.controls.$fullscreen.remove();
           }
         });
         break;
     }
-  };
+  }
 
   /**
-   * Makes it easy to bubble events from child to parent
-   *
-   * @private
-   * @param {Object} origin Origin of the Event
+   * Make it easy to bubble events from child to parent
+   * @param {object} origin Origin of the Event
    * @param {string} eventName Name of the Event
-   * @param {Object} target Target to trigger event on
-   * @return {undefined}
+   * @param {object} target Target to trigger event on
    */
-  LibraryScreen.prototype.bubbleUp = function (origin, eventName, target) {
-    origin.on(eventName, function (event) {
+  bubbleUp(origin, eventName, target) {
+    origin.on(eventName, (event) => {
       // Prevent target from sending event back down
       target.bubblingUpwards = true;
       target.trigger(eventName, event);
@@ -875,70 +890,79 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       // Reset
       target.bubblingUpwards = false;
     });
-  };
+  }
 
   /**
    * Checks to see if the library has a valid video (source file or external link).
    * video/unknown check is to verify that external Youtube links work correctly.
    */
-  LibraryScreen.prototype.hasValidVideo = function (currentLibraryParams) {
+  hasValidVideo(currentLibraryParams) {
     const type = currentLibraryParams.type;
     const videoLibrary = type.metadata.contentType;
-    let videoSource = videoLibrary === "Interactive Video"
+
+    let videoSource = videoLibrary === 'Interactive Video'
       ? type.params.interactiveVideo.video.files
       : type.params.sources;
+
     if (type
-      && (videoLibrary === "Interactive Video" || videoLibrary === 'Video')
+      && (videoLibrary === 'Interactive Video' || videoLibrary === 'Video')
       && videoSource
       && videoSource[0].mime
-      && videoSource[0].mime !== "video/unknown"
-      && ((videoSource[0].mime !== "video/webm" && videoSource[0].mime !== "video/mp4") || H5P.VideoHtml5.canPlay(videoSource))
+      && videoSource[0].mime !== 'video/unknown'
+      && (
+        (
+          videoSource[0].mime !== 'video/webm' &&
+          videoSource[0].mime !== 'video/mp4'
+        ) ||
+        H5P.VideoHtml5.canPlay(videoSource)
+      )
     ) {
       return true;
     }
+
     return false;
-  };
+  }
 
   /**
-   * Slides the screen in and styles it as the current screen
-   * @return {undefined}
+   * Slide screen in and style it as the current screen.
    */
-  LibraryScreen.prototype.show = function () {
-    const self = this;
-    const library = self.parent.params.content[self.currentLibraryId];
+  show() {
+    const library = this.parent.params.content[this.currentLibraryId];
 
-    if (self.libraryFinishingRequirements[self.currentLibraryId] === true
-      && (self.hasValidVideo(library) || library.type.library.split(' ')[0] === 'H5P.CoursePresentation')) {
-      self.contentOverlays[self.currentLibraryId].hide();
-      self.parent.disableNavButton();
+    if (
+      this.libraryFinishingRequirements[this.currentLibraryId] === true &&
+      (
+        this.hasValidVideo(library) ||
+        library.type.library.split(' ')[0] === 'H5P.CoursePresentation'
+      )
+    ) {
+      this.contentOverlays[this.currentLibraryId].hide();
+      this.parent.disableNavButton();
     }
 
-    self.isShowing = true;
-    self.wrapper.classList.add('h5p-slide-in');
-    self.wrapper.classList.remove('h5p-branching-hidden');
+    this.isShowing = true;
+    this.wrapper.classList.add('h5p-slide-in');
+    this.wrapper.classList.remove('h5p-branching-hidden');
 
     // Style as the current screen
-    self.wrapper.addEventListener('animationend', function (e) {
-      if (e.target.className === 'h5p-next-screen h5p-slide-in') {
-        self.wrapper.classList.remove('h5p-next-screen');
-        self.wrapper.classList.remove('h5p-slide-in');
-        self.wrapper.classList.add('h5p-current-screen');
-        self.parent.navigating = false;
-        self.wrapper.style.minHeight = self.parent.currentHeight;
-        self.libraryTitle.focus();
+    this.wrapper.addEventListener('animationend', (event) => {
+      if (event.target.className === 'h5p-next-screen h5p-slide-in') {
+        this.wrapper.classList.remove('h5p-next-screen');
+        this.wrapper.classList.remove('h5p-slide-in');
+        this.wrapper.classList.add('h5p-current-screen');
+        this.parent.navigating = false;
+        this.wrapper.style.minHeight = this.parent.currentHeight;
+        this.libraryTitle.focus();
       }
     });
-  };
+  }
 
   /**
-   * Slides the screen out and styles it to be hidden
-   * @param {boolean} skipAnimationListener Skips waiting for animation before removing
-   *  elements. Useful when animation would not have time to run anyway.
-   * @return {undefined}
+   * Slide screen out and style it to be hidden.
+   * @param {boolean} skipAnimationListener Skips waiting for animation before removing elements. Useful when animation would not have time to run anyway.
    */
-  LibraryScreen.prototype.hide = function (skipAnimationListener) {
-    const self = this;
-    self.isShowing = false;
+  hide(skipAnimationListener) {
+    this.isShowing = false;
 
     // Remove possible alternative libaries
     for (let i = 0; i < this.nextLibraries.length; i++) {
@@ -949,6 +973,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       }
     }
 
+
     // Hide overlay and branching questions
     if (this.overlay) {
       if (this.overlay.parentNode !== null) {
@@ -956,73 +981,47 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       }
       // TODO: Does not appear to ever run...
       this.overlay = undefined;
-      this.branchingQuestions.forEach(bq => {
+      this.branchingQuestions.forEach((bq) => {
         if (bq.parentNode !== null) {
           bq.parentNode.removeChild(bq);
         }
       });
     }
 
-    self.wrapper.classList.add('h5p-slide-out');
+    this.wrapper.classList.add('h5p-slide-out');
 
-    function removeElements() {
-      self.wrapper.classList.remove('h5p-current-screen');
-      self.wrapper.classList.add('h5p-next-screen');
-      self.wrapper.classList.remove('h5p-slide-out');
-      self.wrapper.classList.remove('h5p-slide-out-reverse');
-      self.wrapper.classList.remove('h5p-slide-pseudo');
+    const removeElements = () => {
+      this.wrapper.classList.remove('h5p-current-screen');
+      this.wrapper.classList.add('h5p-next-screen');
+      this.wrapper.classList.remove('h5p-slide-out');
+      this.wrapper.classList.remove('h5p-slide-out-reverse');
+      this.wrapper.classList.remove('h5p-slide-pseudo');
       setTimeout(() => {
-        if (self.wrapper.parentNode !== null) {
-          self.wrapper.parentNode.removeChild(self.wrapper);
-          self.remove();
-          self.parent.libraryScreen = null;
-          self.parent.trigger('resize');
+        if (this.wrapper.parentNode !== null) {
+          this.wrapper.parentNode.removeChild(this.wrapper);
+          this.remove();
+          this.parent.libraryScreen = null;
+          this.parent.trigger('resize');
         }
       }, 100);
-    }
+    };
 
     if (skipAnimationListener) {
-      setTimeout(() => {
+      window.setTimeout(() => {
         removeElements();
       }, 800);
     }
     else {
-      self.wrapper.addEventListener('animationend', removeElements);
+      this.wrapper.addEventListener('animationend', () => {
+        removeElements();
+      });
     }
-  };
+  }
 
   /**
-   * Hides branching question if the next library 'branched to'
-   * is the one beneath the overlay. Basically the same as the
-   * 'showNextLibrary' function but without transitions
-   *
-   * @param  {Object} library library data of the library beneath the overlay
-   * @return {undefined}
+   * Hide feedback dialogs.
    */
-  LibraryScreen.prototype.hideBranchingQuestion = function (library) {
-    // TODO: When does this code every run?!
-    this.nextLibraryId = library.nextContentId;
-    this.libraryFeedback = library.feedback;
-
-    // Hide branching question
-    if (this.overlay.parentNode !== null) {
-      this.overlay.parentNode.removeChild(this.overlay);
-    }
-    this.overlay = undefined;
-    this.branchingQuestions.forEach(bq => {
-      if (bq.parentNode !== null) {
-        bq.parentNode.removeChild(bq);
-      }
-    });
-
-    // Prepare next libraries
-    this.createNextLibraries(library);
-    this.parent.navigating = false;
-    this.navButton.focus();
-    this.showBackgroundToReadspeaker();
-  };
-
-  LibraryScreen.prototype.hideFeedbackDialogs = function () {
+  hideFeedbackDialogs() {
     if (this.overlay) {
       if (this.overlay.parentNode !== null) {
         this.overlay.parentNode.removeChild(this.overlay);
@@ -1035,37 +1034,39 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     if (!wrapper) {
       return;
     }
-    const questionWrapper = wrapper.querySelector('.h5p-branching-question-wrapper');
+    const questionWrapper =
+      wrapper.querySelector('.h5p-branching-question-wrapper');
     if (questionWrapper) {
       questionWrapper.parentNode.removeChild(questionWrapper);
     }
-  };
+  }
 
   /**
-   * Ensure that start screen can contain branching questions
-   * @param {boolean} isStartScreen True if resizing the start screen
+   * Ensure that start screen can contain branching questions.
+   * @param {boolean} isStartScreen True if resizing start screen.
    */
-  LibraryScreen.prototype.resizeScreen = function (isStartScreen = false) {
+  resizeScreen(isStartScreen = false) {
     // Ensure start screen expands to encompass large branching questions
     if (!this.questionContainer) {
       return;
     }
-    let screenWrapper = isStartScreen
-      ? this.parent.startScreen.screenWrapper
-      : this.wrapper;
 
-    const paddingTop = parseInt(window.getComputedStyle(this.questionContainer, null).getPropertyValue('padding-top'), 10);
-    screenWrapper.style.height = (this.questionContainer.offsetHeight + paddingTop) + 'px';
-  };
+    let screenWrapper = isStartScreen ?
+      this.parent.startScreen.screenWrapper :
+      this.wrapper;
+
+    const style = window.getComputedStyle(this.questionContainer, null);
+
+    const paddingTop = parseInt(style.getPropertyValue('padding-top'));
+    screenWrapper.style.height = `${this.questionContainer.offsetHeight + paddingTop}px`;
+  }
 
   /**
-   * Slides in the next library which may be either a 'normal content type' or a
+   * Slide in next library which may be either a 'normal content type' or a
    * branching question
-   *
-   * @param  {Object} library Library data
-   * @return {undefined}
+   * @param {object} library Library data.
    */
-  LibraryScreen.prototype.showNextLibrary = function (library, reverse = false) {
+  showNextLibrary(library, reverse = false) {
     this.nextLibraryId = library.nextContentId;
     this.libraryFeedback = library.feedback;
 
@@ -1104,12 +1105,11 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
       // Remove the branching questions if they exist
       if (this.overlay) {
-        // TODO: When does this code every run?!
         if (this.overlay.parentNode !== null) {
           this.overlay.parentNode.removeChild(this.overlay);
         }
         this.overlay = undefined;
-        this.branchingQuestions.forEach(bq => {
+        this.branchingQuestions.forEach((bq) => {
           if (bq.parentNode !== null) {
             bq.parentNode.removeChild(bq);
           }
@@ -1146,28 +1146,28 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         this.currentLibraryInstance.resize();
       }
 
-      const self = this;
-      this.currentLibraryWrapper.addEventListener('animationend', function () {
-        if (self.currentLibraryWrapper.parentNode !== null) {
-          self.currentLibraryWrapper.parentNode.removeChild(self.currentLibraryWrapper);
+      this.currentLibraryWrapper.addEventListener('animationend', () => {
+        if (this.currentLibraryWrapper.parentNode !== null) {
+          this.currentLibraryWrapper.parentNode.removeChild(this.currentLibraryWrapper);
         }
-        self.currentLibraryWrapper = libraryWrapper;
-        self.wrapper.setAttribute('aria-hidden', false);
-        self.currentLibraryWrapper.classList.remove('h5p-previous');
-        self.currentLibraryWrapper.classList.remove('h5p-next');
-        self.currentLibraryWrapper.classList.remove('h5p-slide-in');
-        self.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0]; // TODO: Why no use 'libraryElement' ?
-        self.createNextLibraries(library);
-        self.parent.navigating = false;
-        self.libraryTitle.focus();
+        this.currentLibraryWrapper = libraryWrapper;
+        this.wrapper.setAttribute('aria-hidden', false);
+        this.currentLibraryWrapper.classList.remove('h5p-previous');
+        this.currentLibraryWrapper.classList.remove('h5p-next');
+        this.currentLibraryWrapper.classList.remove('h5p-slide-in');
+
+        this.currentLibraryElement = libraryWrapper.getElementsByClassName('h5p-branching-scenario-content')[0]; // TODO: Why no use 'libraryElement' ?
+        this.createNextLibraries(library);
+        this.parent.navigating = false;
+        this.libraryTitle.focus();
 
         // New position to show Proceed button because sometimes user can play with the button while animation is in progress
         if (showProceedButtonflag) {
-          self.parent.enableNavButton();
+          this.parent.enableNavButton();
         }
 
         // Require to call resize the frame after animation completes
-        self.resize(new H5P.Event('resize', {
+        this.resize(new H5P.Event('resize', {
           element: libraryElement
         }));
       });
@@ -1178,7 +1178,7 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       }
 
       // Remove existing branching questions
-      this.branchingQuestions.forEach(bq => {
+      this.branchingQuestions.forEach((bq) => {
         if (bq.parentNode !== null) {
           bq.parentNode.removeChild(bq);
         }
@@ -1239,9 +1239,9 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
        * Make exception for starting screen, so it does not cut from the top, as well as fullscreen.
        */
       const isFullscreen = this.parent.isFullScreen();
-      const isSmallerDevice = this.parent.$container[0].classList.contains('h5p-mobile-screen');
+      const isSmallerDevice = this.parent.container.classList.contains('h5p-mobile-screen');
 
-      if (this.currentLibraryWrapper.style.height === "" && !this.parent.startScreen.isShowing && !isFullscreen && !isSmallerDevice) {
+      if (this.currentLibraryWrapper.style.height === '' && !this.parent.startScreen.isShowing && !isFullscreen && !isSmallerDevice) {
         this.resizeScreen();
       }
       else if (this.parent.startScreen.isShowing && !isFullscreen) {
@@ -1255,17 +1255,19 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       this.createNextLibraries(library);
       this.parent.navigating = false;
 
-      branchingQuestion.addEventListener('animationend', function () {
+      branchingQuestion.addEventListener('animationend', () => {
         const firstAlternative = branchingQuestion.querySelectorAll('.h5p-branching-question-alternative')[0];
         if (typeof firstAlternative !== 'undefined') {
           questionContainer.focus();
         }
       });
     }
-  };
+  }
 
-  LibraryScreen.prototype.hideBackgroundFromReadspeaker = function () {
-    const self = this;
+  /**
+   * Hide background from Readspeaker.
+   */
+  hideBackgroundFromReadspeaker() {
     this.header.setAttribute('aria-hidden', 'true');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'true');
 
@@ -1283,13 +1285,13 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
     const selector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, iframe, object, embed, *[tabindex], *[contenteditable], video, audio';
     this.tabbables = [];
-    h5pContainer.querySelectorAll(selector).forEach(function (element) {
+    h5pContainer.querySelectorAll(selector).forEach((element) => {
       if (element instanceof HTMLMediaElement) {
         // For native Media elements (audio & video) we can't set the tab index.
         // Instead, we'll just remove the controls, which makes it non-tabbable
         if (element.controls) {
           element.controls = false;
-          self.tabbables.push({element: element});
+          this.tabbables.push({ element: element });
         }
         // If no controls - no need to do anything when showBackgroundToReadspeaker is invoked
       }
@@ -1301,21 +1303,24 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         // Make it untabbable
         element.setAttribute('tabindex', '-1');
 
-        self.tabbables.push({
+        this.tabbables.push({
           element: element,
           tabindex: currentTabindex
         });
       }
     });
-  };
+  }
 
-  LibraryScreen.prototype.showBackgroundToReadspeaker = function () {
+  /**
+   * Show background to Readspeaker.
+   */
+  showBackgroundToReadspeaker() {
     this.header.setAttribute('aria-hidden', 'false');
     this.currentLibraryWrapper.setAttribute('aria-hidden', 'false');
 
     // Resets tabindex to the original state
     if (this.tabbables) {
-      this.tabbables.forEach(function (tabbable) {
+      this.tabbables.forEach((tabbable) => {
         const element = tabbable.element;
 
         if (element instanceof HTMLMediaElement) {
@@ -1331,31 +1336,33 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
       this.tabbables = null;
     }
-  };
+  }
 
-  LibraryScreen.prototype.getElement = function () {
+  getElement() {
     return this.wrapper;
-  };
+  }
 
-  LibraryScreen.prototype.remove = function () {
+  remove() {
     if (this.wrapper.parentNode !== null) {
       this.wrapper.parentNode.removeChild(this.wrapper);
     }
-  };
+  }
 
-  LibraryScreen.prototype.resize = function (e) {
+  resize(event) {
     const instance = this.currentLibraryInstance;
-    const element = (e && e.data && e.data.element ? e.data.element : this.currentLibraryElement);
+    const element = event?.data?.element ?? this.currentLibraryElement;
 
-    const isImage = (instance && instance.libraryInfo.machineName === 'H5P.Image');
-    const isCP = (instance && instance.libraryInfo.machineName === 'H5P.CoursePresentation');
-    const isHotspots = (instance && instance.libraryInfo.machineName === 'H5P.ImageHotspots');
-    const isVideo = (instance && instance.libraryInfo.machineName === 'H5P.Video');
-    const isIV = (instance && instance.libraryInfo.machineName === 'H5P.InteractiveVideo');
-    const hasSize = (instance && instance.width && instance.height);
+    const isImage = (instance?.libraryInfo.machineName === 'H5P.Image');
+    const isCP = (instance?.libraryInfo.machineName === 'H5P.CoursePresentation');
+    const isHotspots = (instance?.libraryInfo.machineName === 'H5P.ImageHotspots');
+    const isVideo = (instance?.libraryInfo.machineName === 'H5P.Video');
+    const isIV = (instance?.libraryInfo.machineName === 'H5P.InteractiveVideo');
+    const hasSize = (instance?.width && instance.height);
     const isYoutube = element.classList.contains('h5p-youtube');
 
-    const canScaleImage = ((hasSize && (isImage || isCP)) || isHotspots || isVideo);
+    const canScaleImage = (
+      (hasSize && (isImage || isCP)) || isHotspots || isVideo
+    );
     if (canScaleImage) {
       // Always reset scaling
       element.style.width = '';
@@ -1376,11 +1383,15 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
 
       // Preserve aspect ratio for Image in fullscreen (since height is limited) instead of scrolling or streching
       if (canScaleImage) {
-        const videoRect = (isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ? element.getBoundingClientRect() : null);
+        const videoRect = isVideo && this.parent.params.content[this.currentLibraryId].type.params.sources !== undefined ?
+          element.getBoundingClientRect() :
+          null;
 
         // Video with no source should appear on top
-        if (isVideo &&
-            this.parent.params.content[this.currentLibraryId].type.params.sources === undefined) {
+        if (
+          isVideo &&
+            this.parent.params.content[this.currentLibraryId].type.params.sources === undefined
+        ) {
           element.classList.add('h5p-video-no-source');
         }
         else {
@@ -1388,26 +1399,35 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         }
 
         if (videoRect || isHotspots || isCP || isImage) {
-          const height = isHotspots ? instance.options.image.height : (isVideo ? videoRect.height : instance.height);
-          const width = isHotspots ? instance.options.image.width : (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
+          const height = isHotspots ?
+            instance.options.image.height :
+            (isVideo ? videoRect.height : instance.height);
+
+          const width = isHotspots ?
+            instance.options.image.width :
+            (isCP ? instance.ratio * height : (isVideo ? videoRect.width : instance.width));
+
           const aspectRatio = (height / width);
           const targetElement = isIV ? element.lastChild : element;
           const availableSpace = targetElement.getBoundingClientRect();
 
-          const availableAspectRatio = (availableSpace.height / availableSpace.width);
+          const availableAspectRatio =
+            (availableSpace.height / availableSpace.width);
 
           if (aspectRatio > availableAspectRatio) {
+            const size = `${availableSpace.height * (width / height)}px`;
             if (isHotspots) {
-              targetElement.style.maxWidth = (availableSpace.height * (width / height)) + 'px';
+              targetElement.style.maxWidth = size;
             }
             else {
-              targetElement.style.width = (availableSpace.height * (width / height)) + 'px';
+              targetElement.style.width = size;
             }
           }
           else {
-            targetElement.style.height = (availableSpace.width * aspectRatio) + 'px';
+            const size = `${availableSpace.width * aspectRatio}px`;
+            targetElement.style.height = size;
             if (isYoutube && element.querySelector('iframe') !== null) {
-              element.querySelector('iframe').style.height = (availableSpace.width * aspectRatio) + 'px';
+              element.querySelector('iframe').style.height = size;
             }
           }
         }
@@ -1426,7 +1446,9 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
         this.wrapper.style.height = '';
       }
 
-      const videoWrapperInstance = element.getElementsByClassName('h5p-video-wrapper');
+      const videoWrapperInstance =
+        element.getElementsByClassName('h5p-video-wrapper');
+
       if (isIV && videoWrapperInstance.length > 0) {
         let videoWrapper = videoWrapperInstance[0].firstChild;
         if (videoWrapper.style) {
@@ -1440,38 +1462,36 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     }
 
     if (instance) {
-      instance.trigger('resize', e);
+      instance.trigger('resize', event);
       // Must resize library screen after resizing content
       this.handleLibraryResize();
     }
-  };
+  }
 
   /**
-   * Check if library is a Branching Question
-   *
-   * @param {Object} library
-   * @returns {boolean} True if library is a Branching Question
+   * Check if library is a Branching Question.
+   * @param {object} library
+   * @returns {boolean} True if library is a Branching Question.
    */
-  LibraryScreen.isBranching = function (library) {
-    if (library && library.type && library.type.library) {
-      return library.type.library.indexOf('H5P.BranchingQuestion ') === 0;
+  static isBranching(library) {
+    if (!library?.type?.library) {
+      return false;
     }
-    return false;
-  };
+
+    return library.type.library.indexOf('H5P.BranchingQuestion ') === 0;
+  }
 
   /**
    * Create navigation buttons
    */
-  LibraryScreen.prototype.createNavButtons = function () {
-    const self = this;
-    const parent = this.parent;
-
+  createNavButtons() {
     const buttonWrapper = document.createElement('div');
     buttonWrapper.classList.add('h5p-nav-button-wrapper');
 
     // Append back button if at least one node has it enabled
-    if (parent.backwardsAllowedFlags.indexOf(true) !== -1) {
-      this.backButton = this.createBackButton(parent.params.l10n.backButtonText);
+    if (this.parent.backwardsAllowedFlags.indexOf(true) !== -1) {
+      this.backButton =
+        this.createBackButton(this.parent.params.l10n.backButtonText);
       buttonWrapper.appendChild(this.backButton);
     }
 
@@ -1479,26 +1499,26 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
     const navButton = document.createElement('button');
     navButton.classList.add('transition');
 
-    navButton.onclick = function () {
+    navButton.addEventListener('click', () => {
       // Stop impatient users from breaking the view
-      if (parent.navigating === false) {
-        const hasFeedbackTitle = self.libraryFeedback.title
-          && self.libraryFeedback.title.trim();
-        const hasFeedbackSubtitle = self.libraryFeedback.subtitle
-          && self.libraryFeedback.subtitle.trim();
+      if (this.parent.navigating === false) {
+        const hasFeedbackTitle = this.libraryFeedback.title
+          && this.libraryFeedback.title.trim();
+        const hasFeedbackSubtitle = this.libraryFeedback.subtitle
+          && this.libraryFeedback.subtitle.trim();
 
         const hasFeedback = !!(hasFeedbackTitle
           || hasFeedbackSubtitle
-          || self.libraryFeedback.image
+          || this.libraryFeedback.image
         );
 
-        if (hasFeedback && self.nextLibraryId !== -1) {
+        if (hasFeedback && this.nextLibraryId !== -1) {
           // Add an overlay if it doesn't exist yet
-          if (self.overlay === undefined) {
-            self.overlay = document.createElement('div');
-            self.overlay.className = 'h5p-branching-scenario-overlay';
-            self.wrapper.appendChild(self.overlay);
-            self.hideBackgroundFromReadspeaker();
+          if (this.overlay === undefined) {
+            this.overlay = document.createElement('div');
+            this.overlay.className = 'h5p-branching-scenario-overlay';
+            this.wrapper.appendChild(this.overlay);
+            this.hideBackgroundFromReadspeaker();
           }
 
           const branchingQuestion = document.createElement('div');
@@ -1506,34 +1526,35 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
           branchingQuestion.classList.add('h5p-branching-scenario-feedback-dialog');
 
 
-          var questionContainer = document.createElement('div');
+          const questionContainer = document.createElement('div');
           questionContainer.classList.add('h5p-branching-question-container');
 
           branchingQuestion.appendChild(questionContainer);
 
-          const feedbackScreen = self.createFeedbackScreen(self.libraryFeedback, self.nextLibraryId);
+          const feedbackScreen = this.createFeedbackScreen(this.libraryFeedback, this.nextLibraryId);
           questionContainer.appendChild(feedbackScreen);
 
           questionContainer.classList.add('h5p-start-outside');
           questionContainer.classList.add('h5p-fly-in');
-          self.currentLibraryWrapper.style.zIndex = 0;
-          self.wrapper.appendChild(branchingQuestion);
+          this.currentLibraryWrapper.style.zIndex = 0;
+          this.wrapper.appendChild(branchingQuestion);
           feedbackScreen.focus();
         }
         else {
           const nextScreen = {
-            nextContentId: self.nextLibraryId
+            nextContentId: this.nextLibraryId
           };
 
-          if (!!(hasFeedback || (self.libraryFeedback.endScreenScore !== undefined))) {
-            nextScreen.feedback = self.libraryFeedback;
+          if (!!(hasFeedback || (this.libraryFeedback.endScreenScore !== undefined))) {
+            nextScreen.feedback = this.libraryFeedback;
           }
-          parent.trigger('navigated', nextScreen);
+          this.parent.trigger('navigated', nextScreen);
         }
 
-        parent.navigating = true;
+        this.parent.navigating = true;
       }
-    };
+    });
+
     navButton.classList.add('h5p-nav-button');
     this.navButton = document.createElement('button');
     this.navButton.classList.add('transition');
@@ -1547,31 +1568,28 @@ H5P.BranchingScenario.LibraryScreen = (function ($) {
       }
 
       this.parent.proceedButtonInProgress = true;
-      const that = this;
-      new Promise(resolve => {
-        const response = that.handleProceed();
+      new Promise((resolve) => {
+        const response = this.handleProceed();
 
         // Wait until receive positive response
         if (response) {
           resolve(true);
         }
       }).then(() => {
-        that.parent.proceedButtonInProgress = false;
+        this.parent.proceedButtonInProgress = false;
       });
     });
 
-    this.navButton.classList.add('h5p-nav-button','h5p-proceed-button');
-    const proceedButtonText = parent.getLibrary(this.currentLibraryId).proceedButtonText;
+    this.navButton.classList.add('h5p-nav-button', 'h5p-proceed-button');
+    const proceedButtonText = this.parent.getLibrary(this.currentLibraryId).proceedButtonText;
     this.navButton.appendChild(document.createTextNode(proceedButtonText));
     buttonWrapper.appendChild(this.navButton);
 
     const footer = document.createElement('div');
     footer.classList.add('h5p-screen-footer');
     footer.appendChild(buttonWrapper);
-    self.wrapper.appendChild(footer);
-  };
+    this.wrapper.appendChild(footer);
+  }
+}
 
-  LibraryScreen.idCounter = 0;
-
-  return LibraryScreen;
-})(H5P.jQuery);
+LibraryScreen.idCounter = 0;
