@@ -3,11 +3,15 @@
   "description": "description",
   "majorVersion": 1,
   "minorVersion": 8,
-  "patchVersion": 2,
+  "patchVersion": 3,
   "runnable": 1,
   "embedTypes": [
     "iframe"
   ],
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 26
+  },
   "author": "Joubel AS",
   "license": "MIT",
   "machineName": "H5P.BranchingScenario",
