@@ -141,7 +141,6 @@ export default class BranchingScenario extends H5P.EventDispatcher {
      * Handle progression
      */
     this.on('navigated', (event) => {
-      this.libraryScreen.updateLibraryStates();
       // Trace back user steps
       if (event.data.reverse) {
         // Reset library screen wrapper if it was set to fit large BQ
@@ -195,18 +194,12 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
       if (!event.data.isResuming) {
         /*
-         * When resuming, Branching Question is allowed to show previous state,
-         * feedback in particular. Otherwise like here, it's reset to always
-         * start with the answer alternatives.
+         * When resuming and navigation to the node, the state should be kept,
+         * but once navigated away, it's deleted. Branching Questions need to be
+         * reset.
          */
-        const lastVisitedId = this.userPath[this.userPath.length - 1];
-        if (LibraryScreen.isBranching(this.getLibrary(lastVisitedId))) {
-          this.libraryScreen.resetInstance(lastVisitedId);
-        }
-
-        // When looping back to a node that was already visited, clean state.
-        if (this.userPath.includes(event.data.nextContentId)) {
-          this.libraryScreen.resetInstance(event.data.nextContentId);
+        if (LibraryScreen.isBranching(this.getLibrary(this.currentId))) {
+          this.libraryScreen.resetInstance();
         }
       }
 
@@ -701,7 +694,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       this,
       this.params.startScreen.startScreenTitle,
       this.getLibrary(0),
-      this.extras.previousState?.childStates
+      this.extras.previousState?.child
     );
 
     this.libraryScreen.on('toggleFullScreen', () => {
@@ -799,7 +792,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       this,
       this.params.startScreen.startScreenTitle,
       this.getLibrary(0),
-      this.extras.previousState?.childStates
+      this.extras.previousState?.child
     );
 
     this.libraryScreen.on('toggleFullScreen', () => {
@@ -869,13 +862,9 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
     const state = {
       userPath: this.userPath,
-      scoring: this.scoring.getCurrentState()
+      scoring: this.scoring.getCurrentState(),
+      child: this.libraryScreen.getCurrentState()
     };
-
-    const childStates = this.libraryScreen?.getCurrentState() ?? {};
-    if (Object.keys(childStates).length) {
-      state.childStates = childStates;
-    }
 
     if (this.currentEndScreen) {
       state.endScreen = this.currentEndScreen.getRecreationData();

@@ -10,12 +10,12 @@ export default class LibraryScreen extends H5P.EventDispatcher {
    * @param  {BranchingScenario} parent BranchingScenario object.
    * @param  {string} courseTitle Title.
    * @param  {object} library H5P Library Data.
-   * @param  {object} previousStates Previous states.
+   * @param  {object} [previousState] Previous states of library.
    */
-  constructor(parent, courseTitle, library, previousStates) {
+  constructor(parent, courseTitle, library, previousState) {
     super();
     this.parent = parent;
-    this.previousStates = previousStates ?? {};
+    this.previousState = previousState ?? {};
 
     this.currentLibraryElement;
     this.currentLibraryInstance;
@@ -171,8 +171,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
     // Navigation
     backButton.addEventListener('click', (event) => {
-      this.updateLibraryStates();
-
       // Hide overlay popup when user is at Branching Question
       if (event.currentTarget.hasAttribute('isBQ')) {
         if (this.overlay) {
@@ -340,7 +338,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
 
     const navButton = document.createElement('button');
     navButton.addEventListener('click', () => {
-      this.updateLibraryStates();
       this.parent.trigger('navigated', { nextContentId });
     });
 
@@ -494,19 +491,13 @@ export default class LibraryScreen extends H5P.EventDispatcher {
      * over again by different callers instead of instantiating them once by a
      * manager and let them be served as needed. This would probably mean major
      * refactoring (together with the intertwined class code).
-     * As a workaround, this class now manages the previous states of instances
-     * which are required to be kept to allow re-instantiating without losing
-     * info.
-     * All info content instances should keep the state unless one loops back
-     * to content that was already visited (including restart).
-     * When resuming a Branching Question, if feedback was visible, it should
-     * be visible, but when reopening that question, the feedback needs to be
-     * gone, or a user cannot move backwards or not choose an answer after
-     * revisiting.
+     * As a workaround, the previous state of the last library instance that was
+     * shown is passed back when instantiating the LibraryScreen in order to be
+     * sure it's available no matter by what path newRunnable is called.
      */
     const extras = { parent: this.parent };
-    if (this.previousStates[id]) {
-      extras.previousState = this.previousStates[id];
+    if (this.previousState) {
+      extras.previousState = this.previousState;
     }
 
     // Create content instance
@@ -527,18 +518,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         this.forceContentFinished(instance, library);
 
       this.addFinishedListeners(instance, library);
-
-      // Ensure that user state when xAPI event occurs is kept
-      if (typeof instance.getAnswerGiven === 'function') {
-        instance.on('xAPI', (event) => {
-          if (
-            ['answered', 'completed', 'progressed']
-              .includes(event.data.statement.verb.display['en-US'])
-          ) {
-            this.libraryScreen.updateLibraryStates();
-          }
-        });
-      }
     }
 
     instance.setActivityStarted();
@@ -587,32 +566,11 @@ export default class LibraryScreen extends H5P.EventDispatcher {
   }
 
   /**
-   * Update libary states of instances that are instantiated.
-   * Required to store states of the content types that are needed to recreate
-   * them not only when resuming, but also when reinstantiating content.
-   */
-  updateLibraryStates() {
-    Object.keys(this.libraryInstances).forEach((id) => {
-      const state = this.libraryInstances[id].getCurrentState?.();
-      if (!H5P.isEmpty(state)) {
-        this.previousStates[id] = state;
-      }
-    });
-  }
-
-  /**
    * Get current instance state.
+   * @returns {object} Current state.
    */
   getCurrentState() {
-    const states = {};
-    Object.keys(this.libraryInstances).forEach((id) => {
-      const state = this.libraryInstances[id].getCurrentState?.();
-      if (!H5P.isEmpty(state)) {
-        states[id] = state;
-      }
-    });
-
-    return states;
+    return this.currentLibraryInstance?.getCurrentState?.();
   }
 
   /**
@@ -1612,8 +1570,6 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     });
 
     this.navButton.addEventListener('click', () => {
-      this.updateLibraryStates();
-
       if (this.parent.proceedButtonInProgress) {
         return;
       }
@@ -1647,11 +1603,14 @@ export default class LibraryScreen extends H5P.EventDispatcher {
    * @param {number} id Id of instance to reset.
    */
   resetInstance(id) {
-    const instance = this.libraryInstances[id];
+    const instance = id ?
+      this.libraryInstances[id] :
+      this.currentLibraryInstance;
+
     if (instance) {
       instance.resetTask?.();
     }
-    delete this.previousStates[id];
+    delete this.previousState;
   }
 }
 
