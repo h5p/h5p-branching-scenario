@@ -863,7 +863,8 @@ export default class BranchingScenario extends H5P.EventDispatcher {
     const state = {
       userPath: this.userPath,
       scoring: this.scoring.getCurrentState(),
-      child: this.libraryScreen.getCurrentState()
+      child: this.libraryScreen.getCurrentState(),
+      xAPIData: this.xAPIData
     };
 
     if (this.currentEndScreen) {
