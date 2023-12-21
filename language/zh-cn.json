@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "分支场景编辑器",
       "fields": [
         {
-          "label": "Title"
+          "label": "标题"
         },
         {
-          "label": "Start screen",
+          "label": "开始界面",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "课程名称",
+              "placeholder": "你的课程名称"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "课程详细信息",
+              "placeholder": "课程的详细信息"
             },
             {
-              "label": "Start screen image"
+              "label": "课程图像"
             },
             {
-              "label": "Image alternative text"
+              "label": "图片替代文本"
             }
           ]
         },
         {
-          "label": "List of end screens",
+          "label": "结束屏幕列表",
           "field": {
-            "label": "End screen",
+            "label": "结束屏幕",
             "fields": [
               {
-                "label": "Title"
+                "label": "标题"
               },
               {
-                "label": "Text"
+                "label": "文本"
               },
               {
-                "label": "Image"
+                "label": "图像"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "分数",
+                "description": "对于达到默认结束场景的用户，分数将被发送到任何LMS, LRS或任何其他接收H5P分数的连接服务平台"
               },
               {
-                "label": "Content ID"
+                "label": "内容识别码"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
-          "entity": "content",
+          "label": "分支场景内容列表",
+          "entity": "内容",
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "显示视图中的内容标题",
+                "description": "如果选中，用户将在该内容上方的顶部栏中看到内容标题。"
               },
               {
                 "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "default": "继续"
               },
               {
                 "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "description": "覆盖要求在激活“继续”按钮之前完成内容的单个设置。如果内容没有显示是否“完成”，则不会产生任何影响，例如只有一张幻灯片的图像或课程演示。",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "使用行为设置"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "启用"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "禁用"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "反馈",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "反馈标题"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "反馈文本"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "反馈图像"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "这个场景的得分",
+                    "description": "分数将被发送到任何LMS, LRS或任何其他连接的服务，从H5P接收到达到此场景的用户的分数"
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "返回上一页",
+                "description": "这将允许用户返回并查看场景中的先前内容/问题。",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "使用行为设置"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "启用"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "禁用"
                   }
                 ]
               }
@@ -115,76 +115,76 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "评分选项",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "评分选项",
+              "description": "选择评分类型",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "为每个结束场景静态设置分数"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "从用户的回答动态计算得分"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "无得分"
                 }
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "包括分支场景中的互动得分",
+              "description": "如果选择，例如交互式视频的分数将被添加到获得的总分中。如果没有选择，那么只有在内容项的反馈部分，分支问题和结束场景中指定的分数才会被计算在内。"
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "行为设置",
           "fields": [
             {
-              "label": "Override backwards navigation",
-              "description": "Override the individual settings for enabling backwards navigation"
+              "label": "返回上一页",
+              "description": "这将允许用户返回并查看场景中的先前内容/问题。这可以在内容级别上被覆盖。"
             },
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "必须观看",
+              "description": "鼓励观众完整观看视频，互动视频和课程演示，然后再进行场景。这可以在内容级别上被覆盖。"
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "将分支问题随机化",
+              "description": "分支问题将以随机顺序显示"
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "本地化",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
-              "default": "Start the course"
+              "label": "开始界面上按钮的文本",
+              "default": "开始课程"
             },
             {
-              "label": "Text for the button on the end screen",
-              "default": "Restart the course"
+              "label": "结束界面上按钮的文本",
+              "default": "重新开始课程"
             },
             {
-              "label": "Text for the back button on each of the library screens and branching questions",
-              "default": "Back"
+              "label": "每个图书馆界面和分支问题上的后退按钮的文本",
+              "default": "后退"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "图书馆界面上禁用按钮的文本",
+              "default": "要求完成当前模块"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "用于重播视频的按钮文本",
+              "default": "重播视频"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "在结束界面上标注分数",
+              "default": "你的分数："
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "全屏按钮的Aria标签",
+              "default": "全屏"
             }
           ]
         }
