@@ -41,7 +41,7 @@
               },
               {
                 "label": "分数",
-                "description": "对于达到默认结束场景的用户，分数将被发送到任何LMS, LRS或任何其他接收H5P分数的连接服务平台"
+                "description": "对于达到默认结束场景的用户，分数将被发送到任何LMS, LRS或任何其他接收H5P分数的连接服务平台。"
               },
               {
                 "label": "内容识别码"
@@ -59,11 +59,11 @@
                 "description": "如果选中，用户将在该内容上方的顶部栏中看到内容标题。"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
+                "label": "继续按钮的文本(最大长度:50个字符)",
                 "default": "继续"
               },
               {
-                "label": "Override require content finished",
+                "label": "覆盖要求内容完成",
                 "description": "覆盖要求在激活“继续”按钮之前完成内容的单个设置。如果内容没有显示是否“完成”，则不会产生任何影响，例如只有一张幻灯片的图像或课程演示。",
                 "options": [
                   {
@@ -92,7 +92,7 @@
                   },
                   {
                     "label": "这个场景的得分",
-                    "description": "分数将被发送到任何LMS, LRS或任何其他连接的服务，从H5P接收到达到此场景的用户的分数"
+                    "description": "分数将被发送到任何LMS, LRS或任何其他连接的服务，从H5P接收到达到此场景的用户的分数。"
                   }
                 ]
               },
@@ -119,7 +119,7 @@
           "fields": [
             {
               "label": "评分选项",
-              "description": "选择评分类型",
+              "description": "选择评分类型。",
               "options": [
                 {
                   "label": "为每个结束场景静态设置分数"
@@ -151,7 +151,7 @@
             },
             {
               "label": "将分支问题随机化",
-              "description": "分支问题将以随机顺序显示"
+              "description": "分支问题将以随机顺序显示。"
             }
           ]
         },
