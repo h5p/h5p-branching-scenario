@@ -792,7 +792,8 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       this,
       this.params.startScreen.startScreenTitle,
       this.getLibrary(0),
-      this.extras.previousState?.child
+      this.extras.previousState?.child,
+      this.extras.previousState?.userPath?.slice(-1)[0] // last node id
     );
 
     this.libraryScreen.on('toggleFullScreen', () => {

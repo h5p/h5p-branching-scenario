@@ -11,11 +11,13 @@ export default class LibraryScreen extends H5P.EventDispatcher {
    * @param  {string} courseTitle Title.
    * @param  {object} library H5P Library Data.
    * @param  {object} [previousState] Previous states of library.
+   * @param  {number} [lastNodeId] Id of last node from previous state.
    */
-  constructor(parent, courseTitle, library, previousState) {
+  constructor(parent, courseTitle, library, previousState, lastNodeId = 0) {
     super();
     this.parent = parent;
     this.previousState = previousState ?? {};
+    this.lastNodeId = lastNodeId;
 
     this.currentLibraryElement;
     this.currentLibraryInstance;
@@ -496,7 +498,9 @@ export default class LibraryScreen extends H5P.EventDispatcher {
      * sure it's available no matter by what path newRunnable is called.
      */
     const extras = { parent: this.parent };
-    if (this.previousState) {
+    const previousStateIsForCurrentId =
+      typeof(this.lastNodeId) === 'number' && this.lastNodeId === id;
+    if (this.previousState && previousStateIsForCurrentId) {
       extras.previousState = this.previousState;
     }
 
@@ -1611,6 +1615,7 @@ export default class LibraryScreen extends H5P.EventDispatcher {
       instance.resetTask?.();
     }
     delete this.previousState;
+    delete this.lastNodeId;
   }
 }
 
