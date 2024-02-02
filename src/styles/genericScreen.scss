@@ -52,12 +52,12 @@
 }
 
 .h5p-branching-scenario .h5p-image-container.h5p-default-start-image {
-  background: url(start-screen-default.jpg);
+  background: url('@assets/start-screen-default.jpg');
   background-size: 100% 100%;
 }
 
 .h5p-branching-scenario .h5p-image-container.h5p-default-end-image {
-  background: url(end-screen-default.jpg);
+  background: url('@assets/end-screen-default.jpg');
   background-size: 100% 100%;
 }
 
