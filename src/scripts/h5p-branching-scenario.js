@@ -361,7 +361,8 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         return; // Prevent sending the event back down
       }
       this.changeLayoutToFitWidth();
-      this.libraryScreen?.resize(event);
+
+      this.libraryScreen?.resize?.(event);
 
       // Add classname for phone size adjustments
       const rect = this.container.getBoundingClientRect();
