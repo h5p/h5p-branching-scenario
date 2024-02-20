@@ -266,8 +266,8 @@ export default class GenericScreen extends H5P.EventDispatcher {
     }
     else {
       backgroundImage.src = isStartScreen ?
-        this.parent.getLibraryFilePath('assets/start-screen-default.jpg') :
-        this.parent.getLibraryFilePath('assets/end-screen-default.jpg');
+        this.parent.getLibraryFilePath('dist/assets/start-screen-default.jpg') :
+        this.parent.getLibraryFilePath('dist/assets/end-screen-default.jpg');
     }
 
     if (altText?.length) {

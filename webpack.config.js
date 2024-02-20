@@ -74,7 +74,10 @@ export default {
       {
         test: /\.svg|\.jpg|\.png$/,
         include: join(__dirname, 'src/assets'),
-        type: 'asset/resource'
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]'
+        }
       },
       {
         test: /\.woff$/,
