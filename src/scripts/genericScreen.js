@@ -324,6 +324,15 @@ export default class GenericScreen extends H5P.EventDispatcher {
       this.checkIntroReset();
     };
 
+    // Close all open overlays
+    this.parent.libraryScreen.contentOverlays?.forEach((overlay) => {
+      overlay.hide();
+    });
+    this.parent.libraryScreen.branchingQuestions?.forEach((questionDOM) => {
+      questionDOM.remove();
+    });
+    this.parent.libraryScreen.overlay?.remove();
+
     if (options.skipAnimation) {
       this.screenWrapper.classList.remove('h5p-branching-hidden');
       done();
