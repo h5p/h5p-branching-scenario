@@ -858,6 +858,10 @@ export default class BranchingScenario extends H5P.EventDispatcher {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-7}
    */
   getCurrentState() {
+    if (!this.libraryScreen.getCurrentState) {
+      return; // Does not have content
+    }
+
     if (this.userPath.length === 0 && !this.wasRestarted) {
       return; // Only when on start screen threre is nothing to restore
     }
