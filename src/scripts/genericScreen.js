@@ -266,8 +266,8 @@ export default class GenericScreen extends H5P.EventDispatcher {
     }
     else {
       backgroundImage.src = isStartScreen ?
-        this.parent.getLibraryFilePath('assets/start-screen-default.jpg') :
-        this.parent.getLibraryFilePath('assets/end-screen-default.jpg');
+        this.parent.getLibraryFilePath('dist/assets/start-screen-default.jpg') :
+        this.parent.getLibraryFilePath('dist/assets/end-screen-default.jpg');
     }
 
     if (altText?.length) {
@@ -323,6 +323,15 @@ export default class GenericScreen extends H5P.EventDispatcher {
 
       this.checkIntroReset();
     };
+
+    // Close all open overlays
+    this.parent.libraryScreen.contentOverlays?.forEach((overlay) => {
+      overlay.hide();
+    });
+    this.parent.libraryScreen.branchingQuestions?.forEach((questionDOM) => {
+      questionDOM.remove();
+    });
+    this.parent.libraryScreen.overlay?.remove();
 
     if (options.skipAnimation) {
       this.screenWrapper.classList.remove('h5p-branching-hidden');
