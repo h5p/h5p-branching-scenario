@@ -376,7 +376,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
         this.container.classList.add('h5p-medium-tablet-size');
       }
       else {
-        this.container.classList.add('h5p-medium-tablet-size');
+        this.container.classList.remove('h5p-medium-tablet-size');
       }
     });
   }
