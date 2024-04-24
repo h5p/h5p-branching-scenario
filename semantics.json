@@ -214,6 +214,7 @@
                   "name": "title",
                   "type": "text",
                   "label": "Feedback title",
+                  "optional": true,
                   "widget": "html",
                   "enterMode": "p",
                   "tags": [
