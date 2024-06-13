@@ -60,7 +60,6 @@
               },
               {
                 "label": "Texto para el botón Proceder (longitud máxima: 50 caracteres)",
-                "description": "Si está seleccionado, el usuario verá el título del contenido en la barra superior arriba de este contenido",
                 "default": "Proceder"
               },
               {
