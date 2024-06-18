@@ -683,8 +683,6 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       delete this.extras.previousState;
     }
 
-    this.wasRestarted = true;
-
     // Reset the library screen
     if (this.libraryScreen) {
       this.libraryScreen.remove();
@@ -859,11 +857,11 @@ export default class BranchingScenario extends H5P.EventDispatcher {
    */
   getCurrentState() {
     if (!this.libraryScreen.getCurrentState) {
-      return; // Does not have content
+      return null; // Does not have content
     }
 
-    if (this.userPath.length === 0 && !this.wasRestarted) {
-      return; // Only when on start screen threre is nothing to restore
+    if (this.userPath.length === 0) {
+      return null; // Only when on start screen there is nothing to restore
     }
 
     const state = {
