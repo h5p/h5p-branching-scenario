@@ -55,59 +55,59 @@
           "field": {
             "fields": [
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Prikaži naslov vsebine ob ogledu",
+                "description": "Udeleženci vidijo naslov v zgornjem delu okna nad vsebino."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Besedilo gumba za nadaljevanje (največ 50 znakov)",
+                "default": "Nadaljuj"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Zahtevaj zaključek vsebine",
+                "description": "Nastavitev preglasi posamezne zahteve po zaključku vsebine in vpliva na uporabo gumba "Nadaljuj". Nastavitev nima vpliva, če vsebine ni mogoče zaključiti (npr. slika brez interakcije).",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Upoštevaj iz Nastavitve interakcije"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Omogoči"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Onemogoči"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Povratna informacija",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Naslov povratne informacije"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Besedilo povratne informacije"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Slika povratne informacije"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Točke izbranega scenarija",
+                    "description": "Rezultat udeležencev je lahko poslan drugi povezani storitvi (npr. LMS, LRS)."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Navigacija nazaj",
+                "description": "Nastavitev omogoča udeležencem vrnitev nazaj na ogled predhodne vsebine oz. vprašanja.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Upoštevaj iz Nastavitve interakcije"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Omogoči"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Onemogoči"
                   }
                 ]
               }
@@ -171,8 +171,8 @@
               "default": "Nazaj"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Besedilo gumba na zaslonih knjižnic",
+              "default": "Zahtevan je zaključek trenutne vsebine"
             },
             {
               "label": "Besedilo gumba za ponovno predvajanje videoposnetka",
