@@ -54,6 +54,7 @@
           "entity": "turinys",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Rodyti turinio pavadinimą rodinyje",
                 "description": "Jei pasirinkta, naudotojas matys turinio pavadinimą viršutinėje juostoje virš šio turinio."

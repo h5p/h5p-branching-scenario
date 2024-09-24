@@ -54,6 +54,7 @@
           "entity": "inhoud",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Wys inhoudtitel in sig",
                 "description": "Indien verkies, sal die gebruiker die inhoudtitel in die boonste balk bo hierdie inhoud sien"

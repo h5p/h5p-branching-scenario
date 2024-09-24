@@ -54,6 +54,7 @@
           "entity": "obsah",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Zobrazit název obsahu",
                 "description": "Pokud je vybráno, uživatel uvidí název obsahu v horní liště nad tímto obsahem."

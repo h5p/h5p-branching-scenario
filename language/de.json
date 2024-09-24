@@ -54,6 +54,7 @@
           "entity": "Inhalt",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Titel anzeigen",
                 "description": "Wenn diese Einstellung angewählt wird, sehen die Lernenden den Inhaltstitel in der Titelzeile über dem Inhalt."

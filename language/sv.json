@@ -54,6 +54,7 @@
           "entity": "innehåll",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Visa innehållets titel i vy",
                 "description": "Om valt, så kommer användaren se innehållets titel i toppmenyn ovanför detta innehåll."

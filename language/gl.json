@@ -54,6 +54,7 @@
           "entity": "contido",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Amosar o título do contido na vista",
                 "description": "Se se selecciona, o usuario verá o título do contido na barra de contido na parte superior."

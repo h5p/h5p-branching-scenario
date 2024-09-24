@@ -54,6 +54,7 @@
           "entity": "saturs",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Rādīt satura nosaukumu skatā",
                 "description": "Ja atlasīts, lietotājs redzēs satura nosaukumu augšējā joslā virs šī satura"

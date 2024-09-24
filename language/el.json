@@ -54,6 +54,7 @@
           "entity": "αντικειμενου",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Show content title in view",
                 "description": "If selected, the user will see the content title in the top bar above this content."
