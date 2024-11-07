@@ -10,18 +10,18 @@
           "label": "Úvodná obrazovka",
           "fields": [
             {
-              "label": "Nadpis na úvodnej obrazovke",
-              "placeholder": "Nadpis scenára"
+              "label": "Nadpis kurzu",
+              "placeholder": "Názov vášho kurzu"
             },
             {
-              "label": "Podnadpis scenára",
-              "placeholder": "Detaily o scenári"
+              "label": "Podrobnosti kurzu",
+              "placeholder": "Podrobnosti o kurze"
             },
             {
-              "label": "Obrázok úvodnej obrazovky"
+              "label": "Obrázok kurzu"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternatívny text obrázka"
             }
           ]
         },
@@ -50,65 +50,65 @@
           }
         },
         {
-          "label": "Zoznam obsahov vetveného scenára",
+          "label": "Zoznam položiek obsahu vetveného scenára",
           "entity": "obsah",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Zobraziť názov obsahu v zobrazení",
+                "description": "Ak je označené, používateľ uvidí názov obsahu v hornej lište nad týmto obsahom."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Text pre tlačidlo Pokračovať (maximálna dĺžka: 50 znakov)",
+                "default": "Pokračovať"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Prepísanie vyžaduje dokončený obsah",
+                "description": "Pred aktiváciou tlačidla „Pokračovať“ prepíšte jednotlivé nastavenia, ktoré vyžadujú dokončenie obsahu. Nebude mať žiadny účinok, ak obsah neuvádza, či bol „dokončený“, napr. obrázky alebo prezentácie kurzov len s jednou snímkou.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použiť nastavenie správania"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povolené"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázané"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Spätná väzba",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Nadpis pre Spätnú väzbu"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Text spätnej väzby"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Obrázok spätnej väzby"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Skóre pre tento scenár",
+                    "description": "Skóre bude odoslané do akéhokoľvek LMS, LRS alebo akejkoľvek inej pripojenej služby, ktorá dostane skóre od H5P pre používateľov, ktorí splnia tento scenár."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Prejsť späť",
+                "description": "Používateľovi to umožní vrátiť sa späť a pozrieť si predchádzajúci obsah/otázku v scenári.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Použite nastavenie správania"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Povolené"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Zakázané"
                   }
                 ]
               }
@@ -120,7 +120,7 @@
           "fields": [
             {
               "label": "Možnosti hodnotenia",
-              "description": "Vyber typ hodnotenia",
+              "description": "Vyberte typ hodnotenia.",
               "options": [
                 {
                   "label": "Staticky stanovené skóre pre každý konečný scenár"
@@ -134,25 +134,25 @@
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Zahrňte skóre z interakcií v rámci Vetveného scenára",
+              "description": "Ak vyberiete skóre napríklad z interaktívnych videí, pripočíta sa k celkovému získanému skóre. Ak nie je vybraté, počítajú sa iba skóre špecifikované v sekciách spätnej väzby položiek obsahu, otázky vetvenia a konečné scenáre."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Nastavenie správania",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Prejsť naspäť",
+              "description": "Používateľovi to umožní vrátiť sa späť a pozrieť si predchádzajúci obsah/otázku v scenári. Toto je možné prepísať na úrovni obsahu."
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Povinné sledovať",
+              "description": "Vyzýva účastníkov, aby dokončili video, interaktívne video a prezentáciu kurzu pred pokračovaním v scenári. Toto je možné prepísať na úrovni obsahu."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Nastavte otázky týkajúce sa vetvenia tak, aby boli náhodné",
+              "description": "Otázky vetvenia sa zobrazia v náhodnom poradí."
             }
           ]
         },
@@ -168,24 +168,24 @@
               "default": "Reštartovať kurz"
             },
             {
-              "label": "Text pre tlačidlo na každej obrazovke scenára",
-              "default": "Pokračovať"
+              "label": "Text pre tlačidlo Späť na každej z obrazoviek knižnice a otázke vetvenia",
+              "default": "Naspäť"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Text pre deaktivované tlačidlo na obrazovkách knižnice",
+              "default": "Vyžadovať dokončenie aktuálneho modulu"
             },
             {
-              "label": "Nadpis pre hodnotenie na záverečnej obrazovke",
-              "default": "Vaše hodnotenie:"
+              "label": "Text pre tlačidlo používané na opätovné prehrávanie videa",
+              "default": "Prehrať video znova"
             },
             {
-              "label": "Label for score on the end screen",
-              "default": "Your score:"
+              "label": "Označenie skóre na záverečnej obrazovke",
+              "default": "Vaše skóre:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Označenie Aria pre tlačidlo celej obrazovky",
+              "default": "Celá obrazovka"
             }
           ]
         }
