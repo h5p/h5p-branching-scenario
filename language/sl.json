@@ -65,7 +65,7 @@
               },
               {
                 "label": "Zahtevaj zaključek vsebine",
-                "description": "Nastavitev preglasi posamezne zahteve po zaključku vsebine in vpliva na uporabo gumba "Nadaljuj". Nastavitev nima vpliva, če vsebine ni mogoče zaključiti (npr. slika brez interakcije).",
+                "description": "Nastavitev preglasi posamezne zahteve po zaključku vsebine in vpliva na uporabo gumba \"Nadaljuj\". Nastavitev nima vpliva, če vsebine ni mogoče zaključiti (npr. slika brez interakcije).",
                 "options": [
                   {
                     "label": "Upoštevaj iz Nastavitve interakcije"
