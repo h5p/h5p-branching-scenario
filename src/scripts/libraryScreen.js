@@ -152,7 +152,9 @@ export default class LibraryScreen extends H5P.EventDispatcher {
           // Make the library resize then make the wrapper resize to the new library height
           addResizeListener(this.currentLibraryElement, () => {
             this.handleLibraryResize();
+            this.parent.bubblingUpwards = true;
             this.parent.trigger('resize');
+            this.parent.bubblingUpwards = false;
           });
         }, 100);
       }
