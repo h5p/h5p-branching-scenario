@@ -75,7 +75,7 @@ export default class BranchingScenario extends H5P.EventDispatcher {
 
       // Set Proceedbutton to default text if not added
       item.proceedButtonText =
-        item.proceedButtonText = this.params.l10n.proceedButtonText;
+        item.proceedButtonText || this.params.l10n.proceedButtonText;
     });
 
     // Compute pattern for enabling/disabling back button

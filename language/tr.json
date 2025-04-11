@@ -54,6 +54,7 @@
           "entity": "içerik",
           "field": {
             "fields": [
+              {},
               {
                 "label": "İçerik başlığını görünümde göster",
                 "description": "Seçilirse, kullanıcı bu içeriğin üstündeki üst çubukta içerik başlığını görecektir."

@@ -54,6 +54,7 @@
           "entity": "contenu",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Voir le titre du contenu dans la vue",
                 "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"

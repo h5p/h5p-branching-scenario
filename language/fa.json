@@ -54,6 +54,7 @@
           "entity": "محتوا",
           "field": {
             "fields": [
+              {},
               {
                 "description": "If selected, the user will see the content title in the top bar above this content.",
                 "label": "Show content title in view"

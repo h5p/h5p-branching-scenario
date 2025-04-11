@@ -54,6 +54,7 @@
           "entity": "edukia",
           "field": {
             "fields": [
+              {},
               {
                 "label": "Erakutsi edukiaren izenburua bistan",
                 "description": "Hautatzen bada, erabiltzaileak edukiaren izenburua ikusiko du eduki honen gaineko goiko barran."
