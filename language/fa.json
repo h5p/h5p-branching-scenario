@@ -27,6 +27,7 @@
         },
         {
           "label": "لیست صفحات پایان",
+          "entity": "end screen",
           "field": {
             "label": "صفحه پایان",
             "fields": [

@@ -27,6 +27,7 @@
         },
         {
           "label": "Lys van eindskerms",
+          "entity": "end screen",
           "field": {
             "label": "Eindskerm",
             "fields": [

@@ -27,6 +27,7 @@
         },
         {
           "label": "结束屏幕列表",
+          "entity": "end screen",
           "field": {
             "label": "结束屏幕",
             "fields": [

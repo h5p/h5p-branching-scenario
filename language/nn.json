@@ -27,6 +27,7 @@
         },
         {
           "label": "List of end screens",
+          "entity": "end screen",
           "field": {
             "label": "End screen",
             "fields": [
