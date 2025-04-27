@@ -27,6 +27,7 @@
         },
         {
           "label": "Lista das telas finais",
+          "entity": "end screen",
           "field": {
             "label": "Tela Final",
             "fields": [

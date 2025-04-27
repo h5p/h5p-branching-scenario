@@ -27,6 +27,7 @@
         },
         {
           "label": "Lista haaranpäätteistä",
+          "entity": "end screen",
           "field": {
             "label": "Haaranpääte",
             "fields": [

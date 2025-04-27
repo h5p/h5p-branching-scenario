@@ -27,6 +27,7 @@
         },
         {
           "label": "רשימה של מסכי סיום",
+          "entity": "end screen",
           "field": {
             "label": "מסך סיום",
             "fields": [

@@ -27,6 +27,7 @@
         },
         {
           "label": "Seznam končnih zaslonov",
+          "entity": "end screen",
           "field": {
             "label": "Končni zaslon",
             "fields": [
