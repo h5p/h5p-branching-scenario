@@ -290,7 +290,9 @@ export default class LibraryScreen extends H5P.EventDispatcher {
         new Promise((resolve) => {
           resolve(this.parent.trigger('navigated', nextScreen));
         }).then(() => {
-          this.parent.trigger('resize');
+          requestAnimationFrame(() => {
+            this.parent.trigger('resize');
+          });
           this.parent.proceedButtonInProgress = false;
           this.parent.navigating = true;
         });
