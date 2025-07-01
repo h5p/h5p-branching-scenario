@@ -346,6 +346,9 @@ export default class LibraryScreen extends H5P.EventDispatcher {
     const navButton = document.createElement('button');
     navButton.addEventListener('click', () => {
       this.parent.trigger('navigated', { nextContentId });
+      requestAnimationFrame(() => {
+        this.parent.trigger('resize');
+      });
     });
 
     const proceedButtonText = this.parent.getLibrary(this.currentLibraryId).proceedButtonText;
