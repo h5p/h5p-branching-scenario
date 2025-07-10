@@ -56,59 +56,59 @@
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Εμφάνιση τίτλου περιεχομένου στην προβολή",
+                "description": "Εάν επιλεγεί, ο χρήστης θα βλέπει τον τίτλο του περιεχομένου στη γραμμή στο πάνω μέρος πάνω από αυτό το περιεχόμενο."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Κείμενο για το κουμπί συνέχισης (μέγιστο μήκος: 50 χαρακτήρες)",
+                "default": "Συνέχισε"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Παράκαμψη απαίτησης ολοκλήρωσης περιεχομένου",
+                "description": "Παρακάμπτει τις μεμονωμένες ρυθμίσεις για την απαίτηση να έχει ολοκληρωθεί το περιεχόμενο πριν από την ενεργοποίηση του κουμπιού \"Συνέχισε\". Δεν θα έχει καμία επίδραση εάν το περιεχόμενο δεν υποδεικνύει εάν έχει \"Ολοκληρωθεί\", π.χ. εικόνες ή παρουσιάσεις μαθημάτων με μία μόνο διαφάνεια.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Χρήση ρύθμισης συμπεριφοράς"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ενεργοποιημένο"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Απενεργοποιημένο"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Ανατροφοδότηση",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Τίτλος ανατροφοδότησης"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Κείμενο ανατροφοδότησης"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Εικόνα ανατροφοδότησης"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Βαθμολογία για αυτό το σενάριο",
+                    "description": "Η βαθμολογία θα αποστέλλεται σε κάθε LMS, LRS ή οποιαδήποτε άλλη συνδεδεμένη υπηρεσία που λαμβάνει βαθμολογίες από το H5P για τους χρήστες που φτάνουν σε αυτό το σενάριο."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Μετάβαση πίσω",
+                "description": "Αυτό θα επιτρέψει στον χρήστη να επιστρέψει και να δει το προηγούμενο περιεχόμενο/ερώτηση στο σενάριο.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Χρήση ρύθμισης συμπεριφοράς"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Ενεργοποιημένο"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Απενεργοποιημένο"
                   }
                 ]
               }
