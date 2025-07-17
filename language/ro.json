@@ -1,0 +1,195 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de scenarii ramificate",
+      "fields": [
+        {
+          "label": "Titlu"
+        },
+        {
+          "label": "Ecran de pornire",
+          "fields": [
+            {
+              "label": "Titlul cursului",
+              "placeholder": "Titlu pentru cursul dumneavoastră"
+            },
+            {
+              "label": "Detalii despre curs",
+              "placeholder": "Detalii despre curs"
+            },
+            {
+              "label": "Imaginea cursului"
+            },
+            {
+              "label": "Text alternativ pentru imagine"
+            }
+          ]
+        },
+        {
+          "label": "Listă de ecrane de final",
+          "field": {
+            "label": "Ecran de final",
+            "fields": [
+              {
+                "label": "Titlu"
+              },
+              {
+                "label": "Text"
+              },
+              {
+                "label": "Imagine"
+              },
+              {
+                "label": "Scor",
+                "description": "Scorul va fi trimis către orice LMS, LRS sau alt serviciu conectat care primește scoruri de la H5P pentru utilizatorii care ajung la scenariul de final implicit."
+              },
+              {
+                "label": "ID conținut"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Listă de conținut pentru scenariul ramificat",
+          "entity": "conținut",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Afișează titlul conținutului în vizualizare",
+                "description": "Dacă este selectat, utilizatorul va vedea titlul conținutului în bara superioară, deasupra acestui conținut."
+              },
+              {
+                "label": "Text pentru butonul de continuare (lungime maximă: 50 de caractere)",
+                "default": "Continuă"
+              },
+              {
+                "label": "Suprascrie cerința de finalizare a conținutului",
+                "description": "Suprascrie setările individuale care cer ca acest conținut să fie finalizat înainte de a activa butonul „Continuă”. Nu va avea niciun efect dacă conținutul nu indică dacă a fost „finalizat”, de ex. imagini sau prezentări de curs cu un singur diapozitiv.",
+                "options": [
+                  {
+                    "label": "Utilizează setarea de comportament"
+                  },
+                  {
+                    "label": "Activat"
+                  },
+                  {
+                    "label": "Dezactivat"
+                  }
+                ]
+              },
+              {},
+              {
+                "label": "Feedback",
+                "fields": [
+                  {
+                    "label": "Titlu feedback"
+                  },
+                  {
+                    "label": "Text feedback"
+                  },
+                  {
+                    "label": "Imagine feedback"
+                  },
+                  {
+                    "label": "Scor pentru acest scenariu",
+                    "description": "Scorul va fi trimis către orice LMS, LRS sau alt serviciu conectat care primește scoruri de la H5P pentru utilizatorii care ajung la acest scenariu."
+                  }
+                ]
+              },
+              {
+                "label": "Navigare înapoi",
+                "description": "Aceasta va permite utilizatorului să se întoarcă pentru a vedea conținutul/întrebarea anterioară din scenariu.",
+                "options": [
+                  {
+                    "label": "Utilizează setarea de comportament"
+                  },
+                  {
+                    "label": "Activat"
+                  },
+                  {
+                    "label": "Dezactivat"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Opțiuni de punctaj",
+          "fields": [
+            {
+              "label": "Opțiuni de punctaj",
+              "description": "Selectați tipul de punctaj.",
+              "options": [
+                {
+                  "label": "Scor setat static pentru fiecare scenariu de final"
+                },
+                {
+                  "label": "Calculează dinamic scorul pe baza răspunsurilor utilizatorului"
+                },
+                {
+                  "label": "Fără punctaj"
+                }
+              ]
+            },
+            {
+              "label": "Include scoruri din interacțiunile din cadrul Scenariului Ramificat",
+              "description": "Dacă este aleasă această opțiune, scorurile obținute, de exemplu, din Videoclipurile Interactive, vor fi adăugate la scorul total obținut. Dacă nu este aleasă, vor fi luate în considerare doar scorurile specificate în secțiunile de feedback ale elementelor de conținut, întrebărilor de ramificare și scenariilor de final."
+            }
+          ]
+        },
+        {
+          "label": "Setări de comportament",
+          "fields": [
+            {
+              "label": "Navigare înapoi",
+              "description": "Aceasta va permite utilizatorului să se întoarcă pentru a vedea conținutul/întrebarea anterioară din scenariu. Această setare poate fi suprascrisă la nivel de conținut."
+            },
+            {
+              "label": "Vizionare obligatorie",
+              "description": "Solicită vizualizatorilor să finalizeze Videoclipul, Videoclipul Interactiv și Prezentarea de Curs înainte de a continua cu scenariul. Această setare poate fi suprascrisă la nivel de conținut."
+            },
+            {
+              "label": "Amestecă întrebările de ramificare",
+              "description": "Întrebările de ramificare vor fi afișate într-o ordine aleatorie."
+            }
+          ]
+        },
+        {
+          "label": "Localizare",
+          "fields": [
+            {
+              "label": "Text pentru butonul de pe ecranul de pornire",
+              "default": "Începe cursul"
+            },
+            {
+              "label": "Text pentru butonul de pe ecranul de final",
+              "default": "Repornește cursul"
+            },
+            {
+              "label": "Text pentru butonul „Înapoi” de pe fiecare ecran al bibliotecii și întrebare de ramificare",
+              "default": "Înapoi"
+            },
+            {
+              "label": "Text pentru butonul dezactivat de pe ecranele bibliotecii",
+              "default": "Este necesară finalizarea modulului curent"
+            },
+            {
+              "label": "Text pentru butonul folosit pentru a reda din nou un videoclip",
+              "default": "Redă din nou videoclipul"
+            },
+            {
+              "label": "Etichetă pentru scor pe ecranul de final",
+              "default": "Scorul tău:"
+            },
+            {
+              "label": "Etichetă Aria pentru butonul de ecran complet",
+              "default": "Ecran complet"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
