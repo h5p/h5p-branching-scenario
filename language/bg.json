@@ -27,6 +27,7 @@
         },
         {
           "label": "Списък на крайните екрани",
+          "entity": "end screen",
           "field": {
             "label": "Краен екран",
             "fields": [

@@ -27,6 +27,7 @@
         },
         {
           "label": "마지막 화면 리스트",
+          "entity": "end screen",
           "field": {
             "label": "화면 끝내기",
             "fields": [

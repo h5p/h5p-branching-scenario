@@ -27,6 +27,7 @@
         },
         {
           "label": "Seznam koncových obrazovek",
+          "entity": "end screen",
           "field": {
             "label": "Koncová obrazovka",
             "fields": [

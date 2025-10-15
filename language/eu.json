@@ -27,6 +27,7 @@
         },
         {
           "label": "Amaierako pantailen zerrenda",
+          "entity": "end screen",
           "field": {
             "label": "Amaierako pantaila",
             "fields": [

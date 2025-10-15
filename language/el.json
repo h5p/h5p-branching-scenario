@@ -27,6 +27,7 @@
         },
         {
           "label": "Οθόνες λήξης",
+          "entity": "end screen",
           "field": {
             "label": "Οθόνη λήξης",
             "fields": [

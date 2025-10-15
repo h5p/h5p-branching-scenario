@@ -27,6 +27,7 @@
         },
         {
           "label": "Lista delle schermate finali",
+          "entity": "end screen",
           "field": {
             "label": "Schermata finale",
             "fields": [
