@@ -27,6 +27,7 @@
         },
         {
           "label": "Listă de ecrane de final",
+          "entity": "end screen",
           "field": {
             "label": "Ecran de final",
             "fields": [
