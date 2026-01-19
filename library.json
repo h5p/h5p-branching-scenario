@@ -10,7 +10,7 @@
   ],
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 26
+    "minorVersion": 28
   },
   "author": "Joubel AS",
   "license": "MIT",
