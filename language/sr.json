@@ -27,6 +27,7 @@
         },
         {
           "label": "Листа завршних екрана",
+          "entity": "end screen",
           "field": {
             "label": "Крајњи екран",
             "fields": [

@@ -27,6 +27,7 @@
         },
         {
           "label": "Zoznam záverečných obrazoviek",
+          "entity": "end screen",
           "field": {
             "label": "Záverečná obrazovka",
             "fields": [

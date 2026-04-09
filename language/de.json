@@ -27,6 +27,7 @@
         },
         {
           "label": "Liste der Endbildschirme",
+          "entity": "Endbildschirm",
           "field": {
             "label": "Endbildschirm",
             "fields": [

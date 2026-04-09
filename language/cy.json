@@ -27,6 +27,7 @@
         },
         {
           "label": "Rhestr sgriniau diweddu",
+          "entity": "end screen",
           "field": {
             "label": "Sgrin ddiweddu",
             "fields": [

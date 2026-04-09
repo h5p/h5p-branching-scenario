@@ -27,6 +27,7 @@
         },
         {
           "label": "Lõppvaadete loetelu",
+          "entity": "end screen",
           "field": {
             "label": "Lõppvaade",
             "fields": [

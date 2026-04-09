@@ -27,6 +27,7 @@
         },
         {
           "label": "Llista de pantalles finals",
+          "entity": "end screen",
           "field": {
             "label": "Pantalla final",
             "fields": [
