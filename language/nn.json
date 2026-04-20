@@ -1,115 +1,115 @@
 {
   "semantics": [
     {
-      "label": "Branching Scenario Editor",
+      "label": "Redigeringsverktøy for forgreina scenario",
       "fields": [
         {
-          "label": "Title"
+          "label": "Tittel"
         },
         {
-          "label": "Start screen",
+          "label": "Startskjerm",
           "fields": [
             {
-              "label": "Start screen title",
-              "placeholder": "Title for your course"
+              "label": "Tittel på startskjerm",
+              "placeholder": "Tittel for kurset ditt"
             },
             {
-              "label": "Start screen subtitle",
-              "placeholder": "Details about the course"
+              "label": "Undertittel på startskjerm",
+              "placeholder": "Detaljar om kurset"
             },
             {
-              "label": "Start screen image"
+              "label": "Bilete på startskjerm"
             },
             {
-              "label": "Image alternative text"
+              "label": "Alternativ tekst for bilete"
             }
           ]
         },
         {
-          "label": "List of end screens",
-          "entity": "end screen",
+          "label": "Liste over sluttskjermar",
+"entity": "end screen",
           "field": {
-            "label": "End screen",
+            "label": "Sluttskjerm",
             "fields": [
               {
-                "label": "Title"
+                "label": "Tittel"
               },
               {
-                "label": "Text"
+                "label": "Tekst"
               },
               {
-                "label": "Image"
+                "label": "Bilete"
               },
               {
-                "label": "Score",
-                "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach the default end scenario"
+                "label": "Poengsum",
+                "description": "Poengsummen vil bli send til LMS, LRS eller ei anna tilkopla teneste som tek imot poeng frå H5P for brukarar som når standard sluttscenario."
               },
               {
-                "label": "Content ID"
+                "label": "Innhald-ID"
               }
             ]
           }
         },
         {
-          "label": "List of branching scenario content",
+          "label": "Liste over innhald i forgreina scenario",
           "entity": "content",
           "field": {
             "fields": [
               {},
               {
-                "label": "Show content title in view",
-                "description": "If selected, the user will see the content title in the top bar above this content."
+                "label": "Vis innhaldstittel i visning",
+                "description": "Lar brukaren sjå innhaldstittelen øvst over dette innhaldet."
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Tekst på knappen for å gå vidare (maks 50 teikn)",
+                "default": "Gå vidare"
               },
               {
-                "label": "Override require content finished",
-                "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide.",
+                "label": "Overstyr krav om fullført innhald",
+                "description": "Overstyrer individuelle innstillingar som krev at innhaldet skal vere fullført før 'Gå vidare'-knappen blir aktivert.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Bruk innstilling"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktivert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktivert"
                   }
                 ]
               },
               {},
               {
-                "label": "Feedback",
+                "label": "Tilbakemelding",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Tittel for tilbakemelding"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Tekst for tilbakemelding"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Bilete for tilbakemelding"
                   },
                   {
-                    "label": "Score for this scenario",
-                    "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
+                    "label": "Poengsum for dette scenarioet",
+                    "description": "Poengsummen blir send til LMS, LRS eller anna tilkopla teneste som tek imot poeng frå H5P for brukarar som når dette scenarioet."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
-                "description": "This will allow the user to go back and see the previous content/question in the scenario.",
+                "label": "Gå tilbake",
+                "description": "Gjer det mogleg for brukaren å gå tilbake og sjå førre innhald eller spørsmål i scenarioet.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Bruk åtferdsinnstilling"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Aktivert"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Deaktivert"
                   }
                 ]
               }
@@ -117,76 +117,76 @@
           }
         },
         {
-          "label": "Scoring options",
+          "label": "Poengsettingsalternativ",
           "fields": [
             {
-              "label": "Scoring options",
-              "description": "Select type of scoring",
+              "label": "Poengsettingsalternativ",
+              "description": "Vel type poengsetting",
               "options": [
                 {
-                  "label": "Statically set score for each end scenario"
+                  "label": "Statisk poengsum for kvar sluttskjerm"
                 },
                 {
-                  "label": "Dynamically calculate score from user answers"
+                  "label": "Dynamisk utrekna poeng frå brukarens svar"
                 },
                 {
-                  "label": "No scoring"
+                  "label": "Ingen poeng"
                 }
               ]
             },
             {
-              "label": "Include scores from interactions within the Branching Scenario",
-              "description": "If chosen scores from for instance Interactive Videos will be added to the total score obtained. If not chosen only scores specified in the feedback sections of the content items, branching questions and end scenarios will count."
+              "label": "Inkluder poeng frå interaksjonar innan forgreina scenario",
+              "description": "Poeng frå til dømes interaktive videoar vil bli lagde til totalpoengsummen. Om funksjonen ikkje er vald, vil berre poeng frå tilbakemeldingar, forgreiningsspørsmål og sluttskjermar telje."
             }
           ]
         },
         {
-          "label": "Behavioural settings",
+          "label": "Åtferdsinnstillingar",
           "fields": [
             {
-              "label": "Override require content finished",
-              "description": "Override the individual settings for requiring the content to be finished before activating the \"Proceed\" button. Will not have any effect if the content doesn't indicate if it was \"finished\", e.g. images or course presentations with just one slide."
+              "label": "Overstyr krav om fullført innhald",
+              "description": "Overstyrer individuelle innstillingar som krev at innhaldet skal vere fullført før 'Gå vidare'-knappen blir aktivert. Har ingen effekt dersom innhaldet ikkje indikerer at det er fullført, t.d. bilete eller kursframstillingar med berre ein slide."
             },
             {
-              "label": "Required to watch",
-              "description": "Urges viewers to complete the Video, Interactive Vdeo and Course Presentation before proceeding with the scenario. This can be overridden on a content level"
+              "label": "Krav om å sjå",
+              "description": "Pålegg brukaren å fullføre Video, Interaktiv video og Kursframstilling før vidareføring. Kan overstyrast på innhaldsnivå."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Tilfeldig visning av forgreiningsspørsmål",
+              "description": "Forgreiningsspørsmål blir viste i tilfeldig rekkefølge."
             }
           ]
         },
         {
-          "label": "Localization",
+          "label": "Lokalisering",
           "fields": [
             {
-              "label": "Text for the button on the start screen",
+              "label": "Tekst for knappen på startskjerm",
               "default": "Start kurset"
             },
             {
-              "label": "Text for the button on the end screen",
+              "label": "Tekst for knappen på sluttskjerm",
               "default": "Start på nytt"
             },
             {
-              "label": "Text for the button on each of the library screens",
+              "label": "Tekst for knappen på kvar biblioteks-skjerm",
               "default": "Gå vidare"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Tekst for deaktivert knapp på biblioteks-skjerm",
+              "default": "Du krev at brukar fullfører gjeldande modul"
             },
             {
-              "label": "Text for the button used to replay a video",
-              "default": "Replay the video"
+              "label": "Tekst for knapp til å spele av video på nytt",
+              "default": "Spel av video på nytt"
             },
             {
-              "label": "Label for score on the end screen",
+              "label": "Merkelapp for poeng på sluttskjerm",
               "default": "Resultatet ditt:"
             },
             {
-              "label": "Aria label for fullscreen button",
-              "default": "Fullscreen"
+              "label": "Aria-etikett for fullskjerm-knapp",
+              "default": "Fullskjerm"
             }
           ]
         }
