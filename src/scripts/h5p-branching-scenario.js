@@ -806,7 +806,9 @@ export default class BranchingScenario extends H5P.EventDispatcher {
       this.container.append(this.endScreens[endScreen.contentId].getElement());
     });
 
-    this.restoreView(this.extras.previousState);
+    window.requestAnimationFrame(() => {
+      this.restoreView(this.extras.previousState);
+    });
   }
 
   /**
