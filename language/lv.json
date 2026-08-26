@@ -27,6 +27,7 @@
         },
         {
           "label": "Beigu ekrānu saraksts",
+          "entity": "end screen",
           "field": {
             "label": "Beigu ekrāns",
             "fields": [

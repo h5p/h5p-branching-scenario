@@ -27,6 +27,7 @@
         },
         {
           "label": "Lista med slutskärmar",
+          "entity": "end screen",
           "field": {
             "label": "Slutskärm",
             "fields": [

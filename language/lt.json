@@ -27,6 +27,7 @@
         },
         {
           "label": "Pabaigos užsklandų sąrašas",
+          "entity": "end screen",
           "field": {
             "label": "Pabaigos ekranas",
             "fields": [

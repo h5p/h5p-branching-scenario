@@ -27,6 +27,7 @@
         },
         {
           "label": "Orodha ya skrini ya mwisho",
+          "entity": "end screen",
           "field": {
             "label": "Skrini ya mwisho",
             "fields": [
