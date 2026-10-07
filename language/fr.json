@@ -61,55 +61,55 @@
                 "description": "Si sélectionné, l'utilisateur verra le titre du contenu dans la barre supérieure en haut de ce contenu"
               },
               {
-                "label": "Text for the proceed button (max length: 50 characters)",
-                "default": "Proceed"
+                "label": "Texte du bouton continuer (longueur max : 50 caractères)",
+                "default": "Continuer"
               },
               {
                 "label": "Identifiant de contenu suivant (les écrans de fin sont définis par des nombres négatifs)",
                 "description": "Contourner les options personnelles exigeant la complétion du contenu avant d’activer le bouton « Continuer ». N’aura aucun effet si le contenu n’indique pas de complétion (des images ou une présentation de cours comprenant une seule diapo, par exemple).",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Utiliser les paramètres de comportement"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activé"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Désactivé"
                   }
                 ]
               },
 	      {},
               {
-                "label": "Feedback",
+                "label": "Retour",
                 "fields": [
                   {
-                    "label": "Feedback title"
+                    "label": "Titre du retour"
                   },
                   {
-                    "label": "Feedback text"
+                    "label": "Texte de retour"
                   },
                   {
-                    "label": "Feedback image"
+                    "label": "Image de retour"
                   },
                   {
-                    "label": "Score for this scenario",
+                    "label": "Score pour ce scénario",
                     "description": "The score will be sent to any LMS, LRS or any other connected service that receives scores from H5P for users who reach this scenario."
                   }
                 ]
               },
               {
-                "label": "Navigate back",
+                "label": "Retour",
                 "description": "This will allow the user to go back and see the previous content/question in the scenario.",
                 "options": [
                   {
-                    "label": "Use behavioural setting"
+                    "label": "Utiliser les paramètres de comportement"
                   },
                   {
-                    "label": "Enabled"
+                    "label": "Activé"
                   },
                   {
-                    "label": "Disabled"
+                    "label": "Désactivé"
                   }
                 ]
               }
@@ -152,8 +152,8 @@
               "description": "Contourner les paramètres individuels exigeant que le contenu soit complété avant d'activer la touche « Continuer ». N'aura aucun effet si le contenu n'indique pas qu'il a été « fini », p.ex. des images ou des diaporamas avec une seule diapositive."
             },
             {
-              "label": "Randomize Branching Questions",
-              "description": "Branching questions will be displayed in random order"
+              "label": "Mélanger les questions à embranchement",
+              "description": "Les questions à embranchement seront affichées dans un ordre aléatoire"
             }
           ]
         },
@@ -173,8 +173,8 @@
               "default": "Revenir en arrière"
             },
             {
-              "label": "Text for the disabled button on the library screens",
-              "default": "Require to complete the current module"
+              "label": "Texte du bouton désactivé sur les écrans de bibliothèque",
+              "default": "Exiger de compléter le module actuel"
             },
             {
               "label": "Libellé du bouton pour jouer la vidéo de nouveau",
