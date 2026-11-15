@@ -162,11 +162,11 @@
           "fields": [
             {
               "label": "A kezdőképernyőn lévő gomb szövege",
-              "default": "Indítás"
+              "default": "Kezdés"
             },
             {
               "label": "A befejező képernyőn lévő gomb szövege",
-              "default": "Újrakezdése"
+              "default": "Újrakezdés"
             },
             {
               "label": "A tartalmak és elágazó kérdések képernyőin lévő Vissza gomb szövege",
