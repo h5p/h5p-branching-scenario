@@ -1,0 +1,196 @@
+{
+  "semantics": [
+    {
+      "label": "Elágazásos helyzetgyakorlat szerkesztője",
+      "fields": [
+        {
+          "label": "Cím"
+        },
+        {
+          "label": "Kezdőképernyő",
+          "fields": [
+            {
+              "label": "Tananyag címe",
+              "placeholder": "A tananyag címe"
+            },
+            {
+              "label": "Tananyag részletei",
+              "placeholder": "Részletek a tananyagról"
+            },
+            {
+              "label": "Tananyag képe"
+            },
+            {
+              "label": "Kép helyettesítő szövege"
+            }
+          ]
+        },
+        {
+          "label": "Befejező képernyők listája",
+          "entity": "befejező képernyő",
+          "field": {
+            "label": "Befejező képernyő",
+            "fields": [
+              {
+                "label": "Cím"
+              },
+              {
+                "label": "Szöveg"
+              },
+              {
+                "label": "Kép"
+              },
+              {
+                "label": "Pontszám",
+                "description": "Az alapértelmezett befejezéshez eljutó felhasználók pontszámát a H5P elküldi minden olyan LMS-nek, LRS-nek vagy más kapcsolódó szolgáltatásnak, amely fogadja a H5P-től érkező pontszámokat."
+              },
+              {
+                "label": "Tartalomazonosító"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Az elágazásos helyzetgyakorlat tartalmainak listája",
+          "entity": "tartalom",
+          "field": {
+            "fields": [
+              {},
+              {
+                "label": "Tartalom címének megjelenítése",
+                "description": "Ha bejelöli, a felhasználó a tartalom feletti felső sávban látni fogja a tartalom címét."
+              },
+              {
+                "label": "A Tovább gomb szövege (legfeljebb 50 karakter)",
+                "default": "Tovább"
+              },
+              {
+                "label": "A tartalom befejezésére vonatkozó követelmény felülbírálása",
+                "description": "Felülbírálja azokat az egyedi beállításokat, amelyek előírják a tartalom befejezését a „Tovább” gomb aktiválása előtt. Nincs hatása olyan tartalmak esetén, amelyek nem jelzik, hogy befejeződtek-e, például képeknél vagy egyetlen diából álló bemutatóknál.",
+                "options": [
+                  {
+                    "label": "Viselkedési beállítás használata"
+                  },
+                  {
+                    "label": "Engedélyezve"
+                  },
+                  {
+                    "label": "Letiltva"
+                  }
+                ]
+              },
+              {},
+              {
+                "label": "Visszajelzés",
+                "fields": [
+                  {
+                    "label": "Visszajelzés címe"
+                  },
+                  {
+                    "label": "Visszajelzés szövege"
+                  },
+                  {
+                    "label": "Visszajelzés képe"
+                  },
+                  {
+                    "label": "Pontszám ehhez a befejezéshez",
+                    "description": "Az ehhez a befejezéshez eljutó felhasználók pontszámát a H5P elküldi minden olyan LMS-nek, LRS-nek vagy más kapcsolódó szolgáltatásnak, amely fogadja a H5P-től érkező pontszámokat."
+                  }
+                ]
+              },
+              {
+                "label": "Visszalépés",
+                "description": "Lehetővé teszi, hogy a felhasználó visszalépjen, és megtekintse a helyzetgyakorlat előző tartalmát vagy kérdését.",
+                "options": [
+                  {
+                    "label": "Viselkedési beállítás használata"
+                  },
+                  {
+                    "label": "Engedélyezve"
+                  },
+                  {
+                    "label": "Letiltva"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Értékelési beállítások",
+          "fields": [
+            {
+              "label": "Értékelési beállítások",
+              "description": "Válassza ki a pontozás típusát!",
+              "options": [
+                {
+                  "label": "Rögzített pontszám megadása az egyes befejezésekhez"
+                },
+                {
+                  "label": "Pontszám dinamikus kiszámítása a felhasználó válaszaiból"
+                },
+                {
+                  "label": "Pontozás nélkül"
+                }
+              ]
+            },
+            {
+              "label": "Az elágazásos helyzetgyakorlaton belüli interakciók pontszámainak beszámítása",
+              "description": "Bejelölése esetén az interakciókban, például az interaktív videókban szerzett pontok is hozzáadódnak az összpontszámhoz. Ellenkező esetben csak a tartalmi elemek, elágazó kérdések és befejezések visszajelzési szakaszaiban megadott pontszámok számítanak."
+            }
+          ]
+        },
+        {
+          "label": "Viselkedési beállítások",
+          "fields": [
+            {
+              "label": "Visszalépés",
+              "description": "Lehetővé teszi, hogy a felhasználó visszalépjen, és megtekintse a helyzetgyakorlat előző tartalmát vagy kérdését. A beállítás az egyes tartalmak szintjén felülbírálható."
+            },
+            {
+              "label": "Végignézés szükséges",
+              "description": "Arra ösztönzi a felhasználót, hogy a helyzetgyakorlat folytatása előtt végignézze a videót, az interaktív videót vagy a bemutatót. A beállítás az egyes tartalmak szintjén felülbírálható."
+            },
+            {
+              "label": "Elágazó kérdések véletlenszerű sorrendje",
+              "description": "Az elágazó kérdések véletlenszerű sorrendben jelennek meg."
+            }
+          ]
+        },
+        {
+          "label": "Nyelvi beállítások",
+          "fields": [
+            {
+              "label": "A kezdőképernyőn lévő gomb szövege",
+              "default": "Kezdés"
+            },
+            {
+              "label": "A befejező képernyőn lévő gomb szövege",
+              "default": "Újrakezdés"
+            },
+            {
+              "label": "A tartalmak és elágazó kérdések képernyőin lévő Vissza gomb szövege",
+              "default": "Vissza"
+            },
+            {
+              "label": "A tartalmak képernyőin lévő letiltott gomb szövege",
+              "default": "Az aktuális modul befejezése szükséges"
+            },
+            {
+              "label": "A videó újrajátszására szolgáló gomb szövege",
+              "default": "Videó újrajátszása"
+            },
+            {
+              "label": "A pontszám felirata a befejező képernyőn",
+              "default": "Az Ön pontszáma:"
+            },
+            {
+              "label": "A teljes képernyős mód gombjának ARIA-címkéje",
+              "default": "Teljes képernyő"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
